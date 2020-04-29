@@ -50,7 +50,29 @@ namespace GrowIndigo.Controllers
                     subject = "Grow Mandi App : Client Transaction Details ";
 
                 }
+                else if (type == "AddProduct")
+                {
+                    body = " Hello Admin,\r\n";
+                    body += " User has added new product. Details of particular Product are as follows \r\n";
+                    body += "1.Crop Id: " + objEmailModel.CropId + "\r\n";
+                    body += "2.Category Name: " + objEmailModel.CategoryName + "\r\n";
+                    body += "3.Variety Id : " + objEmailModel.VarietyId + "\r\n";
+                    body += "4.Product Address : " + objEmailModel.ProductAddress + "\r\n";
+                    body += "5.Geo Address: " + objEmailModel.GeoAddress + "\r\n";
+                    body += "6.Mobile Number: " + objEmailModel.MobileNumber + "\r\n";
+                    body += "7.Quantity: " + objEmailModel.Quantity + "\r\n";
+                    body += "8.Quantity Unit: " + objEmailModel.QuantityUnit + "\r\n";
+                    body += "9.Price: " + objEmailModel.Price + "\r\n";
+                    body += "10.State" + objEmailModel.State + "\r\n";
+                    body += "11.District" + objEmailModel.District + "\r\n";
+                    body += "12.Taluka" + objEmailModel.Taluka + "\r\n";
+                    body += "\r\n";
+                    body += "warm regards";
 
+
+                    FromMail = "developer@growindigo.co.in";
+                    subject = "Grow Mandi App: New Product Detail ";
+                }
                 else
                 {
                     #region Get  Seller Details based on productId

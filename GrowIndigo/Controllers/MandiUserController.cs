@@ -90,6 +90,23 @@ namespace GrowIndigo.Controllers
                     var i = dbContext.SaveChanges();
                     if (i != 0)
                     {
+                        EmailController objEmailController = new EmailController();
+                        EmailModel objEmailModel = new EmailModel();
+                        objEmailModel.CropId = objProductMasterViewModel.CropId;
+                        objEmailModel.CategoryName = objProductMasterViewModel.CategoryName;
+                        objEmailModel.VarietyId = objProductMasterViewModel.VarietyId;
+                        objEmailModel.ProductAddress = objProductMasterViewModel.ProductAddress;
+                        objEmailModel.GeoAddress = objProductMasterViewModel.GeoAddress;
+                        objEmailModel.MobileNumber = objProductMasterViewModel.MobileNumber;
+                        objEmailModel.Quantity = objProductMasterViewModel.Quantity;
+                        objEmailModel.QuantityUnit = objProductMasterViewModel.QuantityUnit;
+                        objEmailModel.Price = Convert.ToInt32(objProductMasterViewModel.Price);
+                        objEmailModel.State = objProductMasterViewModel.StateCode;
+                        objEmailModel.District = objProductMasterViewModel.DistrictCode;
+                        objEmailModel.Taluka = objProductMasterViewModel.TalukaCode;
+
+                        objEmailController.sendEmailViaWebApi(objEmailModel, "AddProduct");
+
                         objResponse.Message = "Product Added successfully";
                         return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                     }

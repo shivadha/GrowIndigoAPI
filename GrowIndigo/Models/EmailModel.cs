@@ -40,6 +40,36 @@ namespace GrowIndigo.Models
         public string PaymentStatus { get; set; }
         public string ReceiptStatus { get; set; }
         public string OrderStatus { get; set; }
+        public int Tr_Id { get; set; }
+        public Nullable<int> CropId { get; set; }
+        public string CategoryName { get; set; }
+        public Nullable<int> VarietyId { get; set; }
+        public string ProductAddress { get; set; }
+        public string GeoAddress { get; set; }
+        public string MobileNumber { get; set; }
+        public string NetBankingId { get; set; }
+        public string Quantity { get; set; }
+        public string QuantityUnit { get; set; }
+     
+       
+       
+        public Nullable<System.DateTime> AvailabilityDate { get; set; }
+        public string PaymentMethod { get; set; }
+        public Nullable<bool> IsQualityTestNeeded { get; set; }
+        public Nullable<bool> IsLogisticNeeded { get; set; }
+        public string ProductImageUrl { get; set; }
+        public Nullable<System.DateTime> Tr_Date { get; set; }
+        public string State { get; set; }
+        public string District { get; set; }
+        public string Taluka { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public string ProductPriority { get; set; }
+        public string SecondaryProductImage { get; set; }
+        public string ProductDescription { get; set; }
+        public string Village { get; set; }
+        public Nullable<bool> IsApproved { get; set; }
+        public Nullable<int> MaximumPrice { get; set; }
+        public Nullable<int> MinimumPrice { get; set; }
 
     }
 }
