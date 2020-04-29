@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GrowIndigoAPI.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Crop_Master">
+    <Key>
+      <PropertyRef Name="CropId" />
+    </Key>
+    <Property Name="CropId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CropName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="District_Master">
+    <Key>
+      <PropertyRef Name="DistrictCode" />
+    </Key>
+    <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="DistrictName" Type="nvarchar" MaxLength="256" />
+    <Property Name="DistrictCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ErrorLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ErrorMessage" Type="nvarchar(max)" />
+    <Property Name="ErrorFrom" Type="nvarchar(max)" />
+    <Property Name="InnerException" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Mandi_Notification">
+    <Key>
+      <PropertyRef Name="SerialNumber" />
+    </Key>
+    <Property Name="SerialNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="Tr_Date" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Mandi_OrderDetails">
+    <Key>
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Buyer_Mobile" Type="nvarchar" MaxLength="256" />
+    <Property Name="TotalPrice" Type="varchar" MaxLength="50" />
+    <Property Name="ServiceTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TotalAmount" Type="varchar" MaxLength="50" />
+    <Property Name="Payment_Mode" Type="varchar" MaxLength="50" />
+    <Property Name="OrderDate" Type="smalldatetime" />
+    <Property Name="Shipping_Address_Id" Type="int" />
+    <Property Name="Order_Status" Type="varchar(max)" />
+    <Property Name="SelectedTotalQty" Type="varchar" MaxLength="50" />
+    <Property Name="Buyer_Name" Type="varchar" MaxLength="50" />
+    <Property Name="GeoAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="TransactionId" Type="varchar(max)" />
+    <Property Name="ResponseCode" Type="varchar(max)" />
+    <Property Name="TransactionStatus" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Mandi_OrderProductDetails">
+    <Key>
+      <PropertyRef Name="Tr_Id" />
+    </Key>
+    <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Order_Id" Type="int" />
+    <Property Name="Product_Id" Type="int" />
+    <Property Name="TotalQuantity" Type="nvarchar" MaxLength="64" />
+    <Property Name="Price" Type="int" />
+    <Property Name="Tr_Date" Type="smalldatetime" />
+    <Property Name="SelectedQuantity" Type="nvarchar" MaxLength="64" />
+    <Property Name="SelectedProductPrice" Type="nvarchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="Mandi_ProductMaster">
+    <Key>
+      <PropertyRef Name="Tr_Id" />
+    </Key>
+    <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CropId" Type="int" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="VarietyId" Type="int" />
+    <Property Name="ProductAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="GeoAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="NetBankingId" Type="nvarchar" MaxLength="256" />
+    <Property Name="Quantity" Type="nvarchar" MaxLength="64" />
+    <Property Name="QuantityUnit" Type="nvarchar" MaxLength="64" />
+    <Property Name="Price" Type="int" />
+    <Property Name="ServiceTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TotalAmount" Type="int" />
+    <Property Name="AvailabilityDate" Type="smalldatetime" />
+    <Property Name="PaymentMethod" Type="nvarchar" MaxLength="64" />
+    <Property Name="IsQualityTestNeeded" Type="bit" />
+    <Property Name="IsLogisticNeeded" Type="bit" />
+    <Property Name="ProductImageUrl" Type="varchar(max)" />
+    <Property Name="Tr_Date" Type="smalldatetime" />
+    <Property Name="State" Type="nvarchar" MaxLength="256" />
+    <Property Name="District" Type="nvarchar" MaxLength="256" />
+    <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
+    <Property Name="Village" Type="nvarchar" MaxLength="256" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="ProductPriority" Type="varchar" MaxLength="20" />
+    <Property Name="SecondaryProductImage" Type="varchar(max)" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="MaximumPrice" Type="int" />
+    <Property Name="MinimumPrice" Type="int" />
+  </EntityType>
+  <EntityType Name="Mandi_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Mandi_UserEnquiry">
+    <Key>
+      <PropertyRef Name="Tr_Id" />
+    </Key>
+    <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Enquiry" Type="nvarchar(max)" />
+    <Property Name="EmailId" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="Tr_Date" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Mandi_UserFeedback">
+    <Key>
+      <PropertyRef Name="FeedbackId" />
+    </Key>
+    <Property Name="FeedbackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usercode" Type="nvarchar" MaxLength="256" />
+    <Property Name="VarietyName" Type="varchar" MaxLength="50" />
+    <Property Name="Feedback" Type="nvarchar(max)" />
+    <Property Name="Tr_Date" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Mandi_UserInfo">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="FullName" Type="nvarchar" MaxLength="256" />
+    <Property Name="ViIllage" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="64" />
+    <Property Name="District" Type="nvarchar" MaxLength="256" />
+    <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="256" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="256" />
+    <Property Name="AdharId" Type="nvarchar" MaxLength="256" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ProfilePictureUrl" Type="varchar(max)" />
+    <Property Name="IsProfileUpdated" Type="bit" />
+    <Property Name="DeviceToken" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Mandi_UserRequirement">
+    <Key>
+      <PropertyRef Name="Tr_Id" />
+    </Key>
+    <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usercode" Type="nvarchar" MaxLength="256" />
+    <Property Name="Requirement" Type="nvarchar(max)" />
+    <Property Name="Tr_Date" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Mandi_UserRoles">
+    <Key>
+      <PropertyRef Name="SerialNumber" />
+    </Key>
+    <Property Name="SerialNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Order_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Retailer_Id" Type="varchar" MaxLength="50" />
+    <Property Name="Retailer_Mobile" Type="nvarchar" MaxLength="256" />
+    <Property Name="Totalprice" Type="varchar" MaxLength="50" />
+    <Property Name="WalletCurrentBalance" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmountToPayOnline" Type="nvarchar" MaxLength="50" />
+    <Property Name="Payment_Mode" Type="varchar" MaxLength="50" />
+    <Property Name="OrderDate" Type="smalldatetime" />
+    <Property Name="Shipping_Address_Id" Type="int" />
+    <Property Name="Order_Status" Type="varchar(max)" />
+    <Property Name="SAP_Order_ID" Type="varchar" MaxLength="20" />
+    <Property Name="GeoCoordinates" Type="varchar(max)" />
+    <Property Name="Rzp_Order_Id" Type="varchar(max)" />
+    <Property Name="Rzp_Payment_Id" Type="varchar(max)" />
+    <Property Name="Rzp_Signature" Type="varchar(max)" />
+    <Property Name="Rzp_Payment_Status" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="OrderErrorLogDetails">
+    <Key>
+      <PropertyRef Name="Tr_Id" />
+    </Key>
+    <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Retailer_Id" Type="varchar" MaxLength="50" />
+    <Property Name="Retailer_Mobile" Type="nvarchar" MaxLength="256" />
+    <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
+    <Property Name="Total_Price" Type="varchar" MaxLength="50" />
+    <Property Name="Qty" Type="varchar" MaxLength="50" />
+    <Property Name="Csv_File" Type="varchar(max)" />
+    <Property Name="Error_Msg" Type="varchar(max)" />
+    <Property Name="Tr_Date" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="OrderProductDetails">
+    <Key>
+      <PropertyRef Name="tr_id" />
+    </Key>
+    <Property Name="tr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_id" Type="int" />
+    <Property Name="product_id" Type="varchar" MaxLength="50" />
+    <Property Name="qty" Type="varchar" MaxLength="10" />
+    <Property Name="price" Type="varchar" MaxLength="50" />
+    <Property Name="tr_date" Type="smalldatetime" />
+    <Property Name="SAP_order_ID" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Product_Master">
+    <Key>
+      <PropertyRef Name="SkuId" />
+    </Key>
+    <Property Name="SkuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkuName" Type="nvarchar(max)" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="64" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Price" Type="nvarchar" MaxLength="64" />
+    <Property Name="CurrentQuantity" Type="nvarchar" MaxLength="64" />
+    <Property Name="SkuCreatedDate" Type="datetime" />
+    <Property Name="GSTPercent" Type="nvarchar" MaxLength="64" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="64" />
+    <Property Name="MinQuantittyToBook" Type="nvarchar" MaxLength="64" />
+    <Property Name="MaxQuantittyToBook" Type="nvarchar" MaxLength="64" />
+    <Property Name="PrdCompanyName" Type="nvarchar" MaxLength="64" />
+    <Property Name="AllowSAPOrder" Type="int" />
+    <Property Name="PrdState" Type="nvarchar" MaxLength="64" />
+    <Property Name="Status" Type="nvarchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="State_Master">
+    <Key>
+      <PropertyRef Name="StateCode" />
+    </Key>
+    <Property Name="CountryId" Type="int" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="256" />
+    <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrowIndigoTesting.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryId" />
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="SubCategoryId" Type="int" Nullable="false" />
+    <Property Name="SubCategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="256" />
+    <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Taluka_Master">
+    <Key>
+      <PropertyRef Name="TalukaCode" />
+    </Key>
+    <Property Name="DistrictCode" Type="nvarchar" MaxLength="256" />
+    <Property Name="TalukaName" Type="nvarchar" MaxLength="256" />
+    <Property Name="TalukaCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserFeedback">
+    <Key>
+      <PropertyRef Name="Tr_Id" />
+    </Key>
+    <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usercode" Type="nvarchar" MaxLength="256" />
+    <Property Name="Product" Type="varchar" MaxLength="50" />
+    <Property Name="Feedback" Type="nvarchar(max)" />
+    <Property Name="Tr_Date" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="UserCode" Type="nvarchar" MaxLength="256" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="256" />
+    <Property Name="RetailerName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Address" Type="nvarchar" MaxLength="256" />
+    <Property Name="GeoAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="Town" Type="nvarchar" MaxLength="256" />
+    <Property Name="CSTNNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="VATNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="PANNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="LicenseNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="IMEINumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="256" />
+    <Property Name="SeedLicenseValidity" Type="datetime" />
+    <Property Name="GSTNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="Depo" Type="nvarchar" MaxLength="256" />
+    <Property Name="Flag" Type="nvarchar" MaxLength="256" />
+    <Property Name="SapRetailerIdFcmToken" Type="nvarchar" MaxLength="256" />
+    <Property Name="FcmSubscriptionTopic" Type="nvarchar" MaxLength="256" />
+    <Property Name="BankAccountNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="BirthDate" Type="datetime" />
+    <Property Name="RetailerLastName" Type="nvarchar" MaxLength="256" />
+    <Property Name="HouseNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="StreetLine1" Type="nvarchar" MaxLength="256" />
+    <Property Name="StreetLine2" Type="nvarchar" MaxLength="256" />
+    <Property Name="UserCompany" Type="nvarchar" MaxLength="256" />
+    <Property Name="Type" Type="nvarchar" MaxLength="256" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="256" />
+    <Property Name="State" Type="nvarchar" MaxLength="64" />
+    <Property Name="District" Type="nvarchar" MaxLength="256" />
+    <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
+    <Property Name="Village" Type="nvarchar" MaxLength="256" />
+    <Property Name="Firm_Name" Type="nvarchar" MaxLength="256" />
+    <Property Name="IsProfileUpdated" Type="bit" />
+    <Property Name="RetailerId" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="UserOTPInfo">
+    <Key>
+      <PropertyRef Name="SerialNumber" />
+    </Key>
+    <Property Name="SerialNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="OTP" Type="nvarchar" MaxLength="8" />
+    <Property Name="GenratedDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="UsersAddress">
+    <Key>
+      <PropertyRef Name="tr_id" />
+    </Key>
+    <Property Name="tr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="retailer_id" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNumberForOnline" Type="nvarchar" MaxLength="256" />
+    <Property Name="reciver_name" Type="varchar" MaxLength="100" />
+    <Property Name="ship_address" Type="varchar(max)" />
+    <Property Name="city" Type="varchar" MaxLength="50" />
+    <Property Name="pincode" Type="varchar" MaxLength="6" />
+    <Property Name="ship_mobile" Type="varchar" MaxLength="12" />
+    <Property Name="email_id" Type="varchar" MaxLength="50" />
+    <Property Name="Pan_number" Type="varchar" MaxLength="20" />
+    <Property Name="tr_date" Type="smalldatetime" />
+    <Property Name="IsPermanentAddress" Type="bit" />
+    <Property Name="IsMandiUser" Type="bit" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="MobileNumberForMandi" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="UsersBankAccountDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="AccountHolderName" Type="nvarchar" MaxLength="100" />
+    <Property Name="BankName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Branch" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="AccountType" Type="nvarchar" MaxLength="150" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+    <Property Name="IFSC_Code" Type="nvarchar" MaxLength="256" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserWallet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WalletBalance" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="Variety_Master">
+    <Key>
+      <PropertyRef Name="VarietyId" />
+    </Key>
+    <Property Name="VarietyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VarietyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CropId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Category_UserRoles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Crop_Master_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Crop_Master">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Crop_Master_Crop_Master">
+    <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="1" />
+    <End Role="Crop_Master1" Type="Self.Crop_Master" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Crop_Master">
+        <PropertyRef Name="CropId" />
+      </Principal>
+      <Dependent Role="Crop_Master1">
+        <PropertyRef Name="CropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_ProductMaster_Crop_Master">
+    <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="0..1" />
+    <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Crop_Master">
+        <PropertyRef Name="CropId" />
+      </Principal>
+      <Dependent Role="Mandi_ProductMaster">
+        <PropertyRef Name="CropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_ProductMaster_Mandi_UserInfo">
+    <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="0..1" />
+    <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Crop_Master">
+        <PropertyRef Name="CropId" />
+      </Principal>
+      <Dependent Role="Mandi_ProductMaster">
+        <PropertyRef Name="CropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_ProductMaster_Variety_Master">
+    <End Role="Variety_Master" Type="Self.Variety_Master" Multiplicity="0..1" />
+    <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Variety_Master">
+        <PropertyRef Name="VarietyId" />
+      </Principal>
+      <Dependent Role="Mandi_ProductMaster">
+        <PropertyRef Name="VarietyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_UserRoles_Mandi_Roles">
+    <End Role="Mandi_Roles" Type="Self.Mandi_Roles" Multiplicity="1" />
+    <End Role="Mandi_UserRoles" Type="Self.Mandi_UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandi_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Mandi_UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_UserRoles_Mandi_UserInfo">
+    <End Role="Mandi_UserInfo" Type="Self.Mandi_UserInfo" Multiplicity="1" />
+    <End Role="Mandi_UserRoles" Type="Self.Mandi_UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandi_UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="Mandi_UserRoles">
+        <PropertyRef Name="MobileNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetails_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="Retailer_Mobile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderErrorLogDetails_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="OrderErrorLogDetails" Type="Self.OrderErrorLogDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="OrderErrorLogDetails">
+        <PropertyRef Name="Retailer_Mobile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProductDetails_OrderDetails">
+    <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+    <End Role="OrderProductDetails" Type="Self.OrderProductDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDetails">
+        <PropertyRef Name="Order_Id" />
+      </Principal>
+      <Dependent Role="OrderProductDetails">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategory_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserFeedback_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="UserFeedback" Type="Self.UserFeedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="UserFeedback">
+        <PropertyRef Name="Usercode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAddress_Mandi_UserInfo">
+    <End Role="Mandi_UserInfo" Type="Self.Mandi_UserInfo" Multiplicity="0..1" />
+    <End Role="UsersAddress" Type="Self.UsersAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandi_UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="UsersAddress">
+        <PropertyRef Name="MobileNumberForMandi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAddress_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="UsersAddress" Type="Self.UsersAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="UsersAddress">
+        <PropertyRef Name="MobileNumberForOnline" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersBankAccountDetails_Mandi_UserInfo">
+    <End Role="Mandi_UserInfo" Type="Self.Mandi_UserInfo" Multiplicity="1" />
+    <End Role="UsersBankAccountDetails" Type="Self.UsersBankAccountDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandi_UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="UsersBankAccountDetails">
+        <PropertyRef Name="MobileNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserWallet_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="UserWallet" Type="Self.UserWallet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="UserWallet">
+        <PropertyRef Name="MobileNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Variety_Master_Crop_Master">
+    <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="1" />
+    <End Role="Variety_Master" Type="Self.Variety_Master" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Crop_Master">
+        <PropertyRef Name="CropId" />
+      </Principal>
+      <Dependent Role="Variety_Master">
+        <PropertyRef Name="CropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GrowIndigoAPIStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Crop_Master" EntityType="Self.Crop_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_Notification" EntityType="Self.Mandi_Notification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_OrderDetails" EntityType="Self.Mandi_OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_OrderProductDetails" EntityType="Self.Mandi_OrderProductDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_ProductMaster" EntityType="Self.Mandi_ProductMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_Roles" EntityType="Self.Mandi_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_UserEnquiry" EntityType="Self.Mandi_UserEnquiry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_UserFeedback" EntityType="Self.Mandi_UserFeedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_UserInfo" EntityType="Self.Mandi_UserInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_UserRequirement" EntityType="Self.Mandi_UserRequirement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_UserRoles" EntityType="Self.Mandi_UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderErrorLogDetails" EntityType="Self.OrderErrorLogDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderProductDetails" EntityType="Self.OrderProductDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Master" EntityType="Self.Product_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State_Master" EntityType="Self.State_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taluka_Master" EntityType="Self.Taluka_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserFeedback" EntityType="Self.UserFeedback" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserOTPInfo" EntityType="Self.UserOTPInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersAddress" EntityType="Self.UsersAddress" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersBankAccountDetails" EntityType="Self.UsersBankAccountDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserWallet" EntityType="Self.UserWallet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Variety_Master" EntityType="Self.Variety_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCategory" EntityType="Self.SubCategory" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SubCategory].[SubCategoryId] AS [SubCategoryId], 
+    [SubCategory].[SubCategoryName] AS [SubCategoryName], 
+    [SubCategory].[ImageUrl] AS [ImageUrl], 
+    [SubCategory].[CategoryId] AS [CategoryId]
+    FROM [dbo].[SubCategory] AS [SubCategory]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Category_UserRoles" Association="Self.FK_Category_UserRoles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Category" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Crop_Master_Category" Association="Self.FK_Crop_Master_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Crop_Master" EntitySet="Crop_Master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="Self.FK_Crop_Master_Crop_Master">
+      <End Role="Crop_Master" EntitySet="Crop_Master" />
+      <End Role="Crop_Master1" EntitySet="Crop_Master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_ProductMaster_Crop_Master" Association="Self.FK_Mandi_ProductMaster_Crop_Master">
+      <End Role="Crop_Master" EntitySet="Crop_Master" />
+      <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_UserInfo" Association="Self.FK_Mandi_ProductMaster_Mandi_UserInfo">
+      <End Role="Crop_Master" EntitySet="Crop_Master" />
+      <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_ProductMaster_Variety_Master" Association="Self.FK_Mandi_ProductMaster_Variety_Master">
+      <End Role="Variety_Master" EntitySet="Variety_Master" />
+      <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_UserRoles_Mandi_Roles" Association="Self.FK_Mandi_UserRoles_Mandi_Roles">
+      <End Role="Mandi_Roles" EntitySet="Mandi_Roles" />
+      <End Role="Mandi_UserRoles" EntitySet="Mandi_UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_UserRoles_Mandi_UserInfo" Association="Self.FK_Mandi_UserRoles_Mandi_UserInfo">
+      <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+      <End Role="Mandi_UserRoles" EntitySet="Mandi_UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_UserInfo" Association="Self.FK_OrderDetails_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderErrorLogDetails_UserInfo" Association="Self.FK_OrderErrorLogDetails_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="OrderErrorLogDetails" EntitySet="OrderErrorLogDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProductDetails_OrderDetails" Association="Self.FK_OrderProductDetails_OrderDetails">
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="OrderProductDetails" EntitySet="OrderProductDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="SubCategory" EntitySet="SubCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserFeedback_UserInfo" Association="Self.FK_UserFeedback_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UserFeedback" EntitySet="UserFeedback" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAddress_Mandi_UserInfo" Association="Self.FK_UsersAddress_Mandi_UserInfo">
+      <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+      <End Role="UsersAddress" EntitySet="UsersAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAddress_UserInfo" Association="Self.FK_UsersAddress_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UsersAddress" EntitySet="UsersAddress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersBankAccountDetails_Mandi_UserInfo" Association="Self.FK_UsersBankAccountDetails_Mandi_UserInfo">
+      <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+      <End Role="UsersBankAccountDetails" EntitySet="UsersBankAccountDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserWallet_UserInfo" Association="Self.FK_UserWallet_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UserWallet" EntitySet="UserWallet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Variety_Master_Crop_Master" Association="Self.FK_Variety_Master_Crop_Master">
+      <End Role="Crop_Master" EntitySet="Crop_Master" />
+      <End Role="Variety_Master" EntitySet="Variety_Master" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

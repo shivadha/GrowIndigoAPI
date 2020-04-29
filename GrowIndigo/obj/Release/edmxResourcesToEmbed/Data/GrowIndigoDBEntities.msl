@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GrowIndigoDBModelStoreContainer" CdmEntityContainer="GrowIndigoDBEntities">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="GrowIndigoDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="GrowIndigoDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="GrowIndigoDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="GrowIndigoDBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GrowIndigoDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="GrowIndigoDBModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="GrowIndigoDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="GrowIndigoDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="GrowIndigoDBModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="District_Master">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.District_Master">
+        <MappingFragment StoreEntitySet="District_Master">
+          <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ErrorLogs">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.ErrorLogs">
+        <MappingFragment StoreEntitySet="ErrorLogs">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+          <ScalarProperty Name="ErrorFrom" ColumnName="ErrorFrom" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Master">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.Product_Master">
+        <MappingFragment StoreEntitySet="Product_Master">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PrdState" ColumnName="PrdState" />
+          <ScalarProperty Name="AllowSAPOrder" ColumnName="AllowSAPOrder" />
+          <ScalarProperty Name="PrdCompanyName" ColumnName="PrdCompanyName" />
+          <ScalarProperty Name="MaxQuantittyToBook" ColumnName="MaxQuantittyToBook" />
+          <ScalarProperty Name="MinQuantittyToBook" ColumnName="MinQuantittyToBook" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="GSTPercent" ColumnName="GSTPercent" />
+          <ScalarProperty Name="SkuCreatedDate" ColumnName="SkuCreatedDate" />
+          <ScalarProperty Name="CurrentQuantity" ColumnName="CurrentQuantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="SkuName" ColumnName="SkuName" />
+          <ScalarProperty Name="SkuId" ColumnName="SkuId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="State_Master">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.State_Master">
+        <MappingFragment StoreEntitySet="State_Master">
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Taluka_Master">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.Taluka_Master">
+        <MappingFragment StoreEntitySet="Taluka_Master">
+          <ScalarProperty Name="TalukaCode" ColumnName="TalukaCode" />
+          <ScalarProperty Name="TalukaName" ColumnName="TalukaName" />
+          <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
+          <ScalarProperty Name="Firm_Name" ColumnName="Firm_Name" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
+          <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="UserCompany" ColumnName="UserCompany" />
+          <ScalarProperty Name="StreetLine2" ColumnName="StreetLine2" />
+          <ScalarProperty Name="StreetLine1" ColumnName="StreetLine1" />
+          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+          <ScalarProperty Name="RetailerLastName" ColumnName="RetailerLastName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+          <ScalarProperty Name="FcmSubscriptionTopic" ColumnName="FcmSubscriptionTopic" />
+          <ScalarProperty Name="SapRetailerIdFcmToken" ColumnName="SapRetailerIdFcmToken" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="Depo" ColumnName="Depo" />
+          <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
+          <ScalarProperty Name="SeedLicenseValidity" ColumnName="SeedLicenseValidity" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IMEINumber" ColumnName="IMEINumber" />
+          <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="VATNumber" ColumnName="VATNumber" />
+          <ScalarProperty Name="CSTNNumber" ColumnName="CSTNNumber" />
+          <ScalarProperty Name="Town" ColumnName="Town" />
+          <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="RetailerName" ColumnName="RetailerName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserOTPInfo">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.UserOTPInfo">
+        <MappingFragment StoreEntitySet="UserOTPInfo">
+          <ScalarProperty Name="GenratedDate" ColumnName="GenratedDate" />
+          <ScalarProperty Name="OTP" ColumnName="OTP" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.UserRoles">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCategory">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.SubCategory">
+        <MappingFragment StoreEntitySet="SubCategory">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+          <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersAddress">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.UsersAddress">
+        <MappingFragment StoreEntitySet="UsersAddress">
+          <ScalarProperty Name="tr_date" ColumnName="tr_date" />
+          <ScalarProperty Name="landline_number" ColumnName="landline_number" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="ship_mobile" ColumnName="ship_mobile" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="ship_address" ColumnName="ship_address" />
+          <ScalarProperty Name="reciver_name" ColumnName="reciver_name" />
+          <ScalarProperty Name="retailer_mobile" ColumnName="retailer_mobile" />
+          <ScalarProperty Name="retailer_id" ColumnName="retailer_id" />
+          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

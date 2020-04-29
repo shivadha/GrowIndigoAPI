@@ -1,0 +1,4 @@
+2020-04-25 17:30:00,595 INFO MonitoringLogger - 
+2020-04-25 17:30:00,606 INFO MonitoringLogger - The entity type UserWalletViewModel is not part of the model for the current context.
+2020-04-25 17:31:27,088 INFO MonitoringLogger - 
+2020-04-25 17:31:27,105 INFO MonitoringLogger - Attaching an entity of type 'GrowIndigo.Data.UserWallet' failed because another entity of the same type already has the same primary key value. This can happen when using the 'Attach' method or setting the state of an entity to 'Unchanged' or 'Modified' if any entities in the graph have conflicting key values. This may be because some entities are new and have not yet received database-generated key values. In this case use the 'Add' method or the 'Added' entity state to track the graph and then set the state of non-new entities to 'Unchanged' or 'Modified' as appropriate.

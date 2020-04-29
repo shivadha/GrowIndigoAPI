@@ -1,0 +1,42 @@
+2020-03-25 17:57:50,779 INFO MonitoringLogger - 
+2020-03-25 17:57:50,791 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:57:55,045 INFO MonitoringLogger - 
+2020-03-25 17:57:55,046 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:57:56,335 INFO MonitoringLogger - 
+2020-03-25 17:57:56,336 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:23,362 INFO MonitoringLogger - 
+2020-03-25 17:58:23,362 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:24,974 INFO MonitoringLogger - 
+2020-03-25 17:58:24,974 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:26,217 INFO MonitoringLogger - 
+2020-03-25 17:58:26,217 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:27,428 INFO MonitoringLogger - 
+2020-03-25 17:58:27,428 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:27,952 INFO MonitoringLogger - 
+2020-03-25 17:58:27,952 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:28,393 INFO MonitoringLogger - 
+2020-03-25 17:58:28,393 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:28,963 INFO MonitoringLogger - 
+2020-03-25 17:58:28,963 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:29,337 INFO MonitoringLogger - 
+2020-03-25 17:58:29,337 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:58:43,160 INFO MonitoringLogger - 
+2020-03-25 17:58:43,160 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:59:19,020 INFO MonitoringLogger - 
+2020-03-25 17:59:19,020 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:59:20,344 INFO MonitoringLogger - 
+2020-03-25 17:59:20,344 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:59:21,544 INFO MonitoringLogger - 
+2020-03-25 17:59:21,545 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 17:59:23,278 INFO MonitoringLogger - 
+2020-03-25 17:59:23,278 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 18:01:38,478 INFO MonitoringLogger - 
+2020-03-25 18:01:38,478 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 18:02:23,489 INFO MonitoringLogger - 
+2020-03-25 18:02:23,489 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-03-25 18:02:36,500 INFO MonitoringLogger - 396327
+2020-03-25 18:02:37,347 INFO MonitoringLogger - 396327
+2020-03-25 18:02:37,482 INFO MonitoringLogger - grant_type=password&username=9740962466&password=396327
+2020-03-25 18:02:37,482 INFO MonitoringLogger - http://localhost:53370/token
+2020-03-25 18:02:37,482 INFO MonitoringLogger - grant_type=password&username=9740962466&password=396327
+2020-03-25 18:02:37,560 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel

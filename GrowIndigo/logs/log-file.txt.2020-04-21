@@ -1,0 +1,74 @@
+2020-04-21 11:32:27,372 INFO MonitoringLogger - 
+2020-04-21 11:32:27,379 INFO MonitoringLogger - Non-static method requires a target.
+2020-04-21 11:32:58,216 INFO MonitoringLogger - 
+2020-04-21 11:32:58,216 INFO MonitoringLogger - Non-static method requires a target.
+2020-04-21 12:56:24,891 INFO MonitoringLogger - 2652
+2020-04-21 12:56:24,910 INFO MonitoringLogger - 2652
+2020-04-21 12:56:24,910 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 12:56:24,911 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-21 12:56:24,911 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 12:56:25,135 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel
+2020-04-21 12:57:44,255 INFO MonitoringLogger - 2652
+2020-04-21 12:57:46,439 INFO MonitoringLogger - 2652
+2020-04-21 12:57:46,714 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 12:57:46,714 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-21 12:57:46,714 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 12:57:46,722 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel
+2020-04-21 15:48:55,602 INFO MonitoringLogger - 2652
+2020-04-21 15:48:55,631 INFO MonitoringLogger - 2652
+2020-04-21 15:48:55,631 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:48:55,632 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-21 15:48:55,632 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:48:59,861 INFO MonitoringLogger - System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 127.0.0.1:53370
+   at System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+2020-04-21 15:48:59,861 INFO MonitoringLogger - Unable to connect to the remote server
+2020-04-21 15:48:59,908 INFO MonitoringLogger - 
+2020-04-21 15:48:59,908 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-21 15:48:59,952 INFO MonitoringLogger - 
+2020-04-21 15:48:59,952 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-21 15:49:23,536 INFO MonitoringLogger - 2652
+2020-04-21 15:49:26,334 INFO MonitoringLogger - 2652
+2020-04-21 15:49:26,691 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:49:26,691 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-21 15:49:26,691 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:49:30,751 INFO MonitoringLogger - System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 127.0.0.1:53370
+   at System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+2020-04-21 15:49:30,751 INFO MonitoringLogger - Unable to connect to the remote server
+2020-04-21 15:49:30,795 INFO MonitoringLogger - 
+2020-04-21 15:49:30,796 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-21 15:49:55,030 INFO MonitoringLogger - 
+2020-04-21 15:49:55,036 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-21 15:50:28,427 INFO MonitoringLogger - 2652
+2020-04-21 15:50:30,516 INFO MonitoringLogger - 2652
+2020-04-21 15:50:30,728 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:50:30,728 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-21 15:50:30,728 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:50:34,787 INFO MonitoringLogger - System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 127.0.0.1:53370
+   at System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+2020-04-21 15:50:34,787 INFO MonitoringLogger - Unable to connect to the remote server
+2020-04-21 15:50:34,833 INFO MonitoringLogger - 
+2020-04-21 15:50:34,833 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-21 15:50:45,449 INFO MonitoringLogger - 
+2020-04-21 15:50:45,449 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-21 15:50:56,012 INFO MonitoringLogger - 2652
+2020-04-21 15:51:00,209 INFO MonitoringLogger - 2652
+2020-04-21 15:53:59,755 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:53:59,755 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-21 15:53:59,755 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:54:03,765 INFO MonitoringLogger - System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 127.0.0.1:53370
+   at System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+2020-04-21 15:54:03,765 INFO MonitoringLogger - Unable to connect to the remote server
+2020-04-21 15:54:03,765 INFO MonitoringLogger - 
+2020-04-21 15:54:03,765 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-21 15:54:03,765 INFO MonitoringLogger - 
+2020-04-21 15:54:03,765 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-21 15:55:35,855 INFO MonitoringLogger - 2652
+2020-04-21 15:55:37,730 INFO MonitoringLogger - 2652
+2020-04-21 15:55:59,577 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:55:59,580 INFO MonitoringLogger - http://localhost/GrowIndigo.API//token
+2020-04-21 15:55:59,580 INFO MonitoringLogger - grant_type=password&username=7974213140&password=2652
+2020-04-21 15:55:59,818 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel

@@ -1,0 +1,4 @@
+2020-04-09 10:07:11,757 INFO MonitoringLogger - 
+2020-04-09 10:07:11,763 INFO MonitoringLogger - The specified type member 'ProductId' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
+2020-04-09 10:14:43,674 INFO MonitoringLogger - 
+2020-04-09 10:14:43,681 INFO MonitoringLogger - The specified type member 'ProductId' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.

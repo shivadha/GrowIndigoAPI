@@ -1,0 +1,6 @@
+2020-04-10 19:45:34,725 INFO MonitoringLogger - 
+2020-04-10 19:45:34,733 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-10 19:47:59,674 INFO MonitoringLogger - 
+2020-04-10 19:47:59,674 INFO MonitoringLogger - Input string was not in a correct format.
+2020-04-10 20:15:08,769 INFO MonitoringLogger - 
+2020-04-10 20:15:08,776 INFO MonitoringLogger - Non-static method requires a target.

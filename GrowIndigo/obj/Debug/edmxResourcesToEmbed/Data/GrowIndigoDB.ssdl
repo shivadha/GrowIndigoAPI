@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GrowIndigoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="District" Type="nvarchar" MaxLength="50" />
+    <Property Name="Taluka" Type="nvarchar" MaxLength="50" />
+    <Property Name="Village" Type="nvarchar" MaxLength="50" />
+    <Property Name="Firm Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserOTPInfo">
+    <Key>
+      <PropertyRef Name="SerialNumber" />
+    </Key>
+    <Property Name="SerialNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="OTP" Type="nvarchar" MaxLength="8" />
+    <Property Name="GenratedDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <Association Name="FK_UserInfo_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="1" />
+    <End Role="UserInfo1" Type="Self.UserInfo" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="UserInfo1">
+        <PropertyRef Name="MobileNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GrowIndigoDBModelStoreContainer">
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserOTPInfo" EntityType="Self.UserOTPInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_UserInfo_UserInfo" Association="Self.FK_UserInfo_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UserInfo1" EntitySet="UserInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

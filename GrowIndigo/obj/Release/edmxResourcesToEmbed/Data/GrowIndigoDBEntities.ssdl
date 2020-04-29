@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GrowIndigoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nchar" MaxLength="10" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="District_Master">
+    <Key>
+      <PropertyRef Name="DistrictCode" />
+    </Key>
+    <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="DistrictName" Type="nvarchar" MaxLength="256" />
+    <Property Name="DistrictCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ErrorLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ErrorMessage" Type="nvarchar(max)" />
+    <Property Name="ErrorFrom" Type="nvarchar(max)" />
+    <Property Name="InnerException" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Product_Master">
+    <Key>
+      <PropertyRef Name="SkuId" />
+    </Key>
+    <Property Name="SkuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SkuName" Type="nvarchar(max)" />
+    <Property Name="ItemCode" Type="nvarchar" MaxLength="64" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Price" Type="nvarchar" MaxLength="64" />
+    <Property Name="CurrentQuantity" Type="nvarchar" MaxLength="64" />
+    <Property Name="SkuCreatedDate" Type="datetime" />
+    <Property Name="GSTPercent" Type="nvarchar" MaxLength="64" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="64" />
+    <Property Name="MinQuantittyToBook" Type="nvarchar" MaxLength="64" />
+    <Property Name="MaxQuantittyToBook" Type="nvarchar" MaxLength="64" />
+    <Property Name="PrdCompanyName" Type="nvarchar" MaxLength="64" />
+    <Property Name="AllowSAPOrder" Type="int" />
+    <Property Name="PrdState" Type="nvarchar" MaxLength="64" />
+    <Property Name="Status" Type="nvarchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="State_Master">
+    <Key>
+      <PropertyRef Name="StateCode" />
+    </Key>
+    <Property Name="CountryId" Type="int" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="256" />
+    <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrowIndigo.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryId" />
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="SubCategoryId" Type="int" Nullable="false" />
+    <Property Name="SubCategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="256" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Taluka_Master">
+    <Key>
+      <PropertyRef Name="TalukaCode" />
+    </Key>
+    <Property Name="DistrictCode" Type="nvarchar" MaxLength="256" />
+    <Property Name="TalukaName" Type="nvarchar" MaxLength="256" />
+    <Property Name="TalukaCode" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="UserCode" Type="nvarchar" MaxLength="256" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="256" />
+    <Property Name="RetailerName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Address" Type="nvarchar" MaxLength="256" />
+    <Property Name="GeoAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="Town" Type="nvarchar" MaxLength="256" />
+    <Property Name="CSTNNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="VATNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="PANNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="LicenseNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="IMEINumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="EntryDate" Type="datetime" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="256" />
+    <Property Name="SeedLicenseValidity" Type="datetime" />
+    <Property Name="GSTNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="Depo" Type="nvarchar" MaxLength="256" />
+    <Property Name="Flag" Type="nvarchar" MaxLength="256" />
+    <Property Name="SapRetailerIdFcmToken" Type="nvarchar" MaxLength="256" />
+    <Property Name="FcmSubscriptionTopic" Type="nvarchar" MaxLength="256" />
+    <Property Name="BankAccountNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="BirthDate" Type="datetime" />
+    <Property Name="RetailerLastName" Type="nvarchar" MaxLength="256" />
+    <Property Name="HouseNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="StreetLine1" Type="nvarchar" MaxLength="256" />
+    <Property Name="StreetLine2" Type="nvarchar" MaxLength="256" />
+    <Property Name="UserCompany" Type="nvarchar" MaxLength="256" />
+    <Property Name="Type" Type="nvarchar" MaxLength="256" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="256" />
+    <Property Name="State" Type="nvarchar" MaxLength="64" />
+    <Property Name="District" Type="nvarchar" MaxLength="256" />
+    <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
+    <Property Name="Village" Type="nvarchar" MaxLength="256" />
+    <Property Name="Firm_Name" Type="nvarchar" MaxLength="256" />
+    <Property Name="IsProfileUpdated" Type="bit" />
+    <Property Name="RetailerId" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="UserOTPInfo">
+    <Key>
+      <PropertyRef Name="SerialNumber" />
+    </Key>
+    <Property Name="SerialNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="15" />
+    <Property Name="OTP" Type="nvarchar" MaxLength="8" />
+    <Property Name="GenratedDate" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrowIndigo.dbo.UsersAddress' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UsersAddress">
+    <Key>
+      <PropertyRef Name="tr_id" />
+    </Key>
+    <Property Name="tr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="retailer_id" Type="varchar" MaxLength="50" />
+    <Property Name="retailer_mobile" Type="nvarchar" MaxLength="256" />
+    <Property Name="reciver_name" Type="varchar" MaxLength="100" />
+    <Property Name="ship_address" Type="varchar(max)" />
+    <Property Name="city" Type="varchar" MaxLength="50" />
+    <Property Name="pincode" Type="varchar" MaxLength="6" />
+    <Property Name="ship_mobile" Type="varchar" MaxLength="12" />
+    <Property Name="email_id" Type="varchar" MaxLength="50" />
+    <Property Name="landline_number" Type="varchar" MaxLength="20" />
+    <Property Name="tr_date" Type="smalldatetime" />
+  </EntityType>
+  <Association Name="FK_Category_UserRoles">
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategory_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersAddress_UserInfo">
+    <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
+    <End Role="UsersAddress" Type="Self.UsersAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="UsersAddress">
+        <PropertyRef Name="retailer_mobile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="GrowIndigoDBModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Master" EntityType="Self.Product_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State_Master" EntityType="Self.State_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taluka_Master" EntityType="Self.Taluka_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserOTPInfo" EntityType="Self.UserOTPInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCategory" EntityType="Self.SubCategory" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SubCategory].[SubCategoryId] AS [SubCategoryId], 
+    [SubCategory].[SubCategoryName] AS [SubCategoryName], 
+    [SubCategory].[ImageUrl] AS [ImageUrl], 
+    [SubCategory].[CategoryId] AS [CategoryId]
+    FROM [dbo].[SubCategory] AS [SubCategory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UsersAddress" EntityType="Self.UsersAddress" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UsersAddress].[tr_id] AS [tr_id], 
+    [UsersAddress].[retailer_id] AS [retailer_id], 
+    [UsersAddress].[retailer_mobile] AS [retailer_mobile], 
+    [UsersAddress].[reciver_name] AS [reciver_name], 
+    [UsersAddress].[ship_address] AS [ship_address], 
+    [UsersAddress].[city] AS [city], 
+    [UsersAddress].[pincode] AS [pincode], 
+    [UsersAddress].[ship_mobile] AS [ship_mobile], 
+    [UsersAddress].[email_id] AS [email_id], 
+    [UsersAddress].[landline_number] AS [landline_number], 
+    [UsersAddress].[tr_date] AS [tr_date]
+    FROM [dbo].[UsersAddress] AS [UsersAddress]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Category_UserRoles" Association="Self.FK_Category_UserRoles">
+      <End Role="UserRoles" EntitySet="UserRoles" />
+      <End Role="Category" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="SubCategory" EntitySet="SubCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersAddress_UserInfo" Association="Self.FK_UsersAddress_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UsersAddress" EntitySet="UsersAddress" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

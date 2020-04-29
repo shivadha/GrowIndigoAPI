@@ -1,0 +1,16 @@
+2020-04-02 17:26:27,308 INFO MonitoringLogger - 700138
+2020-04-02 17:26:28,468 INFO MonitoringLogger - 700138
+2020-04-02 17:26:28,473 INFO MonitoringLogger - grant_type=password&username=7000853592&password=700138
+2020-04-02 17:26:28,476 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-02 17:26:28,476 INFO MonitoringLogger - grant_type=password&username=7000853592&password=700138
+2020-04-02 17:26:28,712 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel
+2020-04-02 17:26:40,358 INFO MonitoringLogger - 700138
+2020-04-02 17:26:43,912 INFO MonitoringLogger - 700138
+2020-04-02 17:26:44,659 INFO MonitoringLogger - grant_type=password&username=7000853592&password=700138
+2020-04-02 17:26:44,660 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-02 17:26:44,661 INFO MonitoringLogger - grant_type=password&username=7000853592&password=700138
+2020-04-02 17:26:44,669 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel
+2020-04-02 17:51:03,710 INFO MonitoringLogger - 
+2020-04-02 17:51:03,718 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-02 19:20:14,121 INFO MonitoringLogger - 
+2020-04-02 19:20:14,121 INFO MonitoringLogger - Object reference not set to an instance of an object.

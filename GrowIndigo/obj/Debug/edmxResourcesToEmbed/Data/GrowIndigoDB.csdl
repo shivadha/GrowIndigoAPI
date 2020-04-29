@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GrowIndigoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="GrowIndigoDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserInfo" EntityType="GrowIndigoDBModel.UserInfo" />
+    <AssociationSet Name="FK_UserInfo_UserInfo" Association="GrowIndigoDBModel.FK_UserInfo_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="UserInfo1" EntitySet="UserInfo" />
+    </AssociationSet>
+    <EntitySet Name="UserOTPInfo" EntityType="GrowIndigoDBModel.UserOTPInfo" />
+  </EntityContainer>
+  <EntityType Name="UserInfo">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Taluka" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Village" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Firm_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserInfo1" Relationship="GrowIndigoDBModel.FK_UserInfo_UserInfo" FromRole="UserInfo" ToRole="UserInfo1" />
+    <NavigationProperty Name="UserInfo2" Relationship="GrowIndigoDBModel.FK_UserInfo_UserInfo" FromRole="UserInfo1" ToRole="UserInfo" />
+  </EntityType>
+  <Association Name="FK_UserInfo_UserInfo">
+    <End Type="GrowIndigoDBModel.UserInfo" Role="UserInfo" Multiplicity="1" />
+    <End Type="GrowIndigoDBModel.UserInfo" Role="UserInfo1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="UserInfo1">
+        <PropertyRef Name="MobileNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UserOTPInfo">
+    <Key>
+      <PropertyRef Name="SerialNumber" />
+    </Key>
+    <Property Name="SerialNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MobileNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="OTP" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="GenratedDate" Type="DateTime" Precision="7" />
+  </EntityType>
+</Schema>

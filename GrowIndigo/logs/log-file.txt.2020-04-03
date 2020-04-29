@@ -1,0 +1,10 @@
+2020-04-03 14:25:50,723 INFO MonitoringLogger - 
+2020-04-03 14:25:50,731 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-03 14:27:14,835 INFO MonitoringLogger - 
+2020-04-03 14:27:14,835 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-04-03 14:50:17,528 INFO MonitoringLogger - 527208
+2020-04-03 14:50:26,182 INFO MonitoringLogger - 527208
+2020-04-03 14:50:28,816 INFO MonitoringLogger - grant_type=password&username=7000853592&password=527208
+2020-04-03 14:50:28,817 INFO MonitoringLogger - http://localhost:53370/token
+2020-04-03 14:50:28,817 INFO MonitoringLogger - grant_type=password&username=7000853592&password=527208
+2020-04-03 14:50:28,906 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel

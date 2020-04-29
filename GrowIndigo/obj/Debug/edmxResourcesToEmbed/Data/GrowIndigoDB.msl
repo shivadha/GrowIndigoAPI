@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GrowIndigoDBModelStoreContainer" CdmEntityContainer="GrowIndigoDBEntities">
+    <EntitySetMapping Name="UserInfo">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.UserInfo">
+        <MappingFragment StoreEntitySet="UserInfo">
+          <ScalarProperty Name="Firm_Name" ColumnName="Firm Name" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
+          <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserOTPInfo">
+      <EntityTypeMapping TypeName="GrowIndigoDBModel.UserOTPInfo">
+        <MappingFragment StoreEntitySet="UserOTPInfo">
+          <ScalarProperty Name="GenratedDate" ColumnName="GenratedDate" />
+          <ScalarProperty Name="OTP" ColumnName="OTP" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
