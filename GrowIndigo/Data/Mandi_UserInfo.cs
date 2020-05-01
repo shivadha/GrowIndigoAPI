@@ -23,6 +23,7 @@ namespace GrowIndigo.Data
         }
     
         public string FullName { get; set; }
+        public string Village { get; set; }
         public string State { get; set; }
         public string District { get; set; }
         public string Taluka { get; set; }
@@ -34,7 +35,6 @@ namespace GrowIndigo.Data
         public Nullable<bool> IsProfileUpdated { get; set; }
         public string DeviceToken { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
-        public string ViIllage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mandi_UserRoles> Mandi_UserRoles { get; set; }

@@ -695,12 +695,13 @@ namespace GrowIndigo.Controllers
                                            DistrictCode = i.Mandi_ProductMaster.District,
                                            TalukaCode = i.Mandi_ProductMaster.Taluka,
                                            IsActive = i.Mandi_ProductMaster.IsActive,
+                                           IsApproved=i.Mandi_ProductMaster.IsApproved,
                                            ProductPriority = i.Mandi_ProductMaster.ProductPriority,
                                            ProductDescription = !string.IsNullOrEmpty(i.Mandi_ProductMaster.ProductDescription) ? i.Mandi_ProductMaster.ProductDescription : "",
                                            SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
                                            NewVariety = ""
 
-                                       }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
+                                       }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true && x.IsApproved==true ).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
                                       .OrderBy(x => x.ProductPriority == "0").AsQueryable();
 
@@ -765,99 +766,99 @@ namespace GrowIndigo.Controllers
                         }
 
                         #endregion
+                        objFilterMandiProduct.Products = products.ToList();
+                        //#region Geo location Filter
 
-                        #region Geo location Filter
+                        //foreach (var productItem in products)
+                        //{
+                        //    if (!string.IsNullOrEmpty(objProductFilter.Latitude) && !string.IsNullOrEmpty(objProductFilter.Longitude))
+                        //    {
+                        //        string[] values = Convert.ToString(productItem.GeoAddress).Split('/');
+                        //        string nearByProduct = Convert.ToString(productItem.GeoAddress);
 
-                        foreach (var productItem in products)
-                        {
-                            if (!string.IsNullOrEmpty(objProductFilter.Latitude) && !string.IsNullOrEmpty(objProductFilter.Longitude))
-                            {
-                                string[] values = Convert.ToString(productItem.GeoAddress).Split('/');
-                                string nearByProduct = Convert.ToString(productItem.GeoAddress);
+                        //        double productLatitude = Convert.ToDouble(values[0]);
+                        //        double productLongitude = Convert.ToDouble(values[1]);
 
-                                double productLatitude = Convert.ToDouble(values[0]);
-                                double productLongitude = Convert.ToDouble(values[1]);
-
-                                //string[] userValues = objProductFilter.GeoAddress.Split('-');
-                                string dashLAtitude = objProductFilter.Latitude;
-                                string dashLongitude = objProductFilter.Longitude;
+                        //        //string[] userValues = objProductFilter.GeoAddress.Split('-');
+                        //        string dashLAtitude = objProductFilter.Latitude;
+                        //        string dashLongitude = objProductFilter.Longitude;
 
 
-                                double UserLatitude = Convert.ToDouble(dashLAtitude);
-                                double UserLongitude = Convert.ToDouble(dashLongitude);
+                        //        double UserLatitude = Convert.ToDouble(dashLAtitude);
+                        //        double UserLongitude = Convert.ToDouble(dashLongitude);
 
-                                double distance = Distance(Convert.ToDouble(UserLatitude), Convert.ToDouble(UserLongitude), Convert.ToDouble(productLatitude), Convert.ToDouble(productLongitude));
-                                if (distance < 200000)          //nearbyplaces which are within 4 miles 
-                                {
-                                    listProducts.Add(productItem);
-                                }
+                        //        double distance = Distance(Convert.ToDouble(UserLatitude), Convert.ToDouble(UserLongitude), Convert.ToDouble(productLatitude), Convert.ToDouble(productLongitude));
+                        //        if (distance < 200000)          //nearbyplaces which are within 4 miles 
+                        //        {
+                        //            listProducts.Add(productItem);
+                        //        }
 
-                                if (objProductFilter.IsFilterApplied == "true")
-                                {
+                        //        if (objProductFilter.IsFilterApplied == "true")
+                        //        {
 
-                                    if (objProductFilter.CropId != null)
-                                    {
-                                        //For getting list of Crop from the table.
-                                        listProducts = listProducts.Where(x => x.CropId == objProductFilter.CropId).ToList();
-                                    }
-                                    if (objProductFilter.VarietyId != null)
-                                    {
-                                        //For getting list of Variety from the table.
-                                        listProducts = listProducts.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
-                                    }
-                                    if (!string.IsNullOrEmpty(objProductFilter.State))
-                                    {
-                                        //For getting list of State from the table.
-                                        listProducts = listProducts.Where(x => x.StateCode == objProductFilter.State).ToList();
-                                    }
-                                    if (!string.IsNullOrEmpty(objProductFilter.District))
-                                    {
-                                        //For getting list of District from the table.
-                                        listProducts = listProducts.Where(x => x.DistrictCode == objProductFilter.District).ToList();
-                                    }
+                        //            if (objProductFilter.CropId != null)
+                        //            {
+                        //                //For getting list of Crop from the table.
+                        //                listProducts = listProducts.Where(x => x.CropId == objProductFilter.CropId).ToList();
+                        //            }
+                        //            if (objProductFilter.VarietyId != null)
+                        //            {
+                        //                //For getting list of Variety from the table.
+                        //                listProducts = listProducts.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.State))
+                        //            {
+                        //                //For getting list of State from the table.
+                        //                listProducts = listProducts.Where(x => x.StateCode == objProductFilter.State).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.District))
+                        //            {
+                        //                //For getting list of District from the table.
+                        //                listProducts = listProducts.Where(x => x.DistrictCode == objProductFilter.District).ToList();
+                        //            }
 
-                                    if (!string.IsNullOrEmpty(objProductFilter.Taluka))
-                                    {
-                                        //For getting list of Taluka from the table.
-                                        listProducts = listProducts.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
+                        //            if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                        //            {
+                        //                //For getting list of Taluka from the table.
+                        //                listProducts = listProducts.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
 
-                                    }
+                        //            }
 
-                                    if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
-                                    {
-                                        var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
-                                        var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
-                                        listProducts = listProducts.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
+                        //            if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                        //            {
+                        //                var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                        //                var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                        //                listProducts = listProducts.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
 
-                                    }
-                                    if (!string.IsNullOrEmpty(objProductFilter.Quantity))
-                                    {
-                                        //For getting list of Quantity from the table.
-                                        listProducts = listProducts.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                        //            {
+                        //                //For getting list of Quantity from the table.
+                        //                listProducts = listProducts.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
 
-                                    }
-                                    if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
-                                    {
-                                        var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
-                                        //For getting list of address from the table.
-                                        listProducts = listProducts.Where(x => x.IsQualityTestNeeded == Quality).ToList();
-                                    }
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                        //            {
+                        //                var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+                        //                //For getting list of address from the table.
+                        //                listProducts = listProducts.Where(x => x.IsQualityTestNeeded == Quality).ToList();
+                        //            }
 
-                                }
+                        //        }
 
-                            }
+                        //    }
 
-                            else
-                            {
+                        //    else
+                        //    {
 
-                                objFilterMandiProduct.Products = products.ToList();
-                                return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
-                            }
-                            objFilterMandiProduct.Products = listProducts;
+                        //        objFilterMandiProduct.Products = products.ToList();
+                        //        return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
+                        //    }
+                        //    objFilterMandiProduct.Products = listProducts;
 
-                        }
+                        //}
 
-                        #endregion
+                        //#endregion
                     }
                     else
                     {
@@ -908,12 +909,13 @@ namespace GrowIndigo.Controllers
                                            DistrictCode = i.Mandi_ProductMaster.District,
                                            TalukaCode = i.Mandi_ProductMaster.Taluka,
                                            IsActive = i.Mandi_ProductMaster.IsActive,
+                                           IsApproved = i.Mandi_ProductMaster.IsApproved,
                                            ProductPriority = i.Mandi_ProductMaster.ProductPriority,
                                            ProductDescription = !string.IsNullOrEmpty(i.Mandi_ProductMaster.ProductDescription) ? i.Mandi_ProductMaster.ProductDescription : "",
                                            SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
                                            NewVariety = ""
 
-                                       }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
+                                       }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true && x.IsApproved==true).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
                                       .OrderBy(x => x.ProductPriority == "0").AsQueryable();
 
@@ -988,100 +990,100 @@ namespace GrowIndigo.Controllers
                         }
 
                         #endregion
+                        objFilterMandiProduct.Products = products.ToList();
+                        //#region Geo location Filter
 
-                        #region Geo location Filter
+                        //foreach (var productItem in products)
+                        //{
+                        //    if (!string.IsNullOrEmpty(objProductFilter.Latitude) && !string.IsNullOrEmpty(objProductFilter.Longitude))
+                        //    {
+                        //        string[] values = Convert.ToString(productItem.GeoAddress).Split('-');
+                        //        string nearByProduct = Convert.ToString(productItem.GeoAddress);
 
-                        foreach (var productItem in products)
-                        {
-                            if (!string.IsNullOrEmpty(objProductFilter.Latitude) && !string.IsNullOrEmpty(objProductFilter.Longitude))
-                            {
-                                string[] values = Convert.ToString(productItem.GeoAddress).Split('-');
-                                string nearByProduct = Convert.ToString(productItem.GeoAddress);
+                        //        double productLatitude = Convert.ToDouble(values[0]);
+                        //        double productLongitude = Convert.ToDouble(values[1]);
 
-                                double productLatitude = Convert.ToDouble(values[0]);
-                                double productLongitude = Convert.ToDouble(values[1]);
-
-                                //string[] userValues = objProductFilter.GeoAddress.Split('-');
-                                string dashLAtitude = objProductFilter.Latitude;
-                                string dashLongitude = objProductFilter.Longitude;
-
-
-                                double UserLatitude = Convert.ToDouble(dashLAtitude);
-                                double UserLongitude = Convert.ToDouble(dashLongitude);
-
-                                double distance = Distance(Convert.ToDouble(UserLatitude), Convert.ToDouble(UserLongitude), Convert.ToDouble(productLatitude), Convert.ToDouble(productLongitude));
-                                if (distance < 200000)          //nearbyplaces which are within 4 miles 
-                                {
-                                    listProducts.Add(productItem);
-                                }
-
-                                if (objProductFilter.IsFilterApplied == "true")
-                                {
-
-                                    if (objProductFilter.CropId != null)
-                                    {
-                                        //For getting list of Crop from the table.
-                                        listProducts = listProducts.Where(x => x.CropId == objProductFilter.CropId).ToList();
-                                    }
-                                    if (objProductFilter.VarietyId != null)
-                                    {
-                                        //For getting list of Variety from the table.
-                                        listProducts = listProducts.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
-                                    }
-                                    if (!string.IsNullOrEmpty(objProductFilter.State))
-                                    {
-                                        //For getting list of State from the table.
-                                        listProducts = listProducts.Where(x => x.StateCode == objProductFilter.State).ToList();
-                                    }
-                                    if (!string.IsNullOrEmpty(objProductFilter.District))
-                                    {
-                                        //For getting list of District from the table.
-                                        listProducts = listProducts.Where(x => x.DistrictCode == objProductFilter.District).ToList();
-                                    }
-
-                                    if (!string.IsNullOrEmpty(objProductFilter.Taluka))
-                                    {
-                                        //For getting list of Taluka from the table.
-                                        listProducts = listProducts.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
-
-                                    }
-
-                                    if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
-                                    {
-                                        var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
-                                        var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
-                                        listProducts = listProducts.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
-
-                                    }
-                                    if (!string.IsNullOrEmpty(objProductFilter.Quantity))
-                                    {
-                                        //For getting list of Quantity from the table.
-                                        listProducts = listProducts.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
-
-                                    }
-                                    if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
-                                    {
-                                        var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
-                                        //For getting list of address from the table.
-                                        listProducts = listProducts.Where(x => x.IsQualityTestNeeded == Quality).ToList();
-                                    }
-
-                                }
-
-                            }
-
-                            else
-                            {
-
-                                objFilterMandiProduct.Products = products.ToList();
-                                return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
-                            }
-                            objFilterMandiProduct.Products = listProducts;
-
-                        }
+                        //        //string[] userValues = objProductFilter.GeoAddress.Split('-');
+                        //        string dashLAtitude = objProductFilter.Latitude;
+                        //        string dashLongitude = objProductFilter.Longitude;
 
 
-                        #endregion
+                        //        double UserLatitude = Convert.ToDouble(dashLAtitude);
+                        //        double UserLongitude = Convert.ToDouble(dashLongitude);
+
+                        //        double distance = Distance(Convert.ToDouble(UserLatitude), Convert.ToDouble(UserLongitude), Convert.ToDouble(productLatitude), Convert.ToDouble(productLongitude));
+                        //        if (distance < 200000)          //nearbyplaces which are within 4 miles 
+                        //        {
+                        //            listProducts.Add(productItem);
+                        //        }
+
+                        //        if (objProductFilter.IsFilterApplied == "true")
+                        //        {
+
+                        //            if (objProductFilter.CropId != null)
+                        //            {
+                        //                //For getting list of Crop from the table.
+                        //                listProducts = listProducts.Where(x => x.CropId == objProductFilter.CropId).ToList();
+                        //            }
+                        //            if (objProductFilter.VarietyId != null)
+                        //            {
+                        //                //For getting list of Variety from the table.
+                        //                listProducts = listProducts.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.State))
+                        //            {
+                        //                //For getting list of State from the table.
+                        //                listProducts = listProducts.Where(x => x.StateCode == objProductFilter.State).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.District))
+                        //            {
+                        //                //For getting list of District from the table.
+                        //                listProducts = listProducts.Where(x => x.DistrictCode == objProductFilter.District).ToList();
+                        //            }
+
+                        //            if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                        //            {
+                        //                //For getting list of Taluka from the table.
+                        //                listProducts = listProducts.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
+
+                        //            }
+
+                        //            if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                        //            {
+                        //                var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                        //                var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                        //                listProducts = listProducts.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
+
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                        //            {
+                        //                //For getting list of Quantity from the table.
+                        //                listProducts = listProducts.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
+
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                        //            {
+                        //                var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+                        //                //For getting list of address from the table.
+                        //                listProducts = listProducts.Where(x => x.IsQualityTestNeeded == Quality).ToList();
+                        //            }
+
+                        //        }
+
+                        //    }
+
+                        //    else
+                        //    {
+
+                        //        objFilterMandiProduct.Products = products.ToList();
+                        //        return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
+                        //    }
+                        //    objFilterMandiProduct.Products = listProducts;
+
+                        //}
+
+
+                        //#endregion
                     }
 
 

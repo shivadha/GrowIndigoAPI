@@ -643,8 +643,8 @@ namespace GrowIndigo.Controllers
                     objOrderDetails.Retailer_Id = objOrderDetailsViewModel.Retailer_Id ;
                     objOrderDetails.Retailer_Mobile = objOrderDetailsViewModel.Retailer_Mobile;
                     objOrderDetails.Totalprice = objOrderDetailsViewModel.Totalprice;
-                    objOrderDetails.AmountToPayOnline = objOrderDetailsViewModel.AmountToPayOnline;
-                    objOrderDetails.WalletCurrentBalance = objOrderDetailsViewModel.WalletCurrentBalance;
+                    //objOrderDetails.AmountToPayOnline = objOrderDetailsViewModel.AmountToPayOnline;
+                   // objOrderDetails.WalletCurrentBalance = objOrderDetailsViewModel.WalletCurrentBalance;
 
                     objOrderDetails.Payment_Mode = objOrderDetailsViewModel.Payment_Mode;
                     objOrderDetails.OrderDate = DateTime.Now;

@@ -37,6 +37,7 @@ namespace GrowIndigo.Models
         public string TalukaCode { get; set; }
         public int OrderId { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> IsApproved { get; set; }
         public string ProductPriority { get; set; }
         public string ProductDescription { get; set; }
 

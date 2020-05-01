@@ -107,6 +107,7 @@ namespace GrowIndigo.Controllers
                         body += "11.Seller Address" + getSellerdetails.State + " ," + getSellerdetails.Taluka + "," + getSellerdetails.Pincode + "\r\n";
                         body += "\r\n";
                         body += "warm regards";
+                       
 
 
                         FromMail = "developer@growindigo.co.in";
@@ -125,11 +126,24 @@ namespace GrowIndigo.Controllers
                 MailMessage mail = new MailMessage();
                 SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
                 mail.From = new MailAddress(FromMail);
-                // mail.To.Add(emailTo);
-                mail.To.Add("shital.khairnar@growindigo.co.in");
-                mail.To.Add("arjun.jagtap@growindigo.co.in");
+
+                //for test
+                 mail.To.Add("arjun.jagtap@growindigo.co.in");
+                mail.To.Add("rahul.dhande@growindigo.co.in");
+                 mail.To.Add("mandi@growindigo.co.in");
+
+                //for live
+
+                //mail.To.Add("arjun.jagtap@growindigo.co.in");
+                //mail.To.Add("shital.khairnar@growindigo.co.in");
                 //mail.To.Add("madhur.jain@growindigo.co.in");
-                mail.To.Add("Shivam.Dhagat1@gmail.com");
+
+                //for Developer
+                //mail.To.Add("Shivam.Dhagat@systematixindia.com");
+                //mail.To.Add("Ashish.Agrawal@systematixindia.com");
+                //mail.To.Add("Shivamdhagat1@gmail.com");
+
+
                 mail.Subject = subject;
                 mail.Body = body;
                 SmtpServer.Port = 587;
@@ -141,13 +155,18 @@ namespace GrowIndigo.Controllers
 
                     return null;
                 }
+                else if (type == "AddProduct")
+                {
+
+                    return null;
+                }
                 else
                 {
-                    objResponse.Message = "Thank you for showing interest in this "+ objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
+                    objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
                     return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                    
+
                 }
-               
+
             }
             catch (Exception ex)
             {

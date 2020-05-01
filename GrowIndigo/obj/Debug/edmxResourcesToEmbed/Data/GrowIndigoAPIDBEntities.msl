@@ -91,11 +91,11 @@
           <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
           <ScalarProperty Name="MaximumPrice" ColumnName="MaximumPrice" />
           <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-          <ScalarProperty Name="Village" ColumnName="Village" />
           <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
           <ScalarProperty Name="SecondaryProductImage" ColumnName="SecondaryProductImage" />
           <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
           <ScalarProperty Name="Taluka" ColumnName="Taluka" />
           <ScalarProperty Name="District" ColumnName="District" />
           <ScalarProperty Name="State" ColumnName="State" />
@@ -155,7 +155,6 @@
     <EntitySetMapping Name="Mandi_UserInfo">
       <EntityTypeMapping TypeName="GrowIndigoAPI.Mandi_UserInfo">
         <MappingFragment StoreEntitySet="Mandi_UserInfo">
-          <ScalarProperty Name="ViIllage" ColumnName="ViIllage" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
           <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
@@ -167,6 +166,7 @@
           <ScalarProperty Name="Taluka" ColumnName="Taluka" />
           <ScalarProperty Name="District" ColumnName="District" />
           <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -187,6 +187,26 @@
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
           <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="GrowIndigoAPI.OrderDetails">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="Rzp_Payment_Status" ColumnName="Rzp_Payment_Status" />
+          <ScalarProperty Name="Rzp_Signature" ColumnName="Rzp_Signature" />
+          <ScalarProperty Name="Rzp_Payment_Id" ColumnName="Rzp_Payment_Id" />
+          <ScalarProperty Name="Rzp_Order_Id" ColumnName="Rzp_Order_Id" />
+          <ScalarProperty Name="GeoCoordinates" ColumnName="GeoCoordinates" />
+          <ScalarProperty Name="SAP_Order_ID" ColumnName="SAP_Order_ID" />
+          <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
+          <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
+          <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
+          <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
+          <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -396,28 +416,6 @@
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
           <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="OrderDetails">
-      <EntityTypeMapping TypeName="GrowIndigoAPI.OrderDetails">
-        <MappingFragment StoreEntitySet="OrderDetails">
-          <ScalarProperty Name="Rzp_Payment_Status" ColumnName="Rzp_Payment_Status" />
-          <ScalarProperty Name="Rzp_Signature" ColumnName="Rzp_Signature" />
-          <ScalarProperty Name="Rzp_Payment_Id" ColumnName="Rzp_Payment_Id" />
-          <ScalarProperty Name="Rzp_Order_Id" ColumnName="Rzp_Order_Id" />
-          <ScalarProperty Name="GeoCoordinates" ColumnName="GeoCoordinates" />
-          <ScalarProperty Name="SAP_Order_ID" ColumnName="SAP_Order_ID" />
-          <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
-          <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
-          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-          <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
-          <ScalarProperty Name="AmountToPayOnline" ColumnName="AmountToPayOnline" />
-          <ScalarProperty Name="WalletCurrentBalance" ColumnName="WalletCurrentBalance" />
-          <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
-          <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
-          <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
-          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

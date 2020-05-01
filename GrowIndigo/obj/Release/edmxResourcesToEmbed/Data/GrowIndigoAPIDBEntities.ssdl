@@ -145,7 +145,7 @@
       <PropertyRef Name="MobileNumber" />
     </Key>
     <Property Name="FullName" Type="nvarchar" MaxLength="256" />
-    <Property Name="ViIllage" Type="nvarchar" MaxLength="100" />
+    <Property Name="Village" Type="nvarchar" MaxLength="100" />
     <Property Name="State" Type="nvarchar" MaxLength="64" />
     <Property Name="District" Type="nvarchar" MaxLength="256" />
     <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
@@ -183,8 +183,6 @@
     <Property Name="Retailer_Id" Type="varchar" MaxLength="50" />
     <Property Name="Retailer_Mobile" Type="nvarchar" MaxLength="256" />
     <Property Name="Totalprice" Type="varchar" MaxLength="50" />
-    <Property Name="WalletCurrentBalance" Type="nvarchar" MaxLength="50" />
-    <Property Name="AmountToPayOnline" Type="nvarchar" MaxLength="50" />
     <Property Name="Payment_Mode" Type="varchar" MaxLength="50" />
     <Property Name="OrderDate" Type="smalldatetime" />
     <Property Name="Shipping_Address_Id" Type="int" />
@@ -258,7 +256,7 @@
     <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoTesting.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SubCategory">
     <Key>
       <PropertyRef Name="SubCategoryId" />

@@ -24,8 +24,6 @@ namespace GrowIndigo.Data
         public string Retailer_Id { get; set; }
         public string Retailer_Mobile { get; set; }
         public string Totalprice { get; set; }
-        public string WalletCurrentBalance { get; set; }
-        public string AmountToPayOnline { get; set; }
         public string Payment_Mode { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
         public Nullable<int> Shipping_Address_Id { get; set; }

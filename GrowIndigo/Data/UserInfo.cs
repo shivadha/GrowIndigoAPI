@@ -17,11 +17,11 @@ namespace GrowIndigo.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserInfo()
         {
+            this.OrderDetails = new HashSet<OrderDetails>();
             this.OrderErrorLogDetails = new HashSet<OrderErrorLogDetails>();
             this.UserFeedback = new HashSet<UserFeedback>();
             this.UsersAddress = new HashSet<UsersAddress>();
             this.UserWallet = new HashSet<UserWallet>();
-            this.OrderDetails = new HashSet<OrderDetails>();
         }
     
         public string UserCode { get; set; }
@@ -63,6 +63,8 @@ namespace GrowIndigo.Data
         public string RetailerId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderErrorLogDetails> OrderErrorLogDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFeedback> UserFeedback { get; set; }
@@ -70,7 +72,5 @@ namespace GrowIndigo.Data
         public virtual ICollection<UsersAddress> UsersAddress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserWallet> UserWallet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

@@ -15,6 +15,7 @@
     <EntitySet Name="Mandi_UserInfo" EntityType="GrowIndigoAPI.Mandi_UserInfo" />
     <EntitySet Name="Mandi_UserRequirement" EntityType="GrowIndigoAPI.Mandi_UserRequirement" />
     <EntitySet Name="Mandi_UserRoles" EntityType="GrowIndigoAPI.Mandi_UserRoles" />
+    <EntitySet Name="OrderDetails" EntityType="GrowIndigoAPI.OrderDetails" />
     <EntitySet Name="OrderErrorLogDetails" EntityType="GrowIndigoAPI.OrderErrorLogDetails" />
     <EntitySet Name="OrderProductDetails" EntityType="GrowIndigoAPI.OrderProductDetails" />
     <EntitySet Name="Product_Master" EntityType="GrowIndigoAPI.Product_Master" />
@@ -77,6 +78,14 @@
       <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
       <End Role="UsersBankAccountDetails" EntitySet="UsersBankAccountDetails" />
     </AssociationSet>
+    <AssociationSet Name="FK_OrderDetails_UserInfo" Association="GrowIndigoAPI.FK_OrderDetails_UserInfo">
+      <End Role="UserInfo" EntitySet="UserInfo" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderProductDetails_OrderDetails" Association="GrowIndigoAPI.FK_OrderProductDetails_OrderDetails">
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="OrderProductDetails" EntitySet="OrderProductDetails" />
+    </AssociationSet>
     <AssociationSet Name="FK_OrderErrorLogDetails_UserInfo" Association="GrowIndigoAPI.FK_OrderErrorLogDetails_UserInfo">
       <End Role="UserInfo" EntitySet="UserInfo" />
       <End Role="OrderErrorLogDetails" EntitySet="OrderErrorLogDetails" />
@@ -92,15 +101,6 @@
     <AssociationSet Name="FK_UserWallet_UserInfo" Association="GrowIndigoAPI.FK_UserWallet_UserInfo">
       <End Role="UserInfo" EntitySet="UserInfo" />
       <End Role="UserWallet" EntitySet="UserWallet" />
-    </AssociationSet>
-    <EntitySet Name="OrderDetails" EntityType="GrowIndigoAPI.OrderDetails" />
-    <AssociationSet Name="FK_OrderDetails_UserInfo" Association="GrowIndigoAPI.FK_OrderDetails_UserInfo">
-      <End Role="UserInfo" EntitySet="UserInfo" />
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_OrderProductDetails_OrderDetails" Association="GrowIndigoAPI.FK_OrderProductDetails_OrderDetails">
-      <End Role="OrderDetails" EntitySet="OrderDetails" />
-      <End Role="OrderProductDetails" EntitySet="OrderProductDetails" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Category">
@@ -215,17 +215,17 @@
     <Property Name="State" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="District" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="Taluka" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Village" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="ProductPriority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="SecondaryProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="ProductDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
-    <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
-    <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
-    <Property Name="Village" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="IsApproved" Type="Boolean" />
     <Property Name="MaximumPrice" Type="Int32" />
     <Property Name="MinimumPrice" Type="Int32" />
+    <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
+    <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
+    <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
   </EntityType>
   <EntityType Name="Mandi_Roles">
     <Key>
@@ -261,6 +261,7 @@
       <PropertyRef Name="MobileNumber" />
     </Key>
     <Property Name="FullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Village" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
     <Property Name="District" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="Taluka" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -275,7 +276,6 @@
     <NavigationProperty Name="Mandi_UserRoles" Relationship="GrowIndigoAPI.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="Mandi_UserRoles" />
     <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoAPI.FK_UsersAddress_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersAddress" />
     <NavigationProperty Name="UsersBankAccountDetails" Relationship="GrowIndigoAPI.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersBankAccountDetails" />
-    <Property Name="ViIllage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Mandi_UserRequirement">
     <Key>
@@ -295,6 +295,27 @@
     <Property Name="RoleId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Mandi_Roles" Relationship="GrowIndigoAPI.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_UserRoles" ToRole="Mandi_Roles" />
     <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoAPI.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserRoles" ToRole="Mandi_UserInfo" />
+  </EntityType>
+  <EntityType Name="OrderDetails">
+    <Key>
+      <PropertyRef Name="Order_Id" />
+    </Key>
+    <Property Name="Order_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Retailer_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Retailer_Mobile" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Totalprice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Payment_Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="Shipping_Address_Id" Type="Int32" />
+    <Property Name="Order_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SAP_Order_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="GeoCoordinates" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rzp_Order_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rzp_Payment_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rzp_Signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rzp_Payment_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserInfo" Relationship="GrowIndigoAPI.FK_OrderDetails_UserInfo" FromRole="OrderDetails" ToRole="UserInfo" />
+    <NavigationProperty Name="OrderProductDetails" Relationship="GrowIndigoAPI.FK_OrderProductDetails_OrderDetails" FromRole="OrderDetails" ToRole="OrderProductDetails" />
   </EntityType>
   <EntityType Name="OrderErrorLogDetails">
     <Key>
@@ -420,11 +441,11 @@
     <Property Name="Firm_Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="IsProfileUpdated" Type="Boolean" />
     <Property Name="RetailerId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoAPI.FK_OrderDetails_UserInfo" FromRole="UserInfo" ToRole="OrderDetails" />
     <NavigationProperty Name="OrderErrorLogDetails" Relationship="GrowIndigoAPI.FK_OrderErrorLogDetails_UserInfo" FromRole="UserInfo" ToRole="OrderErrorLogDetails" />
     <NavigationProperty Name="UserFeedback" Relationship="GrowIndigoAPI.FK_UserFeedback_UserInfo" FromRole="UserInfo" ToRole="UserFeedback" />
     <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoAPI.FK_UsersAddress_UserInfo" FromRole="UserInfo" ToRole="UsersAddress" />
     <NavigationProperty Name="UserWallet" Relationship="GrowIndigoAPI.FK_UserWallet_UserInfo" FromRole="UserInfo" ToRole="UserWallet" />
-    <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoAPI.FK_OrderDetails_UserInfo" FromRole="UserInfo" ToRole="OrderDetails" />
   </EntityType>
   <EntityType Name="UserOTPInfo">
     <Key>
@@ -652,6 +673,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_OrderDetails_UserInfo">
+    <End Type="GrowIndigoAPI.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+    <End Type="GrowIndigoAPI.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfo">
+        <PropertyRef Name="MobileNumber" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="Retailer_Mobile" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderProductDetails_OrderDetails">
+    <End Type="GrowIndigoAPI.OrderDetails" Role="OrderDetails" Multiplicity="0..1" />
+    <End Type="GrowIndigoAPI.OrderProductDetails" Role="OrderProductDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDetails">
+        <PropertyRef Name="Order_Id" />
+      </Principal>
+      <Dependent Role="OrderProductDetails">
+        <PropertyRef Name="order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_OrderErrorLogDetails_UserInfo">
     <End Type="GrowIndigoAPI.UserInfo" Role="UserInfo" Multiplicity="0..1" />
     <End Type="GrowIndigoAPI.OrderErrorLogDetails" Role="OrderErrorLogDetails" Multiplicity="*" />
@@ -697,53 +742,6 @@
       </Principal>
       <Dependent Role="UserWallet">
         <PropertyRef Name="MobileNumber" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="OrderDetails">
-    <Key>
-      <PropertyRef Name="Order_Id" />
-    </Key>
-    <Property Name="Order_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Retailer_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Retailer_Mobile" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="Totalprice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="WalletCurrentBalance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="AmountToPayOnline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Payment_Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="OrderDate" Type="DateTime" Precision="0" />
-    <Property Name="Shipping_Address_Id" Type="Int32" />
-    <Property Name="Order_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="SAP_Order_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="GeoCoordinates" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Rzp_Order_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Rzp_Payment_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Rzp_Signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Rzp_Payment_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="UserInfo" Relationship="GrowIndigoAPI.FK_OrderDetails_UserInfo" FromRole="OrderDetails" ToRole="UserInfo" />
-    <NavigationProperty Name="OrderProductDetails" Relationship="GrowIndigoAPI.FK_OrderProductDetails_OrderDetails" FromRole="OrderDetails" ToRole="OrderProductDetails" />
-  </EntityType>
-  <Association Name="FK_OrderDetails_UserInfo">
-    <End Type="GrowIndigoAPI.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-    <End Type="GrowIndigoAPI.OrderDetails" Role="OrderDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserInfo">
-        <PropertyRef Name="MobileNumber" />
-      </Principal>
-      <Dependent Role="OrderDetails">
-        <PropertyRef Name="Retailer_Mobile" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_OrderProductDetails_OrderDetails">
-    <End Type="GrowIndigoAPI.OrderDetails" Role="OrderDetails" Multiplicity="0..1" />
-    <End Type="GrowIndigoAPI.OrderProductDetails" Role="OrderProductDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OrderDetails">
-        <PropertyRef Name="Order_Id" />
-      </Principal>
-      <Dependent Role="OrderProductDetails">
-        <PropertyRef Name="order_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

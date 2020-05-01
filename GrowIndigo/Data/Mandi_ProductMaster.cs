@@ -36,11 +36,11 @@ namespace GrowIndigo.Data
         public string State { get; set; }
         public string District { get; set; }
         public string Taluka { get; set; }
+        public string Village { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string ProductPriority { get; set; }
         public string SecondaryProductImage { get; set; }
         public string ProductDescription { get; set; }
-        public string Village { get; set; }
         public Nullable<bool> IsApproved { get; set; }
         public Nullable<int> MaximumPrice { get; set; }
         public Nullable<int> MinimumPrice { get; set; }
