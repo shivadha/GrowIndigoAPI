@@ -52,6 +52,7 @@
         <AssociationConnector Association="GrowIndigoAPI.FK_UserFeedback_UserInfo" />
         <AssociationConnector Association="GrowIndigoAPI.FK_UsersAddress_UserInfo" />
         <AssociationConnector Association="GrowIndigoAPI.FK_UserWallet_UserInfo" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi__Requirement" Width="1.5" PointX="0.75" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

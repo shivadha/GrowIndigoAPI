@@ -486,6 +486,9 @@
     <Compile Include="Data\Mandi_UserRoles.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Mandi__Requirement.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\OrderDetails.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
@@ -542,6 +545,7 @@
     <Compile Include="Models\MasterData.cs" />
     <Compile Include="Models\ProductMasterViewModel.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
+    <Compile Include="Models\MandiUserRequirementViewModel.cs" />
     <Compile Include="Models\UsersAddressViewModel.cs" />
     <Compile Include="Models\UsersBankAccountDetailsViewModel.cs" />
     <Compile Include="Models\UserWalletViewModel.cs" />

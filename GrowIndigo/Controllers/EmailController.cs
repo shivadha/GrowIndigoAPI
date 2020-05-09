@@ -47,7 +47,7 @@ namespace GrowIndigo.Controllers
 
 
                     FromMail = "developer@growindigo.co.in";
-                    subject = "Grow Mandi App : Client Transaction Details ";
+                    subject = "zGrow Mandi App : Client Transaction Details ";
 
                 }
                 else if (type == "AddProduct")
@@ -128,14 +128,14 @@ namespace GrowIndigo.Controllers
                 mail.From = new MailAddress(FromMail);
 
                 //for test
-                 mail.To.Add("arjun.jagtap@growindigo.co.in");
-                mail.To.Add("rahul.dhande@growindigo.co.in");
-                 mail.To.Add("mandi@growindigo.co.in");
+                // mail.To.Add("arjun.jagtap@growindigo.co.in");
+                //mail.To.Add("rahul.dhande@growindigo.co.in");
+                // mail.To.Add("mandi@growindigo.co.in");
 
                 //for live
 
-                //mail.To.Add("arjun.jagtap@growindigo.co.in");
-                //mail.To.Add("shital.khairnar@growindigo.co.in");
+                mail.To.Add("arjun.jagtap@growindigo.co.in");
+                mail.To.Add("shital.khairnar@growindigo.co.in");
                 //mail.To.Add("madhur.jain@growindigo.co.in");
 
                 //for Developer

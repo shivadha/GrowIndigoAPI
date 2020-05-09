@@ -54,5 +54,6 @@ namespace GrowIndigo.Data
         public virtual DbSet<UserWallet> UserWallet { get; set; }
         public virtual DbSet<Variety_Master> Variety_Master { get; set; }
         public virtual DbSet<SubCategory> SubCategory { get; set; }
+        public virtual DbSet<Mandi__Requirement> Mandi__Requirement { get; set; }
     }
 }

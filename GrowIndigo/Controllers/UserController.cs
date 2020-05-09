@@ -640,11 +640,11 @@ namespace GrowIndigo.Controllers
                 if (number != null)
                 {
                     //objOrderDetails.Order_Id = objOrderDetailsViewModel.Order_Id;
-                    objOrderDetails.Retailer_Id = objOrderDetailsViewModel.Retailer_Id ;
+                    objOrderDetails.Retailer_Id = objOrderDetailsViewModel.Retailer_Id;
                     objOrderDetails.Retailer_Mobile = objOrderDetailsViewModel.Retailer_Mobile;
                     objOrderDetails.Totalprice = objOrderDetailsViewModel.Totalprice;
                     //objOrderDetails.AmountToPayOnline = objOrderDetailsViewModel.AmountToPayOnline;
-                   // objOrderDetails.WalletCurrentBalance = objOrderDetailsViewModel.WalletCurrentBalance;
+                    // objOrderDetails.WalletCurrentBalance = objOrderDetailsViewModel.WalletCurrentBalance;
 
                     objOrderDetails.Payment_Mode = objOrderDetailsViewModel.Payment_Mode;
                     objOrderDetails.OrderDate = DateTime.Now;
@@ -1186,8 +1186,8 @@ namespace GrowIndigo.Controllers
                         int totalAmount = Availablebalance + TobeAddedAmount;
 
                         objUserWallet.Id = CheckBalanceforUser.Id;
-                        var getWalletInfo= (from balance in dbContext.UserWallet where balance.Id == CheckBalanceforUser.Id select balance).FirstOrDefault();
-                      
+                        var getWalletInfo = (from balance in dbContext.UserWallet where balance.Id == CheckBalanceforUser.Id select balance).FirstOrDefault();
+
                         getWalletInfo.WalletBalance = totalAmount.ToString();
 
                         getWalletInfo.ModifiedDate = DateTime.Now;
@@ -1266,6 +1266,69 @@ namespace GrowIndigo.Controllers
 
         #endregion
 
+        #region Requirement
 
+        [HttpPost]
+        //[Authorize]
+        [Route("api/User/AddWalletBalance")]
+        public HttpResponseMessage AddUserRequirement(MandiUserRequirementViewModel objUserRequirementViewModel)
+        {
+            try
+            {
+                Mandi__Requirement objRequirement = new Mandi__Requirement();
+                string mobileNumber = objUserRequirementViewModel.MobileNumber;
+                //get mobileNumber from user table
+                var number = (from user in dbContext.UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                if (number != null)
+                {
+
+                    objRequirement.Id = objUserRequirementViewModel.Id;
+                    objRequirement.MobileNumber = objUserRequirementViewModel.MobileNumber;
+                    objRequirement.BuyerId = objUserRequirementViewModel.MobileNumber;
+                    objRequirement.BuyerContact = objUserRequirementViewModel.BuyerContact;
+                    objRequirement.BuyerAddress = objUserRequirementViewModel.BuyerAddress;
+                    objRequirement.CropName = objUserRequirementViewModel.CropName;
+                    objRequirement.Variety = objUserRequirementViewModel.Variety;
+                    objRequirement.Quantity = objUserRequirementViewModel.Quantity;
+                    objRequirement.QualitySpecification = objUserRequirementViewModel.QualitySpecification;
+                    objRequirement.DeliveryLocation = objUserRequirementViewModel.DeliveryLocation;
+                    objRequirement.ExpectedPrice = objUserRequirementViewModel.ExpectedPrice;
+                    objRequirement.ExpectedDate = objUserRequirementViewModel.ExpectedDate;
+                    objRequirement.IsPriceNegotiable = objUserRequirementViewModel.IsPriceNegotiable;
+                    objRequirement.Remarks = objUserRequirementViewModel.Remarks;
+
+                    dbContext.Mandi__Requirement.Add(objRequirement);
+                    var i = dbContext.SaveChanges();
+                    if (i != 0)
+                    {
+                        objResponse.Message = "User Requirement added successfully";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed to add user requiremrent.";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+
+
+                else
+                {
+                    objResponse.Message = "Mobile number not exists.";
+
+                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "UserController", "AddUserRequirement");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+
+        }
+        #endregion
     }
 }
