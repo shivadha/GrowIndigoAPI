@@ -1270,7 +1270,7 @@ namespace GrowIndigo.Controllers
 
         [HttpPost]
         //[Authorize]
-        [Route("api/User/AddWalletBalance")]
+        [Route("api/User/AddUserRequirement")]
         public HttpResponseMessage AddUserRequirement(MandiUserRequirementViewModel objUserRequirementViewModel)
         {
             try
