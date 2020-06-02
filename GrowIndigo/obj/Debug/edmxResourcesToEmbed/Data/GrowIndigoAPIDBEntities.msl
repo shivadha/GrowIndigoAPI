@@ -121,6 +121,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Mandi_Requirement">
+      <EntityTypeMapping TypeName="GrowIndigoAPI.Mandi_Requirement">
+        <MappingFragment StoreEntitySet="Mandi_Requirement">
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
+          <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+          <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
+          <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+          <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Variety" ColumnName="Variety" />
+          <ScalarProperty Name="CropName" ColumnName="CropName" />
+          <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
+          <ScalarProperty Name="BuyerContact" ColumnName="BuyerContact" />
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Roles">
       <EntityTypeMapping TypeName="GrowIndigoAPI.Mandi_Roles">
         <MappingFragment StoreEntitySet="Mandi_Roles">
@@ -416,6 +436,25 @@
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
           <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Web_Mandi_usermaster">
+      <EntityTypeMapping TypeName="GrowIndigoAPI.Web_Mandi_usermaster">
+        <MappingFragment StoreEntitySet="Web_Mandi_usermaster">
+          <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+          <ScalarProperty Name="change_pass" ColumnName="change_pass" />
+          <ScalarProperty Name="LockStatus" ColumnName="LockStatus" />
+          <ScalarProperty Name="LockOut" ColumnName="LockOut" />
+          <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+          <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
+          <ScalarProperty Name="user_mail" ColumnName="user_mail" />
+          <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
+          <ScalarProperty Name="user_role" ColumnName="user_role" />
+          <ScalarProperty Name="user_state" ColumnName="user_state" />
+          <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

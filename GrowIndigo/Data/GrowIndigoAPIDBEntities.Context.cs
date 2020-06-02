@@ -33,6 +33,7 @@ namespace GrowIndigo.Data
         public virtual DbSet<Mandi_OrderDetails> Mandi_OrderDetails { get; set; }
         public virtual DbSet<Mandi_OrderProductDetails> Mandi_OrderProductDetails { get; set; }
         public virtual DbSet<Mandi_ProductMaster> Mandi_ProductMaster { get; set; }
+        public virtual DbSet<Mandi_Requirement> Mandi_Requirement { get; set; }
         public virtual DbSet<Mandi_Roles> Mandi_Roles { get; set; }
         public virtual DbSet<Mandi_UserEnquiry> Mandi_UserEnquiry { get; set; }
         public virtual DbSet<Mandi_UserFeedback> Mandi_UserFeedback { get; set; }
@@ -54,6 +55,6 @@ namespace GrowIndigo.Data
         public virtual DbSet<UserWallet> UserWallet { get; set; }
         public virtual DbSet<Variety_Master> Variety_Master { get; set; }
         public virtual DbSet<SubCategory> SubCategory { get; set; }
-        public virtual DbSet<Mandi__Requirement> Mandi__Requirement { get; set; }
+        public virtual DbSet<Web_Mandi_usermaster> Web_Mandi_usermaster { get; set; }
     }
 }

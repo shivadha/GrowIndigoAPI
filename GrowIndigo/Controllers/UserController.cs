@@ -1275,7 +1275,7 @@ namespace GrowIndigo.Controllers
         {
             try
             {
-                Mandi__Requirement objRequirement = new Mandi__Requirement();
+                Mandi_Requirement objRequirement = new Mandi_Requirement();
                 string mobileNumber = objUserRequirementViewModel.MobileNumber;
                 //get mobileNumber from user table
                 var number = (from user in dbContext.UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
@@ -1297,10 +1297,26 @@ namespace GrowIndigo.Controllers
                     objRequirement.IsPriceNegotiable = objUserRequirementViewModel.IsPriceNegotiable;
                     objRequirement.Remarks = objUserRequirementViewModel.Remarks;
 
-                    dbContext.Mandi__Requirement.Add(objRequirement);
+                    dbContext.Mandi_Requirement.Add(objRequirement);
                     var i = dbContext.SaveChanges();
                     if (i != 0)
                     {
+                        EmailController objEmailController = new EmailController();
+                        EmailModel objEmailModel = new EmailModel();
+                        objEmailModel.BuyerId = objUserRequirementViewModel.BuyerId;
+                        objEmailModel.BuyerAddress = objUserRequirementViewModel.BuyerAddress;
+                        objEmailModel.CropName = objUserRequirementViewModel.CropName;
+                        objEmailModel.VarietyName = objUserRequirementViewModel.Variety;
+                        objEmailModel.Quantity = objUserRequirementViewModel.Quantity;
+                        objEmailModel.QualitySpecification = objUserRequirementViewModel.QualitySpecification;
+                        objEmailModel.DeliveryLocation = objUserRequirementViewModel.DeliveryLocation;
+                        objEmailModel.ExpectedPrice = objUserRequirementViewModel.ExpectedPrice;
+                        objEmailModel.ExpectedDate = objUserRequirementViewModel.ExpectedDate;
+                        objEmailModel.IsPriceNegotiable = objUserRequirementViewModel.IsPriceNegotiable;
+                        objEmailModel.Remarks = objUserRequirementViewModel.Remarks;
+
+
+                        objEmailController.sendEmailViaWebApi(objEmailModel, "UserRequirement");
                         objResponse.Message = "User Requirement added successfully";
                         return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                     }

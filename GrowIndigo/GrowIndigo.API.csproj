@@ -468,6 +468,9 @@
     <Compile Include="Data\Mandi_ProductMaster.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Mandi_Requirement.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Mandi_Roles.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
@@ -484,9 +487,6 @@
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Mandi_UserRoles.cs">
-      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Mandi__Requirement.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\OrderDetails.cs">
@@ -532,6 +532,9 @@
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Variety_Master.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Web_Mandi_usermaster.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">

@@ -1,0 +1,16 @@
+2020-05-12 10:52:05,920 INFO MonitoringLogger - 
+2020-05-12 10:52:05,935 INFO MonitoringLogger - Value was either too large or too small for an Int32.
+2020-05-12 10:52:23,601 INFO MonitoringLogger - 
+2020-05-12 10:52:23,602 INFO MonitoringLogger - Value was either too large or too small for an Int32.
+2020-05-12 10:54:22,186 INFO MonitoringLogger - 
+2020-05-12 10:54:22,202 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request
+2020-05-12 10:54:22,272 INFO MonitoringLogger - 
+2020-05-12 10:54:22,272 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request
+2020-05-12 10:55:27,494 INFO MonitoringLogger - 
+2020-05-12 10:55:27,494 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request
+2020-05-12 10:55:27,557 INFO MonitoringLogger - 
+2020-05-12 10:55:27,557 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request

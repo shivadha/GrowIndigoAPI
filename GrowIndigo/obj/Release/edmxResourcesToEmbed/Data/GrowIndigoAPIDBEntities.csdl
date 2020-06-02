@@ -9,6 +9,7 @@
     <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoAPI.Mandi_OrderDetails" />
     <EntitySet Name="Mandi_OrderProductDetails" EntityType="GrowIndigoAPI.Mandi_OrderProductDetails" />
     <EntitySet Name="Mandi_ProductMaster" EntityType="GrowIndigoAPI.Mandi_ProductMaster" />
+    <EntitySet Name="Mandi_Requirement" EntityType="GrowIndigoAPI.Mandi_Requirement" />
     <EntitySet Name="Mandi_Roles" EntityType="GrowIndigoAPI.Mandi_Roles" />
     <EntitySet Name="Mandi_UserEnquiry" EntityType="GrowIndigoAPI.Mandi_UserEnquiry" />
     <EntitySet Name="Mandi_UserFeedback" EntityType="GrowIndigoAPI.Mandi_UserFeedback" />
@@ -227,6 +228,25 @@
     <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
     <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
   </EntityType>
+  <EntityType Name="Mandi_Requirement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="BuyerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BuyerContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BuyerAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Variety" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QualitySpecification" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ExpectedPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsPriceNegotiable" Type="Boolean" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="Mandi_Roles">
     <Key>
       <PropertyRef Name="RoleId" />
@@ -261,7 +281,7 @@
       <PropertyRef Name="MobileNumber" />
     </Key>
     <Property Name="FullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="Village" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ViIllage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
     <Property Name="District" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="Taluka" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -304,6 +324,8 @@
     <Property Name="Retailer_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Retailer_Mobile" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="Totalprice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WalletCurrentBalance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AmountToPayOnline" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Payment_Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="OrderDate" Type="DateTime" Precision="0" />
     <Property Name="Shipping_Address_Id" Type="Int32" />

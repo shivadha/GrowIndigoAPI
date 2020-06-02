@@ -54,24 +54,48 @@ namespace GrowIndigo.Controllers
                 {
                     body = " Hello Admin,\r\n";
                     body += " User has added new product. Details of particular Product are as follows \r\n";
-                    body += "1.Crop Id: " + objEmailModel.CropId + "\r\n";
-                    body += "2.Category Name: " + objEmailModel.CategoryName + "\r\n";
-                    body += "3.Variety Id : " + objEmailModel.VarietyId + "\r\n";
-                    body += "4.Product Address : " + objEmailModel.ProductAddress + "\r\n";
-                    body += "5.Geo Address: " + objEmailModel.GeoAddress + "\r\n";
-                    body += "6.Mobile Number: " + objEmailModel.MobileNumber + "\r\n";
-                    body += "7.Quantity: " + objEmailModel.Quantity + "\r\n";
-                    body += "8.Quantity Unit: " + objEmailModel.QuantityUnit + "\r\n";
-                    body += "9.Price: " + objEmailModel.Price + "\r\n";
-                    body += "10.State" + objEmailModel.State + "\r\n";
-                    body += "11.District" + objEmailModel.District + "\r\n";
-                    body += "12.Taluka" + objEmailModel.Taluka + "\r\n";
+                    body += "1.Product Id: " + objEmailModel.ProductId + "\r\n";
+                    body += "2.Crop Id: " + objEmailModel.CropId + "\r\n";
+                    body += "3.Category Name: " + objEmailModel.CategoryName + "\r\n";
+                    body += "4.Variety Id : " + objEmailModel.VarietyId + "\r\n";
+                    body += "5.Product Address : " + objEmailModel.ProductAddress + "\r\n";
+                    body += "6.Geo Address: " + objEmailModel.GeoAddress + "\r\n";
+                    body += "7.Mobile Number: " + objEmailModel.MobileNumber + "\r\n";
+                    body += "8.Quantity: " + objEmailModel.Quantity + "\r\n";
+                    body += "9.Quantity Unit: " + objEmailModel.QuantityUnit + "\r\n";
+                    body += "10.Price: " + objEmailModel.Price + "\r\n";
+                    body += "11.State" + objEmailModel.State + "\r\n";
+                    body += "12.District" + objEmailModel.District + "\r\n";
+                    body += "13.Taluka" + objEmailModel.Taluka + "\r\n";
                     body += "\r\n";
                     body += "warm regards";
 
 
                     FromMail = "developer@growindigo.co.in";
                     subject = "Grow Mandi App: New Product Detail ";
+                }
+                else if (type == "UserRequirement")
+                {
+                    body = " Hello Admin,\r\n";
+                    body += " There is new user requirement . Details of particular Product are as follows \r\n";
+                    body += "1.BuyerId: " + objEmailModel.BuyerId + "\r\n";
+                    body += "2.BuyerAddress: " + objEmailModel.BuyerAddress + "\r\n";
+                    body += "3.CropName : " + objEmailModel.CropName + "\r\n";
+                    body += "4.VarietyName: " + objEmailModel.VarietyName + "\r\n";
+                    body += "5.Quantity: " + objEmailModel.Quantity + "\r\n";
+                    body += "6.QualitySpecification: " + objEmailModel.QualitySpecification + "\r\n";
+                    body += "7.DeliveryLocation: " + objEmailModel.DeliveryLocation + "\r\n";
+                    body += "8.ExpectedPrice: " + objEmailModel.ExpectedPrice + "\r\n";
+                    body += "9.ExpectedDate: " + objEmailModel.ExpectedDate + "\r\n";
+                    body += "10.IsPriceNegotiable" + objEmailModel.IsPriceNegotiable + "\r\n";
+                    body += "11.Remarks" + objEmailModel.Remarks + "\r\n";
+                   
+                    body += "\r\n";
+                    body += "warm regards";
+
+
+                    FromMail = "developer@growindigo.co.in";
+                    subject = "Grow Mandi App: New UserRequirement Detail ";
                 }
                 else
                 {
@@ -134,14 +158,14 @@ namespace GrowIndigo.Controllers
 
                 //for live
 
-                mail.To.Add("arjun.jagtap@growindigo.co.in");
-                mail.To.Add("shital.khairnar@growindigo.co.in");
+                //mail.To.Add("arjun.jagtap@growindigo.co.in");
+                //mail.To.Add("shital.khairnar@growindigo.co.in");
                 //mail.To.Add("madhur.jain@growindigo.co.in");
 
                 //for Developer
-                //mail.To.Add("Shivam.Dhagat@systematixindia.com");
-                //mail.To.Add("Ashish.Agrawal@systematixindia.com");
-                //mail.To.Add("Shivamdhagat1@gmail.com");
+                mail.To.Add("Shivam.Dhagat@systematixindia.com");
+                mail.To.Add("Ashish.Agrawal@systematixindia.com");
+                mail.To.Add("Shivamdhagat1@gmail.com");
 
 
                 mail.Subject = subject;

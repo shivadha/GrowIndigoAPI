@@ -5,35 +5,36 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="36f52d7604cc4b44ab86bc9da8e00ec5" Name="Diagram1" ZoomLevel="100">
-        <EntityTypeShape EntityType="GrowIndigoAPI.Category" Width="1.5" PointX="3" PointY="8.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Crop_Master" Width="1.5" PointX="5.25" PointY="6.625" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.District_Master" Width="1.5" PointX="0.75" PointY="2.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.ErrorLogs" Width="1.5" PointX="2.75" PointY="2.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_Notification" Width="1.5" PointX="0.75" PointY="5.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_OrderDetails" Width="1.5" PointX="7.75" PointY="2.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_OrderProductDetails" Width="1.5" PointX="4.75" PointY="2.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_ProductMaster" Width="1.5" PointX="9.75" PointY="8.25" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_Roles" Width="1.5" PointX="14.75" PointY="9.125" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_UserEnquiry" Width="1.5" PointX="9.75" PointY="2.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_UserFeedback" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Category" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Crop_Master" Width="1.5" PointX="5.25" PointY="9.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.District_Master" Width="1.5" PointX="0.75" PointY="2.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.ErrorLogs" Width="1.5" PointX="2.75" PointY="2.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_Notification" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_OrderDetails" Width="1.5" PointX="7.75" PointY="2.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_OrderProductDetails" Width="1.5" PointX="4.75" PointY="2.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_ProductMaster" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_Requirement" Width="1.5" PointX="9.75" PointY="2.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_Roles" Width="1.5" PointX="14.75" PointY="11.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_UserEnquiry" Width="1.5" PointX="7.75" PointY="7.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_UserFeedback" Width="1.5" PointX="0.75" PointY="11.125" />
         <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_UserInfo" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_UserRequirement" Width="1.5" PointX="9.75" PointY="5.375" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_UserRequirement" Width="1.5" PointX="11.75" PointY="2.125" />
         <EntityTypeShape EntityType="GrowIndigoAPI.Mandi_UserRoles" Width="1.5" PointX="17" PointY="1.75" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.OrderDetails" Width="1.5" PointX="14" PointY="17" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.OrderErrorLogDetails" Width="1.5" PointX="14" PointY="21.75" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.OrderProductDetails" Width="1.5" PointX="16.25" PointY="17.75" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Product_Master" Width="1.5" PointX="2.75" PointY="13.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Roles" Width="1.5" PointX="0.75" PointY="8.625" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.State_Master" Width="1.5" PointX="11.75" PointY="2.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Taluka_Master" Width="1.5" PointX="4.75" PointY="13.375" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.UserFeedback" Width="1.5" PointX="14" PointY="14" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.OrderDetails" Width="1.5" PointX="14" PointY="17.5" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.OrderErrorLogDetails" Width="1.5" PointX="14" PointY="5.75" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.OrderProductDetails" Width="1.5" PointX="16.25" PointY="18.5" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Product_Master" Width="1.5" PointX="2.75" PointY="13.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Roles" Width="1.5" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.State_Master" Width="1.5" PointX="4.75" PointY="13.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Taluka_Master" Width="1.5" PointX="6.75" PointY="13.125" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.UserFeedback" Width="1.5" PointX="14" PointY="22.75" />
         <EntityTypeShape EntityType="GrowIndigoAPI.UserInfo" Width="1.5" PointX="11.75" PointY="8.25" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.UserOTPInfo" Width="1.5" PointX="4.75" PointY="16.375" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.UserOTPInfo" Width="1.5" PointX="4.75" PointY="16.125" />
         <EntityTypeShape EntityType="GrowIndigoAPI.UsersAddress" Width="1.5" PointX="17" PointY="10.625" />
         <EntityTypeShape EntityType="GrowIndigoAPI.UsersBankAccountDetails" Width="1.5" PointX="17" PointY="6.25" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.UserWallet" Width="1.5" PointX="14" PointY="5.875" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.Variety_Master" Width="1.5" PointX="7.5" PointY="15.25" />
-        <EntityTypeShape EntityType="GrowIndigoAPI.SubCategory" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.UserWallet" Width="1.5" PointX="14" PointY="14.375" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.Variety_Master" Width="1.5" PointX="7.5" PointY="17.75" />
+        <EntityTypeShape EntityType="GrowIndigoAPI.SubCategory" Width="1.5" PointX="5.25" PointY="6.375" />
         <AssociationConnector Association="GrowIndigoAPI.FK_Category_UserRoles" />
         <AssociationConnector Association="GrowIndigoAPI.FK_Crop_Master_Category" />
         <AssociationConnector Association="GrowIndigoAPI.FK_SubCategory_Category" />

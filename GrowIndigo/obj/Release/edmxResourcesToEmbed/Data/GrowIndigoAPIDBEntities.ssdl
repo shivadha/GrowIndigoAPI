@@ -112,6 +112,25 @@
     <Property Name="MaximumPrice" Type="int" />
     <Property Name="MinimumPrice" Type="int" />
   </EntityType>
+  <EntityType Name="Mandi_Requirement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" />
+    <Property Name="BuyerId" Type="nvarchar" MaxLength="50" />
+    <Property Name="BuyerContact" Type="nvarchar" MaxLength="50" />
+    <Property Name="BuyerAddress" Type="nvarchar" MaxLength="500" />
+    <Property Name="CropName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Variety" Type="nvarchar" MaxLength="50" />
+    <Property Name="Quantity" Type="nvarchar" MaxLength="50" />
+    <Property Name="QualitySpecification" Type="nvarchar" MaxLength="150" />
+    <Property Name="DeliveryLocation" Type="nvarchar" MaxLength="500" />
+    <Property Name="ExpectedPrice" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExpectedDate" Type="datetime" />
+    <Property Name="IsPriceNegotiable" Type="bit" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Mandi_Roles">
     <Key>
       <PropertyRef Name="RoleId" />
@@ -145,7 +164,7 @@
       <PropertyRef Name="MobileNumber" />
     </Key>
     <Property Name="FullName" Type="nvarchar" MaxLength="256" />
-    <Property Name="Village" Type="nvarchar" MaxLength="100" />
+    <Property Name="ViIllage" Type="nvarchar" MaxLength="100" />
     <Property Name="State" Type="nvarchar" MaxLength="64" />
     <Property Name="District" Type="nvarchar" MaxLength="256" />
     <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
@@ -183,6 +202,8 @@
     <Property Name="Retailer_Id" Type="varchar" MaxLength="50" />
     <Property Name="Retailer_Mobile" Type="nvarchar" MaxLength="256" />
     <Property Name="Totalprice" Type="varchar" MaxLength="50" />
+    <Property Name="WalletCurrentBalance" Type="nvarchar" MaxLength="50" />
+    <Property Name="AmountToPayOnline" Type="nvarchar" MaxLength="50" />
     <Property Name="Payment_Mode" Type="varchar" MaxLength="50" />
     <Property Name="OrderDate" Type="smalldatetime" />
     <Property Name="Shipping_Address_Id" Type="int" />
@@ -256,7 +277,7 @@
     <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoTesting.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SubCategory">
     <Key>
       <PropertyRef Name="SubCategoryId" />
@@ -617,6 +638,7 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
     <EntitySet Name="Mandi_OrderDetails" EntityType="Self.Mandi_OrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_OrderProductDetails" EntityType="Self.Mandi_OrderProductDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_ProductMaster" EntityType="Self.Mandi_ProductMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_Requirement" EntityType="Self.Mandi_Requirement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_Roles" EntityType="Self.Mandi_Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_UserEnquiry" EntityType="Self.Mandi_UserEnquiry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_UserFeedback" EntityType="Self.Mandi_UserFeedback" Schema="dbo" store:Type="Tables" />

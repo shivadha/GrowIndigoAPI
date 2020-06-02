@@ -121,6 +121,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Mandi_Requirement">
+      <EntityTypeMapping TypeName="GrowIndigoAPI.Mandi_Requirement">
+        <MappingFragment StoreEntitySet="Mandi_Requirement">
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
+          <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+          <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
+          <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+          <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Variety" ColumnName="Variety" />
+          <ScalarProperty Name="CropName" ColumnName="CropName" />
+          <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
+          <ScalarProperty Name="BuyerContact" ColumnName="BuyerContact" />
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Roles">
       <EntityTypeMapping TypeName="GrowIndigoAPI.Mandi_Roles">
         <MappingFragment StoreEntitySet="Mandi_Roles">
@@ -166,7 +186,7 @@
           <ScalarProperty Name="Taluka" ColumnName="Taluka" />
           <ScalarProperty Name="District" ColumnName="District" />
           <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="Village" ColumnName="Village" />
+          <ScalarProperty Name="ViIllage" ColumnName="ViIllage" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -203,6 +223,8 @@
           <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
           <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
           <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
+          <ScalarProperty Name="AmountToPayOnline" ColumnName="AmountToPayOnline" />
+          <ScalarProperty Name="WalletCurrentBalance" ColumnName="WalletCurrentBalance" />
           <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
           <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
           <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />

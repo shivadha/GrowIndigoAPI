@@ -9,6 +9,7 @@
     <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoAPI.Mandi_OrderDetails" />
     <EntitySet Name="Mandi_OrderProductDetails" EntityType="GrowIndigoAPI.Mandi_OrderProductDetails" />
     <EntitySet Name="Mandi_ProductMaster" EntityType="GrowIndigoAPI.Mandi_ProductMaster" />
+    <EntitySet Name="Mandi_Requirement" EntityType="GrowIndigoAPI.Mandi_Requirement" />
     <EntitySet Name="Mandi_Roles" EntityType="GrowIndigoAPI.Mandi_Roles" />
     <EntitySet Name="Mandi_UserEnquiry" EntityType="GrowIndigoAPI.Mandi_UserEnquiry" />
     <EntitySet Name="Mandi_UserFeedback" EntityType="GrowIndigoAPI.Mandi_UserFeedback" />
@@ -30,6 +31,7 @@
     <EntitySet Name="UserWallet" EntityType="GrowIndigoAPI.UserWallet" />
     <EntitySet Name="Variety_Master" EntityType="GrowIndigoAPI.Variety_Master" />
     <EntitySet Name="SubCategory" EntityType="GrowIndigoAPI.SubCategory" />
+    <EntitySet Name="Web_Mandi_usermaster" EntityType="GrowIndigoAPI.Web_Mandi_usermaster" />
     <AssociationSet Name="FK_Category_UserRoles" Association="GrowIndigoAPI.FK_Category_UserRoles">
       <End Role="Roles" EntitySet="Roles" />
       <End Role="Category" EntitySet="Category" />
@@ -226,6 +228,25 @@
     <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
     <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
     <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
+  </EntityType>
+  <EntityType Name="Mandi_Requirement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="BuyerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BuyerContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BuyerAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Variety" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="QualitySpecification" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ExpectedPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsPriceNegotiable" Type="Boolean" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Mandi_Roles">
     <Key>
@@ -528,6 +549,24 @@
     <Property Name="ImageUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Category" Relationship="GrowIndigoAPI.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="Web_Mandi_usermaster">
+    <Key>
+      <PropertyRef Name="tr_id" />
+    </Key>
+    <Property Name="tr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="user_role" Type="Int32" />
+    <Property Name="user_pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="user_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsLogin" Type="Int32" />
+    <Property Name="sessionID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LockOut" Type="Int32" />
+    <Property Name="LockStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="change_pass" Type="Int32" />
+    <Property Name="userStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_Category_UserRoles">
     <End Type="GrowIndigoAPI.Roles" Role="Roles" Multiplicity="1" />

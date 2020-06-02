@@ -111,7 +111,7 @@ namespace GrowIndigo.Controllers
                                     // objEmailModel.SellerName = (from mobile in dbContext.Mandi_UserInfo where mobile.MobileNumber == getSellerMobileNumber select mobile.DeviceToken).ToString().FirstOrDefault()); ;
                                     objEmailModel.BuyerName = j.BuyerName;
                                     objEmailModel.BuyerContact = j.BuyerContact;
-                                    objEmailModel.Price = j.Price;
+                                    objEmailModel.Price = j.Price.ToString();
                                     objEmailModel.ServiceTax = j.ServiceTax;
                                     objEmailModel.TotalAmount = j.TotalAmount;
 

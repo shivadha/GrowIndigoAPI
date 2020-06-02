@@ -40,25 +40,6 @@
           <Property Name="InnerException" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="datetime2" Precision="7" />
         </EntityType>
-        <EntityType Name="Mandi_\Requirement">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" />
-          <Property Name="BuyerId" Type="nvarchar" MaxLength="50" />
-          <Property Name="BuyerContact" Type="nvarchar" MaxLength="50" />
-          <Property Name="BuyerAddress" Type="nvarchar" MaxLength="500" />
-          <Property Name="CropName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Variety" Type="nvarchar" MaxLength="50" />
-          <Property Name="Quantity" Type="nvarchar" MaxLength="50" />
-          <Property Name="QualitySpecification" Type="nvarchar" MaxLength="150" />
-          <Property Name="DeliveryLocation" Type="nvarchar" MaxLength="500" />
-          <Property Name="ExpectedPrice" Type="nvarchar" MaxLength="50" />
-          <Property Name="ExpectedDate" Type="datetime" />
-          <Property Name="IsPriceNegotiable" Type="bit" />
-          <Property Name="Remarks" Type="nvarchar(max)" />
-        </EntityType>
         <EntityType Name="Mandi_Notification">
           <Key>
             <PropertyRef Name="SerialNumber" />
@@ -135,6 +116,25 @@
           <Property Name="IsApproved" Type="bit" />
           <Property Name="MaximumPrice" Type="int" />
           <Property Name="MinimumPrice" Type="int" />
+        </EntityType>
+        <EntityType Name="Mandi_Requirement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" />
+          <Property Name="BuyerId" Type="nvarchar" MaxLength="50" />
+          <Property Name="BuyerContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="BuyerAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="CropName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Variety" Type="nvarchar" MaxLength="50" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="50" />
+          <Property Name="QualitySpecification" Type="nvarchar" MaxLength="150" />
+          <Property Name="DeliveryLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="ExpectedPrice" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpectedDate" Type="datetime" />
+          <Property Name="IsPriceNegotiable" Type="bit" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Mandi_Roles">
           <Key>
@@ -280,7 +280,7 @@
           <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SubCategory">
           <Key>
             <PropertyRef Name="SubCategoryId" />
@@ -415,6 +415,26 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
           <Property Name="VarietyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VarietyName" Type="nvarchar" MaxLength="50" />
           <Property Name="CropId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Web_Mandi_usermaster">
+          <Key>
+            <PropertyRef Name="tr_id" />
+          </Key>
+          <Property Name="tr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" />
+          <Property Name="user_mobile" Type="varchar" MaxLength="50" />
+          <Property Name="user_state" Type="varchar" MaxLength="50" />
+          <Property Name="user_role" Type="int" />
+          <Property Name="user_pwd" Type="varchar(max)" />
+          <Property Name="user_mail" Type="varchar" MaxLength="50" />
+          <Property Name="IsLogin" Type="int" />
+          <Property Name="sessionID" Type="varchar(max)" />
+          <Property Name="LockOut" Type="int" />
+          <Property Name="LockStatus" Type="varchar" MaxLength="50" />
+          <Property Name="change_pass" Type="int" />
+          <Property Name="userStatus" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Category_UserRoles">
           <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
@@ -637,11 +657,11 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
           <EntitySet Name="Crop_Master" EntityType="Self.Crop_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Mandi_\Requirement" EntityType="Self.Mandi_\Requirement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_Notification" EntityType="Self.Mandi_Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_OrderDetails" EntityType="Self.Mandi_OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_OrderProductDetails" EntityType="Self.Mandi_OrderProductDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_ProductMaster" EntityType="Self.Mandi_ProductMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mandi_Requirement" EntityType="Self.Mandi_Requirement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_Roles" EntityType="Self.Mandi_Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_UserEnquiry" EntityType="Self.Mandi_UserEnquiry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_UserFeedback" EntityType="Self.Mandi_UserFeedback" Schema="dbo" store:Type="Tables" />
@@ -669,6 +689,23 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
     [SubCategory].[ImageUrl] AS [ImageUrl], 
     [SubCategory].[CategoryId] AS [CategoryId]
     FROM [dbo].[SubCategory] AS [SubCategory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Web_Mandi_usermaster" EntityType="Self.Web_Mandi_usermaster" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Web_Mandi_usermaster].[tr_id] AS [tr_id], 
+    [Web_Mandi_usermaster].[user_name] AS [user_name], 
+    [Web_Mandi_usermaster].[user_mobile] AS [user_mobile], 
+    [Web_Mandi_usermaster].[user_state] AS [user_state], 
+    [Web_Mandi_usermaster].[user_role] AS [user_role], 
+    [Web_Mandi_usermaster].[user_pwd] AS [user_pwd], 
+    [Web_Mandi_usermaster].[user_mail] AS [user_mail], 
+    [Web_Mandi_usermaster].[IsLogin] AS [IsLogin], 
+    [Web_Mandi_usermaster].[sessionID] AS [sessionID], 
+    [Web_Mandi_usermaster].[LockOut] AS [LockOut], 
+    [Web_Mandi_usermaster].[LockStatus] AS [LockStatus], 
+    [Web_Mandi_usermaster].[change_pass] AS [change_pass], 
+    [Web_Mandi_usermaster].[userStatus] AS [userStatus]
+    FROM [dbo].[Web_Mandi_usermaster] AS [Web_Mandi_usermaster]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Category_UserRoles" Association="Self.FK_Category_UserRoles">
             <End Role="Roles" EntitySet="Roles" />
@@ -756,6 +793,7 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
           <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoAPI.Mandi_OrderDetails" />
           <EntitySet Name="Mandi_OrderProductDetails" EntityType="GrowIndigoAPI.Mandi_OrderProductDetails" />
           <EntitySet Name="Mandi_ProductMaster" EntityType="GrowIndigoAPI.Mandi_ProductMaster" />
+          <EntitySet Name="Mandi_Requirement" EntityType="GrowIndigoAPI.Mandi_Requirement" />
           <EntitySet Name="Mandi_Roles" EntityType="GrowIndigoAPI.Mandi_Roles" />
           <EntitySet Name="Mandi_UserEnquiry" EntityType="GrowIndigoAPI.Mandi_UserEnquiry" />
           <EntitySet Name="Mandi_UserFeedback" EntityType="GrowIndigoAPI.Mandi_UserFeedback" />
@@ -777,6 +815,7 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
           <EntitySet Name="UserWallet" EntityType="GrowIndigoAPI.UserWallet" />
           <EntitySet Name="Variety_Master" EntityType="GrowIndigoAPI.Variety_Master" />
           <EntitySet Name="SubCategory" EntityType="GrowIndigoAPI.SubCategory" />
+          <EntitySet Name="Web_Mandi_usermaster" EntityType="GrowIndigoAPI.Web_Mandi_usermaster" />
           <AssociationSet Name="FK_Category_UserRoles" Association="GrowIndigoAPI.FK_Category_UserRoles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Category" EntitySet="Category" />
@@ -849,7 +888,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="UserWallet" EntitySet="UserWallet" />
           </AssociationSet>
-          <EntitySet Name="Mandi__Requirement" EntityType="GrowIndigoAPI.Mandi__Requirement" />
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -974,6 +1012,25 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
           <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
           <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
           <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoAPI.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
+        </EntityType>
+        <EntityType Name="Mandi_Requirement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="BuyerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BuyerContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BuyerAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Variety" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="QualitySpecification" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectedPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
+          <Property Name="IsPriceNegotiable" Type="Boolean" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Mandi_Roles">
           <Key>
@@ -1277,6 +1334,24 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
           <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="GrowIndigoAPI.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
         </EntityType>
+        <EntityType Name="Web_Mandi_usermaster">
+          <Key>
+            <PropertyRef Name="tr_id" />
+          </Key>
+          <Property Name="tr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_role" Type="Int32" />
+          <Property Name="user_pwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="user_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsLogin" Type="Int32" />
+          <Property Name="sessionID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LockOut" Type="Int32" />
+          <Property Name="LockStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="change_pass" Type="Int32" />
+          <Property Name="userStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <Association Name="FK_Category_UserRoles">
           <End Type="GrowIndigoAPI.Roles" Role="Roles" Multiplicity="1" />
           <End Type="GrowIndigoAPI.Category" Role="Category" Multiplicity="*" />
@@ -1493,25 +1568,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Mandi__Requirement">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="BuyerId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BuyerContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BuyerAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Variety" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="QualitySpecification" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="DeliveryLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ExpectedPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
-          <Property Name="IsPriceNegotiable" Type="Boolean" />
-          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1635,6 +1691,26 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CropId" ColumnName="CropId" />
                 <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mandi_Requirement">
+            <EntityTypeMapping TypeName="GrowIndigoAPI.Mandi_Requirement">
+              <MappingFragment StoreEntitySet="Mandi_Requirement">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
+                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+                <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
+                <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+                <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Variety" ColumnName="Variety" />
+                <ScalarProperty Name="CropName" ColumnName="CropName" />
+                <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
+                <ScalarProperty Name="BuyerContact" ColumnName="BuyerContact" />
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1936,23 +2012,22 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Mandi__Requirement">
-            <EntityTypeMapping TypeName="GrowIndigoAPI.Mandi__Requirement">
-              <MappingFragment StoreEntitySet="Mandi_\Requirement">
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
-                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
-                <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
-                <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
-                <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Variety" ColumnName="Variety" />
-                <ScalarProperty Name="CropName" ColumnName="CropName" />
-                <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
-                <ScalarProperty Name="BuyerContact" ColumnName="BuyerContact" />
-                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="Web_Mandi_usermaster">
+            <EntityTypeMapping TypeName="GrowIndigoAPI.Web_Mandi_usermaster">
+              <MappingFragment StoreEntitySet="Web_Mandi_usermaster">
+                <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+                <ScalarProperty Name="change_pass" ColumnName="change_pass" />
+                <ScalarProperty Name="LockStatus" ColumnName="LockStatus" />
+                <ScalarProperty Name="LockOut" ColumnName="LockOut" />
+                <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+                <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
+                <ScalarProperty Name="user_mail" ColumnName="user_mail" />
+                <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+                <ScalarProperty Name="user_state" ColumnName="user_state" />
+                <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="tr_id" ColumnName="tr_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

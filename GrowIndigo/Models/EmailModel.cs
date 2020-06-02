@@ -27,8 +27,8 @@ namespace GrowIndigo.Models
         public string BuyerName { get; set; }
         public string BuyerContact { get; set; }
         public string BuyerAddress { get; set; }
-        public long BuyerId { get; set; }
-        public int Price { get; set; }
+        public string BuyerId { get; set; }
+      
         public string ServiceTax { get; set; }
         public string Rate { get; set; }
         public string TotalAmount { get; set; }
@@ -44,15 +44,23 @@ namespace GrowIndigo.Models
         public Nullable<int> CropId { get; set; }
         public string CategoryName { get; set; }
         public Nullable<int> VarietyId { get; set; }
+        public string VarietyName { get; set; }
         public string ProductAddress { get; set; }
         public string GeoAddress { get; set; }
         public string MobileNumber { get; set; }
         public string NetBankingId { get; set; }
         public string Quantity { get; set; }
         public string QuantityUnit { get; set; }
-     
-       
-       
+        public string QualitySpecification { get; set; }
+        public string DeliveryLocation { get; set; }
+        public string ExpectedPrice { get; set; }
+        public string Price { get; set; }
+        public Nullable<System.DateTime> ExpectedDate { get; set; }
+        public Nullable<bool> IsPriceNegotiable { get; set; }
+        public string Remarks { get; set; }
+
+
+
         public Nullable<System.DateTime> AvailabilityDate { get; set; }
         public string PaymentMethod { get; set; }
         public Nullable<bool> IsQualityTestNeeded { get; set; }

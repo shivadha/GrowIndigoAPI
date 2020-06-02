@@ -83,15 +83,17 @@ namespace GrowIndigo.Controllers
                     objMandi_ProductMaster.District = objProductMasterViewModel.DistrictCode;
                     objMandi_ProductMaster.Taluka = objProductMasterViewModel.TalukaCode;
                     objMandi_ProductMaster.IsActive = true;
+                    objMandi_ProductMaster.IsApproved = false;
                     objMandi_ProductMaster.SecondaryProductImage = objProductMasterViewModel.SecondaryProductImage;
                     objMandi_ProductMaster.ProductDescription = objProductMasterViewModel.ProductDescription;
 
-                    dbContext.Mandi_ProductMaster.Add(objMandi_ProductMaster);
+                   var add= dbContext.Mandi_ProductMaster.Add(objMandi_ProductMaster);
                     var i = dbContext.SaveChanges();
                     if (i != 0)
                     {
                         EmailController objEmailController = new EmailController();
                         EmailModel objEmailModel = new EmailModel();
+                        objEmailModel.ProductId = add.Tr_Id.ToString();
                         objEmailModel.CropId = objProductMasterViewModel.CropId;
                         objEmailModel.CategoryName = objProductMasterViewModel.CategoryName;
                         objEmailModel.VarietyId = objProductMasterViewModel.VarietyId;
@@ -100,7 +102,7 @@ namespace GrowIndigo.Controllers
                         objEmailModel.MobileNumber = objProductMasterViewModel.MobileNumber;
                         objEmailModel.Quantity = objProductMasterViewModel.Quantity;
                         objEmailModel.QuantityUnit = objProductMasterViewModel.QuantityUnit;
-                        objEmailModel.Price = Convert.ToInt32(objProductMasterViewModel.Price);
+                        objEmailModel.Price = objProductMasterViewModel.Price.ToString();
                         objEmailModel.State = objProductMasterViewModel.StateCode;
                         objEmailModel.District = objProductMasterViewModel.DistrictCode;
                         objEmailModel.Taluka = objProductMasterViewModel.TalukaCode;
@@ -2088,7 +2090,7 @@ namespace GrowIndigo.Controllers
 
                         EmailController objEmailController = new EmailController();
                         EmailModel objEmailModel = new EmailModel();
-                        objEmailModel.BuyerId = objUserEnquiryViewModel.BuyerId;
+                        objEmailModel.BuyerId = objUserEnquiryViewModel.BuyerId.ToString();
                         objEmailModel.BuyerName = objUserEnquiryViewModel.BuyerName;
                         objEmailModel.BuyerContact = objUserEnquiryViewModel.MobileNumber;
                         objEmailModel.BuyerAddress = objUserEnquiryViewModel.BuyerAddress;

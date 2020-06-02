@@ -12,7 +12,7 @@ namespace GrowIndigo.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Mandi__Requirement
+    public partial class Mandi_Requirement
     {
         public long Id { get; set; }
         public string MobileNumber { get; set; }
