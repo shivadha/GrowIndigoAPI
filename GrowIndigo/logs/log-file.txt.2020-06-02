@@ -1,0 +1,18 @@
+2020-06-02 17:09:54,174 INFO MonitoringLogger - 
+2020-06-02 17:09:54,192 INFO MonitoringLogger - The specified type member 'IsApproved' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
+2020-06-02 17:11:51,156 INFO MonitoringLogger - 
+2020-06-02 17:11:51,156 INFO MonitoringLogger - The specified type member 'IsApproved' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
+2020-06-02 17:19:26,955 INFO MonitoringLogger - 
+2020-06-02 17:19:26,955 INFO MonitoringLogger - The specified type member 'IsApproved' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
+2020-06-02 17:31:20,950 INFO MonitoringLogger - 
+2020-06-02 17:31:20,963 INFO MonitoringLogger - The specified type member 'IsApproved' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
+2020-06-02 17:32:22,662 INFO MonitoringLogger - 
+2020-06-02 17:32:22,662 INFO MonitoringLogger - The specified type member 'IsApproved' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
+2020-06-02 17:38:32,657 INFO MonitoringLogger - 
+2020-06-02 17:38:32,670 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-02 17:40:09,811 INFO MonitoringLogger - 
+2020-06-02 17:40:09,811 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-02 17:41:16,239 INFO MonitoringLogger - 
+2020-06-02 17:41:16,240 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-02 17:42:21,848 INFO MonitoringLogger - 
+2020-06-02 17:42:21,848 INFO MonitoringLogger - Object reference not set to an instance of an object.

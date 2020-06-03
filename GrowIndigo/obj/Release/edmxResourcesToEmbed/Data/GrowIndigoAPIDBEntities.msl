@@ -186,7 +186,7 @@
           <ScalarProperty Name="Taluka" ColumnName="Taluka" />
           <ScalarProperty Name="District" ColumnName="District" />
           <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="ViIllage" ColumnName="ViIllage" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -223,8 +223,6 @@
           <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
           <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
           <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
-          <ScalarProperty Name="AmountToPayOnline" ColumnName="AmountToPayOnline" />
-          <ScalarProperty Name="WalletCurrentBalance" ColumnName="WalletCurrentBalance" />
           <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
           <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
           <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
@@ -438,6 +436,25 @@
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
           <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Web_Mandi_usermaster">
+      <EntityTypeMapping TypeName="GrowIndigoAPI.Web_Mandi_usermaster">
+        <MappingFragment StoreEntitySet="Web_Mandi_usermaster">
+          <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+          <ScalarProperty Name="change_pass" ColumnName="change_pass" />
+          <ScalarProperty Name="LockStatus" ColumnName="LockStatus" />
+          <ScalarProperty Name="LockOut" ColumnName="LockOut" />
+          <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+          <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
+          <ScalarProperty Name="user_mail" ColumnName="user_mail" />
+          <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
+          <ScalarProperty Name="user_role" ColumnName="user_role" />
+          <ScalarProperty Name="user_state" ColumnName="user_state" />
+          <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

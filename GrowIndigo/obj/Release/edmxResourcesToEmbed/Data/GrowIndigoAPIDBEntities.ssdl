@@ -164,7 +164,7 @@
       <PropertyRef Name="MobileNumber" />
     </Key>
     <Property Name="FullName" Type="nvarchar" MaxLength="256" />
-    <Property Name="ViIllage" Type="nvarchar" MaxLength="100" />
+    <Property Name="Village" Type="nvarchar" MaxLength="100" />
     <Property Name="State" Type="nvarchar" MaxLength="64" />
     <Property Name="District" Type="nvarchar" MaxLength="256" />
     <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
@@ -202,8 +202,6 @@
     <Property Name="Retailer_Id" Type="varchar" MaxLength="50" />
     <Property Name="Retailer_Mobile" Type="nvarchar" MaxLength="256" />
     <Property Name="Totalprice" Type="varchar" MaxLength="50" />
-    <Property Name="WalletCurrentBalance" Type="nvarchar" MaxLength="50" />
-    <Property Name="AmountToPayOnline" Type="nvarchar" MaxLength="50" />
     <Property Name="Payment_Mode" Type="varchar" MaxLength="50" />
     <Property Name="OrderDate" Type="smalldatetime" />
     <Property Name="Shipping_Address_Id" Type="int" />
@@ -277,7 +275,7 @@
     <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoTesting.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SubCategory">
     <Key>
       <PropertyRef Name="SubCategoryId" />
@@ -412,6 +410,26 @@ warning 6002: The table/view 'GrowIndigoTesting.dbo.SubCategory' does not have a
     <Property Name="VarietyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="VarietyName" Type="nvarchar" MaxLength="50" />
     <Property Name="CropId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Web_Mandi_usermaster">
+    <Key>
+      <PropertyRef Name="tr_id" />
+    </Key>
+    <Property Name="tr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="50" />
+    <Property Name="user_mobile" Type="varchar" MaxLength="50" />
+    <Property Name="user_state" Type="varchar" MaxLength="50" />
+    <Property Name="user_role" Type="int" />
+    <Property Name="user_pwd" Type="varchar(max)" />
+    <Property Name="user_mail" Type="varchar" MaxLength="50" />
+    <Property Name="IsLogin" Type="int" />
+    <Property Name="sessionID" Type="varchar(max)" />
+    <Property Name="LockOut" Type="int" />
+    <Property Name="LockStatus" Type="varchar" MaxLength="50" />
+    <Property Name="change_pass" Type="int" />
+    <Property Name="userStatus" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Category_UserRoles">
     <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
@@ -666,6 +684,23 @@ warning 6002: The table/view 'GrowIndigoTesting.dbo.SubCategory' does not have a
     [SubCategory].[ImageUrl] AS [ImageUrl], 
     [SubCategory].[CategoryId] AS [CategoryId]
     FROM [dbo].[SubCategory] AS [SubCategory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Web_Mandi_usermaster" EntityType="Self.Web_Mandi_usermaster" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Web_Mandi_usermaster].[tr_id] AS [tr_id], 
+    [Web_Mandi_usermaster].[user_name] AS [user_name], 
+    [Web_Mandi_usermaster].[user_mobile] AS [user_mobile], 
+    [Web_Mandi_usermaster].[user_state] AS [user_state], 
+    [Web_Mandi_usermaster].[user_role] AS [user_role], 
+    [Web_Mandi_usermaster].[user_pwd] AS [user_pwd], 
+    [Web_Mandi_usermaster].[user_mail] AS [user_mail], 
+    [Web_Mandi_usermaster].[IsLogin] AS [IsLogin], 
+    [Web_Mandi_usermaster].[sessionID] AS [sessionID], 
+    [Web_Mandi_usermaster].[LockOut] AS [LockOut], 
+    [Web_Mandi_usermaster].[LockStatus] AS [LockStatus], 
+    [Web_Mandi_usermaster].[change_pass] AS [change_pass], 
+    [Web_Mandi_usermaster].[userStatus] AS [userStatus]
+    FROM [dbo].[Web_Mandi_usermaster] AS [Web_Mandi_usermaster]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Category_UserRoles" Association="Self.FK_Category_UserRoles">
       <End Role="Roles" EntitySet="Roles" />
