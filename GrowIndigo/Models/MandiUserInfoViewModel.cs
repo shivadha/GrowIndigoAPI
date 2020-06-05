@@ -51,6 +51,8 @@ namespace GrowIndigo.Models
     public class ProductFilter
     {
         public int? CropId { get; set; }
+        public int counter { get; set; }
+        
         public string MobileNumber { get; set; }
         public int? VarietyId { get; set;}
         public string State { get; set; }

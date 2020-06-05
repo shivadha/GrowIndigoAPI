@@ -64,7 +64,7 @@ namespace GrowIndigo.Common
         {
             try
             {
-                string message = " Your OTP Code is : " + otp + " hAvexoxSJ01&sender=GROWIN&mobile=" + mobileNumber + "&otp=" + otp;
+                string message = " Your OTP Code is : " + otp + " elV9POcPbDI&sender=GROWIN&mobile=" + mobileNumber + "&otp=" + otp;
                 string strUrl = "http://control.msg91.com/api/sendotp.php?authkey=326613AM8WQB495e9d47b5P1&message=%3C%23%3E" + message;
 
                 WebRequest request = HttpWebRequest.Create(strUrl);

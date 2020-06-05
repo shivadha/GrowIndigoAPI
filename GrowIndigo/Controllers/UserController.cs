@@ -113,6 +113,7 @@ namespace GrowIndigo.Controllers
 
                     var Otp = dbContext.UserOTPInfo.Where(x => x.MobileNumber == mobileNumber).OrderByDescending(x => x.GenratedDate).Select(x => x.OTP).FirstOrDefault();
                     Log.Info(Otp);
+                    
 
                     var token = AccountController.GetToken(mobileNumber, Otp);
 

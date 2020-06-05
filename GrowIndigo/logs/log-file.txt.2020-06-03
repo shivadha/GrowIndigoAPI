@@ -1,0 +1,12 @@
+2020-06-03 13:19:39,282 INFO MonitoringLogger - 0747
+2020-06-03 13:19:44,267 INFO MonitoringLogger - 0747
+2020-06-03 13:19:44,914 INFO MonitoringLogger - grant_type=password&username=7987132445&password=0747
+2020-06-03 13:19:44,915 INFO MonitoringLogger - http://localhost/GrowIndigo.API//token
+2020-06-03 13:19:44,915 INFO MonitoringLogger - grant_type=password&username=7987132445&password=0747
+2020-06-03 13:19:45,486 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel
+2020-06-03 13:57:36,223 INFO MonitoringLogger - 0747
+2020-06-03 13:57:41,471 INFO MonitoringLogger - 0747
+2020-06-03 13:57:42,521 INFO MonitoringLogger - grant_type=password&username=7987132445&password=0747
+2020-06-03 13:57:42,522 INFO MonitoringLogger - http://localhost/GrowIndigo.API//token
+2020-06-03 13:57:42,524 INFO MonitoringLogger - grant_type=password&username=7987132445&password=0747
+2020-06-03 13:57:42,995 INFO MonitoringLogger - GrowIndigo.Controllers.AccessTokenModel

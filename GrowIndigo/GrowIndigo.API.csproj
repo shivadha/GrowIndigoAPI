@@ -602,6 +602,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Images\MahycoIndigo_logo.webp" />
+    <Content Include="libman.json" />
     <EntityDeploy Include="Data\GrowIndigoAPIDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GrowIndigoAPIDBEntities.Designer.cs</LastGenOutput>
@@ -609,7 +610,6 @@
     <Content Include="Data\GrowIndigoAPIDBEntities.edmx.diagram">
       <DependentUpon>GrowIndigoAPIDBEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="libman.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />

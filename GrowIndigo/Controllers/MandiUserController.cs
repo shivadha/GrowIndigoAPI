@@ -149,6 +149,9 @@ namespace GrowIndigo.Controllers
         {
             try
             {
+                int counter = objProductFilter.counter;
+                int take = 6;
+                int skip = counter;
                 MandiProduct objListMandiProduct = new MandiProduct();
                 List<ProductMasterViewModel> objListProductMasterViewModel = new List<ProductMasterViewModel>();
                 var getUser = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == objProductFilter.MobileNumber select user).FirstOrDefault();
@@ -173,7 +176,7 @@ namespace GrowIndigo.Controllers
                                   .Join(dbContext.Crop_Master, cd => cd.CropId, cus => cus.CropId, (cd, cus)
                                   => new { Mandi_ProductMaster = cd, Crop_Master = cus })
                                   .Join(dbContext.Variety_Master, x => x.Mandi_ProductMaster.VarietyId, cr => cr.VarietyId, (x, cr)
-                                  => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr }).Select(i => new ProductMasterViewModel()
+                                  => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr }).Skip(skip).Take(take).Select(i => new ProductMasterViewModel()
                                   {
                                       Tr_Id = i.Mandi_ProductMaster.Tr_Id,
                                       CropId = i.Mandi_ProductMaster.CropId,
@@ -207,7 +210,7 @@ namespace GrowIndigo.Controllers
 
                                   }).Where(x => x.MobileNumber == getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                      .OrderBy(x => x.ProductPriority == "2")
-                                     .OrderBy(x => x.ProductPriority == "0").AsQueryable();
+                                     .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
                         #endregion
 
                         #region filters
@@ -288,7 +291,7 @@ namespace GrowIndigo.Controllers
                                        .Join(dbContext.Crop_Master, cd => cd.CropId, cus => cus.CropId, (cd, cus)
                                        => new { Mandi_ProductMaster = cd, Crop_Master = cus })
                                        .Join(dbContext.Variety_Master, x => x.Mandi_ProductMaster.VarietyId, cr => cr.VarietyId, (x, cr)
-                                       => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr }).Select(i => new ProductMasterViewModel()
+                                       => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr }).Skip(skip).Take(take).Select(i => new ProductMasterViewModel()
                                        {
 
                                            Tr_Id = i.Mandi_ProductMaster.Tr_Id,
@@ -321,7 +324,7 @@ namespace GrowIndigo.Controllers
 
                                        }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
-                                      .OrderBy(x => x.ProductPriority == "0").AsQueryable();
+                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
 
 
 
@@ -453,7 +456,7 @@ namespace GrowIndigo.Controllers
 
                                        }).Where(x => x.MobileNumber == getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                           .OrderBy(x => x.ProductPriority == "2")
-                                          .OrderBy(x => x.ProductPriority == "0").AsQueryable();
+                                          .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
                         #endregion
 
                         #region filter
@@ -572,7 +575,7 @@ namespace GrowIndigo.Controllers
 
                                        }).Where(x => x.MobileNumber == getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                           .OrderBy(x => x.ProductPriority == "2")
-                                          .OrderBy(x => x.ProductPriority == "0").AsQueryable();
+                                          .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
 
 
                         var allProductList = productss.ToList();
@@ -705,7 +708,7 @@ namespace GrowIndigo.Controllers
 
                                        }).Where(x => x.MobileNumber != getUserMobileNumber  && (x.IsActive==true && x.IsApproved==true)).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
-                                      .OrderBy(x => x.ProductPriority == "0").AsQueryable();
+                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x=>x.Tr_Date).Skip(skip).Take(take).AsQueryable();
 
                         #endregion
 
@@ -918,7 +921,7 @@ namespace GrowIndigo.Controllers
 
                                        }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
-                                      .OrderBy(x => x.ProductPriority == "0").AsQueryable();
+                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
 
 
 
