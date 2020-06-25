@@ -17,9 +17,13 @@ namespace GrowIndigo.Models
   
             public string PaymentStatus { get; set; }
             public string Payment_Mode { get; set; }
+            public string ShippingAddress { get; set; }
             public string OrderDate { get; set; }
             public Nullable<int> Shipping_Address_Id { get; set; }
             public string Order_Status { get; set; }
+            public string rzp_order_id { get; set; }
+            public string rzp_payment_status { get; set; }
+            public string rzp_payment_signature { get; set; }
             public string CropName { get; set; }
             public string ProductId { get; set; }
            

@@ -1,0 +1,14 @@
+2020-06-23 14:02:00,237 INFO MonitoringLogger - 
+2020-06-23 14:02:00,251 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request
+2020-06-23 14:02:34,515 INFO MonitoringLogger - 
+2020-06-23 14:02:34,515 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request
+2020-06-23 14:03:34,660 INFO MonitoringLogger - 
+2020-06-23 14:03:34,660 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request
+2020-06-23 14:03:34,685 INFO MonitoringLogger - 
+2020-06-23 14:03:34,685 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request
+2020-06-23 14:18:13,444 INFO MonitoringLogger - 
+2020-06-23 14:18:13,454 INFO MonitoringLogger - Object reference not set to an instance of an object.

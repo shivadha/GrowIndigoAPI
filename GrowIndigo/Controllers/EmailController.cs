@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -19,6 +20,12 @@ namespace GrowIndigo.Controllers
         GrowIndigoAPIDBEntities dbContext = new GrowIndigoAPIDBEntities();
         SuccessResponse objResponse = new SuccessResponse();
         CommonClasses objCommonClasses = new CommonClasses();
+        MandiUserController objMandiUserController = new MandiUserController();
+
+
+
+
+
         //public void sendEmailViaWebApi(string recipient, string subject, string message)
         [Route("api/Email/sendEmailViaWebApi")]
         public HttpResponseMessage sendEmailViaWebApi(EmailModel objEmailModel, string type = "")
@@ -76,6 +83,8 @@ namespace GrowIndigo.Controllers
                 }
                 else if (type == "UserRequirement")
                 {
+
+
                     body = " Hello Admin,\r\n";
                     body += " There is new user requirement . Details of particular Product are as follows \r\n";
                     body += "1.BuyerId: " + objEmailModel.BuyerId + "\r\n";
@@ -96,6 +105,55 @@ namespace GrowIndigo.Controllers
 
                     FromMail = "developer@growindigo.co.in";
                     subject = "Grow Mandi App: New UserRequirement Detail ";
+
+                    InterestedProductsViewModel objInterestedProductsViewModel = new InterestedProductsViewModel();
+                    objInterestedProductsViewModel.Subject = subject;
+                    objInterestedProductsViewModel.Description = body;
+                    objInterestedProductsViewModel.Fk_MobileNumber = objEmailModel.BuyerId;
+                    objInterestedProductsViewModel.Tr_Id = objEmailModel.Tr_Id;
+
+                    MailMessage maile = new MailMessage();
+                    SmtpClient SmtpServere = new SmtpClient("smtp.gmail.com");
+                    maile.From = new MailAddress(FromMail);
+
+                    //for test
+                    // mail.To.Add("arjun.jagtap@growindigo.co.in");
+                    //mail.To.Add("rahul.dhande@growindigo.co.in");
+                    // mail.To.Add("mandi@growindigo.co.in");
+
+                    //for live
+
+                    //mail.To.Add("arjun.jagtap@growindigo.co.in");
+                    //mail.To.Add("shital.khairnar@growindigo.co.in");
+                    //mail.To.Add("madhur.jain@growindigo.co.in");
+
+                    //for Developer
+                    maile.To.Add("Shivam.Dhagat@systematixindia.com");
+                    maile.To.Add("Ashish.Agrawal@systematixindia.com");
+                    maile.To.Add("Shivamdhagat1@gmail.com");
+
+
+                    maile.Subject = subject;
+                    maile.Body = body;
+                    SmtpServere.Port = 587;
+                    SmtpServere.Credentials = new System.Net.NetworkCredential("developer@growindigo.co.in", "lraoezrpruvcsrvy");
+                    SmtpServere.EnableSsl = true;
+                    SmtpServere.Send(maile);
+                    var addIntersProdct=  objMandiUserController.AddInterestedProductForUser(objInterestedProductsViewModel);
+                    if (addIntersProdct == true)
+                    {
+                        //for sending notification to seller
+                        //get seller detail by productId
+                       
+                        objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                    }
+                    else
+                    {
+                        objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
                 }
                 else
                 {
@@ -184,6 +242,11 @@ namespace GrowIndigo.Controllers
 
                     return null;
                 }
+                else if (type == "UserRequirement")
+                {
+
+                    return null;
+                }
                 else
                 {
                     objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
@@ -202,5 +265,98 @@ namespace GrowIndigo.Controllers
             }
 
         }
+
+
+
+
+
+        #region Notification 
+
+        public string SendFCMNotificationToUsers(string DeviceToken, string Message, string Title)
+        {
+            string notificationjson = string.Empty;
+            if (!string.IsNullOrEmpty(DeviceToken))
+            {
+                notificationjson = "{ \"to\": \"" + DeviceToken + "\" ,\"notification\":{\"type\":\"" + Title + "\",\"body\":\"" + Message + "\"}}";
+            }
+
+            string postData = notificationjson;
+            try
+            {
+                //var applicationID = Config.FCMApplicationIDPremium;
+                //var senderId = Config.FCMsenderIdPremium;
+
+                //var applicationID = "AAAAVZqtFXE:APA91bETQj3U5yQVGBGdcu15njSk5y3cGDPww1Xg1GY-d_AjnH20haGP3QdUzm1-GZEbPemiXoTjogwDRWB5LE6Hh-f7N9Ks8JoAdBeZQqwZXcLFhsmC9uQhBJNjUklHFfmpA3Jc-r2v";
+                //var senderId = "367667254641";
+
+                //New com.mahyco.retail.growmandi 
+                var applicationID = "AAAAo6m-UF4:APA91bGYDkE4ZxIfjZNnk6Ri5kTen6TlABCkpXR5ee-mkysTL5Z8yiPDjlSmLIlz_3cNpAHWjeR0m78VJXzm7BolzryFsqjoKBJVKZUrnGx6PXtno1qxT0r9T7kiL8debeut0kndR05y";
+                var senderId = "702927491166";
+
+
+
+                WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+                tRequest.Method = "post";
+                tRequest.ContentType = "application/json";
+                tRequest.UseDefaultCredentials = true;
+                tRequest.PreAuthenticate = true;
+                tRequest.Credentials = CredentialCache.DefaultCredentials;
+                //  tRequest.ContentType = "application/x-www-urlencoded";
+
+                // var serializer = new JavaScriptSerializer();
+                //var json = serializer.Serialize(data);
+                // Byte[] byteArray = Encoding.UTF8.GetBytes(json);
+
+                Byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                tRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
+                tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
+                tRequest.ContentLength = byteArray.Length;
+
+                using (Stream dataStream = tRequest.GetRequestStream())
+                {
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+
+                    using (WebResponse tResponse = tRequest.GetResponse())
+                    {
+                        using (Stream dataStreamResponse = tResponse.GetResponseStream())
+                        {
+                            using (StreamReader tReader = new StreamReader(dataStreamResponse))
+                            {
+                                String sResponseFromServer = tReader.ReadToEnd();
+                                return sResponseFromServer;
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            catch (WebException e)
+            {
+                //Log.Error(e.Message);
+                using (WebResponse response = e.Response)
+                {
+                    HttpWebResponse httpResponse = (HttpWebResponse)response;
+                    Console.WriteLine("Error code: {0}", httpResponse.StatusCode);
+                    using (Stream data = response.GetResponseStream())
+                    using (var reader = new StreamReader(data))
+                    {
+                        string text = reader.ReadToEnd();
+                        Console.WriteLine(text);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                //Log.Error(ex.Message);
+                Console.Write(ex.Message);
+            }
+            return "";
+        }
+
+        #endregion
+
     }
 }

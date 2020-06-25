@@ -23,6 +23,8 @@ namespace GrowIndigo.Models
             public string CropName { get; set; }
             public string CategoryName { get; set; }
             public string CategoryId { get; set; }
+            public string CategoryImage { get; set; }
+
         }
         public class Mandi_CropMaster
         {

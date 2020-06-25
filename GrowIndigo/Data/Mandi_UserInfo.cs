@@ -17,7 +17,9 @@ namespace GrowIndigo.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Mandi_UserInfo()
         {
+            this.Mandi_InterestedProductForUser = new HashSet<Mandi_InterestedProductForUser>();
             this.Mandi_UserRoles = new HashSet<Mandi_UserRoles>();
+            this.UserCategoryMapping = new HashSet<UserCategoryMapping>();
             this.UsersAddress = new HashSet<UsersAddress>();
             this.UsersBankAccountDetails = new HashSet<UsersBankAccountDetails>();
         }
@@ -37,7 +39,11 @@ namespace GrowIndigo.Data
         public Nullable<System.DateTime> CreatedDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mandi_InterestedProductForUser> Mandi_InterestedProductForUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mandi_UserRoles> Mandi_UserRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserCategoryMapping> UserCategoryMapping { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsersAddress> UsersAddress { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -4,457 +4,503 @@
     <EntitySetMapping Name="Category">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Category">
         <MappingFragment StoreEntitySet="Category">
-          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="CategoryImage" ColumnName="CategoryImage" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Crop_Master">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Crop_Master">
         <MappingFragment StoreEntitySet="Crop_Master">
-          <ScalarProperty Name="CropId" ColumnName="CropId" />
-          <ScalarProperty Name="CropName" ColumnName="CropName" />
-          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CropImage" ColumnName="CropImage" />
+          <ScalarProperty Name="CropAvailableDays" ColumnName="CropAvailableDays" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CropName" ColumnName="CropName" />
+          <ScalarProperty Name="CropId" ColumnName="CropId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="District_Master">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.District_Master">
         <MappingFragment StoreEntitySet="District_Master">
-          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
-          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
           <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ErrorLogs">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.ErrorLogs">
         <MappingFragment StoreEntitySet="ErrorLogs">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-          <ScalarProperty Name="ErrorFrom" ColumnName="ErrorFrom" />
-          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+          <ScalarProperty Name="ErrorFrom" ColumnName="ErrorFrom" />
+          <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mandi_Banner">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Banner">
+        <MappingFragment StoreEntitySet="Mandi_Banner">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="BannerImage" ColumnName="BannerImage" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BannerTitle" ColumnName="BannerTitle" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mandi_InterestedProductForUser">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_InterestedProductForUser">
+        <MappingFragment StoreEntitySet="Mandi_InterestedProductForUser">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Fk_MobileNumber" ColumnName="Fk_MobileNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Notification">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Notification">
         <MappingFragment StoreEntitySet="Mandi_Notification">
-          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="Message" ColumnName="Message" />
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_OrderDetails">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_OrderDetails">
         <MappingFragment StoreEntitySet="Mandi_OrderDetails">
-          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
-          <ScalarProperty Name="Buyer_Mobile" ColumnName="Buyer_Mobile" />
-          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-          <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
-          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-          <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
-          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-          <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
-          <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
-          <ScalarProperty Name="SelectedTotalQty" ColumnName="SelectedTotalQty" />
-          <ScalarProperty Name="Buyer_Name" ColumnName="Buyer_Name" />
-          <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
-          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-          <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
           <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+          <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
+          <ScalarProperty Name="Buyer_Name" ColumnName="Buyer_Name" />
+          <ScalarProperty Name="SelectedTotalQty" ColumnName="SelectedTotalQty" />
+          <ScalarProperty Name="rzp_payment_signature" ColumnName="rzp_payment_signature" />
+          <ScalarProperty Name="rzp_payment_status" ColumnName="rzp_payment_status" />
+          <ScalarProperty Name="rzp_order_id" ColumnName="rzp_order_id" />
+          <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
+          <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+          <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="Buyer_Mobile" ColumnName="Buyer_Mobile" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_OrderProductDetails">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_OrderProductDetails">
         <MappingFragment StoreEntitySet="Mandi_OrderProductDetails">
-          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
-          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
-          <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
-          <ScalarProperty Name="SelectedQuantity" ColumnName="SelectedQuantity" />
           <ScalarProperty Name="SelectedProductPrice" ColumnName="SelectedProductPrice" />
+          <ScalarProperty Name="SelectedQuantity" ColumnName="SelectedQuantity" />
+          <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+          <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_ProductMaster">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_ProductMaster">
         <MappingFragment StoreEntitySet="Mandi_ProductMaster">
-          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-          <ScalarProperty Name="CropId" ColumnName="CropId" />
-          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-          <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
-          <ScalarProperty Name="ProductAddress" ColumnName="ProductAddress" />
-          <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="NetBankingId" ColumnName="NetBankingId" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
-          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-          <ScalarProperty Name="AvailabilityDate" ColumnName="AvailabilityDate" />
-          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-          <ScalarProperty Name="IsQualityTestNeeded" ColumnName="IsQualityTestNeeded" />
-          <ScalarProperty Name="IsLogisticNeeded" ColumnName="IsLogisticNeeded" />
-          <ScalarProperty Name="ProductImageUrl" ColumnName="ProductImageUrl" />
-          <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="District" ColumnName="District" />
-          <ScalarProperty Name="Taluka" ColumnName="Taluka" />
-          <ScalarProperty Name="Village" ColumnName="Village" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-          <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
-          <ScalarProperty Name="SecondaryProductImage" ColumnName="SecondaryProductImage" />
-          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-          <ScalarProperty Name="MaximumPrice" ColumnName="MaximumPrice" />
           <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
+          <ScalarProperty Name="MaximumPrice" ColumnName="MaximumPrice" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="SecondaryProductImage" ColumnName="SecondaryProductImage" />
+          <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
+          <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+          <ScalarProperty Name="ProductImageUrl" ColumnName="ProductImageUrl" />
+          <ScalarProperty Name="IsLogisticNeeded" ColumnName="IsLogisticNeeded" />
+          <ScalarProperty Name="IsQualityTestNeeded" ColumnName="IsQualityTestNeeded" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+          <ScalarProperty Name="AvailabilityDate" ColumnName="AvailabilityDate" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="NetBankingId" ColumnName="NetBankingId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
+          <ScalarProperty Name="ProductAddress" ColumnName="ProductAddress" />
+          <ScalarProperty Name="CropEndDate" ColumnName="CropEndDate" />
+          <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CropId" ColumnName="CropId" />
+          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Requirement">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Requirement">
         <MappingFragment StoreEntitySet="Mandi_Requirement">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
-          <ScalarProperty Name="BuyerContact" ColumnName="BuyerContact" />
-          <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
-          <ScalarProperty Name="CropName" ColumnName="CropName" />
-          <ScalarProperty Name="Variety" ColumnName="Variety" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
-          <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
-          <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
-          <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
-          <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
+          <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+          <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
+          <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+          <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Variety" ColumnName="Variety" />
+          <ScalarProperty Name="CropName" ColumnName="CropName" />
+          <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
+          <ScalarProperty Name="BuyerContact" ColumnName="BuyerContact" />
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Roles">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Roles">
         <MappingFragment StoreEntitySet="Mandi_Roles">
-          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserEnquiry">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserEnquiry">
         <MappingFragment StoreEntitySet="Mandi_UserEnquiry">
-          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-          <ScalarProperty Name="Enquiry" ColumnName="Enquiry" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Enquiry" ColumnName="Enquiry" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserFeedback">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserFeedback">
         <MappingFragment StoreEntitySet="Mandi_UserFeedback">
-          <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
-          <ScalarProperty Name="Usercode" ColumnName="Usercode" />
-          <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
-          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+          <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
+          <ScalarProperty Name="Usercode" ColumnName="Usercode" />
+          <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserInfo">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserInfo">
         <MappingFragment StoreEntitySet="Mandi_UserInfo">
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="Village" ColumnName="Village" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="District" ColumnName="District" />
-          <ScalarProperty Name="Taluka" ColumnName="Taluka" />
-          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
-          <ScalarProperty Name="UserType" ColumnName="UserType" />
-          <ScalarProperty Name="AdharId" ColumnName="AdharId" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="ProfilePictureUrl" ColumnName="ProfilePictureUrl" />
-          <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
-          <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+          <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
+          <ScalarProperty Name="ProfilePictureUrl" ColumnName="ProfilePictureUrl" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="AdharId" ColumnName="AdharId" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserRequirement">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserRequirement">
         <MappingFragment StoreEntitySet="Mandi_UserRequirement">
-          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-          <ScalarProperty Name="Usercode" ColumnName="Usercode" />
-          <ScalarProperty Name="Requirement" ColumnName="Requirement" />
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+          <ScalarProperty Name="Requirement" ColumnName="Requirement" />
+          <ScalarProperty Name="Usercode" ColumnName="Usercode" />
+          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserRoles">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserRoles">
         <MappingFragment StoreEntitySet="Mandi_UserRoles">
-          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderDetails">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderDetails">
         <MappingFragment StoreEntitySet="OrderDetails">
-          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
-          <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
-          <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
-          <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
-          <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
-          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-          <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
-          <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
-          <ScalarProperty Name="SAP_Order_ID" ColumnName="SAP_Order_ID" />
-          <ScalarProperty Name="GeoCoordinates" ColumnName="GeoCoordinates" />
-          <ScalarProperty Name="Rzp_Order_Id" ColumnName="Rzp_Order_Id" />
-          <ScalarProperty Name="Rzp_Payment_Id" ColumnName="Rzp_Payment_Id" />
-          <ScalarProperty Name="Rzp_Signature" ColumnName="Rzp_Signature" />
           <ScalarProperty Name="Rzp_Payment_Status" ColumnName="Rzp_Payment_Status" />
+          <ScalarProperty Name="Rzp_Signature" ColumnName="Rzp_Signature" />
+          <ScalarProperty Name="Rzp_Payment_Id" ColumnName="Rzp_Payment_Id" />
+          <ScalarProperty Name="Rzp_Order_Id" ColumnName="Rzp_Order_Id" />
+          <ScalarProperty Name="GeoCoordinates" ColumnName="GeoCoordinates" />
+          <ScalarProperty Name="SAP_Order_ID" ColumnName="SAP_Order_ID" />
+          <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
+          <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
+          <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
+          <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
+          <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
+          <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderErrorLogDetails">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderErrorLogDetails">
         <MappingFragment StoreEntitySet="OrderErrorLogDetails">
-          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-          <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
-          <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
-          <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
-          <ScalarProperty Name="Qty" ColumnName="Qty" />
-          <ScalarProperty Name="Csv_File" ColumnName="Csv_File" />
-          <ScalarProperty Name="Error_Msg" ColumnName="Error_Msg" />
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+          <ScalarProperty Name="Error_Msg" ColumnName="Error_Msg" />
+          <ScalarProperty Name="Csv_File" ColumnName="Csv_File" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+          <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+          <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
+          <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
+          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderProductDetails">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderProductDetails">
         <MappingFragment StoreEntitySet="OrderProductDetails">
-          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
-          <ScalarProperty Name="order_id" ColumnName="order_id" />
-          <ScalarProperty Name="product_id" ColumnName="product_id" />
-          <ScalarProperty Name="qty" ColumnName="qty" />
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="tr_date" ColumnName="tr_date" />
           <ScalarProperty Name="SAP_order_ID" ColumnName="SAP_order_ID" />
+          <ScalarProperty Name="tr_date" ColumnName="tr_date" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Product_Master">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Product_Master">
         <MappingFragment StoreEntitySet="Product_Master">
-          <ScalarProperty Name="SkuId" ColumnName="SkuId" />
-          <ScalarProperty Name="SkuName" ColumnName="SkuName" />
-          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="CurrentQuantity" ColumnName="CurrentQuantity" />
-          <ScalarProperty Name="SkuCreatedDate" ColumnName="SkuCreatedDate" />
-          <ScalarProperty Name="GSTPercent" ColumnName="GSTPercent" />
-          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-          <ScalarProperty Name="MinQuantittyToBook" ColumnName="MinQuantittyToBook" />
-          <ScalarProperty Name="MaxQuantittyToBook" ColumnName="MaxQuantittyToBook" />
-          <ScalarProperty Name="PrdCompanyName" ColumnName="PrdCompanyName" />
-          <ScalarProperty Name="AllowSAPOrder" ColumnName="AllowSAPOrder" />
-          <ScalarProperty Name="PrdState" ColumnName="PrdState" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PrdState" ColumnName="PrdState" />
+          <ScalarProperty Name="AllowSAPOrder" ColumnName="AllowSAPOrder" />
+          <ScalarProperty Name="PrdCompanyName" ColumnName="PrdCompanyName" />
+          <ScalarProperty Name="MaxQuantittyToBook" ColumnName="MaxQuantittyToBook" />
+          <ScalarProperty Name="MinQuantittyToBook" ColumnName="MinQuantittyToBook" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="GSTPercent" ColumnName="GSTPercent" />
+          <ScalarProperty Name="SkuCreatedDate" ColumnName="SkuCreatedDate" />
+          <ScalarProperty Name="CurrentQuantity" ColumnName="CurrentQuantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+          <ScalarProperty Name="SkuName" ColumnName="SkuName" />
+          <ScalarProperty Name="SkuId" ColumnName="SkuId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Roles">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Roles">
         <MappingFragment StoreEntitySet="Roles">
-          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="State_Master">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.State_Master">
         <MappingFragment StoreEntitySet="State_Master">
-          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-          <ScalarProperty Name="StateName" ColumnName="StateName" />
           <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Taluka_Master">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Taluka_Master">
         <MappingFragment StoreEntitySet="Taluka_Master">
-          <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
-          <ScalarProperty Name="TalukaName" ColumnName="TalukaName" />
           <ScalarProperty Name="TalukaCode" ColumnName="TalukaCode" />
+          <ScalarProperty Name="TalukaName" ColumnName="TalukaName" />
+          <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCategoryMapping">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.UserCategoryMapping">
+        <MappingFragment StoreEntitySet="UserCategoryMapping">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Fk_MobileNumber" ColumnName="Fk_MobileNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserFeedback">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.UserFeedback">
         <MappingFragment StoreEntitySet="UserFeedback">
-          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-          <ScalarProperty Name="Usercode" ColumnName="Usercode" />
-          <ScalarProperty Name="Product" ColumnName="Product" />
-          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+          <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="Usercode" ColumnName="Usercode" />
+          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserInfo">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.UserInfo">
         <MappingFragment StoreEntitySet="UserInfo">
-          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-          <ScalarProperty Name="RetailerName" ColumnName="RetailerName" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
-          <ScalarProperty Name="Town" ColumnName="Town" />
-          <ScalarProperty Name="CSTNNumber" ColumnName="CSTNNumber" />
-          <ScalarProperty Name="VATNumber" ColumnName="VATNumber" />
-          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
-          <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
-          <ScalarProperty Name="IMEINumber" ColumnName="IMEINumber" />
-          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
-          <ScalarProperty Name="SeedLicenseValidity" ColumnName="SeedLicenseValidity" />
-          <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
-          <ScalarProperty Name="Depo" ColumnName="Depo" />
-          <ScalarProperty Name="Flag" ColumnName="Flag" />
-          <ScalarProperty Name="SapRetailerIdFcmToken" ColumnName="SapRetailerIdFcmToken" />
-          <ScalarProperty Name="FcmSubscriptionTopic" ColumnName="FcmSubscriptionTopic" />
-          <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
-          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-          <ScalarProperty Name="RetailerLastName" ColumnName="RetailerLastName" />
-          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-          <ScalarProperty Name="StreetLine1" ColumnName="StreetLine1" />
-          <ScalarProperty Name="StreetLine2" ColumnName="StreetLine2" />
-          <ScalarProperty Name="UserCompany" ColumnName="UserCompany" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-          <ScalarProperty Name="State" ColumnName="State" />
-          <ScalarProperty Name="District" ColumnName="District" />
-          <ScalarProperty Name="Taluka" ColumnName="Taluka" />
-          <ScalarProperty Name="Village" ColumnName="Village" />
-          <ScalarProperty Name="Firm_Name" ColumnName="Firm_Name" />
-          <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
           <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
+          <ScalarProperty Name="Firm_Name" ColumnName="Firm_Name" />
+          <ScalarProperty Name="Village" ColumnName="Village" />
+          <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="UserCompany" ColumnName="UserCompany" />
+          <ScalarProperty Name="StreetLine2" ColumnName="StreetLine2" />
+          <ScalarProperty Name="StreetLine1" ColumnName="StreetLine1" />
+          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+          <ScalarProperty Name="RetailerLastName" ColumnName="RetailerLastName" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+          <ScalarProperty Name="FcmSubscriptionTopic" ColumnName="FcmSubscriptionTopic" />
+          <ScalarProperty Name="SapRetailerIdFcmToken" ColumnName="SapRetailerIdFcmToken" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="Depo" ColumnName="Depo" />
+          <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
+          <ScalarProperty Name="SeedLicenseValidity" ColumnName="SeedLicenseValidity" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="IMEINumber" ColumnName="IMEINumber" />
+          <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+          <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+          <ScalarProperty Name="VATNumber" ColumnName="VATNumber" />
+          <ScalarProperty Name="CSTNNumber" ColumnName="CSTNNumber" />
+          <ScalarProperty Name="Town" ColumnName="Town" />
+          <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="RetailerName" ColumnName="RetailerName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserOTPInfo">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.UserOTPInfo">
         <MappingFragment StoreEntitySet="UserOTPInfo">
-          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="OTP" ColumnName="OTP" />
           <ScalarProperty Name="GenratedDate" ColumnName="GenratedDate" />
+          <ScalarProperty Name="OTP" ColumnName="OTP" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersAddress">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.UsersAddress">
         <MappingFragment StoreEntitySet="UsersAddress">
-          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
-          <ScalarProperty Name="retailer_id" ColumnName="retailer_id" />
-          <ScalarProperty Name="MobileNumberForOnline" ColumnName="MobileNumberForOnline" />
-          <ScalarProperty Name="reciver_name" ColumnName="reciver_name" />
-          <ScalarProperty Name="ship_address" ColumnName="ship_address" />
-          <ScalarProperty Name="city" ColumnName="city" />
-          <ScalarProperty Name="pincode" ColumnName="pincode" />
-          <ScalarProperty Name="ship_mobile" ColumnName="ship_mobile" />
-          <ScalarProperty Name="email_id" ColumnName="email_id" />
-          <ScalarProperty Name="Pan_number" ColumnName="Pan_number" />
-          <ScalarProperty Name="tr_date" ColumnName="tr_date" />
-          <ScalarProperty Name="IsPermanentAddress" ColumnName="IsPermanentAddress" />
-          <ScalarProperty Name="IsMandiUser" ColumnName="IsMandiUser" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
           <ScalarProperty Name="MobileNumberForMandi" ColumnName="MobileNumberForMandi" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsMandiUser" ColumnName="IsMandiUser" />
+          <ScalarProperty Name="IsPermanentAddress" ColumnName="IsPermanentAddress" />
+          <ScalarProperty Name="tr_date" ColumnName="tr_date" />
+          <ScalarProperty Name="Pan_number" ColumnName="Pan_number" />
+          <ScalarProperty Name="email_id" ColumnName="email_id" />
+          <ScalarProperty Name="ship_mobile" ColumnName="ship_mobile" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="ship_address" ColumnName="ship_address" />
+          <ScalarProperty Name="reciver_name" ColumnName="reciver_name" />
+          <ScalarProperty Name="MobileNumberForOnline" ColumnName="MobileNumberForOnline" />
+          <ScalarProperty Name="retailer_id" ColumnName="retailer_id" />
+          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersBankAccountDetails">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.UsersBankAccountDetails">
         <MappingFragment StoreEntitySet="UsersBankAccountDetails">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
-          <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
-          <ScalarProperty Name="BankName" ColumnName="BankName" />
-          <ScalarProperty Name="Branch" ColumnName="Branch" />
-          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="IFSC_Code" ColumnName="IFSC_Code" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="IFSC_Code" ColumnName="IFSC_Code" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserWallet">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.UserWallet">
         <MappingFragment StoreEntitySet="UserWallet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="WalletBalance" ColumnName="WalletBalance" />
-          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="WalletBalance" ColumnName="WalletBalance" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Variety_Master">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Variety_Master">
         <MappingFragment StoreEntitySet="Variety_Master">
-          <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
-          <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
           <ScalarProperty Name="CropId" ColumnName="CropId" />
+          <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
+          <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SubCategory">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.SubCategory">
         <MappingFragment StoreEntitySet="SubCategory">
-          <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
-          <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
-          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+          <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+          <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Web_Mandi_usermaster">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Web_Mandi_usermaster">
         <MappingFragment StoreEntitySet="Web_Mandi_usermaster">
-          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
-          <ScalarProperty Name="user_name" ColumnName="user_name" />
-          <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
-          <ScalarProperty Name="user_state" ColumnName="user_state" />
-          <ScalarProperty Name="user_role" ColumnName="user_role" />
-          <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
-          <ScalarProperty Name="user_mail" ColumnName="user_mail" />
-          <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
-          <ScalarProperty Name="sessionID" ColumnName="sessionID" />
-          <ScalarProperty Name="LockOut" ColumnName="LockOut" />
-          <ScalarProperty Name="LockStatus" ColumnName="LockStatus" />
-          <ScalarProperty Name="change_pass" ColumnName="change_pass" />
           <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+          <ScalarProperty Name="change_pass" ColumnName="change_pass" />
+          <ScalarProperty Name="LockStatus" ColumnName="LockStatus" />
+          <ScalarProperty Name="LockOut" ColumnName="LockOut" />
+          <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+          <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
+          <ScalarProperty Name="user_mail" ColumnName="user_mail" />
+          <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
+          <ScalarProperty Name="user_role" ColumnName="user_role" />
+          <ScalarProperty Name="user_state" ColumnName="user_state" />
+          <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="tr_id" ColumnName="tr_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

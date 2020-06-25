@@ -19,10 +19,12 @@ namespace GrowIndigo.Data
         {
             this.Crop_Master = new HashSet<Crop_Master>();
             this.SubCategory = new HashSet<SubCategory>();
+            this.UserCategoryMapping = new HashSet<UserCategoryMapping>();
         }
     
         public string CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public string CategoryImage { get; set; }
         public int RoleId { get; set; }
     
         public virtual Roles Roles { get; set; }
@@ -30,5 +32,7 @@ namespace GrowIndigo.Data
         public virtual ICollection<Crop_Master> Crop_Master { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubCategory> SubCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserCategoryMapping> UserCategoryMapping { get; set; }
     }
 }

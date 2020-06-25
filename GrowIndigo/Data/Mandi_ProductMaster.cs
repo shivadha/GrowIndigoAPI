@@ -18,6 +18,7 @@ namespace GrowIndigo.Data
         public Nullable<int> CropId { get; set; }
         public string CategoryName { get; set; }
         public Nullable<int> VarietyId { get; set; }
+        public Nullable<System.DateTime> CropEndDate { get; set; }
         public string ProductAddress { get; set; }
         public string GeoAddress { get; set; }
         public string MobileNumber { get; set; }
@@ -44,9 +45,5 @@ namespace GrowIndigo.Data
         public Nullable<bool> IsApproved { get; set; }
         public Nullable<int> MaximumPrice { get; set; }
         public Nullable<int> MinimumPrice { get; set; }
-    
-        public virtual Crop_Master Crop_Master { get; set; }
-        public virtual Crop_Master Crop_Master1 { get; set; }
-        public virtual Variety_Master Variety_Master { get; set; }
     }
 }

@@ -12,12 +12,16 @@ namespace GrowIndigo.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Variety_Master
+    public partial class Mandi_Banner
     {
-        public int VarietyId { get; set; }
-        public string VarietyName { get; set; }
-        public int CropId { get; set; }
-    
-        public virtual Crop_Master Crop_Master { get; set; }
+        public long Id { get; set; }
+        public string BannerTitle { get; set; }
+        public string Description { get; set; }
+        public string BannerImage { get; set; }
+        public Nullable<bool> IsDefault { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public string ImageType { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.DateTime> ModifiedDate { get; set; }
     }
 }

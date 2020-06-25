@@ -10,6 +10,7 @@ namespace GrowIndigo.Models
         public int Tr_Id { get; set; }
         public int ProductId { get; set; }
         public int? CropId { get; set; }
+      
         public string CategoryName { get; set; }
         public int? VarietyId { get; set; }
         public string CropName { get; set; }
@@ -17,9 +18,12 @@ namespace GrowIndigo.Models
         public string NewVariety { get; set; }
         public string ProductAddress { get; set; } 
         public string GeoAddress { get; set; }
+        public Nullable<System.DateTime> CropEndDate { get; set; }
+        public Nullable<System.DateTime> CurrentDate { get; set; }
         public string MobileNumber { get; set; }
         public string NetBankingId { get; set; }
         public string Quantity { get; set; }
+        public string CropStatus { get; set; }
         public string QuantityUnit { get; set; }
         public int? Price { get; set; }
         public Nullable<decimal> ServiceTax { get; set; }
@@ -60,7 +64,7 @@ namespace GrowIndigo.Models
         public List<ProductMasterViewModel> Products { get; set; }
 
     }
-
+    
     public class ProductDetail
     {
         public string MobileNumber { get; set; }

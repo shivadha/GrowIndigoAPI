@@ -18,6 +18,7 @@ namespace GrowIndigo.Models
         public string message { get; set; }
         public int orderId { get; set; }
         public string ProductId { get; set; }
+        public int IntProductId { get; set; }
         public string CropName { get; set; }
         public string Qty { get; set; }
         public long SellerId { get; set; }

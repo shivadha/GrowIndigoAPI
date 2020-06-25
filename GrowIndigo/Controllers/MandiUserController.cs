@@ -15,6 +15,7 @@ using static GrowIndigo.Models.UsersAddressViewModel;
 using System.Text;
 using System.IO;
 using Newtonsoft.Json;
+using static GrowIndigo.Models.Mandi_OrderViewModel;
 
 namespace GrowIndigo.Controllers
 {
@@ -87,7 +88,7 @@ namespace GrowIndigo.Controllers
                     objMandi_ProductMaster.SecondaryProductImage = objProductMasterViewModel.SecondaryProductImage;
                     objMandi_ProductMaster.ProductDescription = objProductMasterViewModel.ProductDescription;
 
-                   var add= dbContext.Mandi_ProductMaster.Add(objMandi_ProductMaster);
+                    var add = dbContext.Mandi_ProductMaster.Add(objMandi_ProductMaster);
                     var i = dbContext.SaveChanges();
                     if (i != 0)
                     {
@@ -679,16 +680,22 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            CategoryName = i.Crop_Master.CategoryName == "" ? "N/A" : i.Crop_Master.CategoryName,
+                                          // CurrentDate=DateTime.Now,
+                                           CropEndDate = i.Mandi_ProductMaster.CropEndDate,
+                                           CropStatus = i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available":"Sold",
+
 
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
+                                           
                                            MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                            NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                            Quantity = i.Mandi_ProductMaster.Quantity,
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
                                            Price = i.Mandi_ProductMaster.Price,
                                            ServiceTax = i.Mandi_ProductMaster.ServiceTax,
+                                        
 
                                            AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
@@ -706,10 +713,51 @@ namespace GrowIndigo.Controllers
                                            SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
                                            NewVariety = ""
 
-                                       }).Where(x => x.MobileNumber != getUserMobileNumber  && (x.IsActive==true && x.IsApproved==true)).OrderBy(x => x.ProductPriority == "1")
+                                       }).Where(x => x.MobileNumber != getUserMobileNumber && (x.IsActive == true && x.IsApproved == true)).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
-                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x=>x.Tr_Date).Skip(skip).Take(take).AsQueryable();
+                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).AsQueryable();
 
+                        #endregion
+
+                        #region CategoryFilter
+                        var categories = objProductFilter.csvfile.Table1;
+                        if (categories.Count() > 0)
+                        {
+                            var NewProduct = new List<ProductMasterViewModel>();
+                            foreach (var category in categories)
+                            {
+
+                                var product = products.Where(x => x.CategoryName == category.CategoryName).ToList();
+                                NewProduct.AddRange(product);
+
+                            }
+                            products = NewProduct.AsQueryable();
+                        }
+
+
+                        #endregion
+
+                        #region Sorting
+
+                        if (objProductFilter.SortProduct == "true")
+                        {
+                            if (objProductFilter.RecentProduct == "true")
+                            {
+                                products = products.OrderByDescending(x => x.Tr_Date);
+                            }
+                            if (objProductFilter.OldProduct == "true")
+                            {
+                                products = products.OrderBy(x => x.Tr_Date);
+                            }
+                            if (objProductFilter.RecentAvailability == "true")
+                            {
+                                products = products.OrderByDescending(x => x.AvailabilityDate);
+                            }
+                            if (objProductFilter.OldAvailability == "true")
+                            {
+                                products = products.OrderBy(x => x.AvailabilityDate);
+                            }
+                        }
                         #endregion
 
                         #region Filters
@@ -767,7 +815,7 @@ namespace GrowIndigo.Controllers
                                 //For getting list of address from the table.
                                 products = products.Where(x => x.IsQualityTestNeeded == Quality);
                             }
-                            objFilterMandiProduct.Products = products.ToList();
+                            objFilterMandiProduct.Products = products.Skip(skip).Take(take).ToList();
                         }
 
                         #endregion
@@ -900,9 +948,12 @@ namespace GrowIndigo.Controllers
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
                                            MobileNumber = i.Mandi_ProductMaster.MobileNumber,
+                                           CropEndDate = i.Mandi_ProductMaster.CropEndDate,
+                                           CropStatus = i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
                                            NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                            Quantity = i.Mandi_ProductMaster.Quantity,
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
+                                        
                                            Price = i.Mandi_ProductMaster.Price,
                                            AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
@@ -921,7 +972,7 @@ namespace GrowIndigo.Controllers
 
                                        }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
-                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
+                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).AsQueryable();
 
 
 
@@ -932,10 +983,53 @@ namespace GrowIndigo.Controllers
 
 
 
-                        var products = allProductList.Where(x => !getBoughtProductsIds.Any(y => y.ProductId == x.Tr_Id)).ToList();
+                        var productds = allProductList.Where(x => !getBoughtProductsIds.Any(y => y.ProductId == x.Tr_Id)).ToList();
+                        var products = productds.AsQueryable();
+
+                        #endregion
+
+
+                        #region CategoryFilter
+                        var categories = objProductFilter.csvfile.Table1;
+                        if (categories.Count() > 0)
+                        {
+                            var NewProduct = new List<ProductMasterViewModel>();
+                            foreach (var category in categories)
+                            {
+
+                                var product = products.Where(x => x.CategoryName == category.CategoryName).ToList();
+                                NewProduct.AddRange(product);
+
+                            }
+                            products = NewProduct.AsQueryable();
+                        }
 
 
                         #endregion
+
+                        #region Sorting
+
+                        if (objProductFilter.SortProduct == "true")
+                        {
+                            if (objProductFilter.RecentProduct == "true")
+                            {
+                                products = products.OrderByDescending(x => x.Tr_Date);
+                            }
+                            if (objProductFilter.OldProduct == "true")
+                            {
+                                products = products.OrderBy(x => x.Tr_Date);
+                            }
+                            if (objProductFilter.RecentAvailability == "true")
+                            {
+                                products = products.OrderByDescending(x => x.AvailabilityDate);
+                            }
+                            if (objProductFilter.OldAvailability == "true")
+                            {
+                                products = products.OrderBy(x => x.AvailabilityDate);
+                            }
+                        }
+                        #endregion
+
 
                         #region filter
 
@@ -944,29 +1038,29 @@ namespace GrowIndigo.Controllers
                             if (objProductFilter.CropId != null)
                             {
                                 //For getting list of Crop from the table.
-                                products = products.Where(x => x.CropId == objProductFilter.CropId).ToList();
+                                products = products.Where(x => x.CropId == objProductFilter.CropId);
                             }
                             if (objProductFilter.VarietyId != null)
                             {
                                 //For getting list of Variety from the table.
-                                products = products.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
+                                products = products.Where(x => x.VarietyId == objProductFilter.VarietyId);
                             }
                             if (!string.IsNullOrEmpty(objProductFilter.State))
                             {
                                 //For getting list of State from the table.
-                                products = products.Where(x => x.StateCode == objProductFilter.State).ToList();
+                                products = products.Where(x => x.StateCode == objProductFilter.State);
 
                             }
                             if (!string.IsNullOrEmpty(objProductFilter.District))
                             {
                                 //For getting list of District from the table.
-                                products = products.Where(x => x.DistrictCode == objProductFilter.District).ToList();
+                                products = products.Where(x => x.DistrictCode == objProductFilter.District);
                             }
 
                             if (!string.IsNullOrEmpty(objProductFilter.Taluka))
                             {
                                 //For getting list of Taluka from the table.
-                                products = products.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
+                                products = products.Where(x => x.TalukaCode == objProductFilter.Taluka);
 
                             }
 
@@ -974,13 +1068,13 @@ namespace GrowIndigo.Controllers
                             {
                                 var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
                                 var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
-                                products = products.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
+                                products = products.Where(x => x.Price >= minPrice && x.Price <= maxPrice);
 
                             }
                             if (!string.IsNullOrEmpty(objProductFilter.Quantity))
                             {
                                 //For getting list of Quantity from the table.
-                                products = products.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
+                                products = products.Where(x => x.Quantity == objProductFilter.Quantity);
 
                             }
                             if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
@@ -988,9 +1082,9 @@ namespace GrowIndigo.Controllers
                                 var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
 
                                 //For getting list of address from the table.
-                                products = products.Where(x => x.IsQualityTestNeeded == Quality).ToList();
+                                products = products.Where(x => x.IsQualityTestNeeded == Quality);
                             }
-                            objFilterMandiProduct.Products = products.ToList();
+                            objFilterMandiProduct.Products = products.Skip(skip).Take(take).ToList();
                         }
 
                         #endregion
@@ -1388,6 +1482,310 @@ namespace GrowIndigo.Controllers
 
         #endregion
 
+        #region Interested Product
+
+        [HttpPost]
+        //[Authorize]
+        [Route("api/MandiUser/AddInterestedProduct")]
+        public bool AddInterestedProductForUser(InterestedProductsViewModel objInterestedProductsViewModel)
+        {
+            try
+            {
+                //get category for cropId
+
+                Mandi_InterestedProductForUser objMandi_InterestedProductForUser = new Mandi_InterestedProductForUser();
+                string mobileNumber = objInterestedProductsViewModel.Fk_MobileNumber;
+                //get mobileNumber from user table
+                var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                if (number != null)
+                {
+
+
+                    objMandi_InterestedProductForUser.Id = objInterestedProductsViewModel.Id;
+                    objMandi_InterestedProductForUser.Fk_MobileNumber = objInterestedProductsViewModel.Fk_MobileNumber;
+                    objMandi_InterestedProductForUser.Subject = objInterestedProductsViewModel.Subject;
+                    objMandi_InterestedProductForUser.Description = objInterestedProductsViewModel.Description;
+                    objMandi_InterestedProductForUser.CreatedDate = DateTime.Now;
+
+
+                    var add = dbContext.Mandi_InterestedProductForUser.Add(objMandi_InterestedProductForUser);
+                    var i = dbContext.SaveChanges();
+                    if (i != 0)
+                    {
+                        //objResponse.Message = "Interested Product Added successfully";
+                        //return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        var getSellerMobileNumber = (from user in dbContext.Mandi_ProductMaster where user.Tr_Id == objInterestedProductsViewModel.Tr_Id select user.MobileNumber).FirstOrDefault();
+                        var getSellerMobileNumberByNumber = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == getSellerMobileNumber select seller).FirstOrDefault();
+
+                        string Message = " When a buyer shows interest in the product -Dear Customer, " + getSellerMobileNumberByNumber.FullName + " Buyers from " + getSellerMobileNumberByNumber.State + "," + getSellerMobileNumberByNumber.District + " region have shown interest in your product. ";
+                        string Title = "Buyer is interested in your product";
+                        OrderBookingViewModel objOrderBookingViewModel = new OrderBookingViewModel();
+                        objOrderBookingViewModel.Buyer_Mobile = getSellerMobileNumberByNumber.MobileNumber;
+
+                       var addnotification= AddNotification(objOrderBookingViewModel, Message);
+                        if (addnotification == "true")
+                        {
+                            SendFCMNotificationToUsers(getSellerMobileNumberByNumber.DeviceToken, Message, Title);
+                            return true;
+                        }
+                        else {
+
+                            return false;
+                            
+                        }
+                      
+                    
+                    }
+                    else
+                    {
+                        //objResponse.Message = "Failed to save interested product";
+                        //return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        return false;
+                    }
+
+                }
+                else
+                {
+                    objResponse.Message = "User number does not exists.";
+
+                    return false;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "AddInterestedProduct");
+                return false;
+            }
+
+        }
+
+        #endregion
+
+        #region Mandi_Banner
+
+
+        [HttpGet]
+        // [Authorize]
+        [Route("api/MandiUser/GetMandiBanner")]
+        public HttpResponseMessage GetMandiBanner(string ImageType = "")
+        {
+            try
+            {
+                Mandi_Banner objMandi_Banner = new Mandi_Banner();
+                string BannerImageType = ImageType.Trim();
+                // UserCategoryList objUserCategoryList = new UserCategoryList();
+
+                if (ImageType == "HomePage")
+                {
+                    var getBannerDetail = (from banner in dbContext.Mandi_Banner where banner.IsActive == true & banner.IsDefault == true select banner).FirstOrDefault();
+                    if (getBannerDetail != null)
+                    {
+                        MandiBannerViewModel objMandiBannerViewModel = new MandiBannerViewModel();
+                        objMandiBannerViewModel.BannerTitle = getBannerDetail.BannerTitle;
+                        objMandiBannerViewModel.Description = getBannerDetail.Description;
+                        objMandiBannerViewModel.BannerImage = getBannerDetail.BannerImage;
+                        objMandiBannerViewModel.ImageType = getBannerDetail.ImageType;
+                         
+                        return Request.CreateResponse(HttpStatusCode.OK, objMandiBannerViewModel);
+                    }
+                    else
+                    {
+                        objResponse.Message = "No Banner found for particular Type.";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+
+                else
+                {
+                    objResponse.Message = "No Banner found ";
+                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                }
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiUserController", "GetUserBankAccountDetails");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+
+        }
+        #endregion
+
+        #region User_CategoryMapping
+
+        [HttpGet]
+        // [Authorize]
+        [Route("api/MandiUser/GetUserCategoryMappingDetail")]
+        public HttpResponseMessage GetUserCategoryMappingDetail(string mobileNumber = "")
+        {
+            try
+            {
+                UserCategoryMapping objUserCategoryMapping = new UserCategoryMapping();
+                string MobileNumber = mobileNumber.Trim();
+                UserCategoryList objUserCategoryList = new UserCategoryList();
+
+                var UserCategory = dbContext.UserCategoryMapping.Select(i => new UserCategoryMappingViewModel()
+                {
+                    Id = i.Id,
+                    CategoryId = i.CategoryId,
+                    CategoryName = i.CategoryName,
+                    Fk_MobileNumber = i.Fk_MobileNumber,
+                    CreatedDate = i.CreatedDate
+
+                }).Where(x => x.Fk_MobileNumber == mobileNumber).AsQueryable();
+
+                //var getUserCategoryDetails = (from user in dbContext.UserCategoryMapping where user.Fk_MobileNumber == MobileNumber select user).ToList();
+                if (UserCategory.Count() > 0)
+                {
+                    objUserCategoryList.UserCategory = UserCategory.ToList();
+                    return Request.CreateResponse(HttpStatusCode.OK, objUserCategoryList);
+                }
+
+                else
+                {
+                    objResponse.Message = "No Category found for particular user.";
+                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                }
+
+
+
+            }
+
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiUserController", "GetUserBankAccountDetails");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+
+        }
+
+
+        [HttpPost]
+        // [Authorize]
+        [Route("api/MandiUser/AddUserCategoryMappingDetail")]
+        public HttpResponseMessage AddUserCategoryMapping(UserCategoryMappingViewModel objUserCategoryMappingViewModel)
+        {
+
+
+            try
+            {
+                var i = 0;
+                SuccessResponse objResponse = new SuccessResponse();
+                //get mobileNumber from user table
+                string mobileNumber = objUserCategoryMappingViewModel.Fk_MobileNumber;
+                var number = (from user in dbContext.UserCategoryMapping where user.Fk_MobileNumber == mobileNumber select user).ToList();
+                //Update
+                if (number.Count() > 0)
+                {
+                    var getuserCategory = (from user in dbContext.UserCategoryMapping where user.Fk_MobileNumber == mobileNumber select user).ToList();
+                    foreach (var c in getuserCategory)
+                    {
+                        dbContext.UserCategoryMapping.Remove(c);
+                        i = dbContext.SaveChanges();
+                    }
+                    if (i != 0)
+                    {
+                        var getcsvfile = objUserCategoryMappingViewModel.csvfile.Table1;
+                        UserCategoryMapping objUserCategoryMapping = new UserCategoryMapping();
+                        foreach (var j in getcsvfile)
+                        {
+                            //objUserCategoryMapping.Id = objUserCategoryMappingViewModel.Id;
+                            objUserCategoryMapping.Fk_MobileNumber = j.Fk_MobileNumber;
+                            objUserCategoryMapping.CategoryId = j.CategoryId;
+                            objUserCategoryMapping.CategoryName = j.CategoryName;
+                            objUserCategoryMapping.ModifiedDate = DateTime.Now;
+
+
+                            dbContext.Entry(objUserCategoryMapping).State = EntityState.Added;
+                            i = dbContext.SaveChanges();
+                            dbContext.Entry(objUserCategoryMapping).State = EntityState.Detached;
+                        }
+                        if (i != 0)
+                        {
+                            objResponse.Message = "Successfully updated record";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+                        else
+                        {
+                            objResponse.Message = "Failed to update record";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+
+
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed to update records for user category";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+
+
+
+                }
+                //Addition
+                else
+                {
+                    UserCategoryMapping objUserCategoryMapping = new UserCategoryMapping();
+                    var getcsvfile = objUserCategoryMappingViewModel.csvfile.Table1;
+
+                    foreach (var j in getcsvfile)
+                    {
+
+                        objUserCategoryMapping.Fk_MobileNumber = j.Fk_MobileNumber;
+                        objUserCategoryMapping.CategoryId = j.CategoryId;
+                        objUserCategoryMapping.CategoryName = j.CategoryName;
+                        objUserCategoryMapping.CreatedDate = DateTime.Now;
+
+                        // dbContext.UserCategoryMapping.Add(objUserCategoryMapping);
+
+
+                        //   i = dbContext.SaveChanges();
+
+                        dbContext.Entry(objUserCategoryMapping).State = EntityState.Added;
+                        i = dbContext.SaveChanges();
+                        dbContext.Entry(objUserCategoryMapping).State = EntityState.Detached;
+                    }
+                    if (i != 0)
+                    {
+                        objResponse.Message = "Successfuly added ";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                    else
+                    {
+                        objResponse.Message = "failed to add record";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+
+
+
+
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+
+        }
+
+
+        #endregion
 
         #region Common methods
 
@@ -1969,6 +2367,88 @@ namespace GrowIndigo.Controllers
 
         }
 
+
+
+        [HttpPost]
+        //[Authorize]
+        [Route("api/MandiUser/AddMandiUserRequirement")]
+        public HttpResponseMessage AddMandiUserRequirement(MandiUserRequirementViewModel objUserRequirementViewModel)
+        {
+            try
+            {
+                Mandi_Requirement objRequirement = new Mandi_Requirement();
+                string mobileNumber = objUserRequirementViewModel.MobileNumber;
+                //get mobileNumber from user table
+                var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                if (number != null)
+                {
+
+                    objRequirement.Id = objUserRequirementViewModel.Id;
+                    objRequirement.MobileNumber = objUserRequirementViewModel.MobileNumber;
+                    objRequirement.BuyerId = objUserRequirementViewModel.MobileNumber;
+                    objRequirement.BuyerContact = objUserRequirementViewModel.BuyerContact;
+                    objRequirement.BuyerAddress = objUserRequirementViewModel.BuyerAddress;
+                    objRequirement.CropName = objUserRequirementViewModel.CropName;
+                    objRequirement.Variety = objUserRequirementViewModel.Variety;
+                    objRequirement.Quantity = objUserRequirementViewModel.Quantity;
+                    objRequirement.QualitySpecification = objUserRequirementViewModel.QualitySpecification;
+                    objRequirement.DeliveryLocation = objUserRequirementViewModel.DeliveryLocation;
+                    objRequirement.ExpectedPrice = objUserRequirementViewModel.ExpectedPrice;
+                    objRequirement.ExpectedDate = objUserRequirementViewModel.ExpectedDate;
+                    objRequirement.IsPriceNegotiable = objUserRequirementViewModel.IsPriceNegotiable;
+                    objRequirement.Remarks = objUserRequirementViewModel.Remarks;
+
+                    dbContext.Mandi_Requirement.Add(objRequirement);
+                    var i = dbContext.SaveChanges();
+                    if (i != 0)
+                    {
+                        EmailController objEmailController = new EmailController();
+                        EmailModel objEmailModel = new EmailModel();
+                        objEmailModel.BuyerId = objUserRequirementViewModel.BuyerId;
+                        objEmailModel.BuyerAddress = objUserRequirementViewModel.BuyerAddress;
+                        objEmailModel.CropName = objUserRequirementViewModel.CropName;
+                        objEmailModel.VarietyName = objUserRequirementViewModel.Variety;
+                        objEmailModel.Quantity = objUserRequirementViewModel.Quantity;
+                        objEmailModel.QualitySpecification = objUserRequirementViewModel.QualitySpecification;
+                        objEmailModel.DeliveryLocation = objUserRequirementViewModel.DeliveryLocation;
+                        objEmailModel.ExpectedPrice = objUserRequirementViewModel.ExpectedPrice;
+                        objEmailModel.ExpectedDate = objUserRequirementViewModel.ExpectedDate;
+                        objEmailModel.IsPriceNegotiable = objUserRequirementViewModel.IsPriceNegotiable;
+                        objEmailModel.Remarks = objUserRequirementViewModel.Remarks;
+
+
+                        objEmailController.sendEmailViaWebApi(objEmailModel, "UserRequirement");
+                        objResponse.Message = "User Requirement added successfully";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed to add user requiremrent.";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+
+
+                else
+                {
+                    objResponse.Message = "Mobile number not exists.";
+
+                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "UserController", "AddUserRequirement");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+
+        }
+
+
+
         #endregion
 
         #region Notification 
@@ -2056,6 +2536,53 @@ namespace GrowIndigo.Controllers
             }
             return "";
         }
+
+        public string AddNotification(OrderBookingViewModel objOrderBookingViewModel, string Message)
+        {
+
+
+            try
+            {
+                //get mobileNumber from user table
+                string mobileNumber = objOrderBookingViewModel.Buyer_Mobile;
+                var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                if (number != null)
+                {
+                    Mandi_Notification objMandi_Notification = new Mandi_Notification();
+                    objMandi_Notification.MobileNumber = objOrderBookingViewModel.Buyer_Mobile;
+                    objMandi_Notification.Message = Message;
+                    objMandi_Notification.Tr_Date = DateTime.Now;
+
+                    dbContext.Mandi_Notification.Add(objMandi_Notification);
+                    var i = dbContext.SaveChanges();
+                    if (i != 0)
+                    {
+                        return "true";
+
+                    }
+                    else
+                    {
+                        return "false";
+
+                    }
+
+
+                }
+                else
+                {
+                    objResponse.Message = "Mobile number not exists.";
+                    return Message;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                throw ex;
+
+            }
+        }
+
 
         #endregion
 
@@ -2525,5 +3052,9 @@ namespace GrowIndigo.Controllers
         //                   NewVariety = ""
         //               }).ToList(
         #endregion
+
+
     }
+
+
 }

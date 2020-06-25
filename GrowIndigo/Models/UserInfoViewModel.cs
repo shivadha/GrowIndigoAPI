@@ -78,6 +78,9 @@ namespace GrowIndigo.Models
     public class OrderResponse
     {
       public string DAP { get; set; }
+        public string OrderId { get; set; }
+        public string RazorPayOrderId { get; set; }
+        public string Message { get; set; }
         //public string ServiceTax { get; set; }
         //public string TotalAmount { get; set; }
         public int UPI { get; set; }
@@ -133,9 +136,16 @@ namespace GrowIndigo.Models
         public string product_Id { get; set; }
         public string price { get; set; }
 
-        
-            
-            
+   
+        public long Id { get; set; }
+        public string Fk_MobileNumber { get; set; }
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+
+
+
+
     }
 
 

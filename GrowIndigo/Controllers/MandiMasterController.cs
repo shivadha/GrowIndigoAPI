@@ -12,7 +12,7 @@ using static GrowIndigo.Models.MandiMasterData;
 
 namespace GrowIndigo.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MandiMasterController : ApiController
     {
@@ -41,7 +41,8 @@ namespace GrowIndigo.Controllers
                             MandiCrop objMandi_Crop = new MandiCrop()
                             {
                                 CropId = i.CropId,
-                                CropName = i.CropName
+                                CropName = i.CropName,
+                                CategoryImage=i.CropImage
 
                             };
                             objListMandiCrop.Add(objMandi_Crop);
@@ -105,7 +106,7 @@ namespace GrowIndigo.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         [Route("api/MandiMaster/GetAllCategory")]
         public HttpResponseMessage GetAllCategory()
         {
@@ -124,7 +125,9 @@ namespace GrowIndigo.Controllers
                         MandiCrop objMandi_Crop = new MandiCrop()
                         {
                             CategoryName = i.CategoryName,
-                            CategoryId = i.CategoryId
+                            CategoryId = i.CategoryId,
+                            CategoryImage=i.CategoryImage
+
 
                         };
                         objListMandiCrop.Add(objMandi_Crop);

@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GrowIndigoV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GrowIndigoV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryImage" Type="nvarchar(max)" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Crop_Master">
@@ -20,6 +21,8 @@
           <Property Name="CropId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CropName" Type="nvarchar" MaxLength="50" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CropAvailableDays" Type="int" />
+          <Property Name="CropImage" Type="nvarchar(max)" />
           <Property Name="CategoryId" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="District_Master">
@@ -39,6 +42,30 @@
           <Property Name="ErrorFrom" Type="nvarchar(max)" />
           <Property Name="InnerException" Type="nvarchar(max)" />
           <Property Name="CreatedDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Mandi_Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BannerTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="BannerImage" Type="nvarchar(max)" />
+          <Property Name="IsDefault" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ImageType" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Mandi_InterestedProductForUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fk_MobileNumber" Type="nvarchar" MaxLength="256" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Mandi_Notification">
           <Key>
@@ -61,7 +88,11 @@
           <Property Name="Payment_Mode" Type="varchar" MaxLength="50" />
           <Property Name="OrderDate" Type="smalldatetime" />
           <Property Name="Shipping_Address_Id" Type="int" />
+          <Property Name="ShippingAddress" Type="nvarchar(max)" />
           <Property Name="Order_Status" Type="varchar(max)" />
+          <Property Name="rzp_order_id" Type="varchar(max)" />
+          <Property Name="rzp_payment_status" Type="varchar(max)" />
+          <Property Name="rzp_payment_signature" Type="varchar(max)" />
           <Property Name="SelectedTotalQty" Type="varchar" MaxLength="50" />
           <Property Name="Buyer_Name" Type="varchar" MaxLength="50" />
           <Property Name="GeoAddress" Type="nvarchar" MaxLength="256" />
@@ -90,6 +121,7 @@
           <Property Name="CropId" Type="int" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
           <Property Name="VarietyId" Type="int" />
+          <Property Name="CropEndDate" Type="datetime" />
           <Property Name="ProductAddress" Type="nvarchar" MaxLength="256" />
           <Property Name="GeoAddress" Type="nvarchar" MaxLength="256" />
           <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" />
@@ -299,6 +331,17 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a prim
           <Property Name="TalukaName" Type="nvarchar" MaxLength="256" />
           <Property Name="TalukaCode" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserCategoryMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fk_MobileNumber" Type="nvarchar" MaxLength="256" />
+          <Property Name="CategoryId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="UserFeedback">
           <Key>
             <PropertyRef Name="Tr_Id" />
@@ -472,39 +515,27 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mandi_ProductMaster_Crop_Master">
-          <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="0..1" />
-          <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+        <Association Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
+          <End Role="Mandi_InterestedProductForUser" Type="Self.Mandi_InterestedProductForUser" Multiplicity="1" />
+          <End Role="Mandi_InterestedProductForUser1" Type="Self.Mandi_InterestedProductForUser" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Crop_Master">
-              <PropertyRef Name="CropId" />
+            <Principal Role="Mandi_InterestedProductForUser">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Mandi_ProductMaster">
-              <PropertyRef Name="CropId" />
+            <Dependent Role="Mandi_InterestedProductForUser1">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mandi_ProductMaster_Mandi_UserInfo">
-          <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="0..1" />
-          <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+        <Association Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
+          <End Role="Mandi_UserInfo" Type="Self.Mandi_UserInfo" Multiplicity="0..1" />
+          <End Role="Mandi_InterestedProductForUser" Type="Self.Mandi_InterestedProductForUser" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Crop_Master">
-              <PropertyRef Name="CropId" />
+            <Principal Role="Mandi_UserInfo">
+              <PropertyRef Name="MobileNumber" />
             </Principal>
-            <Dependent Role="Mandi_ProductMaster">
-              <PropertyRef Name="CropId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mandi_ProductMaster_Variety_Master">
-          <End Role="Variety_Master" Type="Self.Variety_Master" Multiplicity="0..1" />
-          <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Variety_Master">
-              <PropertyRef Name="VarietyId" />
-            </Principal>
-            <Dependent Role="Mandi_ProductMaster">
-              <PropertyRef Name="VarietyId" />
+            <Dependent Role="Mandi_InterestedProductForUser">
+              <PropertyRef Name="Fk_MobileNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -577,6 +608,42 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Principal>
             <Dependent Role="SubCategory">
               <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCategoryMapping_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="UserCategoryMapping" Type="Self.UserCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="UserCategoryMapping">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCategoryMapping_Mandi_UserInfo">
+          <End Role="Mandi_UserInfo" Type="Self.Mandi_UserInfo" Multiplicity="0..1" />
+          <End Role="UserCategoryMapping" Type="Self.UserCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandi_UserInfo">
+              <PropertyRef Name="MobileNumber" />
+            </Principal>
+            <Dependent Role="UserCategoryMapping">
+              <PropertyRef Name="Fk_MobileNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCategoryMapping_UserCategoryMapping">
+          <End Role="UserCategoryMapping" Type="Self.UserCategoryMapping" Multiplicity="1" />
+          <End Role="UserCategoryMapping1" Type="Self.UserCategoryMapping" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategoryMapping">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCategoryMapping1">
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -657,6 +724,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <EntitySet Name="Crop_Master" EntityType="Self.Crop_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mandi_Banner" EntityType="Self.Mandi_Banner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mandi_InterestedProductForUser" EntityType="Self.Mandi_InterestedProductForUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_Notification" EntityType="Self.Mandi_Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_OrderDetails" EntityType="Self.Mandi_OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_OrderProductDetails" EntityType="Self.Mandi_OrderProductDetails" Schema="dbo" store:Type="Tables" />
@@ -675,6 +744,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="State_Master" EntityType="Self.State_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Taluka_Master" EntityType="Self.Taluka_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCategoryMapping" EntityType="Self.UserCategoryMapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserFeedback" EntityType="Self.UserFeedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserOTPInfo" EntityType="Self.UserOTPInfo" Schema="dbo" store:Type="Tables" />
@@ -719,17 +789,13 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             <End Role="Crop_Master" EntitySet="Crop_Master" />
             <End Role="Crop_Master1" EntitySet="Crop_Master" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Crop_Master" Association="Self.FK_Mandi_ProductMaster_Crop_Master">
-            <End Role="Crop_Master" EntitySet="Crop_Master" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+          <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" Association="Self.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
+            <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
+            <End Role="Mandi_InterestedProductForUser1" EntitySet="Mandi_InterestedProductForUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_UserInfo" Association="Self.FK_Mandi_ProductMaster_Mandi_UserInfo">
-            <End Role="Crop_Master" EntitySet="Crop_Master" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Variety_Master" Association="Self.FK_Mandi_ProductMaster_Variety_Master">
-            <End Role="Variety_Master" EntitySet="Variety_Master" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+          <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo" Association="Self.FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
+            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+            <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
           </AssociationSet>
           <AssociationSet Name="FK_Mandi_UserRoles_Mandi_Roles" Association="Self.FK_Mandi_UserRoles_Mandi_Roles">
             <End Role="Mandi_Roles" EntitySet="Mandi_Roles" />
@@ -754,6 +820,18 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="SubCategory" EntitySet="SubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCategoryMapping_Category" Association="Self.FK_UserCategoryMapping_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCategoryMapping_Mandi_UserInfo" Association="Self.FK_UserCategoryMapping_Mandi_UserInfo">
+            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+            <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCategoryMapping_UserCategoryMapping" Association="Self.FK_UserCategoryMapping_UserCategoryMapping">
+            <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
+            <End Role="UserCategoryMapping1" EntitySet="UserCategoryMapping" />
           </AssociationSet>
           <AssociationSet Name="FK_UserFeedback_UserInfo" Association="Self.FK_UserFeedback_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
@@ -780,21 +858,138 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             <End Role="Variety_Master" EntitySet="Variety_Master" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GrowIndigoV2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GrowIndigoAPIDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="GrowIndigoV2Model.Category" />
+          <EntitySet Name="Crop_Master" EntityType="GrowIndigoV2Model.Crop_Master" />
+          <EntitySet Name="District_Master" EntityType="GrowIndigoV2Model.District_Master" />
+          <EntitySet Name="ErrorLogs" EntityType="GrowIndigoV2Model.ErrorLogs" />
+          <EntitySet Name="Mandi_Banner" EntityType="GrowIndigoV2Model.Mandi_Banner" />
+          <EntitySet Name="Mandi_InterestedProductForUser" EntityType="GrowIndigoV2Model.Mandi_InterestedProductForUser" />
+          <EntitySet Name="Mandi_Notification" EntityType="GrowIndigoV2Model.Mandi_Notification" />
+          <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoV2Model.Mandi_OrderDetails" />
+          <EntitySet Name="Mandi_OrderProductDetails" EntityType="GrowIndigoV2Model.Mandi_OrderProductDetails" />
+          <EntitySet Name="Mandi_ProductMaster" EntityType="GrowIndigoV2Model.Mandi_ProductMaster" />
+          <EntitySet Name="Mandi_Requirement" EntityType="GrowIndigoV2Model.Mandi_Requirement" />
+          <EntitySet Name="Mandi_Roles" EntityType="GrowIndigoV2Model.Mandi_Roles" />
+          <EntitySet Name="Mandi_UserEnquiry" EntityType="GrowIndigoV2Model.Mandi_UserEnquiry" />
+          <EntitySet Name="Mandi_UserFeedback" EntityType="GrowIndigoV2Model.Mandi_UserFeedback" />
+          <EntitySet Name="Mandi_UserInfo" EntityType="GrowIndigoV2Model.Mandi_UserInfo" />
+          <EntitySet Name="Mandi_UserRequirement" EntityType="GrowIndigoV2Model.Mandi_UserRequirement" />
+          <EntitySet Name="Mandi_UserRoles" EntityType="GrowIndigoV2Model.Mandi_UserRoles" />
+          <EntitySet Name="OrderDetails" EntityType="GrowIndigoV2Model.OrderDetails" />
+          <EntitySet Name="OrderErrorLogDetails" EntityType="GrowIndigoV2Model.OrderErrorLogDetails" />
+          <EntitySet Name="OrderProductDetails" EntityType="GrowIndigoV2Model.OrderProductDetails" />
+          <EntitySet Name="Product_Master" EntityType="GrowIndigoV2Model.Product_Master" />
+          <EntitySet Name="Roles" EntityType="GrowIndigoV2Model.Roles" />
+          <EntitySet Name="State_Master" EntityType="GrowIndigoV2Model.State_Master" />
+          <EntitySet Name="Taluka_Master" EntityType="GrowIndigoV2Model.Taluka_Master" />
+          <EntitySet Name="UserCategoryMapping" EntityType="GrowIndigoV2Model.UserCategoryMapping" />
+          <EntitySet Name="UserFeedback" EntityType="GrowIndigoV2Model.UserFeedback" />
+          <EntitySet Name="UserInfo" EntityType="GrowIndigoV2Model.UserInfo" />
+          <EntitySet Name="UserOTPInfo" EntityType="GrowIndigoV2Model.UserOTPInfo" />
+          <EntitySet Name="UsersAddress" EntityType="GrowIndigoV2Model.UsersAddress" />
+          <EntitySet Name="UsersBankAccountDetails" EntityType="GrowIndigoV2Model.UsersBankAccountDetails" />
+          <EntitySet Name="UserWallet" EntityType="GrowIndigoV2Model.UserWallet" />
+          <EntitySet Name="Variety_Master" EntityType="GrowIndigoV2Model.Variety_Master" />
+          <EntitySet Name="SubCategory" EntityType="GrowIndigoV2Model.SubCategory" />
+          <EntitySet Name="Web_Mandi_usermaster" EntityType="GrowIndigoV2Model.Web_Mandi_usermaster" />
+          <AssociationSet Name="FK_Category_UserRoles" Association="GrowIndigoV2Model.FK_Category_UserRoles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Crop_Master_Category" Association="GrowIndigoV2Model.FK_Crop_Master_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Crop_Master" EntitySet="Crop_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategory_Category" Association="GrowIndigoV2Model.FK_SubCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SubCategory" EntitySet="SubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCategoryMapping_Category" Association="GrowIndigoV2Model.FK_UserCategoryMapping_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="GrowIndigoV2Model.FK_Crop_Master_Crop_Master">
+            <End Role="Crop_Master" EntitySet="Crop_Master" />
+            <End Role="Crop_Master1" EntitySet="Crop_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Variety_Master_Crop_Master" Association="GrowIndigoV2Model.FK_Variety_Master_Crop_Master">
+            <End Role="Crop_Master" EntitySet="Crop_Master" />
+            <End Role="Variety_Master" EntitySet="Variety_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" Association="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
+            <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
+            <End Role="Mandi_InterestedProductForUser1" EntitySet="Mandi_InterestedProductForUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
+            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+            <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_UserRoles_Mandi_Roles" Association="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_Roles">
+            <End Role="Mandi_Roles" EntitySet="Mandi_Roles" />
+            <End Role="Mandi_UserRoles" EntitySet="Mandi_UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_UserRoles_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_UserInfo">
+            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+            <End Role="Mandi_UserRoles" EntitySet="Mandi_UserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCategoryMapping_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_UserCategoryMapping_Mandi_UserInfo">
+            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+            <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersAddress_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_UsersAddress_Mandi_UserInfo">
+            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+            <End Role="UsersAddress" EntitySet="UsersAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersBankAccountDetails_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_UsersBankAccountDetails_Mandi_UserInfo">
+            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
+            <End Role="UsersBankAccountDetails" EntitySet="UsersBankAccountDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_UserInfo" Association="GrowIndigoV2Model.FK_OrderDetails_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProductDetails_OrderDetails" Association="GrowIndigoV2Model.FK_OrderProductDetails_OrderDetails">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="OrderProductDetails" EntitySet="OrderProductDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderErrorLogDetails_UserInfo" Association="GrowIndigoV2Model.FK_OrderErrorLogDetails_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="OrderErrorLogDetails" EntitySet="OrderErrorLogDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCategoryMapping_UserCategoryMapping" Association="GrowIndigoV2Model.FK_UserCategoryMapping_UserCategoryMapping">
+            <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
+            <End Role="UserCategoryMapping1" EntitySet="UserCategoryMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFeedback_UserInfo" Association="GrowIndigoV2Model.FK_UserFeedback_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UserFeedback" EntitySet="UserFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersAddress_UserInfo" Association="GrowIndigoV2Model.FK_UsersAddress_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UsersAddress" EntitySet="UsersAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserWallet_UserInfo" Association="GrowIndigoV2Model.FK_UserWallet_UserInfo">
+            <End Role="UserInfo" EntitySet="UserInfo" />
+            <End Role="UserWallet" EntitySet="UserWallet" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
-          <Property Name="CategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK_Category_UserRoles" FromRole="Category" ToRole="Roles" />
-          <NavigationProperty Name="Crop_Master" Relationship="Self.FK_Crop_Master_Category" FromRole="Category" ToRole="Crop_Master" />
-          <NavigationProperty Name="SubCategory" Relationship="Self.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
+          <NavigationProperty Name="Roles" Relationship="GrowIndigoV2Model.FK_Category_UserRoles" FromRole="Category" ToRole="Roles" />
+          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Crop_Master_Category" FromRole="Category" ToRole="Crop_Master" />
+          <NavigationProperty Name="SubCategory" Relationship="GrowIndigoV2Model.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
+          <NavigationProperty Name="UserCategoryMapping" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Category" FromRole="Category" ToRole="UserCategoryMapping" />
         </EntityType>
         <EntityType Name="Crop_Master">
           <Key>
@@ -803,21 +998,21 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="CropId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CropAvailableDays" Type="Int32" />
+          <Property Name="CropImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
-          <NavigationProperty Name="Crop_Master1" Relationship="Self.FK_Crop_Master_Crop_Master" FromRole="Crop_Master" ToRole="Crop_Master1" />
-          <NavigationProperty Name="Crop_Master2" Relationship="Self.FK_Crop_Master_Crop_Master" FromRole="Crop_Master1" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster" Relationship="Self.FK_Mandi_ProductMaster_Crop_Master" FromRole="Crop_Master" ToRole="Mandi_ProductMaster" />
-          <NavigationProperty Name="Mandi_ProductMaster1" Relationship="Self.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Crop_Master" ToRole="Mandi_ProductMaster" />
-          <NavigationProperty Name="Variety_Master" Relationship="Self.FK_Variety_Master_Crop_Master" FromRole="Crop_Master" ToRole="Variety_Master" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
+          <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoV2Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master" ToRole="Crop_Master1" />
+          <NavigationProperty Name="Crop_Master2" Relationship="GrowIndigoV2Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master1" ToRole="Crop_Master" />
+          <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoV2Model.FK_Variety_Master_Crop_Master" FromRole="Crop_Master" ToRole="Variety_Master" />
         </EntityType>
         <EntityType Name="District_Master">
           <Key>
             <PropertyRef Name="DistrictCode" />
           </Key>
-          <Property Name="StateCode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="DistrictName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="DistrictCode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DistrictCode" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ErrorLogs">
           <Key>
@@ -828,6 +1023,33 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="ErrorFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="InnerException" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="7" />
+        </EntityType>
+        <EntityType Name="Mandi_Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BannerTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BannerImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefault" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ImageType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Mandi_InterestedProductForUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fk_MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Mandi_InterestedProductForUser1" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_InterestedProductForUser1" />
+          <NavigationProperty Name="Mandi_InterestedProductForUser2" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser1" ToRole="Mandi_InterestedProductForUser" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_UserInfo" />
         </EntityType>
         <EntityType Name="Mandi_Notification">
           <Key>
@@ -850,7 +1072,11 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Payment_Mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="OrderDate" Type="DateTime" Precision="0" />
           <Property Name="Shipping_Address_Id" Type="Int32" />
+          <Property Name="ShippingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Order_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rzp_order_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rzp_payment_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rzp_payment_signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SelectedTotalQty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Buyer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="GeoAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -879,6 +1105,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="CropId" Type="Int32" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VarietyId" Type="Int32" />
+          <Property Name="CropEndDate" Type="DateTime" Precision="3" />
           <Property Name="ProductAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="GeoAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -905,9 +1132,6 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="IsApproved" Type="Boolean" />
           <Property Name="MaximumPrice" Type="Int32" />
           <Property Name="MinimumPrice" Type="Int32" />
-          <NavigationProperty Name="Crop_Master" Relationship="Self.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
-          <NavigationProperty Name="Crop_Master1" Relationship="Self.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
-          <NavigationProperty Name="Variety_Master" Relationship="Self.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
         </EntityType>
         <EntityType Name="Mandi_Requirement">
           <Key>
@@ -934,7 +1158,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Mandi_UserRoles" Relationship="Self.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_Roles" ToRole="Mandi_UserRoles" />
+          <NavigationProperty Name="Mandi_UserRoles" Relationship="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_Roles" ToRole="Mandi_UserRoles" />
         </EntityType>
         <EntityType Name="Mandi_UserEnquiry">
           <Key>
@@ -969,14 +1193,16 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Pincode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="UserType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="AdharId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="ProfilePictureUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IsProfileUpdated" Type="Boolean" />
           <Property Name="DeviceToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Mandi_UserRoles" Relationship="Self.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="Mandi_UserRoles" />
-          <NavigationProperty Name="UsersAddress" Relationship="Self.FK_UsersAddress_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersAddress" />
-          <NavigationProperty Name="UsersBankAccountDetails" Relationship="Self.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersBankAccountDetails" />
+          <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="Mandi_InterestedProductForUser" />
+          <NavigationProperty Name="Mandi_UserRoles" Relationship="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="Mandi_UserRoles" />
+          <NavigationProperty Name="UserCategoryMapping" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UserCategoryMapping" />
+          <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoV2Model.FK_UsersAddress_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersAddress" />
+          <NavigationProperty Name="UsersBankAccountDetails" Relationship="GrowIndigoV2Model.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersBankAccountDetails" />
         </EntityType>
         <EntityType Name="Mandi_UserRequirement">
           <Key>
@@ -992,10 +1218,10 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             <PropertyRef Name="SerialNumber" />
           </Key>
           <Property Name="SerialNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Mandi_Roles" Relationship="Self.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_UserRoles" ToRole="Mandi_Roles" />
-          <NavigationProperty Name="Mandi_UserInfo" Relationship="Self.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserRoles" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="Mandi_Roles" Relationship="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_UserRoles" ToRole="Mandi_Roles" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserRoles" ToRole="Mandi_UserInfo" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -1015,8 +1241,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Rzp_Payment_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Rzp_Signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Rzp_Payment_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_OrderDetails_UserInfo" FromRole="OrderDetails" ToRole="UserInfo" />
-          <NavigationProperty Name="OrderProductDetails" Relationship="Self.FK_OrderProductDetails_OrderDetails" FromRole="OrderDetails" ToRole="OrderProductDetails" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_OrderDetails_UserInfo" FromRole="OrderDetails" ToRole="UserInfo" />
+          <NavigationProperty Name="OrderProductDetails" Relationship="GrowIndigoV2Model.FK_OrderProductDetails_OrderDetails" FromRole="OrderDetails" ToRole="OrderProductDetails" />
         </EntityType>
         <EntityType Name="OrderErrorLogDetails">
           <Key>
@@ -1031,7 +1257,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Csv_File" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Error_Msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Tr_Date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_OrderErrorLogDetails_UserInfo" FromRole="OrderErrorLogDetails" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_OrderErrorLogDetails_UserInfo" FromRole="OrderErrorLogDetails" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="OrderProductDetails">
           <Key>
@@ -1044,7 +1270,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tr_date" Type="DateTime" Precision="0" />
           <Property Name="SAP_order_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderProductDetails_OrderDetails" FromRole="OrderProductDetails" ToRole="OrderDetails" />
+          <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoV2Model.FK_OrderProductDetails_OrderDetails" FromRole="OrderProductDetails" ToRole="OrderDetails" />
         </EntityType>
         <EntityType Name="Product_Master">
           <Key>
@@ -1072,7 +1298,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Category_UserRoles" FromRole="Roles" ToRole="Category" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Category_UserRoles" FromRole="Roles" ToRole="Category" />
         </EntityType>
         <EntityType Name="State_Master">
           <Key>
@@ -1080,7 +1306,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </Key>
           <Property Name="CountryId" Type="Int32" />
           <Property Name="StateName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="StateCode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StateCode" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Taluka_Master">
           <Key>
@@ -1088,7 +1314,22 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </Key>
           <Property Name="DistrictCode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="TalukaName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="TalukaCode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TalukaCode" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserCategoryMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fk_MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Category" FromRole="UserCategoryMapping" ToRole="Category" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Mandi_UserInfo" FromRole="UserCategoryMapping" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="UserCategoryMapping1" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_UserCategoryMapping" FromRole="UserCategoryMapping" ToRole="UserCategoryMapping1" />
+          <NavigationProperty Name="UserCategoryMapping2" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_UserCategoryMapping" FromRole="UserCategoryMapping1" ToRole="UserCategoryMapping" />
         </EntityType>
         <EntityType Name="UserFeedback">
           <Key>
@@ -1099,7 +1340,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Tr_Date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserFeedback_UserInfo" FromRole="UserFeedback" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_UserFeedback_UserInfo" FromRole="UserFeedback" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -1132,7 +1373,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="StreetLine2" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="UserCompany" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="EmailId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
@@ -1142,11 +1383,11 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Firm_Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsProfileUpdated" Type="Boolean" />
           <Property Name="RetailerId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_UserInfo" FromRole="UserInfo" ToRole="OrderDetails" />
-          <NavigationProperty Name="OrderErrorLogDetails" Relationship="Self.FK_OrderErrorLogDetails_UserInfo" FromRole="UserInfo" ToRole="OrderErrorLogDetails" />
-          <NavigationProperty Name="UserFeedback" Relationship="Self.FK_UserFeedback_UserInfo" FromRole="UserInfo" ToRole="UserFeedback" />
-          <NavigationProperty Name="UsersAddress" Relationship="Self.FK_UsersAddress_UserInfo" FromRole="UserInfo" ToRole="UsersAddress" />
-          <NavigationProperty Name="UserWallet" Relationship="Self.FK_UserWallet_UserInfo" FromRole="UserInfo" ToRole="UserWallet" />
+          <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoV2Model.FK_OrderDetails_UserInfo" FromRole="UserInfo" ToRole="OrderDetails" />
+          <NavigationProperty Name="OrderErrorLogDetails" Relationship="GrowIndigoV2Model.FK_OrderErrorLogDetails_UserInfo" FromRole="UserInfo" ToRole="OrderErrorLogDetails" />
+          <NavigationProperty Name="UserFeedback" Relationship="GrowIndigoV2Model.FK_UserFeedback_UserInfo" FromRole="UserInfo" ToRole="UserFeedback" />
+          <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoV2Model.FK_UsersAddress_UserInfo" FromRole="UserInfo" ToRole="UsersAddress" />
+          <NavigationProperty Name="UserWallet" Relationship="GrowIndigoV2Model.FK_UserWallet_UserInfo" FromRole="UserInfo" ToRole="UserWallet" />
         </EntityType>
         <EntityType Name="UserOTPInfo">
           <Key>
@@ -1176,26 +1417,26 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="IsMandiUser" Type="Boolean" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="MobileNumberForMandi" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Mandi_UserInfo" Relationship="Self.FK_UsersAddress_Mandi_UserInfo" FromRole="UsersAddress" ToRole="Mandi_UserInfo" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UsersAddress_UserInfo" FromRole="UsersAddress" ToRole="UserInfo" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_UsersAddress_Mandi_UserInfo" FromRole="UsersAddress" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_UsersAddress_UserInfo" FromRole="UsersAddress" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UsersBankAccountDetails">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AccountNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="AccountHolderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BankName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Branch" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BankName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Branch" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="AccountType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IFSC_Code" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Mandi_UserInfo" Relationship="Self.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="UsersBankAccountDetails" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="UsersBankAccountDetails" ToRole="Mandi_UserInfo" />
         </EntityType>
         <EntityType Name="UserWallet">
           <Key>
@@ -1207,7 +1448,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="UserInfo" Relationship="Self.FK_UserWallet_UserInfo" FromRole="UserWallet" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_UserWallet_UserInfo" FromRole="UserWallet" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Variety_Master">
           <Key>
@@ -1216,8 +1457,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="VarietyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VarietyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CropId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Crop_Master" Relationship="Self.FK_Variety_Master_Crop_Master" FromRole="Variety_Master" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster" Relationship="Self.FK_Mandi_ProductMaster_Variety_Master" FromRole="Variety_Master" ToRole="Mandi_ProductMaster" />
+          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Variety_Master_Crop_Master" FromRole="Variety_Master" ToRole="Crop_Master" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -1227,8 +1467,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
           <Property Name="SubCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ImageUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
+          <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
         </EntityType>
         <EntityType Name="Web_Mandi_usermaster">
           <Key>
@@ -1249,8 +1489,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="userStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Category_UserRoles">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
-          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Roles">
               <PropertyRef Name="RoleId" />
@@ -1261,8 +1501,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Crop_Master_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -1273,8 +1513,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubCategory_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.SubCategory" Role="SubCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -1284,9 +1524,21 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserCategoryMapping_Category">
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="UserCategoryMapping">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Crop_Master_Crop_Master">
-          <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="1" />
-          <End Role="Crop_Master1" Type="Self.Crop_Master" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master1" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Crop_Master">
               <PropertyRef Name="CropId" />
@@ -1296,33 +1548,9 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mandi_ProductMaster_Crop_Master">
-          <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="0..1" />
-          <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Crop_Master">
-              <PropertyRef Name="CropId" />
-            </Principal>
-            <Dependent Role="Mandi_ProductMaster">
-              <PropertyRef Name="CropId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mandi_ProductMaster_Mandi_UserInfo">
-          <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="0..1" />
-          <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Crop_Master">
-              <PropertyRef Name="CropId" />
-            </Principal>
-            <Dependent Role="Mandi_ProductMaster">
-              <PropertyRef Name="CropId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Variety_Master_Crop_Master">
-          <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="1" />
-          <End Role="Variety_Master" Type="Self.Variety_Master" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Variety_Master" Role="Variety_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Crop_Master">
               <PropertyRef Name="CropId" />
@@ -1332,21 +1560,33 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mandi_ProductMaster_Variety_Master">
-          <End Role="Variety_Master" Type="Self.Variety_Master" Multiplicity="0..1" />
-          <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+        <Association Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
+          <End Type="GrowIndigoV2Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser1" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="Variety_Master">
-              <PropertyRef Name="VarietyId" />
+            <Principal Role="Mandi_InterestedProductForUser">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Mandi_ProductMaster">
-              <PropertyRef Name="VarietyId" />
+            <Dependent Role="Mandi_InterestedProductForUser1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandi_UserInfo">
+              <PropertyRef Name="MobileNumber" />
+            </Principal>
+            <Dependent Role="Mandi_InterestedProductForUser">
+              <PropertyRef Name="Fk_MobileNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_UserRoles_Mandi_Roles">
-          <End Role="Mandi_Roles" Type="Self.Mandi_Roles" Multiplicity="1" />
-          <End Role="Mandi_UserRoles" Type="Self.Mandi_UserRoles" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_Roles" Role="Mandi_Roles" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Mandi_UserRoles" Role="Mandi_UserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_Roles">
               <PropertyRef Name="RoleId" />
@@ -1357,8 +1597,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_UserRoles_Mandi_UserInfo">
-          <End Role="Mandi_UserInfo" Type="Self.Mandi_UserInfo" Multiplicity="1" />
-          <End Role="Mandi_UserRoles" Type="Self.Mandi_UserRoles" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Mandi_UserRoles" Role="Mandi_UserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -1368,9 +1608,21 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserCategoryMapping_Mandi_UserInfo">
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandi_UserInfo">
+              <PropertyRef Name="MobileNumber" />
+            </Principal>
+            <Dependent Role="UserCategoryMapping">
+              <PropertyRef Name="Fk_MobileNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UsersAddress_Mandi_UserInfo">
-          <End Role="Mandi_UserInfo" Type="Self.Mandi_UserInfo" Multiplicity="0..1" />
-          <End Role="UsersAddress" Type="Self.UsersAddress" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UsersAddress" Role="UsersAddress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -1381,8 +1633,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsersBankAccountDetails_Mandi_UserInfo">
-          <End Role="Mandi_UserInfo" Type="Self.Mandi_UserInfo" Multiplicity="1" />
-          <End Role="UsersBankAccountDetails" Type="Self.UsersBankAccountDetails" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.UsersBankAccountDetails" Role="UsersBankAccountDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -1393,8 +1645,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetails_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.OrderDetails" Role="OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -1405,8 +1657,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderProductDetails_OrderDetails">
-          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
-          <End Role="OrderProductDetails" Type="Self.OrderProductDetails" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.OrderDetails" Role="OrderDetails" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.OrderProductDetails" Role="OrderProductDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderDetails">
               <PropertyRef Name="Order_Id" />
@@ -1417,8 +1669,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderErrorLogDetails_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="OrderErrorLogDetails" Type="Self.OrderErrorLogDetails" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.OrderErrorLogDetails" Role="OrderErrorLogDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -1428,9 +1680,21 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserCategoryMapping_UserCategoryMapping">
+          <End Type="GrowIndigoV2Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.UserCategoryMapping" Role="UserCategoryMapping1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserCategoryMapping">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCategoryMapping1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserFeedback_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="UserFeedback" Type="Self.UserFeedback" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserFeedback" Role="UserFeedback" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -1441,8 +1705,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsersAddress_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="UsersAddress" Type="Self.UsersAddress" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UsersAddress" Role="UsersAddress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -1453,8 +1717,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserWallet_UserInfo">
-          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="0..1" />
-          <End Role="UserWallet" Type="Self.UserWallet" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserWallet" Role="UserWallet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -1464,112 +1728,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GrowIndigoAPIDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Category" EntityType="Self.Category" />
-          <EntitySet Name="Crop_Master" EntityType="Self.Crop_Master" />
-          <EntitySet Name="District_Master" EntityType="Self.District_Master" />
-          <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" />
-          <EntitySet Name="Mandi_Notification" EntityType="Self.Mandi_Notification" />
-          <EntitySet Name="Mandi_OrderDetails" EntityType="Self.Mandi_OrderDetails" />
-          <EntitySet Name="Mandi_OrderProductDetails" EntityType="Self.Mandi_OrderProductDetails" />
-          <EntitySet Name="Mandi_ProductMaster" EntityType="Self.Mandi_ProductMaster" />
-          <EntitySet Name="Mandi_Requirement" EntityType="Self.Mandi_Requirement" />
-          <EntitySet Name="Mandi_Roles" EntityType="Self.Mandi_Roles" />
-          <EntitySet Name="Mandi_UserEnquiry" EntityType="Self.Mandi_UserEnquiry" />
-          <EntitySet Name="Mandi_UserFeedback" EntityType="Self.Mandi_UserFeedback" />
-          <EntitySet Name="Mandi_UserInfo" EntityType="Self.Mandi_UserInfo" />
-          <EntitySet Name="Mandi_UserRequirement" EntityType="Self.Mandi_UserRequirement" />
-          <EntitySet Name="Mandi_UserRoles" EntityType="Self.Mandi_UserRoles" />
-          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" />
-          <EntitySet Name="OrderErrorLogDetails" EntityType="Self.OrderErrorLogDetails" />
-          <EntitySet Name="OrderProductDetails" EntityType="Self.OrderProductDetails" />
-          <EntitySet Name="Product_Master" EntityType="Self.Product_Master" />
-          <EntitySet Name="Roles" EntityType="Self.Roles" />
-          <EntitySet Name="State_Master" EntityType="Self.State_Master" />
-          <EntitySet Name="Taluka_Master" EntityType="Self.Taluka_Master" />
-          <EntitySet Name="UserFeedback" EntityType="Self.UserFeedback" />
-          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" />
-          <EntitySet Name="UserOTPInfo" EntityType="Self.UserOTPInfo" />
-          <EntitySet Name="UsersAddress" EntityType="Self.UsersAddress" />
-          <EntitySet Name="UsersBankAccountDetails" EntityType="Self.UsersBankAccountDetails" />
-          <EntitySet Name="UserWallet" EntityType="Self.UserWallet" />
-          <EntitySet Name="Variety_Master" EntityType="Self.Variety_Master" />
-          <EntitySet Name="SubCategory" EntityType="Self.SubCategory" />
-          <EntitySet Name="Web_Mandi_usermaster" EntityType="Self.Web_Mandi_usermaster" />
-          <AssociationSet Name="FK_Category_UserRoles" Association="Self.FK_Category_UserRoles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Category" EntitySet="Category" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Crop_Master_Category" Association="Self.FK_Crop_Master_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Crop_Master" EntitySet="Crop_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="SubCategory" EntitySet="SubCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="Self.FK_Crop_Master_Crop_Master">
-            <End Role="Crop_Master" EntitySet="Crop_Master" />
-            <End Role="Crop_Master1" EntitySet="Crop_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Crop_Master" Association="Self.FK_Mandi_ProductMaster_Crop_Master">
-            <End Role="Crop_Master" EntitySet="Crop_Master" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_UserInfo" Association="Self.FK_Mandi_ProductMaster_Mandi_UserInfo">
-            <End Role="Crop_Master" EntitySet="Crop_Master" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Variety_Master_Crop_Master" Association="Self.FK_Variety_Master_Crop_Master">
-            <End Role="Crop_Master" EntitySet="Crop_Master" />
-            <End Role="Variety_Master" EntitySet="Variety_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Variety_Master" Association="Self.FK_Mandi_ProductMaster_Variety_Master">
-            <End Role="Variety_Master" EntitySet="Variety_Master" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_UserRoles_Mandi_Roles" Association="Self.FK_Mandi_UserRoles_Mandi_Roles">
-            <End Role="Mandi_Roles" EntitySet="Mandi_Roles" />
-            <End Role="Mandi_UserRoles" EntitySet="Mandi_UserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_UserRoles_Mandi_UserInfo" Association="Self.FK_Mandi_UserRoles_Mandi_UserInfo">
-            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
-            <End Role="Mandi_UserRoles" EntitySet="Mandi_UserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersAddress_Mandi_UserInfo" Association="Self.FK_UsersAddress_Mandi_UserInfo">
-            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
-            <End Role="UsersAddress" EntitySet="UsersAddress" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersBankAccountDetails_Mandi_UserInfo" Association="Self.FK_UsersBankAccountDetails_Mandi_UserInfo">
-            <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
-            <End Role="UsersBankAccountDetails" EntitySet="UsersBankAccountDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_UserInfo" Association="Self.FK_OrderDetails_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderProductDetails_OrderDetails" Association="Self.FK_OrderProductDetails_OrderDetails">
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
-            <End Role="OrderProductDetails" EntitySet="OrderProductDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderErrorLogDetails_UserInfo" Association="Self.FK_OrderErrorLogDetails_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="OrderErrorLogDetails" EntitySet="OrderErrorLogDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserFeedback_UserInfo" Association="Self.FK_UserFeedback_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="UserFeedback" EntitySet="UserFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UsersAddress_UserInfo" Association="Self.FK_UsersAddress_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="UsersAddress" EntitySet="UsersAddress" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserWallet_UserInfo" Association="Self.FK_UserWallet_UserInfo">
-            <End Role="UserInfo" EntitySet="UserInfo" />
-            <End Role="UserWallet" EntitySet="UserWallet" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1578,457 +1737,503 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CategoryImage" ColumnName="CategoryImage" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Crop_Master">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Crop_Master">
               <MappingFragment StoreEntitySet="Crop_Master">
-                <ScalarProperty Name="CropId" ColumnName="CropId" />
-                <ScalarProperty Name="CropName" ColumnName="CropName" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CropImage" ColumnName="CropImage" />
+                <ScalarProperty Name="CropAvailableDays" ColumnName="CropAvailableDays" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CropName" ColumnName="CropName" />
+                <ScalarProperty Name="CropId" ColumnName="CropId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="District_Master">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.District_Master">
               <MappingFragment StoreEntitySet="District_Master">
-                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
-                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
                 <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+                <ScalarProperty Name="StateCode" ColumnName="StateCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ErrorLogs">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.ErrorLogs">
               <MappingFragment StoreEntitySet="ErrorLogs">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-                <ScalarProperty Name="ErrorFrom" ColumnName="ErrorFrom" />
-                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+                <ScalarProperty Name="ErrorFrom" ColumnName="ErrorFrom" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mandi_Banner">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Banner">
+              <MappingFragment StoreEntitySet="Mandi_Banner">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="BannerImage" ColumnName="BannerImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BannerTitle" ColumnName="BannerTitle" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mandi_InterestedProductForUser">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_InterestedProductForUser">
+              <MappingFragment StoreEntitySet="Mandi_InterestedProductForUser">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Fk_MobileNumber" ColumnName="Fk_MobileNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_Notification">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Notification">
               <MappingFragment StoreEntitySet="Mandi_Notification">
-                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_OrderDetails">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_OrderDetails">
               <MappingFragment StoreEntitySet="Mandi_OrderDetails">
-                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
-                <ScalarProperty Name="Buyer_Mobile" ColumnName="Buyer_Mobile" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
-                <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
-                <ScalarProperty Name="SelectedTotalQty" ColumnName="SelectedTotalQty" />
-                <ScalarProperty Name="Buyer_Name" ColumnName="Buyer_Name" />
-                <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
-                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-                <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
                 <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+                <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
+                <ScalarProperty Name="Buyer_Name" ColumnName="Buyer_Name" />
+                <ScalarProperty Name="SelectedTotalQty" ColumnName="SelectedTotalQty" />
+                <ScalarProperty Name="rzp_payment_signature" ColumnName="rzp_payment_signature" />
+                <ScalarProperty Name="rzp_payment_status" ColumnName="rzp_payment_status" />
+                <ScalarProperty Name="rzp_order_id" ColumnName="rzp_order_id" />
+                <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
+                <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+                <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Buyer_Mobile" ColumnName="Buyer_Mobile" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_OrderProductDetails">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_OrderProductDetails">
               <MappingFragment StoreEntitySet="Mandi_OrderProductDetails">
-                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
-                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
-                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
-                <ScalarProperty Name="SelectedQuantity" ColumnName="SelectedQuantity" />
                 <ScalarProperty Name="SelectedProductPrice" ColumnName="SelectedProductPrice" />
+                <ScalarProperty Name="SelectedQuantity" ColumnName="SelectedQuantity" />
+                <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+                <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_ProductMaster">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_ProductMaster">
               <MappingFragment StoreEntitySet="Mandi_ProductMaster">
-                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-                <ScalarProperty Name="CropId" ColumnName="CropId" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
-                <ScalarProperty Name="ProductAddress" ColumnName="ProductAddress" />
-                <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="NetBankingId" ColumnName="NetBankingId" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="AvailabilityDate" ColumnName="AvailabilityDate" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-                <ScalarProperty Name="IsQualityTestNeeded" ColumnName="IsQualityTestNeeded" />
-                <ScalarProperty Name="IsLogisticNeeded" ColumnName="IsLogisticNeeded" />
-                <ScalarProperty Name="ProductImageUrl" ColumnName="ProductImageUrl" />
-                <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="Taluka" ColumnName="Taluka" />
-                <ScalarProperty Name="Village" ColumnName="Village" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
-                <ScalarProperty Name="SecondaryProductImage" ColumnName="SecondaryProductImage" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="MaximumPrice" ColumnName="MaximumPrice" />
                 <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
+                <ScalarProperty Name="MaximumPrice" ColumnName="MaximumPrice" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="SecondaryProductImage" ColumnName="SecondaryProductImage" />
+                <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="ProductImageUrl" ColumnName="ProductImageUrl" />
+                <ScalarProperty Name="IsLogisticNeeded" ColumnName="IsLogisticNeeded" />
+                <ScalarProperty Name="IsQualityTestNeeded" ColumnName="IsQualityTestNeeded" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="AvailabilityDate" ColumnName="AvailabilityDate" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="NetBankingId" ColumnName="NetBankingId" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
+                <ScalarProperty Name="ProductAddress" ColumnName="ProductAddress" />
+                <ScalarProperty Name="CropEndDate" ColumnName="CropEndDate" />
+                <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CropId" ColumnName="CropId" />
+                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_Requirement">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Requirement">
               <MappingFragment StoreEntitySet="Mandi_Requirement">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
-                <ScalarProperty Name="BuyerContact" ColumnName="BuyerContact" />
-                <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
-                <ScalarProperty Name="CropName" ColumnName="CropName" />
-                <ScalarProperty Name="Variety" ColumnName="Variety" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
-                <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
-                <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
-                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
-                <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
+                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+                <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
+                <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+                <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Variety" ColumnName="Variety" />
+                <ScalarProperty Name="CropName" ColumnName="CropName" />
+                <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
+                <ScalarProperty Name="BuyerContact" ColumnName="BuyerContact" />
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_Roles">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Roles">
               <MappingFragment StoreEntitySet="Mandi_Roles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserEnquiry">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserEnquiry">
               <MappingFragment StoreEntitySet="Mandi_UserEnquiry">
-                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="Enquiry" ColumnName="Enquiry" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Enquiry" ColumnName="Enquiry" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserFeedback">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserFeedback">
               <MappingFragment StoreEntitySet="Mandi_UserFeedback">
-                <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
-                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
-                <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
-                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
+                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
+                <ScalarProperty Name="FeedbackId" ColumnName="FeedbackId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserInfo">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserInfo">
               <MappingFragment StoreEntitySet="Mandi_UserInfo">
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="Village" ColumnName="Village" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="Taluka" ColumnName="Taluka" />
-                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="AdharId" ColumnName="AdharId" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="ProfilePictureUrl" ColumnName="ProfilePictureUrl" />
-                <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
-                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
+                <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
+                <ScalarProperty Name="ProfilePictureUrl" ColumnName="ProfilePictureUrl" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="AdharId" ColumnName="AdharId" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserRequirement">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserRequirement">
               <MappingFragment StoreEntitySet="Mandi_UserRequirement">
-                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
-                <ScalarProperty Name="Requirement" ColumnName="Requirement" />
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="Requirement" ColumnName="Requirement" />
+                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
+                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserRoles">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserRoles">
               <MappingFragment StoreEntitySet="Mandi_UserRoles">
-                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderDetails">
               <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
-                <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
-                <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
-                <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
-                <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
-                <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
-                <ScalarProperty Name="SAP_Order_ID" ColumnName="SAP_Order_ID" />
-                <ScalarProperty Name="GeoCoordinates" ColumnName="GeoCoordinates" />
-                <ScalarProperty Name="Rzp_Order_Id" ColumnName="Rzp_Order_Id" />
-                <ScalarProperty Name="Rzp_Payment_Id" ColumnName="Rzp_Payment_Id" />
-                <ScalarProperty Name="Rzp_Signature" ColumnName="Rzp_Signature" />
                 <ScalarProperty Name="Rzp_Payment_Status" ColumnName="Rzp_Payment_Status" />
+                <ScalarProperty Name="Rzp_Signature" ColumnName="Rzp_Signature" />
+                <ScalarProperty Name="Rzp_Payment_Id" ColumnName="Rzp_Payment_Id" />
+                <ScalarProperty Name="Rzp_Order_Id" ColumnName="Rzp_Order_Id" />
+                <ScalarProperty Name="GeoCoordinates" ColumnName="GeoCoordinates" />
+                <ScalarProperty Name="SAP_Order_ID" ColumnName="SAP_Order_ID" />
+                <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
+                <ScalarProperty Name="Shipping_Address_Id" ColumnName="Shipping_Address_Id" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Payment_Mode" ColumnName="Payment_Mode" />
+                <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
+                <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
+                <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderErrorLogDetails">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderErrorLogDetails">
               <MappingFragment StoreEntitySet="OrderErrorLogDetails">
-                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-                <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
-                <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
-                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
-                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="Csv_File" ColumnName="Csv_File" />
-                <ScalarProperty Name="Error_Msg" ColumnName="Error_Msg" />
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="Error_Msg" ColumnName="Error_Msg" />
+                <ScalarProperty Name="Csv_File" ColumnName="Csv_File" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="Retailer_Mobile" ColumnName="Retailer_Mobile" />
+                <ScalarProperty Name="Retailer_Id" ColumnName="Retailer_Id" />
+                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderProductDetails">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderProductDetails">
               <MappingFragment StoreEntitySet="OrderProductDetails">
-                <ScalarProperty Name="tr_id" ColumnName="tr_id" />
-                <ScalarProperty Name="order_id" ColumnName="order_id" />
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="tr_date" ColumnName="tr_date" />
                 <ScalarProperty Name="SAP_order_ID" ColumnName="SAP_order_ID" />
+                <ScalarProperty Name="tr_date" ColumnName="tr_date" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="tr_id" ColumnName="tr_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Product_Master">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Product_Master">
               <MappingFragment StoreEntitySet="Product_Master">
-                <ScalarProperty Name="SkuId" ColumnName="SkuId" />
-                <ScalarProperty Name="SkuName" ColumnName="SkuName" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="CurrentQuantity" ColumnName="CurrentQuantity" />
-                <ScalarProperty Name="SkuCreatedDate" ColumnName="SkuCreatedDate" />
-                <ScalarProperty Name="GSTPercent" ColumnName="GSTPercent" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="MinQuantittyToBook" ColumnName="MinQuantittyToBook" />
-                <ScalarProperty Name="MaxQuantittyToBook" ColumnName="MaxQuantittyToBook" />
-                <ScalarProperty Name="PrdCompanyName" ColumnName="PrdCompanyName" />
-                <ScalarProperty Name="AllowSAPOrder" ColumnName="AllowSAPOrder" />
-                <ScalarProperty Name="PrdState" ColumnName="PrdState" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PrdState" ColumnName="PrdState" />
+                <ScalarProperty Name="AllowSAPOrder" ColumnName="AllowSAPOrder" />
+                <ScalarProperty Name="PrdCompanyName" ColumnName="PrdCompanyName" />
+                <ScalarProperty Name="MaxQuantittyToBook" ColumnName="MaxQuantittyToBook" />
+                <ScalarProperty Name="MinQuantittyToBook" ColumnName="MinQuantittyToBook" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="GSTPercent" ColumnName="GSTPercent" />
+                <ScalarProperty Name="SkuCreatedDate" ColumnName="SkuCreatedDate" />
+                <ScalarProperty Name="CurrentQuantity" ColumnName="CurrentQuantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="SkuName" ColumnName="SkuName" />
+                <ScalarProperty Name="SkuId" ColumnName="SkuId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Roles">
               <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="State_Master">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.State_Master">
               <MappingFragment StoreEntitySet="State_Master">
-                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
-                <ScalarProperty Name="StateName" ColumnName="StateName" />
                 <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Taluka_Master">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Taluka_Master">
               <MappingFragment StoreEntitySet="Taluka_Master">
-                <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
-                <ScalarProperty Name="TalukaName" ColumnName="TalukaName" />
                 <ScalarProperty Name="TalukaCode" ColumnName="TalukaCode" />
+                <ScalarProperty Name="TalukaName" ColumnName="TalukaName" />
+                <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCategoryMapping">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.UserCategoryMapping">
+              <MappingFragment StoreEntitySet="UserCategoryMapping">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Fk_MobileNumber" ColumnName="Fk_MobileNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserFeedback">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.UserFeedback">
               <MappingFragment StoreEntitySet="UserFeedback">
-                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
-                <ScalarProperty Name="Product" ColumnName="Product" />
-                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Usercode" ColumnName="Usercode" />
+                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserInfo">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.UserInfo">
               <MappingFragment StoreEntitySet="UserInfo">
-                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="RetailerName" ColumnName="RetailerName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
-                <ScalarProperty Name="Town" ColumnName="Town" />
-                <ScalarProperty Name="CSTNNumber" ColumnName="CSTNNumber" />
-                <ScalarProperty Name="VATNumber" ColumnName="VATNumber" />
-                <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
-                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
-                <ScalarProperty Name="IMEINumber" ColumnName="IMEINumber" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
-                <ScalarProperty Name="SeedLicenseValidity" ColumnName="SeedLicenseValidity" />
-                <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
-                <ScalarProperty Name="Depo" ColumnName="Depo" />
-                <ScalarProperty Name="Flag" ColumnName="Flag" />
-                <ScalarProperty Name="SapRetailerIdFcmToken" ColumnName="SapRetailerIdFcmToken" />
-                <ScalarProperty Name="FcmSubscriptionTopic" ColumnName="FcmSubscriptionTopic" />
-                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="RetailerLastName" ColumnName="RetailerLastName" />
-                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-                <ScalarProperty Name="StreetLine1" ColumnName="StreetLine1" />
-                <ScalarProperty Name="StreetLine2" ColumnName="StreetLine2" />
-                <ScalarProperty Name="UserCompany" ColumnName="UserCompany" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="Taluka" ColumnName="Taluka" />
-                <ScalarProperty Name="Village" ColumnName="Village" />
-                <ScalarProperty Name="Firm_Name" ColumnName="Firm_Name" />
-                <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
                 <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+                <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
+                <ScalarProperty Name="Firm_Name" ColumnName="Firm_Name" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UserCompany" ColumnName="UserCompany" />
+                <ScalarProperty Name="StreetLine2" ColumnName="StreetLine2" />
+                <ScalarProperty Name="StreetLine1" ColumnName="StreetLine1" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="RetailerLastName" ColumnName="RetailerLastName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="BankAccountNumber" ColumnName="BankAccountNumber" />
+                <ScalarProperty Name="FcmSubscriptionTopic" ColumnName="FcmSubscriptionTopic" />
+                <ScalarProperty Name="SapRetailerIdFcmToken" ColumnName="SapRetailerIdFcmToken" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Depo" ColumnName="Depo" />
+                <ScalarProperty Name="GSTNumber" ColumnName="GSTNumber" />
+                <ScalarProperty Name="SeedLicenseValidity" ColumnName="SeedLicenseValidity" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="IMEINumber" ColumnName="IMEINumber" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="PANNumber" ColumnName="PANNumber" />
+                <ScalarProperty Name="VATNumber" ColumnName="VATNumber" />
+                <ScalarProperty Name="CSTNNumber" ColumnName="CSTNNumber" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="RetailerName" ColumnName="RetailerName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserOTPInfo">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.UserOTPInfo">
               <MappingFragment StoreEntitySet="UserOTPInfo">
-                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="OTP" ColumnName="OTP" />
                 <ScalarProperty Name="GenratedDate" ColumnName="GenratedDate" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsersAddress">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.UsersAddress">
               <MappingFragment StoreEntitySet="UsersAddress">
-                <ScalarProperty Name="tr_id" ColumnName="tr_id" />
-                <ScalarProperty Name="retailer_id" ColumnName="retailer_id" />
-                <ScalarProperty Name="MobileNumberForOnline" ColumnName="MobileNumberForOnline" />
-                <ScalarProperty Name="reciver_name" ColumnName="reciver_name" />
-                <ScalarProperty Name="ship_address" ColumnName="ship_address" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="pincode" ColumnName="pincode" />
-                <ScalarProperty Name="ship_mobile" ColumnName="ship_mobile" />
-                <ScalarProperty Name="email_id" ColumnName="email_id" />
-                <ScalarProperty Name="Pan_number" ColumnName="Pan_number" />
-                <ScalarProperty Name="tr_date" ColumnName="tr_date" />
-                <ScalarProperty Name="IsPermanentAddress" ColumnName="IsPermanentAddress" />
-                <ScalarProperty Name="IsMandiUser" ColumnName="IsMandiUser" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="MobileNumberForMandi" ColumnName="MobileNumberForMandi" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsMandiUser" ColumnName="IsMandiUser" />
+                <ScalarProperty Name="IsPermanentAddress" ColumnName="IsPermanentAddress" />
+                <ScalarProperty Name="tr_date" ColumnName="tr_date" />
+                <ScalarProperty Name="Pan_number" ColumnName="Pan_number" />
+                <ScalarProperty Name="email_id" ColumnName="email_id" />
+                <ScalarProperty Name="ship_mobile" ColumnName="ship_mobile" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="ship_address" ColumnName="ship_address" />
+                <ScalarProperty Name="reciver_name" ColumnName="reciver_name" />
+                <ScalarProperty Name="MobileNumberForOnline" ColumnName="MobileNumberForOnline" />
+                <ScalarProperty Name="retailer_id" ColumnName="retailer_id" />
+                <ScalarProperty Name="tr_id" ColumnName="tr_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsersBankAccountDetails">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.UsersBankAccountDetails">
               <MappingFragment StoreEntitySet="UsersBankAccountDetails">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
-                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
-                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="IFSC_Code" ColumnName="IFSC_Code" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="IFSC_Code" ColumnName="IFSC_Code" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserWallet">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.UserWallet">
               <MappingFragment StoreEntitySet="UserWallet">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="WalletBalance" ColumnName="WalletBalance" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="WalletBalance" ColumnName="WalletBalance" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Variety_Master">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Variety_Master">
               <MappingFragment StoreEntitySet="Variety_Master">
-                <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
-                <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
                 <ScalarProperty Name="CropId" ColumnName="CropId" />
+                <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
+                <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubCategory">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
-                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
-                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Web_Mandi_usermaster">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Web_Mandi_usermaster">
               <MappingFragment StoreEntitySet="Web_Mandi_usermaster">
-                <ScalarProperty Name="tr_id" ColumnName="tr_id" />
-                <ScalarProperty Name="user_name" ColumnName="user_name" />
-                <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
-                <ScalarProperty Name="user_state" ColumnName="user_state" />
-                <ScalarProperty Name="user_role" ColumnName="user_role" />
-                <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
-                <ScalarProperty Name="user_mail" ColumnName="user_mail" />
-                <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
-                <ScalarProperty Name="sessionID" ColumnName="sessionID" />
-                <ScalarProperty Name="LockOut" ColumnName="LockOut" />
-                <ScalarProperty Name="LockStatus" ColumnName="LockStatus" />
-                <ScalarProperty Name="change_pass" ColumnName="change_pass" />
                 <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+                <ScalarProperty Name="change_pass" ColumnName="change_pass" />
+                <ScalarProperty Name="LockStatus" ColumnName="LockStatus" />
+                <ScalarProperty Name="LockOut" ColumnName="LockOut" />
+                <ScalarProperty Name="sessionID" ColumnName="sessionID" />
+                <ScalarProperty Name="IsLogin" ColumnName="IsLogin" />
+                <ScalarProperty Name="user_mail" ColumnName="user_mail" />
+                <ScalarProperty Name="user_pwd" ColumnName="user_pwd" />
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+                <ScalarProperty Name="user_state" ColumnName="user_state" />
+                <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="tr_id" ColumnName="tr_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

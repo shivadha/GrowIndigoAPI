@@ -456,6 +456,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GrowIndigoAPIDBEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Data\Mandi_Banner.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Mandi_InterestedProductForUser.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Mandi_Notification.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
@@ -513,6 +519,9 @@
     <Compile Include="Data\Taluka_Master.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\UserCategoryMapping.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\UserFeedback.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
@@ -541,12 +550,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\InterestedProductsViewModel.cs" />
     <Compile Include="Models\Log.cs" />
+    <Compile Include="Models\MandiBannerViewModel.cs" />
     <Compile Include="Models\MandiMasterData.cs" />
     <Compile Include="Models\MandiUserInfoViewModel.cs" />
     <Compile Include="Models\Mandi_OrderViewModel.cs" />
     <Compile Include="Models\MasterData.cs" />
     <Compile Include="Models\ProductMasterViewModel.cs" />
+    <Compile Include="Models\UserCategoryMappingViewModel.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\MandiUserRequirementViewModel.cs" />
     <Compile Include="Models\UsersAddressViewModel.cs" />

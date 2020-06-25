@@ -22,7 +22,11 @@ namespace GrowIndigo.Data
         public string Payment_Mode { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
         public Nullable<int> Shipping_Address_Id { get; set; }
+        public string ShippingAddress { get; set; }
         public string Order_Status { get; set; }
+        public string rzp_order_id { get; set; }
+        public string rzp_payment_status { get; set; }
+        public string rzp_payment_signature { get; set; }
         public string SelectedTotalQty { get; set; }
         public string Buyer_Name { get; set; }
         public string GeoAddress { get; set; }

@@ -51,6 +51,7 @@ namespace GrowIndigo.Models
     public class ProductFilter
     {
         public int? CropId { get; set; }
+        public Csvfile csvfile { get; set; }
         public int counter { get; set; }
         
         public string MobileNumber { get; set; }
@@ -69,6 +70,16 @@ namespace GrowIndigo.Models
         public string SellerType { get; set; }
         public string IsFilterApplied { get; set; }
         public string IsAllActiveProducts { get; set; }
+
+        public string SortProduct { get; set; }
+        public string RecentProduct { get; set; }
+        public string OldProduct { get; set; }
+        public string RecentAvailability { get; set; }
+        public string OldAvailability { get; set; }
+
+
+
+
         //public string GeoAddress { get; set; }
 
         public string Latitude { get; set; }
