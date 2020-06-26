@@ -820,7 +820,7 @@ namespace GrowIndigo.Controllers
                                 //For getting list of address from the table.
                                 products = products.Where(x => x.IsQualityTestNeeded == Quality);
                             }
-                            objFilterMandiProduct.Products = products.Skip(skip).Take(take).ToList();
+                            objFilterMandiProduct.Products = products.OrderBy(x=>x.CropStatus).Skip(skip).Take(take).ToList();
                         }
 
                         #endregion
@@ -1089,7 +1089,7 @@ namespace GrowIndigo.Controllers
                                 //For getting list of address from the table.
                                 products = products.Where(x => x.IsQualityTestNeeded == Quality);
                             }
-                            objFilterMandiProduct.Products = products.Skip(skip).Take(take).ToList();
+                            objFilterMandiProduct.Products = products.OrderBy(x => x.CropStatus).Skip(skip).Take(take).ToList();
                         }
 
                         #endregion
@@ -2457,8 +2457,7 @@ namespace GrowIndigo.Controllers
         #endregion
 
         #region Notification 
-        [HttpGet]
-        [Route("api/MandiUser/SendFCMNotificationToUsers")]
+        
         public string SendFCMNotificationToUsers(string DeviceToken="", string Message="", string Title="")
         {
             string notificationjson = string.Empty;

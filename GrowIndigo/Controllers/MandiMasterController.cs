@@ -22,7 +22,7 @@ namespace GrowIndigo.Controllers
         SuccessResponse objResponse = new SuccessResponse();
 
         [HttpGet]
-       [Authorize]
+      
         [Route("api/MandiMaster/GetCrop")]
         public HttpResponseMessage GetCrop(int CategoryId=0 )
         {
@@ -42,6 +42,7 @@ namespace GrowIndigo.Controllers
                             {
                                 CropId = i.CropId,
                                 CropName = i.CropName,
+                                CategoryImage=i.CropImage,
                                 CropImage = i.CropImage
 
                             };
@@ -75,7 +76,9 @@ namespace GrowIndigo.Controllers
                             MandiCrop objMandi_Crop = new MandiCrop()
                             {
                                 CropId = i.CropId,
-                                CropName = i.CropName
+                                CropName = i.CropName,
+                                CategoryImage = i.CropImage,
+                                CropImage = i.CropImage
 
                             };
                             objListMandiCrop.Add(objMandi_Crop);
