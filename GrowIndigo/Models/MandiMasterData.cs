@@ -21,6 +21,7 @@ namespace GrowIndigo.Models
         {
             public int CropId { get; set; }
             public string CropName { get; set; }
+            public string CropImage { get; set; }
             public string CategoryName { get; set; }
             public string CategoryId { get; set; }
             public string CategoryImage { get; set; }

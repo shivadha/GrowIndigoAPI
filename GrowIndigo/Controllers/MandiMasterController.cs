@@ -42,7 +42,7 @@ namespace GrowIndigo.Controllers
                             {
                                 CropId = i.CropId,
                                 CropName = i.CropName,
-                                CategoryImage=i.CropImage
+                                CropImage = i.CropImage
 
                             };
                             objListMandiCrop.Add(objMandi_Crop);

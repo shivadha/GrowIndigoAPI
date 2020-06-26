@@ -51,6 +51,11 @@ namespace GrowIndigo.Controllers
                 var getCategoryName = (from crop in dbContext.Crop_Master where crop.CropId == objProductMasterViewModel.CropId select crop.CategoryName).FirstOrDefault();
                 Mandi_ProductMaster objMandi_ProductMaster = new Mandi_ProductMaster();
                 string mobileNumber = objProductMasterViewModel.MobileNumber;
+
+               var  getProductDays= (from day in dbContext.Crop_Master where day.CropId == objProductMasterViewModel.CropId select day.CropAvailableDays).FirstOrDefault();
+                DateTime AfterDate = Convert.ToDateTime(objProductMasterViewModel.AvailabilityDate);
+                int EndDays = Convert.ToInt32(getProductDays);
+                var ExpireAfterDate = AfterDate.AddDays(EndDays);
                 //get mobileNumber from user table
                 var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
                 if (number != null)
@@ -61,7 +66,7 @@ namespace GrowIndigo.Controllers
                         objMandiMasterController.AddNewVariety(objProductMasterViewModel);
 
                     }
-
+                    objMandi_ProductMaster.CropEndDate = ExpireAfterDate;
                     objMandi_ProductMaster.CropId = objProductMasterViewModel.CropId;
                     objMandi_ProductMaster.CategoryName = getCategoryName;
                     objMandi_ProductMaster.VarietyId = objProductMasterViewModel.VarietyId;
@@ -2452,8 +2457,9 @@ namespace GrowIndigo.Controllers
         #endregion
 
         #region Notification 
-
-        public string SendFCMNotificationToUsers(string DeviceToken, string Message, string Title)
+        [HttpGet]
+        [Route("api/MandiUser/SendFCMNotificationToUsers")]
+        public string SendFCMNotificationToUsers(string DeviceToken="", string Message="", string Title="")
         {
             string notificationjson = string.Empty;
             if (!string.IsNullOrEmpty(DeviceToken))
@@ -2471,8 +2477,8 @@ namespace GrowIndigo.Controllers
                 //var senderId = "367667254641";
 
                 //New com.mahyco.retail.growmandi 
-                var applicationID = "AAAAo6m-UF4:APA91bGYDkE4ZxIfjZNnk6Ri5kTen6TlABCkpXR5ee-mkysTL5Z8yiPDjlSmLIlz_3cNpAHWjeR0m78VJXzm7BolzryFsqjoKBJVKZUrnGx6PXtno1qxT0r9T7kiL8debeut0kndR05y";
-                var senderId = "702927491166";
+                var applicationID = "AAAAHR1Rh10:APA91bFA0t70thUmOM3HwrX5oWd-dUI55yk_psJjbRCR0pAvSmjZKAPef1kIcKxaV6RKaL4NCd81sIS2OLcPPGfA7K6D53wz_cg7jnEGbsxKfRpWL8P2XxcQCY9Mzd6FC2pav4o2ZsSa";
+                var senderId = "125045933917";
 
 
 
