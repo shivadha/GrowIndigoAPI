@@ -48,7 +48,7 @@ namespace GrowIndigo.Controllers
                             };
                             objListMandiCrop.Add(objMandi_Crop);
                         }
-                        Mandi_CropMaster.MandiCrops = objListMandiCrop;
+                        Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x=>x.CropName).ToList();
 
                         return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                     }

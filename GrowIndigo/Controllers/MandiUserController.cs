@@ -52,7 +52,7 @@ namespace GrowIndigo.Controllers
                 Mandi_ProductMaster objMandi_ProductMaster = new Mandi_ProductMaster();
                 string mobileNumber = objProductMasterViewModel.MobileNumber;
 
-               var  getProductDays= (from day in dbContext.Crop_Master where day.CropId == objProductMasterViewModel.CropId select day.CropAvailableDays).FirstOrDefault();
+                var getProductDays = (from day in dbContext.Crop_Master where day.CropId == objProductMasterViewModel.CropId select day.CropAvailableDays).FirstOrDefault();
                 DateTime AfterDate = Convert.ToDateTime(objProductMasterViewModel.AvailabilityDate);
                 int EndDays = Convert.ToInt32(getProductDays);
                 var ExpireAfterDate = AfterDate.AddDays(EndDays);
@@ -685,28 +685,28 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            CategoryName = i.Crop_Master.CategoryName == "" ? "N/A" : i.Crop_Master.CategoryName,
-                                          // CurrentDate=DateTime.Now,
+                                           // CurrentDate=DateTime.Now,
                                            CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                           CropStatus = i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available":"Sold",
+                                           CropStatus = i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
 
 
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
-                                           
+
                                            MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                            NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                            Quantity = i.Mandi_ProductMaster.Quantity,
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
                                            Price = i.Mandi_ProductMaster.Price,
                                            ServiceTax = i.Mandi_ProductMaster.ServiceTax,
-                                        
+
 
                                            AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                            IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                           ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                           // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
                                            Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                            StateCode = i.Mandi_ProductMaster.State,
                                            DistrictCode = i.Mandi_ProductMaster.District,
@@ -715,7 +715,7 @@ namespace GrowIndigo.Controllers
                                            IsApproved = i.Mandi_ProductMaster.IsApproved,
                                            ProductPriority = i.Mandi_ProductMaster.ProductPriority,
                                            ProductDescription = !string.IsNullOrEmpty(i.Mandi_ProductMaster.ProductDescription) ? i.Mandi_ProductMaster.ProductDescription : "",
-                                           SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                           // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
                                            NewVariety = ""
 
                                        }).Where(x => x.MobileNumber != getUserMobileNumber && (x.IsActive == true && x.IsApproved == true)).OrderBy(x => x.ProductPriority == "1")
@@ -820,7 +820,8 @@ namespace GrowIndigo.Controllers
                                 //For getting list of address from the table.
                                 products = products.Where(x => x.IsQualityTestNeeded == Quality);
                             }
-                            objFilterMandiProduct.Products = products.OrderBy(x=>x.CropStatus).Skip(skip).Take(take).ToList();
+                            var ProductsOrder = products.OrderBy(x => x.CropStatus).ToList();
+                            objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(take).ToList();
                         }
 
                         #endregion
@@ -958,13 +959,13 @@ namespace GrowIndigo.Controllers
                                            NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                            Quantity = i.Mandi_ProductMaster.Quantity,
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
-                                        
+
                                            Price = i.Mandi_ProductMaster.Price,
                                            AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                            IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                           ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                           //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
                                            Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                            StateCode = i.Mandi_ProductMaster.State,
                                            DistrictCode = i.Mandi_ProductMaster.District,
@@ -972,7 +973,7 @@ namespace GrowIndigo.Controllers
                                            IsActive = i.Mandi_ProductMaster.IsActive,
                                            ProductPriority = i.Mandi_ProductMaster.ProductPriority,
                                            ProductDescription = !string.IsNullOrEmpty(i.Mandi_ProductMaster.ProductDescription) ? i.Mandi_ProductMaster.ProductDescription : "",
-                                           SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                           // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
                                            NewVariety = ""
 
                                        }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
@@ -1089,7 +1090,9 @@ namespace GrowIndigo.Controllers
                                 //For getting list of address from the table.
                                 products = products.Where(x => x.IsQualityTestNeeded == Quality);
                             }
-                            objFilterMandiProduct.Products = products.OrderBy(x => x.CropStatus).Skip(skip).Take(take).ToList();
+                            var ProductsOrder = products.OrderBy(x => x.CropStatus).ToList();
+                            //objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(take).ToList();
+                            objFilterMandiProduct.Products = ProductsOrder.ToList();
                         }
 
                         #endregion
@@ -1508,9 +1511,16 @@ namespace GrowIndigo.Controllers
 
                     objMandi_InterestedProductForUser.Id = objInterestedProductsViewModel.Id;
                     objMandi_InterestedProductForUser.Fk_MobileNumber = objInterestedProductsViewModel.Fk_MobileNumber;
-                    objMandi_InterestedProductForUser.Subject = objInterestedProductsViewModel.Subject;
-                    objMandi_InterestedProductForUser.Description = objInterestedProductsViewModel.Description;
-                    objMandi_InterestedProductForUser.CreatedDate = DateTime.Now;
+                    objMandi_InterestedProductForUser.BuyerId = objInterestedProductsViewModel.BuyerId;
+                    objMandi_InterestedProductForUser.BuyerAddress = objInterestedProductsViewModel.BuyerAddress;
+                    objMandi_InterestedProductForUser.CropName = objInterestedProductsViewModel.CropName;
+                    objMandi_InterestedProductForUser.VarietyName = objInterestedProductsViewModel.VarietyName;
+                    objMandi_InterestedProductForUser.Quantity = objInterestedProductsViewModel.Quantity;
+                    objMandi_InterestedProductForUser.QualitySpecification = objInterestedProductsViewModel.QualitySpecification;
+                    objMandi_InterestedProductForUser.DeliveryLocation = objInterestedProductsViewModel.DeliveryLocation;
+                    objMandi_InterestedProductForUser.ExpectedPrice = objInterestedProductsViewModel.ExpectedPrice;
+                    objMandi_InterestedProductForUser.IsPriceNegotiable = objInterestedProductsViewModel.IsPriceNegotiable;
+                    objMandi_InterestedProductForUser.Remarks = objInterestedProductsViewModel.Remarks;
 
 
                     var add = dbContext.Mandi_InterestedProductForUser.Add(objMandi_InterestedProductForUser);
@@ -1527,19 +1537,20 @@ namespace GrowIndigo.Controllers
                         OrderBookingViewModel objOrderBookingViewModel = new OrderBookingViewModel();
                         objOrderBookingViewModel.Buyer_Mobile = getSellerMobileNumberByNumber.MobileNumber;
 
-                       var addnotification= AddNotification(objOrderBookingViewModel, Message);
+                        var addnotification = AddNotification(objOrderBookingViewModel, Message);
                         if (addnotification == "true")
                         {
                             SendFCMNotificationToUsers(getSellerMobileNumberByNumber.DeviceToken, Message, Title);
                             return true;
                         }
-                        else {
+                        else
+                        {
 
                             return false;
-                            
+
                         }
-                      
-                    
+
+
                     }
                     else
                     {
@@ -1593,7 +1604,7 @@ namespace GrowIndigo.Controllers
                         objMandiBannerViewModel.Description = getBannerDetail.Description;
                         objMandiBannerViewModel.BannerImage = getBannerDetail.BannerImage;
                         objMandiBannerViewModel.ImageType = getBannerDetail.ImageType;
-                         
+
                         return Request.CreateResponse(HttpStatusCode.OK, objMandiBannerViewModel);
                     }
                     else
@@ -2457,8 +2468,8 @@ namespace GrowIndigo.Controllers
         #endregion
 
         #region Notification 
-        
-        public string SendFCMNotificationToUsers(string DeviceToken="", string Message="", string Title="")
+
+        public string SendFCMNotificationToUsers(string DeviceToken = "", string Message = "", string Title = "")
         {
             string notificationjson = string.Empty;
             if (!string.IsNullOrEmpty(DeviceToken))

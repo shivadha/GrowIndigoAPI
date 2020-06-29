@@ -10,10 +10,16 @@ namespace GrowIndigo.Models
 
         public long Id { get; set; }
         public string Fk_MobileNumber { get; set; }
-        public string Subject { get; set; }
-        public int Tr_Id { get; set; }
-        public string Description { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public string BuyerId { get; set; }
+        public string BuyerAddress { get; set; }
+        public string CropName { get; set; }
+        public string VarietyName { get; set; }
+        public string Quantity { get; set; }
+        public string QualitySpecification { get; set; }
+        public string DeliveryLocation { get; set; }
+        public string ExpectedPrice { get; set; }
+        public string IsPriceNegotiable { get; set; }
+        public string Remarks { get; set; }
 
     }
 }

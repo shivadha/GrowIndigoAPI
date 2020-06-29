@@ -98,7 +98,7 @@ namespace GrowIndigo.Controllers
                     body += "9.ExpectedDate: " + objEmailModel.ExpectedDate + "\r\n";
                     body += "10.IsPriceNegotiable" + objEmailModel.IsPriceNegotiable + "\r\n";
                     body += "11.Remarks" + objEmailModel.Remarks + "\r\n";
-                   
+
                     body += "\r\n";
                     body += "warm regards";
 
@@ -107,10 +107,17 @@ namespace GrowIndigo.Controllers
                     subject = "Grow Mandi App: New UserRequirement Detail ";
 
                     InterestedProductsViewModel objInterestedProductsViewModel = new InterestedProductsViewModel();
-                    objInterestedProductsViewModel.Subject = subject;
-                    objInterestedProductsViewModel.Description = body;
                     objInterestedProductsViewModel.Fk_MobileNumber = objEmailModel.BuyerId;
-                    objInterestedProductsViewModel.Tr_Id = objEmailModel.Tr_Id;
+                    objInterestedProductsViewModel.BuyerId = objEmailModel.BuyerId;
+                    objInterestedProductsViewModel.BuyerAddress = objEmailModel.BuyerAddress;
+                    objInterestedProductsViewModel.CropName = objEmailModel.CropName;
+                    objInterestedProductsViewModel.VarietyName = objEmailModel.VarietyName;
+                    objInterestedProductsViewModel.Quantity = objEmailModel.Quantity;
+                    objInterestedProductsViewModel.QualitySpecification = objEmailModel.QualitySpecification;
+                    objInterestedProductsViewModel.DeliveryLocation = objEmailModel.DeliveryLocation;
+                    objInterestedProductsViewModel.ExpectedPrice = objEmailModel.ExpectedPrice;
+                    objInterestedProductsViewModel.IsPriceNegotiable = objEmailModel.IsPriceNegotiable.ToString();
+                    objInterestedProductsViewModel.Remarks = objEmailModel.Remarks;
 
                     MailMessage maile = new MailMessage();
                     SmtpClient SmtpServere = new SmtpClient("smtp.gmail.com");
@@ -139,12 +146,12 @@ namespace GrowIndigo.Controllers
                     SmtpServere.Credentials = new System.Net.NetworkCredential("developer@growindigo.co.in", "lraoezrpruvcsrvy");
                     SmtpServere.EnableSsl = true;
                     SmtpServere.Send(maile);
-                    var addIntersProdct=  objMandiUserController.AddInterestedProductForUser(objInterestedProductsViewModel);
+                    var addIntersProdct = objMandiUserController.AddInterestedProductForUser(objInterestedProductsViewModel);
                     if (addIntersProdct == true)
                     {
                         //for sending notification to seller
                         //get seller detail by productId
-                       
+
                         objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
                         return Request.CreateResponse(HttpStatusCode.OK, objResponse);
 
@@ -189,7 +196,7 @@ namespace GrowIndigo.Controllers
                         body += "11.Seller Address" + getSellerdetails.State + " ," + getSellerdetails.Taluka + "," + getSellerdetails.Pincode + "\r\n";
                         body += "\r\n";
                         body += "warm regards";
-                       
+
 
 
                         FromMail = "developer@growindigo.co.in";
