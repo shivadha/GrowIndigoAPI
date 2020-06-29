@@ -109,6 +109,8 @@ namespace GrowIndigo.Controllers
                     InterestedProductsViewModel objInterestedProductsViewModel = new InterestedProductsViewModel();
                     objInterestedProductsViewModel.Fk_MobileNumber = objEmailModel.BuyerId;
                     objInterestedProductsViewModel.BuyerId = objEmailModel.BuyerId;
+                    objInterestedProductsViewModel.ProductId = objEmailModel.ProductId;
+                    objInterestedProductsViewModel.CreatedDate = DateTime.Now;
                     objInterestedProductsViewModel.BuyerAddress = objEmailModel.BuyerAddress;
                     objInterestedProductsViewModel.CropName = objEmailModel.CropName;
                     objInterestedProductsViewModel.VarietyName = objEmailModel.VarietyName;

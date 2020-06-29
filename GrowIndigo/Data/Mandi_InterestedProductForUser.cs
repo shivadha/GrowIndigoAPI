@@ -18,6 +18,7 @@ namespace GrowIndigo.Data
         public string Fk_MobileNumber { get; set; }
         public string BuyerId { get; set; }
         public string BuyerAddress { get; set; }
+        public string ProductId { get; set; }
         public string CropName { get; set; }
         public string VarietyName { get; set; }
         public string Quantity { get; set; }
@@ -26,6 +27,7 @@ namespace GrowIndigo.Data
         public string ExpectedPrice { get; set; }
         public string IsPriceNegotiable { get; set; }
         public string Remarks { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     
         public virtual Mandi_InterestedProductForUser Mandi_InterestedProductForUser1 { get; set; }
         public virtual Mandi_InterestedProductForUser Mandi_InterestedProductForUser2 { get; set; }

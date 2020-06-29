@@ -1,0 +1,22 @@
+2020-06-29 16:13:26,056 INFO MonitoringLogger - 
+2020-06-29 16:13:26,073 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-29 16:37:47,951 INFO MonitoringLogger - 
+2020-06-29 16:37:47,963 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-29 16:44:31,269 INFO MonitoringLogger - 
+2020-06-29 16:44:31,280 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-29 16:45:11,181 INFO MonitoringLogger - 
+2020-06-29 16:45:11,181 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-29 16:48:36,888 INFO MonitoringLogger - 
+2020-06-29 16:48:36,899 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-29 16:49:26,937 INFO MonitoringLogger - 
+2020-06-29 16:49:26,948 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-29 16:50:39,973 INFO MonitoringLogger - 
+2020-06-29 16:50:39,973 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-06-29 16:51:25,600 INFO MonitoringLogger - System.UnauthorizedAccessException: Access is denied. (Exception from HRESULT: 0x80070005 (E_ACCESSDENIED))
+   at System.Threading.WaitHandle.WaitMultiple(WaitHandle[] waitHandles, Int32 millisecondsTimeout, Boolean exitContext, Boolean WaitAll)
+   at System.Threading.WaitHandle.WaitAny(WaitHandle[] waitHandles, Int32 millisecondsTimeout, Boolean exitContext)
+   at System.Net.ConnectionPool.GetConnection(Object owningObject, GeneralAsyncDelegate asyncCallback, Int32 creationTimeout)
+   at System.Net.Mail.SmtpConnection.GetConnection(ServicePoint servicePoint)
+   at System.Net.Mail.SmtpClient.GetConnection()
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+2020-06-29 16:51:25,600 INFO MonitoringLogger - Failure sending mail.

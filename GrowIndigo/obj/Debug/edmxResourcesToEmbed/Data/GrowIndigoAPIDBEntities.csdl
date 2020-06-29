@@ -182,8 +182,17 @@
     </Key>
     <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Fk_MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BuyerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BuyerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProductId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CropName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VarietyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="QualitySpecification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpectedPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsPriceNegotiable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Mandi_InterestedProductForUser1" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_InterestedProductForUser1" />
     <NavigationProperty Name="Mandi_InterestedProductForUser2" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser1" ToRole="Mandi_InterestedProductForUser" />

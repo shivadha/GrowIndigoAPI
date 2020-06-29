@@ -62,8 +62,17 @@
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_InterestedProductForUser">
         <MappingFragment StoreEntitySet="Mandi_InterestedProductForUser">
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
+          <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
+          <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+          <ScalarProperty Name="QualitySpecification" ColumnName="QualitySpecification" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
+          <ScalarProperty Name="CropName" ColumnName="CropName" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
+          <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
           <ScalarProperty Name="Fk_MobileNumber" ColumnName="Fk_MobileNumber" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

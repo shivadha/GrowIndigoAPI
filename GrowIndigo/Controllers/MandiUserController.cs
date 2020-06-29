@@ -1512,6 +1512,8 @@ namespace GrowIndigo.Controllers
                     objMandi_InterestedProductForUser.Id = objInterestedProductsViewModel.Id;
                     objMandi_InterestedProductForUser.Fk_MobileNumber = objInterestedProductsViewModel.Fk_MobileNumber;
                     objMandi_InterestedProductForUser.BuyerId = objInterestedProductsViewModel.BuyerId;
+                    objMandi_InterestedProductForUser.ProductId = objInterestedProductsViewModel.ProductId;
+                    objMandi_InterestedProductForUser.CreatedDate = DateTime.Now;
                     objMandi_InterestedProductForUser.BuyerAddress = objInterestedProductsViewModel.BuyerAddress;
                     objMandi_InterestedProductForUser.CropName = objInterestedProductsViewModel.CropName;
                     objMandi_InterestedProductForUser.VarietyName = objInterestedProductsViewModel.VarietyName;
@@ -1532,7 +1534,7 @@ namespace GrowIndigo.Controllers
                         var getSellerMobileNumber = (from user in dbContext.Mandi_ProductMaster where user.Tr_Id == objInterestedProductsViewModel.Tr_Id select user.MobileNumber).FirstOrDefault();
                         var getSellerMobileNumberByNumber = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == getSellerMobileNumber select seller).FirstOrDefault();
 
-                        string Message = " When a buyer shows interest in the product -Dear Customer, " + getSellerMobileNumberByNumber.FullName + " Buyers from " + getSellerMobileNumberByNumber.State + "," + getSellerMobileNumberByNumber.District + " region have shown interest in your product. ";
+                        string Message = "Dear Customer, " + getSellerMobileNumberByNumber.FullName + " Buyers from " + getSellerMobileNumberByNumber.State + "," + getSellerMobileNumberByNumber.District + " region have shown interest in your product. ";
                         string Title = "Buyer is interested in your product";
                         OrderBookingViewModel objOrderBookingViewModel = new OrderBookingViewModel();
                         objOrderBookingViewModel.Buyer_Mobile = getSellerMobileNumberByNumber.MobileNumber;

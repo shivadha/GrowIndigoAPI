@@ -9,8 +9,11 @@ namespace GrowIndigo.Models
     {
 
         public long Id { get; set; }
+        public long Tr_Id { get; set; }
         public string Fk_MobileNumber { get; set; }
         public string BuyerId { get; set; }
+        public string ProductId { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
         public string BuyerAddress { get; set; }
         public string CropName { get; set; }
         public string VarietyName { get; set; }

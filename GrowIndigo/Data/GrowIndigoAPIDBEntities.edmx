@@ -65,6 +65,7 @@
           <Property Name="Fk_MobileNumber" Type="nvarchar" MaxLength="256" />
           <Property Name="BuyerId" Type="nvarchar(max)" />
           <Property Name="BuyerAddress" Type="nvarchar(max)" />
+          <Property Name="ProductId" Type="nvarchar" MaxLength="50" />
           <Property Name="CropName" Type="nvarchar(max)" />
           <Property Name="VarietyName" Type="nvarchar(max)" />
           <Property Name="Quantity" Type="nvarchar(max)" />
@@ -73,6 +74,7 @@
           <Property Name="ExpectedPrice" Type="nvarchar(max)" />
           <Property Name="IsPriceNegotiable" Type="nvarchar(max)" />
           <Property Name="Remarks" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Mandi_Notification">
           <Key>
@@ -1053,6 +1055,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Fk_MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="BuyerId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="BuyerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CropName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="VarietyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -1061,6 +1064,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="ExpectedPrice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsPriceNegotiable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Mandi_InterestedProductForUser1" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_InterestedProductForUser1" />
           <NavigationProperty Name="Mandi_InterestedProductForUser2" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser1" ToRole="Mandi_InterestedProductForUser" />
           <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_UserInfo" />
@@ -1808,6 +1812,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <EntitySetMapping Name="Mandi_InterestedProductForUser">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_InterestedProductForUser">
               <MappingFragment StoreEntitySet="Mandi_InterestedProductForUser">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
                 <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
@@ -1816,6 +1821,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
                 <ScalarProperty Name="CropName" ColumnName="CropName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="BuyerAddress" ColumnName="BuyerAddress" />
                 <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
                 <ScalarProperty Name="Fk_MobileNumber" ColumnName="Fk_MobileNumber" />
