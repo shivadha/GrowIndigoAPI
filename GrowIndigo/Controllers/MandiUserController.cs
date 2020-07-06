@@ -1948,7 +1948,7 @@ namespace GrowIndigo.Controllers
                 var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
                 if (number != null)
                 {
-                    string otpNumber = mobileNumber == "8888899999" ? "123456" : objCommonClasses.GenerateOTP();
+                    string otpNumber = mobileNumber == "8888899999" ? "1234" : objCommonClasses.GenerateOTP();
 
                     //otpNumber = objCommonClasses.GenerateOTP();
                     bool sendOTP = mobileNumber == "8888899999" ? true : objCommonClasses.SendOTP(otpNumber, mobileNumber);

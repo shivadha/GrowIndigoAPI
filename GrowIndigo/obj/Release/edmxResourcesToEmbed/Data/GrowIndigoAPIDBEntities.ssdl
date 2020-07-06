@@ -58,8 +58,17 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Fk_MobileNumber" Type="nvarchar" MaxLength="256" />
-    <Property Name="Subject" Type="nvarchar" MaxLength="500" />
-    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="BuyerId" Type="nvarchar(max)" />
+    <Property Name="BuyerAddress" Type="nvarchar(max)" />
+    <Property Name="ProductId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CropName" Type="nvarchar(max)" />
+    <Property Name="VarietyName" Type="nvarchar(max)" />
+    <Property Name="Quantity" Type="nvarchar(max)" />
+    <Property Name="QualitySpecification" Type="nvarchar(max)" />
+    <Property Name="DeliveryLocation" Type="nvarchar(max)" />
+    <Property Name="ExpectedPrice" Type="nvarchar(max)" />
+    <Property Name="IsPriceNegotiable" Type="nvarchar(max)" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Mandi_Notification">

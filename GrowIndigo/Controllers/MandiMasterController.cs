@@ -24,12 +24,18 @@ namespace GrowIndigo.Controllers
         [HttpGet]
       
         [Route("api/MandiMaster/GetCrop")]
-        public HttpResponseMessage GetCrop(int CategoryId=0 )
+        public HttpResponseMessage GetCrop(int CategoryId=0 ,int Counter=0)
         {
             try
             {
+                int counter = Counter;
+                int take = 6;
+                int skip = counter;
+
                 if (CategoryId == 0)
                 {
+
+                  
                     Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
                     List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
                     //For getting list of crop  from the table.
@@ -48,7 +54,7 @@ namespace GrowIndigo.Controllers
                             };
                             objListMandiCrop.Add(objMandi_Crop);
                         }
-                        Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x=>x.CropName).ToList();
+                        Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x=>x.CropName).Skip(skip).Take(take).ToList();
 
                         return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                     }
@@ -83,7 +89,7 @@ namespace GrowIndigo.Controllers
                             };
                             objListMandiCrop.Add(objMandi_Crop);
                         }
-                        Mandi_CropMaster.MandiCrops = objListMandiCrop;
+                        Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList(); ;
 
                         return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                     }
