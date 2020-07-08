@@ -121,7 +121,10 @@
       <PropertyRef Name="CategoryId" />
     </Key>
     <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="CategoryImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="RoleId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Roles" Relationship="GrowIndigoV2Model.FK_Category_UserRoles" FromRole="Category" ToRole="Roles" />

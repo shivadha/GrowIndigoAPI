@@ -22,9 +22,9 @@ namespace GrowIndigo.Controllers
         SuccessResponse objResponse = new SuccessResponse();
 
         [HttpGet]
-      
+
         [Route("api/MandiMaster/GetCrop")]
-        public HttpResponseMessage GetCrop(int CategoryId=0 ,int Counter=0)
+        public HttpResponseMessage GetCrop(int CategoryId = 0, int Counter = 0)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace GrowIndigo.Controllers
                 if (CategoryId == 0)
                 {
 
-                  
+
                     Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
                     List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
                     //For getting list of crop  from the table.
@@ -48,13 +48,13 @@ namespace GrowIndigo.Controllers
                             {
                                 CropId = i.CropId,
                                 CropName = i.CropName,
-                                CategoryImage=i.CropImage,
+                                CategoryImage = i.CropImage,
                                 CropImage = i.CropImage
 
                             };
                             objListMandiCrop.Add(objMandi_Crop);
                         }
-                        Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x=>x.CropName).Skip(skip).Take(take).ToList();
+                        Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList();
 
                         return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                     }
@@ -69,10 +69,10 @@ namespace GrowIndigo.Controllers
                 {
                     Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
                     List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
-                  
-                        var categoryIdString = CategoryId.ToString();
-                      
-                   
+
+                    var categoryIdString = CategoryId.ToString();
+
+
                     //For getting list of crop  from the table.
                     var getCropbyCategoryId = (from crop in dbContext.Crop_Master where crop.CategoryId == categoryIdString select crop).ToList();
                     if (getCropbyCategoryId != null)
@@ -114,36 +114,34 @@ namespace GrowIndigo.Controllers
             }
         }
 
+
         [HttpGet]
         //[Authorize]
-        [Route("api/MandiMaster/GetAllCategory")]
-        public HttpResponseMessage GetAllCategory()
+        [Route("api/MandiMaster/GetAllRoles")]
+        public HttpResponseMessage GetAllRoles()
         {
             try
             {
-                Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
-                List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
 
-                var getCategory = (from category in dbContext.Category select category).ToList();
-                if (getCategory != null)
+                MandiUserRoles Mandi_CropMaster = new MandiUserRoles();
+                List<MandiRolesForUser> objListMandiCrop = new List<MandiRolesForUser>();
+
+                var getRoles = (from role in dbContext.Roles select role).ToList();
+                if (getRoles != null)
                 {
 
 
-                    foreach (var i in getCategory)
+                    foreach (var i in getRoles)
                     {
-                        MandiCrop objMandi_Crop = new MandiCrop()
+                        MandiRolesForUser objMandi_Crop = new MandiRolesForUser()
                         {
-                            CategoryName = i.CategoryName,
-                            CategoryId = i.CategoryId,
-                            CategoryImage=i.CategoryImage
+                            RoleName = i.RoleName
+                           
 
 
                         };
                         objListMandiCrop.Add(objMandi_Crop);
                     }
-                    Mandi_CropMaster.MandiCrops = objListMandiCrop;
-
-                    return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                 }
                 else
                 {
@@ -151,7 +149,15 @@ namespace GrowIndigo.Controllers
                     return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                 }
 
-               ;
+
+
+
+
+                return Request.CreateResponse(HttpStatusCode.OK, "Success");
+
+
+
+
 
             }
             catch (Exception ex)
@@ -163,7 +169,194 @@ namespace GrowIndigo.Controllers
             }
         }
 
-      
+
+
+        [HttpGet]
+        //[Authorize]
+        [Route("api/MandiMaster/GetAllCategory")]
+        public HttpResponseMessage GetAllCategory(string culture="")
+        {
+            try
+            { 
+
+                
+                Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
+                List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
+                if (culture == "En")
+                {
+                    var getCategory = (from category in dbContext.Category select category).ToList();
+                    if (getCategory != null)
+                    {
+
+
+                        foreach (var i in getCategory)
+                        {
+                            MandiCrop objMandi_Crop = new MandiCrop()
+                            {
+                                CategoryName = i.CategoryName,
+                                CategoryId = i.CategoryId,
+                                CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+
+
+                            };
+                            objListMandiCrop.Add(objMandi_Crop);
+                        }
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed to get categories";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+                else if (culture == "Hi")
+                {
+                    var getCategory = (from category in dbContext.Category select category).ToList();
+                    if (getCategory != null)
+                    {
+                        foreach (var i in getCategory)
+                        {
+                            MandiCrop objMandi_Crop = new MandiCrop()
+                            {
+                                CategoryName = i.Hi_CategoryName,
+                                CategoryId = i.CategoryId,
+                                CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+
+
+                            };
+                            objListMandiCrop.Add(objMandi_Crop);
+                        }
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed to get categories";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+                else if (culture == "Mr")
+                {
+                    var getCategory = (from category in dbContext.Category select category).ToList();
+                    if (getCategory != null)
+                    {
+                        foreach (var i in getCategory)
+                        {
+                            MandiCrop objMandi_Crop = new MandiCrop()
+                            {
+                                CategoryName = i.Mr_CategoryName,
+                                CategoryId = i.CategoryId,
+                                CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+
+
+                            };
+                            objListMandiCrop.Add(objMandi_Crop);
+                        }
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed to get categories";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+                else if (culture == "Te")
+                {
+                    var getCategory = (from category in dbContext.Category select category).ToList();
+                    if (getCategory != null)
+                    {
+                        foreach (var i in getCategory)
+                        {
+                            MandiCrop objMandi_Crop = new MandiCrop()
+                            {
+                                CategoryName = i.Te_CategoryName,
+                                CategoryId = i.CategoryId,
+                                CategoryImage ="https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+
+
+                            };
+                            objListMandiCrop.Add(objMandi_Crop);
+                        }
+
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed to get categories";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+
+
+                Mandi_CropMaster.MandiCrops = objListMandiCrop;
+
+                return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
+
+
+
+                
+
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiMasterController", "GetCategory");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+        }
+
+
+        [HttpGet]
+        //[Authorize]
+        [Route("api/MandiMaster/GetAllCategories")]
+        public HttpResponseMessage GetAllCategories()
+        {
+            try
+            {
+                
+                Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
+                List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
+                
+                    var getCategory = (from category in dbContext.Category select category).ToList();
+                    if (getCategory != null)
+                    {
+
+
+                        foreach (var i in getCategory)
+                        {
+                            MandiCrop objMandi_Crop = new MandiCrop()
+                            {
+                                CategoryName = i.CategoryName,
+                                CategoryId = i.CategoryId,
+                                CategoryImage = i.CategoryImage
+
+
+                            };
+                            objListMandiCrop.Add(objMandi_Crop);
+                        }
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed to get categories";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                
+               
+
+
+                Mandi_CropMaster.MandiCrops = objListMandiCrop;
+
+                return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
+
+
+
+
+
+            }
+            catch (Exception ex)
+            { 
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiMasterController", "GetCategory");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.InnerException);
+            }
+        }
 
         [HttpGet]
         [Authorize]

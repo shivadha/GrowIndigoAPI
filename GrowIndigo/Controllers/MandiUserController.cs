@@ -1523,6 +1523,7 @@ namespace GrowIndigo.Controllers
                     objMandi_InterestedProductForUser.ExpectedPrice = objInterestedProductsViewModel.ExpectedPrice;
                     objMandi_InterestedProductForUser.IsPriceNegotiable = objInterestedProductsViewModel.IsPriceNegotiable;
                     objMandi_InterestedProductForUser.Remarks = objInterestedProductsViewModel.Remarks;
+                    objMandi_InterestedProductForUser.Tr_Id = objInterestedProductsViewModel.Tr_Id;
 
 
                     var add = dbContext.Mandi_InterestedProductForUser.Add(objMandi_InterestedProductForUser);
@@ -1964,7 +1965,11 @@ namespace GrowIndigo.Controllers
                         dbContext.UserOTPInfo.Add(objUserOTPInfo);
                         dbContext.SaveChanges();
                         number.DeviceToken = objMandiUserMobileNumber.DeviceToken;
-                        dbContext.SaveChanges();
+                       var i= dbContext.SaveChanges();
+                        if (i != 0)
+                        {
+                            UpdateDeviceToken(objMandiUserMobileNumber);
+                        }
 
                         objResponse.Message = "Success";
                         return Request.CreateResponse(HttpStatusCode.OK, objResponse);
@@ -1991,6 +1996,52 @@ namespace GrowIndigo.Controllers
         }
 
 
+        [HttpPost]
+        //[Authorize]
+        [Route("api/MandiUser/UpdateDeviceToken")]
+        public HttpResponseMessage UpdateDeviceToken(MandiUserVerification objMandiUserVerification)
+        {
+            try
+            {
+                Mandi_UserInfo objMandi_UserInfo = new Mandi_UserInfo();
+                string mobileNumber = objMandiUserVerification.MobileNumber;
+                //get mobileNumber from user table
+                var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                if (number != null)
+                {
+                    objMandi_UserInfo.DeviceToken = objMandiUserVerification.DeviceToken;
+
+
+                    dbContext.Mandi_UserInfo.Add(objMandi_UserInfo);
+                    var i = dbContext.SaveChanges();
+                    if (i != 0)
+                    {
+                        string message = "Your Device Toekn has been  successfully saved";
+
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+                else
+                {
+                    objResponse.Message = "Mobile number not exists.";
+                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "DeviceTokenNotSaved");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+
+        }
 
 
 
@@ -2943,6 +2994,8 @@ namespace GrowIndigo.Controllers
             }
 
         }
+
+
 
 
         #endregion

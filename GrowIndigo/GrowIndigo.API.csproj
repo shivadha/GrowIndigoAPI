@@ -549,6 +549,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoriesViewModel.cs" />
+    <Compile Include="Models\DeviceTokenViewModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\InterestedProductsViewModel.cs" />
     <Compile Include="Models\Log.cs" />
@@ -589,6 +591,11 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Categories\Cotton.png" />
+    <Content Include="Images\Categories\download.png" />
+    <Content Include="Images\Categories\Fruits.png" />
+    <Content Include="Images\Categories\Grains.png" />
+    <Content Include="Images\Categories\Vegetables.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />

@@ -10,7 +10,10 @@
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
           <Property Name="CategoryImage" Type="nvarchar(max)" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
@@ -992,7 +995,10 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CategoryImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Roles" Relationship="GrowIndigoV2Model.FK_Category_UserRoles" FromRole="Category" ToRole="Roles" />
@@ -1757,6 +1763,9 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="CategoryImage" ColumnName="CategoryImage" />
+                <ScalarProperty Name="Te_CategoryName" ColumnName="Te_CategoryName" />
+                <ScalarProperty Name="Mr_CategoryName" ColumnName="Mr_CategoryName" />
+                <ScalarProperty Name="Hi_CategoryName" ColumnName="Hi_CategoryName" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
               </MappingFragment>

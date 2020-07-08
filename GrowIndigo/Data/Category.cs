@@ -24,6 +24,9 @@ namespace GrowIndigo.Data
     
         public string CategoryId { get; set; }
         public string CategoryName { get; set; }
+        public string Hi_CategoryName { get; set; }
+        public string Mr_CategoryName { get; set; }
+        public string Te_CategoryName { get; set; }
         public string CategoryImage { get; set; }
         public int RoleId { get; set; }
     

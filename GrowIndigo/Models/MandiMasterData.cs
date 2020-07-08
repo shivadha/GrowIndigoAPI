@@ -17,6 +17,14 @@ namespace GrowIndigo.Models
             public List<MandiRoles> Roles { get; set; }
         }
 
+        public class MandiRolesForUser
+        {
+            
+                   public string RoleName { get; set; }
+        }
+
+
+
         public class MandiCrop
         {
             public int CropId { get; set; }
@@ -32,6 +40,10 @@ namespace GrowIndigo.Models
             public List<MandiCrop> MandiCrops { get; set; }
         }
 
+        public class MandiUserRoles
+        {
+            public List<MandiRoles> MandiRoles { get; set; }
+        }
         public class MandiVariety
         {
             public int VarietyId { get; set; }

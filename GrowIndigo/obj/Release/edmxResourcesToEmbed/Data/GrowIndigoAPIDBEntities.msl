@@ -6,6 +6,9 @@
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="CategoryImage" ColumnName="CategoryImage" />
+          <ScalarProperty Name="Te_CategoryName" ColumnName="Te_CategoryName" />
+          <ScalarProperty Name="Mr_CategoryName" ColumnName="Mr_CategoryName" />
+          <ScalarProperty Name="Hi_CategoryName" ColumnName="Hi_CategoryName" />
           <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
         </MappingFragment>

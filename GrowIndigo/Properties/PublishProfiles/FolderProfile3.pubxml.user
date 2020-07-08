@@ -91,10 +91,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2018 11:03:48</publishTime>
     </File>
     <File Include="bin/GrowIndigo.dll">
-      <publishTime>07/01/2020 15:13:09</publishTime>
+      <publishTime>07/07/2020 14:54:28</publishTime>
     </File>
     <File Include="bin/GrowIndigo.pdb">
-      <publishTime>07/01/2020 15:13:09</publishTime>
+      <publishTime>07/07/2020 14:54:28</publishTime>
     </File>
     <File Include="bin/jose-jwt.dll">
       <publishTime>04/20/2017 18:01:22</publishTime>
@@ -793,7 +793,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/09/2019 13:01:10</publishTime>
     </File>
     <File Include="Data/GrowIndigoAPIDBEntities.edmx.diagram">
-      <publishTime>06/29/2020 16:40:06</publishTime>
+      <publishTime>07/06/2020 19:21:38</publishTime>
     </File>
     <File Include="Data/GrowIndigoDBEntities.edmx.diagram">
       <publishTime>12/26/2019 18:21:07</publishTime>
@@ -818,6 +818,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Global.asax">
       <publishTime>12/09/2019 13:01:10</publishTime>
+    </File>
+    <File Include="Images/Categories/Cotton.png">
+      <publishTime>07/07/2020 14:34:54</publishTime>
+    </File>
+    <File Include="Images/Categories/download.png">
+      <publishTime>07/07/2020 14:34:44</publishTime>
+    </File>
+    <File Include="Images/Categories/Fruits.png">
+      <publishTime>07/07/2020 14:34:02</publishTime>
+    </File>
+    <File Include="Images/Categories/Grains.png">
+      <publishTime>07/07/2020 14:33:43</publishTime>
+    </File>
+    <File Include="Images/Categories/Vegetables.png">
+      <publishTime>07/07/2020 14:34:22</publishTime>
     </File>
     <File Include="libman.json">
       <publishTime>02/26/2020 19:40:36</publishTime>

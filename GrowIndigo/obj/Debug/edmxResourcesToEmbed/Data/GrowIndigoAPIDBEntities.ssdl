@@ -5,7 +5,10 @@
       <PropertyRef Name="CategoryId" />
     </Key>
     <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
     <Property Name="CategoryImage" Type="nvarchar(max)" />
     <Property Name="RoleId" Type="int" Nullable="false" />
   </EntityType>
