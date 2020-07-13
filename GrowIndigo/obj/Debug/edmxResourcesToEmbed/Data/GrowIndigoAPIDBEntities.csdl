@@ -121,7 +121,7 @@
       <PropertyRef Name="CategoryId" />
     </Key>
     <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -138,8 +138,14 @@
     </Key>
     <Property Name="CropId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CropAvailableDays" Type="Int32" />
+    <Property Name="Hi_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Mr_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Te_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CropAvailableDays" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="CropImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
@@ -253,7 +259,10 @@
     </Key>
     <Property Name="Tr_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CropId" Type="Int32" />
-    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="VarietyId" Type="Int32" />
     <Property Name="CropEndDate" Type="DateTime" Precision="3" />
     <Property Name="ProductAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -278,7 +287,10 @@
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="ProductPriority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="SecondaryProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="ProductDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Hi_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Mr_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Te_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="IsApproved" Type="Boolean" />
     <Property Name="MaximumPrice" Type="Int32" />
     <Property Name="MinimumPrice" Type="Int32" />

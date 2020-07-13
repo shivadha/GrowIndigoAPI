@@ -10,7 +10,7 @@
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
           <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
           <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
           <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
@@ -23,8 +23,14 @@
           </Key>
           <Property Name="CropId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CropName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CropAvailableDays" Type="int" />
+          <Property Name="Hi_CropName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Mr_CropName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Te_CropName" Type="nvarchar" MaxLength="500" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="CropAvailableDays" Type="nchar" MaxLength="10" />
           <Property Name="CropImage" Type="nvarchar(max)" />
           <Property Name="CategoryId" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -131,7 +137,10 @@
           </Key>
           <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CropId" Type="int" />
-          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
           <Property Name="VarietyId" Type="int" />
           <Property Name="CropEndDate" Type="datetime" />
           <Property Name="ProductAddress" Type="nvarchar" MaxLength="256" />
@@ -156,7 +165,10 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="ProductPriority" Type="varchar" MaxLength="20" />
           <Property Name="SecondaryProductImage" Type="varchar(max)" />
-          <Property Name="ProductDescription" Type="nvarchar" MaxLength="256" />
+          <Property Name="ProductDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hi_ProductDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Mr_ProductDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Te_ProductDescription" Type="nvarchar" MaxLength="500" />
           <Property Name="IsApproved" Type="bit" />
           <Property Name="MaximumPrice" Type="int" />
           <Property Name="MinimumPrice" Type="int" />
@@ -995,7 +1007,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             <PropertyRef Name="CategoryId" />
           </Key>
           <Property Name="CategoryId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -1012,8 +1024,14 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </Key>
           <Property Name="CropId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CropAvailableDays" Type="Int32" />
+          <Property Name="Hi_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mr_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Te_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CropAvailableDays" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="CropImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
@@ -1127,7 +1145,10 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           </Key>
           <Property Name="Tr_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CropId" Type="Int32" />
-          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="VarietyId" Type="Int32" />
           <Property Name="CropEndDate" Type="DateTime" Precision="3" />
           <Property Name="ProductAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -1152,7 +1173,10 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="ProductPriority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="SecondaryProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ProductDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Hi_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mr_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Te_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsApproved" Type="Boolean" />
           <Property Name="MaximumPrice" Type="Int32" />
           <Property Name="MinimumPrice" Type="Int32" />
@@ -1752,7 +1776,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1777,7 +1801,13 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CropImage" ColumnName="CropImage" />
                 <ScalarProperty Name="CropAvailableDays" ColumnName="CropAvailableDays" />
+                <ScalarProperty Name="Te_CategoryName" ColumnName="Te_CategoryName" />
+                <ScalarProperty Name="Mr_CategoryName" ColumnName="Mr_CategoryName" />
+                <ScalarProperty Name="Hi_CategoryName" ColumnName="Hi_CategoryName" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Te_CropName" ColumnName="Te_CropName" />
+                <ScalarProperty Name="Mr_CropName" ColumnName="Mr_CropName" />
+                <ScalarProperty Name="Hi_CropName" ColumnName="Hi_CropName" />
                 <ScalarProperty Name="CropName" ColumnName="CropName" />
                 <ScalarProperty Name="CropId" ColumnName="CropId" />
               </MappingFragment>
@@ -1893,6 +1923,9 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
                 <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
                 <ScalarProperty Name="MaximumPrice" ColumnName="MaximumPrice" />
                 <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="Te_ProductDescription" ColumnName="Te_ProductDescription" />
+                <ScalarProperty Name="Mr_ProductDescription" ColumnName="Mr_ProductDescription" />
+                <ScalarProperty Name="Hi_ProductDescription" ColumnName="Hi_ProductDescription" />
                 <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
                 <ScalarProperty Name="SecondaryProductImage" ColumnName="SecondaryProductImage" />
                 <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
@@ -1918,6 +1951,9 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
                 <ScalarProperty Name="ProductAddress" ColumnName="ProductAddress" />
                 <ScalarProperty Name="CropEndDate" ColumnName="CropEndDate" />
                 <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
+                <ScalarProperty Name="Te_CategoryName" ColumnName="Te_CategoryName" />
+                <ScalarProperty Name="Mr_CategoryName" ColumnName="Mr_CategoryName" />
+                <ScalarProperty Name="Hi_CategoryName" ColumnName="Hi_CategoryName" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CropId" ColumnName="CropId" />
                 <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />

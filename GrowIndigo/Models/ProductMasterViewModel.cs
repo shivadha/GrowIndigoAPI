@@ -21,6 +21,7 @@ namespace GrowIndigo.Models
         public Nullable<System.DateTime> CropEndDate { get; set; }
         public Nullable<System.DateTime> CurrentDate { get; set; }
         public string MobileNumber { get; set; }
+        public string FilterCategoryName { get; set; }
         public string NetBankingId { get; set; }
         public string Quantity { get; set; }
         public string CropStatus { get; set; }

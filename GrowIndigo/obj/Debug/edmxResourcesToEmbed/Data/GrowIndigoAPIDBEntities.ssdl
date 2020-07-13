@@ -5,7 +5,7 @@
       <PropertyRef Name="CategoryId" />
     </Key>
     <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
     <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
     <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
     <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
@@ -18,8 +18,14 @@
     </Key>
     <Property Name="CropId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CropName" Type="nvarchar" MaxLength="50" />
-    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
-    <Property Name="CropAvailableDays" Type="int" />
+    <Property Name="Hi_CropName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mr_CropName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Te_CropName" Type="nvarchar" MaxLength="500" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="CropAvailableDays" Type="nchar" MaxLength="10" />
     <Property Name="CropImage" Type="nvarchar(max)" />
     <Property Name="CategoryId" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -126,7 +132,10 @@
     </Key>
     <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CropId" Type="int" />
-    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
     <Property Name="VarietyId" Type="int" />
     <Property Name="CropEndDate" Type="datetime" />
     <Property Name="ProductAddress" Type="nvarchar" MaxLength="256" />
@@ -151,7 +160,10 @@
     <Property Name="IsActive" Type="bit" />
     <Property Name="ProductPriority" Type="varchar" MaxLength="20" />
     <Property Name="SecondaryProductImage" Type="varchar(max)" />
-    <Property Name="ProductDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hi_ProductDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mr_ProductDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Te_ProductDescription" Type="nvarchar" MaxLength="500" />
     <Property Name="IsApproved" Type="bit" />
     <Property Name="MaximumPrice" Type="int" />
     <Property Name="MinimumPrice" Type="int" />

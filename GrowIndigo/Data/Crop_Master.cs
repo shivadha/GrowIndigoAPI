@@ -22,8 +22,14 @@ namespace GrowIndigo.Data
     
         public int CropId { get; set; }
         public string CropName { get; set; }
+        public string Hi_CropName { get; set; }
+        public string Mr_CropName { get; set; }
+        public string Te_CropName { get; set; }
         public string CategoryName { get; set; }
-        public Nullable<int> CropAvailableDays { get; set; }
+        public string Hi_CategoryName { get; set; }
+        public string Mr_CategoryName { get; set; }
+        public string Te_CategoryName { get; set; }
+        public string CropAvailableDays { get; set; }
         public string CropImage { get; set; }
         public string CategoryId { get; set; }
     
