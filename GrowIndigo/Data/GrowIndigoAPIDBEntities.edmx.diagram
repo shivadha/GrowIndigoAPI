@@ -12,30 +12,30 @@
         <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_Banner" Width="1.5" PointX="8.75" PointY="1" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_InterestedProductForUser" Width="1.5" PointX="6" PointY="4.25" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_Notification" Width="1.5" PointX="10.75" PointY="1" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_OrderDetails" Width="1.5" PointX="14.75" PointY="1" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_OrderProductDetails" Width="1.5" PointX="14.75" PointY="7" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_OrderDetails" Width="1.5" PointX="14.75" PointY="14" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_OrderProductDetails" Width="1.5" PointX="11.75" PointY="10" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_ProductMaster" Width="1.5" PointX="7.5" PointY="13.25" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_Requirement" Width="1.5" PointX="16.75" PointY="1" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_Roles" Width="1.5" PointX="3.75" PointY="11.125" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserEnquiry" Width="1.5" PointX="14.75" PointY="11" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserFeedback" Width="1.5" PointX="16.75" PointY="6" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserEnquiry" Width="1.5" PointX="12.75" PointY="1" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserFeedback" Width="1.5" PointX="16.75" PointY="14" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserInfo" Width="1.5" PointX="3.75" PointY="1.5" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserRequirement" Width="1.5" PointX="16.75" PointY="9" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserRequirement" Width="1.5" PointX="16.75" PointY="6" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserRoles" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderDetails" Width="1.5" PointX="12" PointY="13.375" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderErrorLogDetails" Width="1.5" PointX="12" PointY="9.625" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderProductDetails" Width="1.5" PointX="14.25" PointY="14.125" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.Product_Master" Width="1.5" PointX="16.75" PointY="12" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.Roles" Width="1.5" PointX="16.75" PointY="17" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderDetails" Width="1.5" PointX="12" PointY="4.625" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderErrorLogDetails" Width="1.5" PointX="12" PointY="14.5" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderProductDetails" Width="1.5" PointX="14.25" PointY="5.375" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Product_Master" Width="1.5" PointX="16.75" PointY="17" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Roles" Width="1.5" PointX="17.75" PointY="9" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.State_Master" Width="1.5" PointX="18.75" PointY="1" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Taluka_Master" Width="1.5" PointX="0.75" PointY="19" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.UserCategoryMapping" Width="1.5" PointX="6" PointY="9.25" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.UserFeedback" Width="1.5" PointX="12" PointY="18.125" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UserFeedback" Width="1.5" PointX="12" PointY="21.25" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.UserInfo" Width="1.5" PointX="9.75" PointY="7" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.UserOTPInfo" Width="1.5" PointX="2.75" PointY="19" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.UsersAddress" Width="1.5" PointX="12" PointY="3.625" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UsersAddress" Width="1.5" PointX="15" PointY="8.625" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.UsersBankAccountDetails" Width="1.5" PointX="6" PointY="27.25" />
-        <EntityTypeShape EntityType="GrowIndigoV1Model.UserWallet" Width="1.5" PointX="12" PointY="21.125" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UserWallet" Width="1.5" PointX="12" PointY="18.125" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Variety_Master" Width="1.5" PointX="5.25" PointY="23.875" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.SubCategory" Width="1.5" PointX="3" PointY="7.375" />
         <EntityTypeShape EntityType="GrowIndigoV1Model.Web_Mandi_usermaster" Width="1.5" PointX="18.75" PointY="4" />

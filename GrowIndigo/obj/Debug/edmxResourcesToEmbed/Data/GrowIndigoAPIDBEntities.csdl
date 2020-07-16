@@ -151,13 +151,13 @@
     </Key>
     <Property Name="CropId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Hi_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Mr_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Te_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CategoryId" Type="Int64" />
     <Property Name="CropAvailableDays" Type="Int32" />
     <Property Name="CropImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Hi_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Mr_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Te_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Category" Relationship="GrowIndigoV1Model.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
     <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoV1Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master" ToRole="Crop_Master1" />
     <NavigationProperty Name="Crop_Master2" Relationship="GrowIndigoV1Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master1" ToRole="Crop_Master" />

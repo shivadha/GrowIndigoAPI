@@ -24,13 +24,13 @@
           </Key>
           <Property Name="CropId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CropName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hi_CropName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Mr_CropName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Te_CropName" Type="nvarchar" MaxLength="500" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
           <Property Name="CategoryId" Type="bigint" />
           <Property Name="CropAvailableDays" Type="int" />
           <Property Name="CropImage" Type="nvarchar(max)" />
-          <Property Name="Hi_CropName" Type="nvarchar" MaxLength="500" />
-          <Property Name="Mr_CropName" Type="nvarchar" MaxLength="500" />
-          <Property Name="Te_CropName" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="District_Master">
           <Key>
@@ -1080,13 +1080,13 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           </Key>
           <Property Name="CropId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CropName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hi_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mr_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Te_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CategoryId" Type="Int64" />
           <Property Name="CropAvailableDays" Type="Int32" />
           <Property Name="CropImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Hi_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Mr_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Te_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="GrowIndigoV1Model.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
           <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoV1Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master" ToRole="Crop_Master1" />
           <NavigationProperty Name="Crop_Master2" Relationship="GrowIndigoV1Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master1" ToRole="Crop_Master" />
@@ -1891,13 +1891,13 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <EntitySetMapping Name="Crop_Master">
             <EntityTypeMapping TypeName="GrowIndigoV1Model.Crop_Master">
               <MappingFragment StoreEntitySet="Crop_Master">
-                <ScalarProperty Name="Te_CropName" ColumnName="Te_CropName" />
-                <ScalarProperty Name="Mr_CropName" ColumnName="Mr_CropName" />
-                <ScalarProperty Name="Hi_CropName" ColumnName="Hi_CropName" />
                 <ScalarProperty Name="CropImage" ColumnName="CropImage" />
                 <ScalarProperty Name="CropAvailableDays" ColumnName="CropAvailableDays" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Te_CropName" ColumnName="Te_CropName" />
+                <ScalarProperty Name="Mr_CropName" ColumnName="Mr_CropName" />
+                <ScalarProperty Name="Hi_CropName" ColumnName="Hi_CropName" />
                 <ScalarProperty Name="CropName" ColumnName="CropName" />
                 <ScalarProperty Name="CropId" ColumnName="CropId" />
               </MappingFragment>

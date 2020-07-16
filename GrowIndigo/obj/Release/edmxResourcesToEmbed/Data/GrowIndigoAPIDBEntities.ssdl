@@ -19,13 +19,13 @@
     </Key>
     <Property Name="CropId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CropName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Hi_CropName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mr_CropName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Te_CropName" Type="nvarchar" MaxLength="500" />
     <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
     <Property Name="CategoryId" Type="bigint" />
     <Property Name="CropAvailableDays" Type="int" />
     <Property Name="CropImage" Type="nvarchar(max)" />
-    <Property Name="Hi_CropName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Mr_CropName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Te_CropName" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="District_Master">
     <Key>
