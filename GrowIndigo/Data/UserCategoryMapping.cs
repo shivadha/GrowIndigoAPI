@@ -16,7 +16,7 @@ namespace GrowIndigo.Data
     {
         public long Id { get; set; }
         public string Fk_MobileNumber { get; set; }
-        public string CategoryId { get; set; }
+        public Nullable<long> CategoryId { get; set; }
         public string CategoryName { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }

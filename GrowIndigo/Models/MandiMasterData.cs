@@ -33,7 +33,7 @@ namespace GrowIndigo.Models
             public string CategoryName { get; set; }
             public string EnCategoryName { get; set; }
             public string EnCropName { get; set; }
-            public string CategoryId { get; set; }
+            public long ? CategoryId { get; set; }
             public string CategoryImage { get; set; }
 
         }

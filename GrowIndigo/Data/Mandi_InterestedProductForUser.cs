@@ -27,7 +27,6 @@ namespace GrowIndigo.Data
         public string ExpectedPrice { get; set; }
         public string IsPriceNegotiable { get; set; }
         public string Remarks { get; set; }
-        public long Tr_Id { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
     
         public virtual Mandi_InterestedProductForUser Mandi_InterestedProductForUser1 { get; set; }

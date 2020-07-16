@@ -14,6 +14,8 @@ namespace GrowIndigo.Models
         public string CategoryName { get; set; }
         public int? VarietyId { get; set; }
         public string CropName { get; set; }
+        public long ? SCategoryId { get; set; }
+
         public string VarietyName { get; set; }
         public string NewVariety { get; set; }
         public string ProductAddress { get; set; } 
@@ -80,6 +82,7 @@ namespace GrowIndigo.Models
         public int Tr_Id { get; set; }
         public int? CropId { get; set; }
         public int? VarietyId { get; set; }
+        public long? CategoryId { get; set; }
         public string CropName { get; set; }
         public string CategoryName { get; set; }
 

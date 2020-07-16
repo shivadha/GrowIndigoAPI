@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="GrowIndigoV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="GrowIndigoV1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="CategoryId" />
     </Key>
-    <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryId" Type="bigint" Nullable="false" />
     <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
-    <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="CategoryImage" Type="nvarchar(max)" />
     <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="cat_id" Type="int" />
+    <Property Name="CategoryImage" Type="nvarchar(max)" />
+    <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="Crop_Master">
     <Key>
@@ -18,16 +19,13 @@
     </Key>
     <Property Name="CropId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CropName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="bigint" />
+    <Property Name="CropAvailableDays" Type="int" />
+    <Property Name="CropImage" Type="nvarchar(max)" />
     <Property Name="Hi_CropName" Type="nvarchar" MaxLength="500" />
     <Property Name="Mr_CropName" Type="nvarchar" MaxLength="500" />
     <Property Name="Te_CropName" Type="nvarchar" MaxLength="500" />
-    <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="CropAvailableDays" Type="nchar" MaxLength="10" />
-    <Property Name="CropImage" Type="nvarchar(max)" />
-    <Property Name="CategoryId" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="District_Master">
     <Key>
@@ -132,10 +130,7 @@
     </Key>
     <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CropId" Type="int" />
-    <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Hi_CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Mr_CategoryName" Type="nvarchar" MaxLength="500" />
-    <Property Name="Te_CategoryName" Type="nvarchar" MaxLength="500" />
+    <Property Name="CategoryId" Type="bigint" />
     <Property Name="VarietyId" Type="int" />
     <Property Name="CropEndDate" Type="datetime" />
     <Property Name="ProductAddress" Type="nvarchar" MaxLength="256" />
@@ -160,13 +155,13 @@
     <Property Name="IsActive" Type="bit" />
     <Property Name="ProductPriority" Type="varchar" MaxLength="20" />
     <Property Name="SecondaryProductImage" Type="varchar(max)" />
-    <Property Name="ProductDescription" Type="nvarchar" MaxLength="500" />
-    <Property Name="Hi_ProductDescription" Type="nvarchar" MaxLength="500" />
-    <Property Name="Mr_ProductDescription" Type="nvarchar" MaxLength="500" />
-    <Property Name="Te_ProductDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="256" />
     <Property Name="IsApproved" Type="bit" />
     <Property Name="MaximumPrice" Type="int" />
     <Property Name="MinimumPrice" Type="int" />
+    <Property Name="Hi_ProductDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mr_ProductDescription" Type="nvarchar" MaxLength="500" />
+    <Property Name="Te_ProductDescription" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="Mandi_Requirement">
     <Key>
@@ -331,7 +326,7 @@
     <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SubCategory">
     <Key>
       <PropertyRef Name="SubCategoryId" />
@@ -340,7 +335,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a prim
     <Property Name="SubCategoryId" Type="int" Nullable="false" />
     <Property Name="SubCategoryName" Type="nvarchar" MaxLength="50" />
     <Property Name="ImageUrl" Type="nvarchar" MaxLength="256" />
-    <Property Name="CategoryId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Taluka_Master">
     <Key>
@@ -356,7 +351,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a prim
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Fk_MobileNumber" Type="nvarchar" MaxLength="256" />
-    <Property Name="CategoryId" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="bigint" />
     <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="ModifiedDate" Type="datetime" />
@@ -479,7 +474,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a prim
     <Property Name="CropId" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Web_Mandi_usermaster">
     <Key>
       <PropertyRef Name="tr_id" />
@@ -498,18 +493,6 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <Property Name="change_pass" Type="int" />
     <Property Name="userStatus" Type="varchar" MaxLength="50" />
   </EntityType>
-  <Association Name="FK_Category_UserRoles">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
-    <End Role="Category" Type="Self.Category" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="RoleId" />
-      </Principal>
-      <Dependent Role="Category">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Crop_Master_Category">
     <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
     <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="*" />
@@ -555,6 +538,54 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
       </Principal>
       <Dependent Role="Mandi_InterestedProductForUser">
         <PropertyRef Name="Fk_MobileNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_ProductMaster_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Mandi_ProductMaster">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_ProductMaster_Crop_Master">
+    <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="0..1" />
+    <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Crop_Master">
+        <PropertyRef Name="CropId" />
+      </Principal>
+      <Dependent Role="Mandi_ProductMaster">
+        <PropertyRef Name="CropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_ProductMaster_Mandi_UserInfo">
+    <End Role="Crop_Master" Type="Self.Crop_Master" Multiplicity="0..1" />
+    <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Crop_Master">
+        <PropertyRef Name="CropId" />
+      </Principal>
+      <Dependent Role="Mandi_ProductMaster">
+        <PropertyRef Name="CropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_ProductMaster_Variety_Master">
+    <End Role="Variety_Master" Type="Self.Variety_Master" Multiplicity="0..1" />
+    <End Role="Mandi_ProductMaster" Type="Self.Mandi_ProductMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Variety_Master">
+        <PropertyRef Name="VarietyId" />
+      </Principal>
+      <Dependent Role="Mandi_ProductMaster">
+        <PropertyRef Name="VarietyId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -738,7 +769,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GrowIndigoV2ModelStoreContainer">
+  <EntityContainer Name="GrowIndigoV1ModelStoreContainer">
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Crop_Master" EntityType="Self.Crop_Master" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />
@@ -796,10 +827,6 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     [Web_Mandi_usermaster].[userStatus] AS [userStatus]
     FROM [dbo].[Web_Mandi_usermaster] AS [Web_Mandi_usermaster]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_Category_UserRoles" Association="Self.FK_Category_UserRoles">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="Category" EntitySet="Category" />
-    </AssociationSet>
     <AssociationSet Name="FK_Crop_Master_Category" Association="Self.FK_Crop_Master_Category">
       <End Role="Category" EntitySet="Category" />
       <End Role="Crop_Master" EntitySet="Crop_Master" />
@@ -815,6 +842,22 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo" Association="Self.FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
       <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
       <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_ProductMaster_Category" Association="Self.FK_Mandi_ProductMaster_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_ProductMaster_Crop_Master" Association="Self.FK_Mandi_ProductMaster_Crop_Master">
+      <End Role="Crop_Master" EntitySet="Crop_Master" />
+      <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_UserInfo" Association="Self.FK_Mandi_ProductMaster_Mandi_UserInfo">
+      <End Role="Crop_Master" EntitySet="Crop_Master" />
+      <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_ProductMaster_Variety_Master" Association="Self.FK_Mandi_ProductMaster_Variety_Master">
+      <End Role="Variety_Master" EntitySet="Variety_Master" />
+      <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
     </AssociationSet>
     <AssociationSet Name="FK_Mandi_UserRoles_Mandi_Roles" Association="Self.FK_Mandi_UserRoles_Mandi_Roles">
       <End Role="Mandi_Roles" EntitySet="Mandi_Roles" />

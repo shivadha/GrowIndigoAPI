@@ -54,6 +54,7 @@ namespace GrowIndigo.Models
         public Csvfile csvfile { get; set; }
         public int counter { get; set; }
         public string culture { get; set; }
+        public string SCategoryId { get; set; }
         public string MobileNumber { get; set; }
         public int? VarietyId { get; set;}
         public string State { get; set; }

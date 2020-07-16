@@ -14,10 +14,18 @@ namespace GrowIndigo.Data
     
     public partial class Variety_Master
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Variety_Master()
+        {
+            this.Mandi_ProductMaster = new HashSet<Mandi_ProductMaster>();
+        }
+    
         public int VarietyId { get; set; }
         public string VarietyName { get; set; }
         public int CropId { get; set; }
     
         public virtual Crop_Master Crop_Master { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mandi_ProductMaster> Mandi_ProductMaster { get; set; }
     }
 }

@@ -18,21 +18,24 @@ namespace GrowIndigo.Data
         public Category()
         {
             this.Crop_Master = new HashSet<Crop_Master>();
+            this.Mandi_ProductMaster = new HashSet<Mandi_ProductMaster>();
             this.SubCategory = new HashSet<SubCategory>();
             this.UserCategoryMapping = new HashSet<UserCategoryMapping>();
         }
     
-        public string CategoryId { get; set; }
+        public long CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public string Hi_CategoryName { get; set; }
-        public string Mr_CategoryName { get; set; }
-        public string Te_CategoryName { get; set; }
-        public string CategoryImage { get; set; }
         public int RoleId { get; set; }
+        public Nullable<int> cat_id { get; set; }
+        public string CategoryImage { get; set; }
+        public string Te_CategoryName { get; set; }
+        public string Mr_CategoryName { get; set; }
+        public string Hi_CategoryName { get; set; }
     
-        public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Crop_Master> Crop_Master { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mandi_ProductMaster> Mandi_ProductMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubCategory> SubCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

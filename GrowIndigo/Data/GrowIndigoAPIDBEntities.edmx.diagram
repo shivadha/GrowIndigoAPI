@@ -4,61 +4,64 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="40523803c8244628a510813eeaead4bc" Name="Diagram1">
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Category" Width="1.5" PointX="3.75" PointY="34.625" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Crop_Master" Width="1.5" PointX="6" PointY="32.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.District_Master" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.ErrorLogs" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_Banner" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_InterestedProductForUser" Width="1.5" PointX="3" PointY="28.625" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_Notification" Width="1.5" PointX="7.75" PointY="4.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_OrderDetails" Width="1.5" PointX="7.75" PointY="7.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_OrderProductDetails" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_ProductMaster" Width="1.5" PointX="9.75" PointY="4.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_Requirement" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_Roles" Width="1.5" PointX="3.75" PointY="1.375" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_UserEnquiry" Width="1.5" PointX="11.75" PointY="5.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_UserFeedback" Width="1.5" PointX="11.75" PointY="8.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_UserInfo" Width="1.5" PointX="0.75" PointY="17" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_UserRequirement" Width="1.5" PointX="11.75" PointY="11.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Mandi_UserRoles" Width="1.5" PointX="6" PointY="14.25" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.OrderDetails" Width="1.5" PointX="3" PointY="4.25" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.OrderErrorLogDetails" Width="1.5" PointX="3" PointY="17.125" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.OrderProductDetails" Width="1.5" PointX="5.25" PointY="5" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Product_Master" Width="1.5" PointX="13.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Roles" Width="1.5" PointX="1.5" PointY="35.375" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.State_Master" Width="1.5" PointX="13.75" PointY="5.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Taluka_Master" Width="1.5" PointX="13.75" PointY="8.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.UserCategoryMapping" Width="1.5" PointX="6" PointY="17.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.UserFeedback" Width="1.5" PointX="3" PointY="9.125" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.UserInfo" Width="1.5" PointX="0.75" PointY="6.625" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.UserOTPInfo" Width="1.5" PointX="8.75" PointY="13.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.UsersAddress" Width="1.5" PointX="3" PointY="12" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.UsersBankAccountDetails" Width="1.5" PointX="3" PointY="24.375" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.UserWallet" Width="1.5" PointX="3" PointY="20.75" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Variety_Master" Width="1.5" PointX="8.25" PointY="34" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.SubCategory" Width="1.5" PointX="6" PointY="37.625" />
-        <EntityTypeShape EntityType="GrowIndigoV2Model.Web_Mandi_usermaster" Width="1.5" PointX="13.75" PointY="11.75" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_Category_UserRoles" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_Crop_Master_Category" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_SubCategory_Category" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_UserCategoryMapping_Category" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_Crop_Master_Crop_Master" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_Variety_Master_Crop_Master" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_Roles" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_UserCategoryMapping_Mandi_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_UsersAddress_Mandi_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_UsersBankAccountDetails_Mandi_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_OrderDetails_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_OrderProductDetails_OrderDetails" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_OrderErrorLogDetails_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_UserCategoryMapping_UserCategoryMapping" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_UserFeedback_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_UsersAddress_UserInfo" />
-        <AssociationConnector Association="GrowIndigoV2Model.FK_UserWallet_UserInfo" />
+      <Diagram DiagramId="aa4919cd858849a8a9db4d7e0fdc9394" Name="Diagram1">
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Category" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Crop_Master" Width="1.5" PointX="3" PointY="13.875" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.District_Master" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.ErrorLogs" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_Banner" Width="1.5" PointX="8.75" PointY="1" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_InterestedProductForUser" Width="1.5" PointX="6" PointY="4.25" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_Notification" Width="1.5" PointX="10.75" PointY="1" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_OrderDetails" Width="1.5" PointX="14.75" PointY="1" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_OrderProductDetails" Width="1.5" PointX="14.75" PointY="7" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_ProductMaster" Width="1.5" PointX="7.5" PointY="13.25" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_Requirement" Width="1.5" PointX="16.75" PointY="1" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_Roles" Width="1.5" PointX="3.75" PointY="11.125" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserEnquiry" Width="1.5" PointX="14.75" PointY="11" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserFeedback" Width="1.5" PointX="16.75" PointY="6" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserInfo" Width="1.5" PointX="3.75" PointY="1.5" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserRequirement" Width="1.5" PointX="16.75" PointY="9" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Mandi_UserRoles" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderDetails" Width="1.5" PointX="12" PointY="13.375" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderErrorLogDetails" Width="1.5" PointX="12" PointY="9.625" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.OrderProductDetails" Width="1.5" PointX="14.25" PointY="14.125" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Product_Master" Width="1.5" PointX="16.75" PointY="12" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Roles" Width="1.5" PointX="16.75" PointY="17" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.State_Master" Width="1.5" PointX="18.75" PointY="1" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Taluka_Master" Width="1.5" PointX="0.75" PointY="19" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UserCategoryMapping" Width="1.5" PointX="6" PointY="9.25" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UserFeedback" Width="1.5" PointX="12" PointY="18.125" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UserInfo" Width="1.5" PointX="9.75" PointY="7" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UserOTPInfo" Width="1.5" PointX="2.75" PointY="19" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UsersAddress" Width="1.5" PointX="12" PointY="3.625" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UsersBankAccountDetails" Width="1.5" PointX="6" PointY="27.25" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.UserWallet" Width="1.5" PointX="12" PointY="21.125" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Variety_Master" Width="1.5" PointX="5.25" PointY="23.875" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.SubCategory" Width="1.5" PointX="3" PointY="7.375" />
+        <EntityTypeShape EntityType="GrowIndigoV1Model.Web_Mandi_usermaster" Width="1.5" PointX="18.75" PointY="4" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Crop_Master_Category" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Mandi_ProductMaster_Category" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_SubCategory_Category" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_UserCategoryMapping_Category" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Crop_Master_Crop_Master" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Mandi_ProductMaster_Crop_Master" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Mandi_ProductMaster_Mandi_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Variety_Master_Crop_Master" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Mandi_ProductMaster_Variety_Master" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Mandi_UserRoles_Mandi_Roles" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_Mandi_UserRoles_Mandi_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_UserCategoryMapping_Mandi_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_UsersAddress_Mandi_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_UsersBankAccountDetails_Mandi_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_OrderDetails_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_OrderProductDetails_OrderDetails" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_OrderErrorLogDetails_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_UserCategoryMapping_UserCategoryMapping" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_UserFeedback_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_UsersAddress_UserInfo" />
+        <AssociationConnector Association="GrowIndigoV1Model.FK_UserWallet_UserInfo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

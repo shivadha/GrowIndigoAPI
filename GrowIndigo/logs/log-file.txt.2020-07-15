@@ -1,0 +1,66 @@
+2020-07-15 18:46:29,732 INFO MonitoringLogger - System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1,State:0,Class:20
+2020-07-15 18:46:29,790 INFO MonitoringLogger - The underlying provider failed on Open.
+2020-07-15 18:48:23,639 INFO MonitoringLogger - System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 26 - Error Locating Server/Instance Specified)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   at System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   at System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:-1,State:0,Class:20
+2020-07-15 18:48:23,658 INFO MonitoringLogger - The underlying provider failed on Open.
+2020-07-15 19:41:19,403 INFO MonitoringLogger - 
+2020-07-15 19:41:19,414 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 19:41:56,810 INFO MonitoringLogger - 
+2020-07-15 19:41:56,810 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 19:49:30,255 INFO MonitoringLogger - 
+2020-07-15 19:49:30,255 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 19:53:24,916 INFO MonitoringLogger - 
+2020-07-15 19:53:24,927 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 19:53:38,387 INFO MonitoringLogger - 
+2020-07-15 19:53:38,387 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 19:55:00,125 INFO MonitoringLogger - 
+2020-07-15 19:55:00,125 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 20:00:37,192 INFO MonitoringLogger - 
+2020-07-15 20:00:37,192 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 20:02:43,979 INFO MonitoringLogger - 
+2020-07-15 20:02:43,979 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 20:04:36,533 INFO MonitoringLogger - 
+2020-07-15 20:04:36,543 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 20:05:37,780 INFO MonitoringLogger - 
+2020-07-15 20:05:37,793 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 20:06:45,817 INFO MonitoringLogger - 
+2020-07-15 20:06:45,817 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-07-15 20:08:47,171 INFO MonitoringLogger - 
+2020-07-15 20:08:47,182 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetCategoryNameBasedonCategoryId(System.String, System.String)' method, and this method cannot be translated into a store expression.

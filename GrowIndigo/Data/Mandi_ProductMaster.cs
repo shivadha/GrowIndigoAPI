@@ -16,10 +16,7 @@ namespace GrowIndigo.Data
     {
         public int Tr_Id { get; set; }
         public Nullable<int> CropId { get; set; }
-        public string CategoryName { get; set; }
-        public string Hi_CategoryName { get; set; }
-        public string Mr_CategoryName { get; set; }
-        public string Te_CategoryName { get; set; }
+        public Nullable<long> CategoryId { get; set; }
         public Nullable<int> VarietyId { get; set; }
         public Nullable<System.DateTime> CropEndDate { get; set; }
         public string ProductAddress { get; set; }
@@ -45,11 +42,16 @@ namespace GrowIndigo.Data
         public string ProductPriority { get; set; }
         public string SecondaryProductImage { get; set; }
         public string ProductDescription { get; set; }
-        public string Hi_ProductDescription { get; set; }
-        public string Mr_ProductDescription { get; set; }
-        public string Te_ProductDescription { get; set; }
         public Nullable<bool> IsApproved { get; set; }
         public Nullable<int> MaximumPrice { get; set; }
         public Nullable<int> MinimumPrice { get; set; }
+        public string Hi_ProductDescription { get; set; }
+        public string Mr_ProductDescription { get; set; }
+        public string Te_ProductDescription { get; set; }
+    
+        public virtual Category Category { get; set; }
+        public virtual Crop_Master Crop_Master { get; set; }
+        public virtual Crop_Master Crop_Master1 { get; set; }
+        public virtual Variety_Master Variety_Master { get; set; }
     }
 }

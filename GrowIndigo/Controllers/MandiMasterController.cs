@@ -194,7 +194,7 @@ namespace GrowIndigo.Controllers
 
                     if (culture == "En")
                     {
-                        var categoryIdString = CategoryId.ToString();
+                        var categoryIdString = CategoryId;
 
 
                         //For getting list of crop  from the table.
@@ -226,7 +226,7 @@ namespace GrowIndigo.Controllers
                     }
                     else if (culture == "Hi")
                     {
-                        var categoryIdString = CategoryId.ToString();
+                        var categoryIdString = CategoryId;
 
 
                         //For getting list of crop  from the table.
@@ -258,7 +258,7 @@ namespace GrowIndigo.Controllers
                     }
                     else if (culture == "Mr")
                     {
-                        var categoryIdString = CategoryId.ToString();
+                        var categoryIdString = CategoryId;
 
 
                         //For getting list of crop  from the table.
@@ -290,7 +290,7 @@ namespace GrowIndigo.Controllers
                     }
                     else if (culture == "Te")
                     {
-                        var categoryIdString = CategoryId.ToString();
+                        var categoryIdString = CategoryId;
 
 
                         //For getting list of crop  from the table.
@@ -321,7 +321,7 @@ namespace GrowIndigo.Controllers
                     }
                     else
                     {
-                        var categoryIdString = CategoryId.ToString();
+                        var categoryIdString = CategoryId;
 
 
                         //For getting list of crop  from the table.
