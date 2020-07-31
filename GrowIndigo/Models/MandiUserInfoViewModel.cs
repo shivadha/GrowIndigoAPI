@@ -59,6 +59,7 @@ namespace GrowIndigo.Models
         public int? VarietyId { get; set;}
         public string State { get; set; }
         public string District { get; set; }
+        public bool FilterByCropId { get; set; }
         public string Taluka { get; set; }
 
         //public string AvailabilityDate { get; set; }

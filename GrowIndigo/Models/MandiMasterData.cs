@@ -31,9 +31,14 @@ namespace GrowIndigo.Models
             public string CropName { get; set; }
             public string CropImage { get; set; }
             public string CategoryName { get; set; }
+            public string Hi_CropName { get; set; }
+            public string Mr_CropName { get; set; }
+            public string Te_CropName { get; set; }
             public string EnCategoryName { get; set; }
             public string EnCropName { get; set; }
             public long ? CategoryId { get; set; }
+
+       
             public string CategoryImage { get; set; }
 
         }

@@ -1,0 +1,10 @@
+2020-07-27 14:11:27,936 INFO MonitoringLogger - 
+2020-07-27 14:11:27,950 INFO MonitoringLogger - Value cannot be null.
+Parameter name: source
+2020-07-27 14:13:45,960 INFO MonitoringLogger - 
+2020-07-27 14:13:45,960 INFO MonitoringLogger - Value cannot be null.
+Parameter name: source
+2020-07-27 14:14:15,544 INFO MonitoringLogger - 
+2020-07-27 14:14:15,544 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-07-27 14:14:26,653 INFO MonitoringLogger - 
+2020-07-27 14:14:26,654 INFO MonitoringLogger - Object reference not set to an instance of an object.

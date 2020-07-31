@@ -16,6 +16,7 @@ namespace GrowIndigo.Models
         public string subject { get; set; }
         [Required]
         public string message { get; set; }
+        public string Culture { get; set; }
         public int orderId { get; set; }
         public string ProductId { get; set; }
         public int IntProductId { get; set; }

@@ -1,0 +1,8 @@
+2020-07-24 14:51:24,430 INFO MonitoringLogger - 
+2020-07-24 14:51:24,444 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-07-24 14:52:11,782 INFO MonitoringLogger - 
+2020-07-24 14:52:11,783 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-07-24 15:21:45,059 INFO MonitoringLogger - 
+2020-07-24 15:21:45,069 INFO MonitoringLogger - The entity or complex type 'GrowIndigoV1Model.Crop_Master' cannot be constructed in a LINQ to Entities query.
+2020-07-24 15:24:28,098 INFO MonitoringLogger - 
+2020-07-24 15:24:28,109 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'Int32 ToInt32(System.Object)' method, and this method cannot be translated into a store expression.

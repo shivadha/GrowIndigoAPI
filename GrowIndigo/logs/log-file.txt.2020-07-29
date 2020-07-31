@@ -1,0 +1,2 @@
+2020-07-29 16:48:47,867 INFO MonitoringLogger - 
+2020-07-29 16:48:47,879 INFO MonitoringLogger - Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.

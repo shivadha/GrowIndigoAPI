@@ -550,6 +550,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoriesViewModel.cs" />
+    <Compile Include="Models\CropMasterViewModel.cs" />
     <Compile Include="Models\DeviceTokenViewModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\InterestedProductsViewModel.cs" />
@@ -560,6 +561,7 @@
     <Compile Include="Models\Mandi_OrderViewModel.cs" />
     <Compile Include="Models\MasterData.cs" />
     <Compile Include="Models\ProductMasterViewModel.cs" />
+    <Compile Include="Models\SearchViewModelForProducts.cs" />
     <Compile Include="Models\UserCategoryMappingViewModel.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\MandiUserRequirementViewModel.cs" />

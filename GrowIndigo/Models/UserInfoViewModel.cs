@@ -140,6 +140,9 @@ namespace GrowIndigo.Models
         public long Id { get; set; }
         public string Fk_MobileNumber { get; set; }
         public long ? CategoryId { get; set; }
+        public long? SCategoryId { get; set; }
+       
+        public int? FCropId { get; set; }
         public string CategoryName { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
 

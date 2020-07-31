@@ -67,10 +67,19 @@ namespace GrowIndigo.Models
         public List<ProductMasterViewModel> Products { get; set; }
 
     }
-    
+
+    public class SearchViewModel
+    {
+        //public IQueryable<ProductMasterViewModel> Products { get; set; }
+        public List<SearchViewModelForProducts> Products { get; set; }
+
+    }
+
+
     public class ProductDetail
     {
         public string MobileNumber { get; set; }
+        public string culture  { get; set; }
         public int Tr_Id { get; set; }
 
 
