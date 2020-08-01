@@ -45,6 +45,7 @@ namespace GrowIndigo.Data
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<OrderErrorLogDetails> OrderErrorLogDetails { get; set; }
         public virtual DbSet<OrderProductDetails> OrderProductDetails { get; set; }
+        public virtual DbSet<ProdcutsSold> ProdcutsSold { get; set; }
         public virtual DbSet<Product_Master> Product_Master { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<State_Master> State_Master { get; set; }

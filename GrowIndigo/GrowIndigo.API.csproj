@@ -504,6 +504,9 @@
     <Compile Include="Data\OrderProductDetails.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\ProdcutsSold.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Product_Master.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>

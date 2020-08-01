@@ -424,7 +424,17 @@ namespace GrowIndigo.Controllers
                     var getNewProduct = (from product in dbContext.Mandi_ProductMaster where product.CropId !=null select product.CropId).Distinct().ToList();
                     if (model.CropAvail == true)
                     {
-                        var crop = dbContext.Mandi_ProductMaster.Where(x => x.CropId != null &&( x.CropId  == x.Crop_Master.CropId)  && getNewProduct.Contains(x.CropId)).Select(y => new MandiCrop { CropId=(int)y.CropId, CropName= y.Crop_Master.CropName,CropImage= y.Crop_Master.CropImage, CategoryId= y.CategoryId, Hi_CropName=y.Crop_Master.Hi_CropName,Mr_CropName=y.Crop_Master.Mr_CropName,Te_CropName=y.Crop_Master.Te_CropName}).Distinct().ToList();
+                        var crop = dbContext.Mandi_ProductMaster.Where(x => x.CropId != null &&( x.CropId  == x.Crop_Master.CropId)  && getNewProduct.Contains(x.CropId)).Select(y => new MandiCrop
+                        {
+                            CropId =(int)y.CropId,
+                            CropName = y.Crop_Master.CropName,
+                            CropImage = y.Crop_Master.CropImage,
+                            CategoryId = y.CategoryId,
+                            Hi_CropName =y.Crop_Master.Hi_CropName,
+                            Mr_CropName =y.Crop_Master.Mr_CropName,
+                            Te_CropName =y.Crop_Master.Te_CropName,
+                            CropStatus=y.CropEndDate == null ? "Sold" :y.CropEndDate >= DateTime.Now ? "Available" : "Sold",
+                        }).Distinct().Where(x=>x.CropStatus=="Available").ToList();
                         //filter for crop by categories
 
                         var cropCategories = crop.OrderBy(x => x.CropName).ToList();
@@ -450,9 +460,6 @@ namespace GrowIndigo.Controllers
                     }
                     else
                     {
-
-
-
 
                         //For getting list of crop  from the table.
                        

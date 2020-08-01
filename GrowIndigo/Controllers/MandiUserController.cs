@@ -803,7 +803,7 @@ namespace GrowIndigo.Controllers
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                           CropStatus = i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
+                                           CropStatus = i.Mandi_ProductMaster.CropEndDate==null?"Sold": i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -982,7 +982,7 @@ namespace GrowIndigo.Controllers
                             // var availableProductsOrder = products.Where(x => x.CropStatus=="Available").ToList();
                             //  var soldProductsOrder = products.Where(x => x.CropStatus == "Sold").Take(10).ToList();
                             //  var ProductsOrder = availableProductsOrder.Concat(soldProductsOrder).OrderBy(x => x.CropStatus).ToList();
-                            var ProductsOrder = products.OrderBy(x => x.CropStatus).ToList();
+                            var ProductsOrder = products.Where(x => x.CropStatus=="Available").ToList();
                             objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(take).ToList();
                         }
 
@@ -1117,7 +1117,7 @@ namespace GrowIndigo.Controllers
                                            CropName = i.Crop_Master.CropName,
 
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //        FilterCategoryName = i.Category_Master.CategoryName,
+                                           // FilterCategoryName = i.Category_Master.CategoryName,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            VarietyName = i.Variety_Master.VarietyName,
@@ -1125,7 +1125,7 @@ namespace GrowIndigo.Controllers
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
                                            MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                            CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                           CropStatus = i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
+                                           CropStatus = i.Mandi_ProductMaster.CropEndDate == null ? "Sold" : i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
                                            NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                            Quantity = i.Mandi_ProductMaster.Quantity,
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
@@ -1306,11 +1306,13 @@ namespace GrowIndigo.Controllers
                                 //For getting list of address from the table.
                                 products = products.Where(x => x.IsQualityTestNeeded == Quality);
                             }
-                            var availableProductsOrder = products.Where(x => x.CropStatus == "Available").ToList();
-                            var soldProductsOrder = products.Where(x => x.CropStatus == "Sold").Take(10).ToList();
-                            var ProductsOrder = availableProductsOrder.Concat(soldProductsOrder).OrderBy(x => x.CropStatus).ToList();
+                            //var availableProductsOrder = products.Where(x => x.CropStatus == "Available").ToList();
+                            //var soldProductsOrder = products.Where(x => x.CropStatus == "Sold").Take(10).ToList();
+                            //var ProductsOrder = availableProductsOrder.Concat(soldProductsOrder).OrderBy(x => x.CropStatus).ToList();
+                            //objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(take).ToList();
+                            var ProductsOrder = products.Where(x => x.CropStatus == "Available").ToList();
                             objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(take).ToList();
-                          
+
                         }
 
                         #endregion
@@ -1429,6 +1431,1232 @@ namespace GrowIndigo.Controllers
         }
 
 
+        //to get allsold Products
+        [HttpPost]
+        // [Authorize]
+        [Route("api/MandiUser/GetAllSoldProduct")]
+        public HttpResponseMessage GetAllSoldProduct(ProductFilter objProductFilter)
+        {
+            try
+            {
+                var ServerPath = ConfigurationManager.AppSettings["ServerPath"];
+                int counter = objProductFilter.counter;
+               int take = 6;
+                int skip = counter;
+
+                var categoryId = objProductFilter.SCategoryId;
+                var culture = objProductFilter.culture;
+                MandiProduct objListMandiProduct = new MandiProduct();
+                List<ProductMasterViewModel> objListProductMasterViewModel = new List<ProductMasterViewModel>();
+                var getUser = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == objProductFilter.MobileNumber select user).FirstOrDefault();
+                string mobileNumber = objProductFilter.MobileNumber;
+                var getUserMobileNumber = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user.MobileNumber).FirstOrDefault();
+                var getOrderHistoryDetail = (from product in dbContext.Mandi_OrderDetails where product.Buyer_Mobile == objProductFilter.MobileNumber && product.TransactionStatus == "Submitted" || product.TransactionStatus == "SUCCESS" select product).ToList();
+                FilterMandiProduct objFilterMandiProduct = new FilterMandiProduct();
+                List<ProductMasterViewModel> listProducts = new List<ProductMasterViewModel>();
+
+
+                //to get Seller's own filter/unfiltered products (Dashboard)
+                if (objProductFilter.IsAllActiveProducts == "false" && getUser.UserType == "Sell")
+                {
+
+                    #region Query
+
+                    var MobileNumber = objProductFilter.MobileNumber;
+
+                    //to check if product is already bought by user or not 
+                    if (getOrderHistoryDetail == null || getOrderHistoryDetail.Count == 0)
+                    {
+                        var products = dbContext.Mandi_ProductMaster
+                                  .Join(dbContext.Crop_Master, cd => cd.CropId, cus => cus.CropId, (cd, cus)
+                                  => new { Mandi_ProductMaster = cd, Crop_Master = cus })
+                                  .Join(dbContext.Variety_Master, x => x.Mandi_ProductMaster.VarietyId, cr => cr.VarietyId, (x, cr)
+                                  => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr }).Join(dbContext.Category, c => c.Mandi_ProductMaster.CategoryId, cat => cat.CategoryId, (c, cat)
+                                       => new { c.Mandi_ProductMaster, c.Crop_Master, c.Variety_Master, Category_Master = cat }).Select(i => new ProductMasterViewModel()
+                                       {
+
+                                           Tr_Id = i.Mandi_ProductMaster.Tr_Id,
+                                           CropId = i.Mandi_ProductMaster.CropId,
+                                           VarietyId = i.Mandi_ProductMaster.VarietyId,
+                                           CropName = i.Crop_Master.CropName,
+                                           SCategoryId = i.Crop_Master.CategoryId,
+                                           //FilterCategoryName = i.Category_Master.CategoryName,
+                                           FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
+                                           ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
+
+                                           VarietyName = i.Variety_Master.VarietyName,
+                                           ProductAddress = i.Mandi_ProductMaster.ProductAddress,
+                                           GeoAddress = i.Mandi_ProductMaster.GeoAddress,
+
+                                           MobileNumber = i.Mandi_ProductMaster.MobileNumber,
+                                           NetBankingId = i.Mandi_ProductMaster.NetBankingId,
+                                           Quantity = i.Mandi_ProductMaster.Quantity,
+                                           QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
+                                           Price = i.Mandi_ProductMaster.Price,
+                                           ServiceTax = i.Mandi_ProductMaster.ServiceTax,
+
+                                           AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
+                                           PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
+                                           IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
+                                           IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
+
+                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                           StateCode = i.Mandi_ProductMaster.State,
+                                           DistrictCode = i.Mandi_ProductMaster.District,
+                                           TalukaCode = i.Mandi_ProductMaster.Taluka,
+                                           IsActive = i.Mandi_ProductMaster.IsActive,
+                                           ProductPriority = i.Mandi_ProductMaster.ProductPriority,
+                                           ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
+                                           SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                           NewVariety = ""
+
+                                       }).Where(x => x.MobileNumber == getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
+                                     .OrderBy(x => x.ProductPriority == "2")
+                                     .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
+                        #endregion
+
+                        #region filters
+                        if (objProductFilter.CropId != null)
+                        {
+                            //For getting list of Crop from the table.
+                            products = products.Where(x => x.CropId == objProductFilter.CropId);
+                        }
+                        if (objProductFilter.VarietyId != null)
+                        {
+                            //For getting list of Variety from the table.
+                            products = products.Where(x => x.VarietyId == objProductFilter.VarietyId);
+                        }
+                        if (!string.IsNullOrEmpty(objProductFilter.State))
+                        {
+                            //For getting list of State from the table.
+                            products = products.Where(x => x.StateCode == objProductFilter.State);
+
+                        }
+                        if (!string.IsNullOrEmpty(objProductFilter.District))
+                        {
+                            //For getting list of District from the table.
+                            products = products.Where(x => x.DistrictCode == objProductFilter.District);
+                        }
+
+                        if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                        {
+                            //For getting list of Taluka from the table.
+                            products = products.Where(x => x.TalukaCode == objProductFilter.Taluka);
+
+                        }
+
+                        if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                        {
+                            var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                            var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                            products = products.Where(x => x.Price >= minPrice && x.Price <= maxPrice);
+
+                        }
+                        if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                        {
+                            //For getting list of Quantity from the table.
+                            products = products.Where(x => x.Quantity == objProductFilter.Quantity);
+
+                        }
+                        if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                        {
+                            var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+                            products = products.Where(x => x.IsQualityTestNeeded == Quality);
+
+                        }
+                        #endregion
+
+
+                        objFilterMandiProduct.Products = products.Skip(skip).Take(take).ToList();
+                        return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
+                    }
+                    else
+                    {
+                        #region Query
+
+                        var getProductsId = (from o in dbContext.Mandi_OrderDetails
+                                             join pod in dbContext.Mandi_OrderProductDetails on o.Order_Id equals pod.Order_Id
+
+                                             select new ProductMasterViewModel()
+                                             {
+                                                 ProductId = (int)pod.Product_Id,
+                                                 OrderId = (int)pod.Order_Id,
+                                                 MobileNumber = o.Buyer_Mobile
+
+
+
+                                             }).ToList();
+
+                        var getProductsIds = getProductsId.Where(x => x.MobileNumber == objProductFilter.MobileNumber).ToList();
+
+                        var productss = dbContext.Mandi_ProductMaster
+                                       .Join(dbContext.Crop_Master, cd => cd.CropId, cus => cus.CropId, (cd, cus)
+                                       => new { Mandi_ProductMaster = cd, Crop_Master = cus })
+                                       .Join(dbContext.Variety_Master, x => x.Mandi_ProductMaster.VarietyId, cr => cr.VarietyId, (x, cr)
+                                       => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr }).Join(dbContext.Category, c => c.Mandi_ProductMaster.CategoryId, cat => cat.CategoryId, (c, cat)
+                                       => new { c.Mandi_ProductMaster, c.Crop_Master, c.Variety_Master, Category_Master = cat }).Select(i => new ProductMasterViewModel()
+                                       {
+
+                                           Tr_Id = i.Mandi_ProductMaster.Tr_Id,
+                                           CropId = i.Mandi_ProductMaster.CropId,
+                                           VarietyId = i.Mandi_ProductMaster.VarietyId,
+                                           CropName = i.Crop_Master.CropName,
+                                           SCategoryId = i.Crop_Master.CategoryId,
+                                           //FilterCategoryName = i.Category_Master.CategoryName,
+                                           FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
+                                           ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
+
+                                           VarietyName = i.Variety_Master.VarietyName,
+                                           ProductAddress = i.Mandi_ProductMaster.ProductAddress,
+                                           GeoAddress = i.Mandi_ProductMaster.GeoAddress,
+                                           MobileNumber = i.Mandi_ProductMaster.MobileNumber,
+                                           NetBankingId = i.Mandi_ProductMaster.NetBankingId,
+                                           Quantity = i.Mandi_ProductMaster.Quantity,
+                                           QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
+                                           Price = i.Mandi_ProductMaster.Price,
+                                           AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
+                                           PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
+                                           IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
+                                           IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
+
+                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                           StateCode = i.Mandi_ProductMaster.State,
+                                           DistrictCode = i.Mandi_ProductMaster.District,
+                                           TalukaCode = i.Mandi_ProductMaster.Taluka,
+                                           IsActive = i.Mandi_ProductMaster.IsActive,
+                                           ProductPriority = i.Mandi_ProductMaster.ProductPriority,
+
+                                           ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
+                                           SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                           NewVariety = ""
+
+                                       }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
+                                      .OrderBy(x => x.ProductPriority == "2")
+                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
+
+
+
+                        var allProductList = productss.ToList();
+                        var getBoughtProductsIds = getProductsIds.ToList();
+
+
+
+                        var products = allProductList.Where(x => !getBoughtProductsIds.Any(y => y.ProductId == x.Tr_Id)).ToList();
+                        #endregion
+
+                        #region filter
+
+                        if (objProductFilter.IsFilterApplied == "true")
+                        {
+                            if (objProductFilter.CropId != null)
+                            {
+                                //For getting list of Crop from the table.
+                                products = products.Where(x => x.CropId == objProductFilter.CropId).ToList();
+                            }
+                            if (objProductFilter.VarietyId != null)
+                            {
+                                //For getting list of Variety from the table.
+                                products = products.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.State))
+                            {
+                                //For getting list of State from the table.
+                                products = products.Where(x => x.StateCode == objProductFilter.State).ToList();
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.District))
+                            {
+                                //For getting list of District from the table.
+                                products = products.Where(x => x.DistrictCode == objProductFilter.District).ToList();
+                            }
+
+                            if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                            {
+                                //For getting list of Taluka from the table.
+                                products = products.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
+
+                            }
+
+                            if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                            {
+                                var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                                var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                                products = products.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                            {
+                                //For getting list of Quantity from the table.
+                                products = products.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                            {
+                                var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+
+                                //For getting list of address from the table.
+                                products = products.Where(x => x.IsQualityTestNeeded == Quality).ToList();
+                            }
+                            objFilterMandiProduct.Products = products.ToList();
+                        }
+
+                        #endregion
+
+                        objFilterMandiProduct.Products = products.Skip(skip).Take(take).ToList();
+                        return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
+                    }
+
+                }
+
+                //to get buyer's own filter/unfiltered products (Dashboard)
+                else if (objProductFilter.IsAllActiveProducts == "false" && getUser.UserType == "Buy")
+                {
+                    #region Geo location quer
+                    var geoAddress = (from user in dbContext.Mandi_ProductMaster
+                                      select new
+                                      {
+                                          user.GeoAddress
+                                      }).ToList();
+                    #endregion
+
+
+                    if (getOrderHistoryDetail == null || getOrderHistoryDetail.Count == 0)
+                    {
+
+                        #region Query
+
+                        var products = dbContext.Mandi_ProductMaster
+                                       .Join(dbContext.Crop_Master, cd => cd.CropId, cus => cus.CropId, (cd, cus)
+                                       => new { Mandi_ProductMaster = cd, Crop_Master = cus })
+                                       .Join(dbContext.Variety_Master, x => x.Mandi_ProductMaster.VarietyId, cr => cr.VarietyId, (x, cr)
+                                       => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr }).Join(dbContext.Category, c => c.Mandi_ProductMaster.CategoryId, cat => cat.CategoryId, (c, cat)
+                                       => new { c.Mandi_ProductMaster, c.Crop_Master, c.Variety_Master, Category_Master = cat }).Select(i => new ProductMasterViewModel()
+                                       {
+
+                                           Tr_Id = i.Mandi_ProductMaster.Tr_Id,
+                                           CropId = i.Mandi_ProductMaster.CropId,
+                                           VarietyId = i.Mandi_ProductMaster.VarietyId,
+                                           CropName = i.Crop_Master.CropName,
+                                           SCategoryId = i.Crop_Master.CategoryId,
+                                           //FilterCategoryName = i.Category_Master.CategoryName,
+                                           FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
+                                           ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
+                                           VarietyName = i.Variety_Master.VarietyName,
+                                           ProductAddress = i.Mandi_ProductMaster.ProductAddress,
+                                           GeoAddress = i.Mandi_ProductMaster.GeoAddress,
+                                           MobileNumber = i.Mandi_ProductMaster.MobileNumber,
+                                           NetBankingId = i.Mandi_ProductMaster.NetBankingId,
+                                           Quantity = i.Mandi_ProductMaster.Quantity,
+                                           QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
+                                           Price = i.Mandi_ProductMaster.Price,
+                                           ServiceTax = i.Mandi_ProductMaster.ServiceTax,
+
+                                           AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
+                                           PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
+                                           IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
+                                           IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
+
+                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                           StateCode = i.Mandi_ProductMaster.State,
+                                           DistrictCode = i.Mandi_ProductMaster.District,
+                                           TalukaCode = i.Mandi_ProductMaster.Taluka,
+                                           IsActive = i.Mandi_ProductMaster.IsActive,
+                                           ProductPriority = i.Mandi_ProductMaster.ProductPriority,
+
+                                           ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
+                                           SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                           NewVariety = ""
+
+                                       }).Where(x => x.MobileNumber == getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
+                                          .OrderBy(x => x.ProductPriority == "2")
+                                          .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
+                        #endregion
+
+                        #region filter
+                        if (objProductFilter.CropId != null)
+                        {
+                            //For getting list of Crop from the table.
+                            products = products.Where(x => x.CropId == objProductFilter.CropId);
+                        }
+                        if (objProductFilter.VarietyId != null)
+                        {
+                            //For getting list of Variety from the table.
+                            products = products.Where(x => x.VarietyId == objProductFilter.VarietyId);
+                        }
+                        if (!string.IsNullOrEmpty(objProductFilter.State))
+                        {
+                            //For getting list of State from the table.
+                            products = products.Where(x => x.StateCode == objProductFilter.State);
+
+                        }
+                        if (!string.IsNullOrEmpty(objProductFilter.District))
+                        {
+                            //For getting list of District from the table.
+                            products = products.Where(x => x.DistrictCode == objProductFilter.District);
+                        }
+
+                        if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                        {
+                            //For getting list of Taluka from the table.
+                            products = products.Where(x => x.TalukaCode == objProductFilter.Taluka);
+
+                        }
+
+                        if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                        {
+                            var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                            var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                            products = products.Where(x => x.Price >= minPrice && x.Price <= maxPrice);
+
+                        }
+                        if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                        {
+                            //For getting list of Quantity from the table.
+                            products = products.Where(x => x.Quantity == objProductFilter.Quantity);
+
+                        }
+                        if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                        {
+                            var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+                            //For getting list of address from the table.
+                            products = products.Where(x => x.IsQualityTestNeeded == Quality);
+
+
+                        }
+                        #endregion
+
+
+                        objFilterMandiProduct.Products = products.ToList();
+                    }
+                    else
+                    {
+
+                        #region Query 
+                        // var getOrderIds = (from product in dbContext.Mandi_OrderDetails where product.Buyer_Mobile == objProductFilter.MobileNumber && product.TransactionStatus == "SUCCESS" select product).ToList();
+
+                        var getProductsId = (from o in dbContext.Mandi_OrderDetails
+                                             join pod in dbContext.Mandi_OrderProductDetails on o.Order_Id equals pod.Order_Id
+
+                                             select new ProductMasterViewModel()
+                                             {
+                                                 ProductId = (int)pod.Product_Id,
+                                                 OrderId = (int)pod.Order_Id,
+                                                 MobileNumber = o.Buyer_Mobile
+
+
+
+                                             }).ToList();
+
+                        var getProductsIds = getProductsId.Where(x => x.MobileNumber == objProductFilter.MobileNumber).ToList();
+
+                        var productss = dbContext.Mandi_ProductMaster
+                                       .Join(dbContext.Crop_Master, cd => cd.CropId, cus => cus.CropId, (cd, cus)
+                                       => new { Mandi_ProductMaster = cd, Crop_Master = cus })
+                                       .Join(dbContext.Variety_Master, x => x.Mandi_ProductMaster.VarietyId, cr => cr.VarietyId, (x, cr)
+                                       => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr }).Join(dbContext.Category, c => c.Mandi_ProductMaster.CategoryId, cat => cat.CategoryId, (c, cat)
+                                       => new { c.Mandi_ProductMaster, c.Crop_Master, c.Variety_Master, Category_Master = cat }).Select(i => new ProductMasterViewModel()
+                                       {
+
+                                           Tr_Id = i.Mandi_ProductMaster.Tr_Id,
+                                           CropId = i.Mandi_ProductMaster.CropId,
+                                           VarietyId = i.Mandi_ProductMaster.VarietyId,
+                                           CropName = i.Crop_Master.CropName,
+                                           SCategoryId = i.Crop_Master.CategoryId,
+                                           //FilterCategoryName = i.Category_Master.CategoryName,
+                                           FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
+                                           ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
+                                           VarietyName = i.Variety_Master.VarietyName,
+                                           ProductAddress = i.Mandi_ProductMaster.ProductAddress,
+                                           GeoAddress = i.Mandi_ProductMaster.GeoAddress,
+                                           MobileNumber = i.Mandi_ProductMaster.MobileNumber,
+                                           NetBankingId = i.Mandi_ProductMaster.NetBankingId,
+                                           Quantity = i.Mandi_ProductMaster.Quantity,
+                                           QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
+                                           Price = i.Mandi_ProductMaster.Price,
+                                           ServiceTax = i.Mandi_ProductMaster.ServiceTax,
+
+                                           AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
+                                           PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
+                                           IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
+                                           IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
+
+                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                           StateCode = i.Mandi_ProductMaster.State,
+                                           DistrictCode = i.Mandi_ProductMaster.District,
+                                           TalukaCode = i.Mandi_ProductMaster.Taluka,
+                                           IsActive = i.Mandi_ProductMaster.IsActive,
+                                           ProductPriority = i.Mandi_ProductMaster.ProductPriority,
+
+                                           ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
+                                           SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                           NewVariety = ""
+
+                                       }).Where(x => x.MobileNumber == getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
+                                          .OrderBy(x => x.ProductPriority == "2")
+                                          .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
+
+
+                        var allProductList = productss.ToList();
+                        var getBoughtProductsIds = getProductsIds.ToList();
+
+
+
+                        var products = allProductList.Where(x => !getBoughtProductsIds.Any(y => y.ProductId == x.Tr_Id)).ToList();
+
+
+                        #endregion
+
+                        #region filter
+
+                        if (objProductFilter.IsFilterApplied == "true")
+                        {
+                            if (objProductFilter.CropId != null)
+                            {
+                                //For getting list of Crop from the table.
+                                products = products.Where(x => x.CropId == objProductFilter.CropId).ToList();
+                            }
+                            if (objProductFilter.VarietyId != null)
+                            {
+                                //For getting list of Variety from the table.
+                                products = products.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.State))
+                            {
+                                //For getting list of State from the table.
+                                products = products.Where(x => x.StateCode == objProductFilter.State).ToList();
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.District))
+                            {
+                                //For getting list of District from the table.
+                                products = products.Where(x => x.DistrictCode == objProductFilter.District).ToList();
+                            }
+
+                            if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                            {
+                                //For getting list of Taluka from the table.
+                                products = products.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
+
+                            }
+
+                            if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                            {
+                                var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                                var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                                products = products.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                            {
+                                //For getting list of Quantity from the table.
+                                products = products.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                            {
+                                var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+
+                                //For getting list of address from the table.
+                                products = products.Where(x => x.IsQualityTestNeeded == Quality).ToList();
+                            }
+                            objFilterMandiProduct.Products = products.ToList();
+                        }
+
+                        #endregion
+
+                        objFilterMandiProduct.Products = products.ToList();
+
+                    }
+
+
+                    return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
+
+                }
+
+
+                //to get all/filter products for buyer/seller except their own(internal screen)
+                else if (objProductFilter.IsAllActiveProducts == "true" /*&& getUser.UserType == "Buyer"*/)
+                {
+
+                    #region Query
+
+                    var MobileNumber = objProductFilter.MobileNumber;
+
+
+                    if (getOrderHistoryDetail == null || getOrderHistoryDetail.Count == 0)
+                    {
+                        var products = dbContext.Mandi_ProductMaster
+                                       .Join(dbContext.Crop_Master, cd => cd.CropId, cus => cus.CropId, (cd, cus)
+                                       => new { Mandi_ProductMaster = cd, Crop_Master = cus })
+
+                                      .Join(dbContext.Variety_Master, x => x.Mandi_ProductMaster.VarietyId, cr => cr.VarietyId, (x, cr)
+                                       => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr })
+
+                                         .Join(dbContext.Category, c => c.Mandi_ProductMaster.CategoryId, cat => cat.CategoryId, (c, cat)
+                                       => new { c.Mandi_ProductMaster, c.Crop_Master, c.Variety_Master, Category_Master = cat }).Select(i => new ProductMasterViewModel()
+                                       {
+
+                                           Tr_Id = i.Mandi_ProductMaster.Tr_Id,
+                                           CropId = i.Mandi_ProductMaster.CropId,
+                                           VarietyId = i.Mandi_ProductMaster.VarietyId,
+
+                                           CropName = objProductFilter.culture == "En" ? i.Crop_Master.CropName : objProductFilter.culture == "Hi" ? i.Crop_Master.Hi_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Hi_CropName : objProductFilter.culture == "Mr" ? i.Crop_Master.Mr_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Mr_CropName : objProductFilter.culture == "Te" ? i.Crop_Master.Te_CropName == null ? i.Crop_Master.Te_CropName : i.Crop_Master.Te_CropName : i.Crop_Master.CropName,
+                                           SCategoryId = i.Crop_Master.CategoryId,
+                                           //FilterCategoryName = i.Category_Master.CategoryName,
+                                           FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
+                                           ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
+                                           CropEndDate = i.Mandi_ProductMaster.CropEndDate,
+                                           CropStatus = i.Mandi_ProductMaster.CropEndDate == null ? "Sold" : i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
+                                           VarietyName = i.Variety_Master.VarietyName,
+                                           ProductAddress = i.Mandi_ProductMaster.ProductAddress,
+                                           GeoAddress = i.Mandi_ProductMaster.GeoAddress,
+                                           MobileNumber = i.Mandi_ProductMaster.MobileNumber,
+                                           NetBankingId = i.Mandi_ProductMaster.NetBankingId,
+                                           Quantity = i.Mandi_ProductMaster.Quantity,
+                                           QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
+                                           Price = i.Mandi_ProductMaster.Price,
+                                           ServiceTax = i.Mandi_ProductMaster.ServiceTax,
+                                           AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
+                                           PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
+                                           IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
+                                           IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
+                                           // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                           StateCode = i.Mandi_ProductMaster.State,
+                                           DistrictCode = i.Mandi_ProductMaster.District,
+                                           TalukaCode = i.Mandi_ProductMaster.Taluka,
+                                           IsActive = i.Mandi_ProductMaster.IsActive,
+                                           IsApproved = i.Mandi_ProductMaster.IsApproved,
+                                           ProductPriority = i.Mandi_ProductMaster.ProductPriority,
+                                           ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
+                                           SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
+
+                                           NewVariety = ""
+
+                                       }).Where(x => x.MobileNumber != getUserMobileNumber && (x.IsActive == true && x.IsApproved == true)).OrderBy(x => x.ProductPriority == "1")
+                                      .OrderBy(x => x.ProductPriority == "2")
+                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).AsQueryable();
+
+                        #endregion
+                        var test = products.ToList();
+                        #region CategoryFilter
+
+
+
+                        var categories = objProductFilter.csvfile.Table1;
+                        if (objProductFilter.FilterByCropId == true)
+                        {
+                            if (categories.Count() > 0)
+                            {
+
+                                var NewProduct = new List<ProductMasterViewModel>();
+                                foreach (var category in categories)
+                                {
+
+                                    var product = products.Where(x => x.SCategoryId == category.SCategoryId).ToList();
+
+                                    NewProduct.AddRange(product);
+
+                                }
+                                var catProducts = NewProduct.AsQueryable();
+                                var NewProductCrop = new List<ProductMasterViewModel>();
+                                foreach (var crops in categories)
+                                {
+
+                                    var product = catProducts.Where(x => x.CropId == crops.FCropId).ToList();
+
+                                    NewProductCrop.AddRange(product);
+
+                                }
+
+                                products = NewProductCrop.AsQueryable();
+
+                            }
+                        }
+                        else
+                        {
+                            if (categories.Count() > 0)
+                            {
+
+                                var NewProduct = new List<ProductMasterViewModel>();
+                                foreach (var category in categories)
+                                {
+
+                                    var product = products.Where(x => x.SCategoryId == category.SCategoryId).ToList();
+                                    if (category.FCropId != null)
+                                    {
+                                        product = products.Where(x => x.CropId == category.FCropId).ToList();
+                                    }
+                                    NewProduct.AddRange(product);
+
+                                }
+                                products = NewProduct.AsQueryable();
+
+                            }
+                        }
+
+                        #endregion
+
+                        #region Sorting
+
+                        if (objProductFilter.SortProduct == "true")
+                        {
+                            if (objProductFilter.RecentProduct == "true")
+                            {
+                                products = products.OrderByDescending(x => x.Tr_Date);
+                            }
+                            if (objProductFilter.OldProduct == "true")
+                            {
+                                products = products.OrderBy(x => x.Tr_Date);
+                            }
+                            if (objProductFilter.RecentAvailability == "true")
+                            {
+                                products = products.OrderByDescending(x => x.AvailabilityDate);
+                            }
+                            if (objProductFilter.OldAvailability == "true")
+                            {
+                                products = products.OrderBy(x => x.AvailabilityDate);
+                            }
+                        }
+                        #endregion
+
+                        #region Filters
+
+                        if (objProductFilter.IsFilterApplied == "true")
+                        {
+                            //if (objProductFilter.CropId != null)
+                            //{
+                            //    //For getting list of Crop from the table.
+                            //    products = products.Where(x => x.CropId == objProductFilter.CropId);
+                            //}
+                            if (objProductFilter.VarietyId != null)
+                            {
+                                //For getting list of Variety from the table.
+                                products = products.Where(x => x.VarietyId == objProductFilter.VarietyId);
+                            }
+                            if (objProductFilter.CropId != null)
+                            {
+                                //For getting list of Variety from the table.
+                                var productz = products.ToList();
+                                products = products.Where(x => x.CropId == objProductFilter.CropId);
+                            }
+
+                            if (!string.IsNullOrEmpty(objProductFilter.State))
+                            {
+                                //For getting list of State from the table.
+                                products = products.Where(x => x.StateCode == objProductFilter.State);
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.District))
+                            {
+                                //For getting list of District from the table.
+                                products = products.Where(x => x.DistrictCode == objProductFilter.District);
+                            }
+
+                            if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                            {
+                                //For getting list of Taluka from the table.
+                                products = products.Where(x => x.TalukaCode == objProductFilter.Taluka);
+
+                            }
+
+
+
+                            if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                            {
+                                var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                                var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                                products = products.Where(x => x.Price >= minPrice && x.Price <= maxPrice);
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                            {
+                                //For getting list of Quantity from the table.
+                                products = products.Where(x => x.Quantity == objProductFilter.Quantity);
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                            {
+                                var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+
+                                //For getting list of address from the table.
+                                products = products.Where(x => x.IsQualityTestNeeded == Quality);
+                            }
+                            // var availableProductsOrder = products.Where(x => x.CropStatus=="Available").ToList();
+                            //  var soldProductsOrder = products.Where(x => x.CropStatus == "Sold").Take(10).ToList();
+                            //  var ProductsOrder = availableProductsOrder.Concat(soldProductsOrder).OrderBy(x => x.CropStatus).ToList();
+                            var ProductsOrder = products.Where(x => x.CropStatus == "Sold").ToList();
+                            objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(10).ToList();
+                        }
+
+                        #endregion
+
+                        #region Geo location Filter
+
+                        //foreach (var productItem in products)
+                        //{
+                        //    if (!string.IsNullOrEmpty(objProductFilter.Latitude) && !string.IsNullOrEmpty(objProductFilter.Longitude))
+                        //    {
+                        //        string[] values = Convert.ToString(productItem.GeoAddress).Split('/');
+                        //        string nearByProduct = Convert.ToString(productItem.GeoAddress);
+
+                        //        double productLatitude = Convert.ToDouble(values[0]);
+                        //        double productLongitude = Convert.ToDouble(values[1]);
+
+                        //        //string[] userValues = objProductFilter.GeoAddress.Split('-');
+                        //        string dashLAtitude = objProductFilter.Latitude;
+                        //        string dashLongitude = objProductFilter.Longitude;
+
+
+                        //        double UserLatitude = Convert.ToDouble(dashLAtitude);
+                        //        double UserLongitude = Convert.ToDouble(dashLongitude);
+
+                        //        double distance = Distance(Convert.ToDouble(UserLatitude), Convert.ToDouble(UserLongitude), Convert.ToDouble(productLatitude), Convert.ToDouble(productLongitude));
+                        //        if (distance < 200000)          //nearbyplaces which are within 4 miles 
+                        //        {
+                        //            listProducts.Add(productItem);
+                        //        }
+
+                        //        if (objProductFilter.IsFilterApplied == "true")
+                        //        {
+
+                        //            if (objProductFilter.CropId != null)
+                        //            {
+                        //                //For getting list of Crop from the table.
+                        //                listProducts = listProducts.Where(x => x.CropId == objProductFilter.CropId).ToList();
+                        //            }
+                        //            if (objProductFilter.VarietyId != null)
+                        //            {
+                        //                //For getting list of Variety from the table.
+                        //                listProducts = listProducts.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.State))
+                        //            {
+                        //                //For getting list of State from the table.
+                        //                listProducts = listProducts.Where(x => x.StateCode == objProductFilter.State).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.District))
+                        //            {
+                        //                //For getting list of District from the table.
+                        //                listProducts = listProducts.Where(x => x.DistrictCode == objProductFilter.District).ToList();
+                        //            }
+
+                        //            if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                        //            {
+                        //                //For getting list of Taluka from the table.
+                        //                listProducts = listProducts.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
+
+                        //            }
+
+                        //            if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                        //            {
+                        //                var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                        //                var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                        //                listProducts = listProducts.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
+
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                        //            {
+                        //                //For getting list of Quantity from the table.
+                        //                listProducts = listProducts.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
+
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                        //            {
+                        //                var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+                        //                //For getting list of address from the table.
+                        //                listProducts = listProducts.Where(x => x.IsQualityTestNeeded == Quality).ToList();
+                        //            }
+
+                        //        }
+
+                        //    }
+
+                        //    else
+                        //    {
+
+                        //        objFilterMandiProduct.Products = products.ToList();
+                        //        return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
+                        //    }
+                        //    objFilterMandiProduct.Products = listProducts;
+
+                        //}
+
+                        #endregion
+                    }
+                    else
+                    {
+                        #region Query
+
+                        var getProductsId = (from o in dbContext.Mandi_OrderDetails
+                                             join pod in dbContext.Mandi_OrderProductDetails on o.Order_Id equals pod.Order_Id
+
+                                             select new ProductMasterViewModel()
+                                             {
+                                                 ProductId = (int)pod.Product_Id,
+                                                 OrderId = (int)pod.Order_Id,
+                                                 MobileNumber = o.Buyer_Mobile
+
+
+
+                                             }).ToList();
+
+                        var getProductsIds = getProductsId.Where(x => x.MobileNumber == objProductFilter.MobileNumber).ToList();
+
+                        var productss = dbContext.Mandi_ProductMaster
+                                       .Join(dbContext.Crop_Master, cd => cd.CropId, cus => cus.CropId, (cd, cus)
+                                       => new { Mandi_ProductMaster = cd, Crop_Master = cus })
+
+                                      .Join(dbContext.Variety_Master, x => x.Mandi_ProductMaster.VarietyId, cr => cr.VarietyId, (x, cr)
+                                       => new { x.Mandi_ProductMaster, x.Crop_Master, Variety_Master = cr })
+
+                                         .Join(dbContext.Category, c => c.Mandi_ProductMaster.CategoryId, cat => cat.CategoryId, (c, cat)
+                                       => new { c.Mandi_ProductMaster, c.Crop_Master, c.Variety_Master, Category_Master = cat }).Select(i => new ProductMasterViewModel()
+                                       {
+
+                                           Tr_Id = i.Mandi_ProductMaster.Tr_Id,
+                                           CropId = i.Mandi_ProductMaster.CropId,
+                                           VarietyId = i.Mandi_ProductMaster.VarietyId,
+                                           CropName = i.Crop_Master.CropName,
+
+                                           SCategoryId = i.Crop_Master.CategoryId,
+                                           // FilterCategoryName = i.Category_Master.CategoryName,
+                                           FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
+                                           ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
+                                           VarietyName = i.Variety_Master.VarietyName,
+                                           ProductAddress = i.Mandi_ProductMaster.ProductAddress,
+                                           GeoAddress = i.Mandi_ProductMaster.GeoAddress,
+                                           MobileNumber = i.Mandi_ProductMaster.MobileNumber,
+                                           CropEndDate = i.Mandi_ProductMaster.CropEndDate,
+                                           CropStatus = i.Mandi_ProductMaster.CropEndDate == null ? "Sold" : i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
+                                           NetBankingId = i.Mandi_ProductMaster.NetBankingId,
+                                           Quantity = i.Mandi_ProductMaster.Quantity,
+                                           QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
+
+                                           Price = i.Mandi_ProductMaster.Price,
+                                           AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
+                                           PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
+                                           IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
+                                           IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
+                                           //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                           StateCode = i.Mandi_ProductMaster.State,
+                                           DistrictCode = i.Mandi_ProductMaster.District,
+                                           TalukaCode = i.Mandi_ProductMaster.Taluka,
+                                           IsActive = i.Mandi_ProductMaster.IsActive,
+                                           ProductPriority = i.Mandi_ProductMaster.ProductPriority,
+                                           ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
+                                           SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                           // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                           NewVariety = ""
+
+                                       }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
+                                      .OrderBy(x => x.ProductPriority == "2")
+                                      .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).AsQueryable();
+
+
+
+
+
+                        var allProductList = productss.ToList();
+                        var getBoughtProductsIds = getProductsIds.ToList();
+
+
+
+                        var productds = allProductList.Where(x => !getBoughtProductsIds.Any(y => y.ProductId == x.Tr_Id)).ToList();
+                        var products = productds.AsQueryable();
+
+                        #endregion
+
+
+                        #region CategoryFilter
+
+
+
+                        var categories = objProductFilter.csvfile.Table1;
+                        if (objProductFilter.FilterByCropId == true)
+                        {
+                            if (categories.Count() > 0)
+                            {
+
+                                var NewProduct = new List<ProductMasterViewModel>();
+                                foreach (var category in categories)
+                                {
+
+                                    var product = products.Where(x => x.SCategoryId == category.SCategoryId).ToList();
+
+                                    NewProduct.AddRange(product);
+
+                                }
+                                var catProducts = NewProduct.AsQueryable();
+                                var NewProductCrop = new List<ProductMasterViewModel>();
+                                foreach (var crops in categories)
+                                {
+
+                                    var product = catProducts.Where(x => x.CropId == crops.FCropId).ToList();
+
+                                    NewProductCrop.AddRange(product);
+
+                                }
+
+                                products = NewProductCrop.AsQueryable();
+
+                            }
+                        }
+                        else
+                        {
+                            if (categories.Count() > 0)
+                            {
+
+                                var NewProduct = new List<ProductMasterViewModel>();
+                                foreach (var category in categories)
+                                {
+
+                                    var product = products.Where(x => x.SCategoryId == category.SCategoryId).ToList();
+                                    if (category.FCropId != null)
+                                    {
+                                        product = products.Where(x => x.CropId == category.FCropId).ToList();
+                                    }
+                                    NewProduct.AddRange(product);
+
+                                }
+                                products = NewProduct.AsQueryable();
+
+                            }
+                        }
+
+                        #endregion
+
+                        #region Sorting
+
+                        if (objProductFilter.SortProduct == "true")
+                        {
+                            if (objProductFilter.RecentProduct == "true")
+                            {
+                                products = products.OrderByDescending(x => x.Tr_Date);
+                            }
+                            if (objProductFilter.OldProduct == "true")
+                            {
+                                products = products.OrderBy(x => x.Tr_Date);
+                            }
+                            if (objProductFilter.RecentAvailability == "true")
+                            {
+                                products = products.OrderByDescending(x => x.AvailabilityDate);
+                            }
+                            if (objProductFilter.OldAvailability == "true")
+                            {
+                                products = products.OrderBy(x => x.AvailabilityDate);
+                            }
+                        }
+                        #endregion
+
+
+                        #region filter
+
+                        if (objProductFilter.IsFilterApplied == "true")
+                        {
+                            //if (objProductFilter.CropId != null)
+                            //{
+                            //    //For getting list of Crop from the table.
+                            //    products = products.Where(x => x.CropId == objProductFilter.CropId);
+                            //}
+                            if (objProductFilter.VarietyId != null)
+                            {
+                                //For getting list of Variety from the table.
+                                products = products.Where(x => x.VarietyId == objProductFilter.VarietyId);
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.State))
+                            {
+                                //For getting list of State from the table.
+                                products = products.Where(x => x.StateCode == objProductFilter.State);
+
+                            }
+                            if (objProductFilter.CropId != null)
+                            {
+                                //For getting list of Variety from the table.
+                                products = products.Where(x => x.CropId == objProductFilter.CropId);
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.District))
+                            {
+                                //For getting list of District from the table.
+                                products = products.Where(x => x.DistrictCode == objProductFilter.District);
+                            }
+
+                            if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                            {
+                                //For getting list of Taluka from the table.
+                                products = products.Where(x => x.TalukaCode == objProductFilter.Taluka);
+
+                            }
+
+                            if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                            {
+                                var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                                var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                                products = products.Where(x => x.Price >= minPrice && x.Price <= maxPrice);
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                            {
+                                //For getting list of Quantity from the table.
+                                products = products.Where(x => x.Quantity == objProductFilter.Quantity);
+
+                            }
+                            if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                            {
+                                var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+
+                                //For getting list of address from the table.
+                                products = products.Where(x => x.IsQualityTestNeeded == Quality);
+                            }
+                            //var availableProductsOrder = products.Where(x => x.CropStatus == "Available").ToList();
+                            //var soldProductsOrder = products.Where(x => x.CropStatus == "Sold").Take(10).ToList();
+                            //var ProductsOrder = availableProductsOrder.Concat(soldProductsOrder).OrderBy(x => x.CropStatus).ToList();
+                            //objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(take).ToList();
+                            var ProductsOrder = products.Where(x => x.CropStatus == "Sold").ToList();
+                            objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(10).ToList();
+
+                        }
+
+                        #endregion
+
+                        #region Geo location Filter
+
+                        //foreach (var productItem in products)
+                        //{
+                        //    if (!string.IsNullOrEmpty(objProductFilter.Latitude) && !string.IsNullOrEmpty(objProductFilter.Longitude))
+                        //    {
+                        //        string[] values = Convert.ToString(productItem.GeoAddress).Split('-');
+                        //        string nearByProduct = Convert.ToString(productItem.GeoAddress);
+
+                        //        double productLatitude = Convert.ToDouble(values[0]);
+                        //        double productLongitude = Convert.ToDouble(values[1]);
+
+                        //        //string[] userValues = objProductFilter.GeoAddress.Split('-');
+                        //        string dashLAtitude = objProductFilter.Latitude;
+                        //        string dashLongitude = objProductFilter.Longitude;
+
+
+                        //        double UserLatitude = Convert.ToDouble(dashLAtitude);
+                        //        double UserLongitude = Convert.ToDouble(dashLongitude);
+
+                        //        double distance = Distance(Convert.ToDouble(UserLatitude), Convert.ToDouble(UserLongitude), Convert.ToDouble(productLatitude), Convert.ToDouble(productLongitude));
+                        //        if (distance < 200000)          //nearbyplaces which are within 4 miles 
+                        //        {
+                        //            listProducts.Add(productItem);
+                        //        }
+
+                        //        if (objProductFilter.IsFilterApplied == "true")
+                        //        {
+
+                        //            if (objProductFilter.CropId != null)
+                        //            {
+                        //                //For getting list of Crop from the table.
+                        //                listProducts = listProducts.Where(x => x.CropId == objProductFilter.CropId).ToList();
+                        //            }
+                        //            if (objProductFilter.VarietyId != null)
+                        //            {
+                        //                //For getting list of Variety from the table.
+                        //                listProducts = listProducts.Where(x => x.VarietyId == objProductFilter.VarietyId).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.State))
+                        //            {
+                        //                //For getting list of State from the table.
+                        //                listProducts = listProducts.Where(x => x.StateCode == objProductFilter.State).ToList();
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.District))
+                        //            {
+                        //                //For getting list of District from the table.
+                        //                listProducts = listProducts.Where(x => x.DistrictCode == objProductFilter.District).ToList();
+                        //            }
+
+                        //            if (!string.IsNullOrEmpty(objProductFilter.Taluka))
+                        //            {
+                        //                //For getting list of Taluka from the table.
+                        //                listProducts = listProducts.Where(x => x.TalukaCode == objProductFilter.Taluka).ToList();
+
+                        //            }
+
+                        //            if (!string.IsNullOrEmpty(objProductFilter.MaxPrice) && !string.IsNullOrEmpty(objProductFilter.MinPrice))
+                        //            {
+                        //                var minPrice = Convert.ToInt32(objProductFilter.MinPrice);
+                        //                var maxPrice = Convert.ToInt32(objProductFilter.MaxPrice);
+                        //                listProducts = listProducts.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToList();
+
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.Quantity))
+                        //            {
+                        //                //For getting list of Quantity from the table.
+                        //                listProducts = listProducts.Where(x => x.Quantity == objProductFilter.Quantity).ToList();
+
+                        //            }
+                        //            if (!string.IsNullOrEmpty(objProductFilter.IsQualityTestNeeded) && objProductFilter.IsQualityTestNeeded != "false")
+                        //            {
+                        //                var Quality = Convert.ToBoolean(objProductFilter.IsQualityTestNeeded);
+                        //                //For getting list of address from the table.
+                        //                listProducts = listProducts.Where(x => x.IsQualityTestNeeded == Quality).ToList();
+                        //            }
+
+                        //        }
+
+                        //    }
+
+                        //    else
+                        //    {
+
+                        //        objFilterMandiProduct.Products = products.ToList();
+                        //        return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
+                        //    }
+                        //    objFilterMandiProduct.Products = listProducts;
+
+                        //}
+
+
+                        #endregion
+                    }
+
+
+
+
+
+                    return Request.CreateResponse(HttpStatusCode.OK, objFilterMandiProduct);
+                }
+                objResponse.Message = "Product not found";
+                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiUSerController", "GetProduct");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// / 
+        /// </summary>
+        /// <param name="categoryID"></param>
+        /// <param name="Culture"></param>
+        /// <returns></returns>
         public string GetCategoryNameBasedonCategoryId(long categoryID = 0, string Culture = "")
         {
             try
@@ -3440,9 +4668,12 @@ namespace GrowIndigo.Controllers
                            CropId = p.CropId,
                            VarietyId = p.VarietyId,
                            CropName = objSearchViewModel.culture == "En" ? cr.CropName : objSearchViewModel.culture == "Hi" ? cr.Hi_CropName == null ? cr.CropName : cr.Hi_CropName : objSearchViewModel.culture == "Mr" ? cr.Mr_CropName == null ? cr.CropName : cr.Mr_CropName : objSearchViewModel.culture == "Te" ? cr.Te_CropName == null ? cr.Te_CropName : cr.Te_CropName : cr.CropName,
+                           FilterCropName = cr.CropName,
                            SCategoryId = cr.CategoryId,
                            FilterCategoryName = objSearchViewModel.culture == "En" ? cat.CategoryName : objSearchViewModel.culture == "Hi" ? cat.Hi_CategoryName == null ? cat.CategoryName : cat.Hi_CategoryName : objSearchViewModel.culture == "Mr" ? cat.Mr_CategoryName == null ? cat.CategoryName : cat.Mr_CategoryName : objSearchViewModel.culture == "Te" ? cat.Te_CategoryName == null ? cat.CategoryName : cat.Te_CategoryName : cat.CategoryName,
+                           FCategoryName=cat.CategoryName,
                            ProductDescription = objSearchViewModel.culture == "En" ? p.ProductDescription : objSearchViewModel.culture == "Hi" ? p.Hi_ProductDescription == null ? p.ProductDescription : p.Hi_ProductDescription : objSearchViewModel.culture == "Mr" ? p.Mr_ProductDescription == null ? p.ProductDescription : p.ProductDescription : objSearchViewModel.culture == "Te" ? p.Te_ProductDescription == null ? p.ProductDescription : p.Te_ProductDescription : p.ProductDescription,
+                           FilterProductDescription= p.ProductDescription,
                            CropEndDate = p.CropEndDate,
                            CropStatus = p.CropEndDate >= DateTime.Now ? "Available" : "Sold",
                            VarietyName = v.VarietyName,
@@ -3472,7 +4703,7 @@ namespace GrowIndigo.Controllers
 
             if (!string.IsNullOrEmpty(objSearchViewModel.searchtxt))
             {
-                data = data.Where(x => x.CropName.Contains(objSearchViewModel.searchtxt) || x.ProductDescription.Contains(objSearchViewModel.searchtxt) || x.CropName.Contains(objSearchViewModel.searchtxt) || x.VarietyName.Contains(objSearchViewModel.searchtxt)|| x.FilterCategoryName.Contains(objSearchViewModel.searchtxt)|| x.ProductAddress.Contains(objSearchViewModel.searchtxt)|| x.StateCode.Contains(objSearchViewModel.searchtxt)|| x.DistrictCode.Contains(objSearchViewModel.searchtxt));
+                data = data.Where(x => x.FilterCropName.Contains(objSearchViewModel.searchtxt) || x.FilterProductDescription.Contains(objSearchViewModel.searchtxt) || x.FCategoryName.Contains(objSearchViewModel.searchtxt) || x.VarietyName.Contains(objSearchViewModel.searchtxt)|| x.ProductAddress.Contains(objSearchViewModel.searchtxt)|| x.StateCode.Contains(objSearchViewModel.searchtxt)|| x.DistrictCode.Contains(objSearchViewModel.searchtxt));
             }
             // data = data.Where(c => c.StateId == stateId);
 

@@ -51,7 +51,8 @@ namespace GrowIndigo.Data
     
         public virtual Category Category { get; set; }
         public virtual Crop_Master Crop_Master { get; set; }
-        public virtual Crop_Master Crop_Master1 { get; set; }
+        public virtual Mandi_ProductMaster Mandi_ProductMaster1 { get; set; }
+        public virtual Mandi_ProductMaster Mandi_ProductMaster2 { get; set; }
         public virtual Variety_Master Variety_Master { get; set; }
     }
 }

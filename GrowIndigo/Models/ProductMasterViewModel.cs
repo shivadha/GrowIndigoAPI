@@ -14,6 +14,7 @@ namespace GrowIndigo.Models
         public string CategoryName { get; set; }
         public int? VarietyId { get; set; }
         public string CropName { get; set; }
+         public string FilterCropName { get; set; }
         public long ? SCategoryId { get; set; }
 
         public string VarietyName { get; set; }
@@ -24,6 +25,7 @@ namespace GrowIndigo.Models
         public Nullable<System.DateTime> CurrentDate { get; set; }
         public string MobileNumber { get; set; }
         public string FilterCategoryName { get; set; }
+        public string FCategoryName { get; set; }
         public string NetBankingId { get; set; }
         public string Quantity { get; set; }
         public string CropStatus { get; set; }
@@ -47,6 +49,7 @@ namespace GrowIndigo.Models
         public Nullable<bool> IsApproved { get; set; }
         public string ProductPriority { get; set; }
         public string ProductDescription { get; set; }
+        public string FilterProductDescription { get; set; }
 
 
         //public double Latitude { get; set; }
