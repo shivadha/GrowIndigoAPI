@@ -1541,8 +1541,6 @@ E:\Myco\Project\BackUp\GrowIndigo_API\GrowIndigo_API\GrowIndigo\obj\Debug\GrowIn
 E:\Myco\Project\BackUp\GrowIndigo_API\GrowIndigo_API\GrowIndigo\obj\Debug\GrowIndigo.API.csproj.CopyComplete
 E:\Myco\Project\BackUp\GrowIndigo_API\GrowIndigo_API\GrowIndigo\obj\Debug\GrowIndigo.dll
 E:\Myco\Project\BackUp\GrowIndigo_API\GrowIndigo_API\GrowIndigo\obj\Debug\GrowIndigo.pdb
-E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.API.csproj.App.config
-E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.API.csproj.CoreCompileInputs.cache
 E:\Myco\Project\Working\GrowIndigo\bin\ApplicationInsights.config
 E:\Myco\Project\Working\GrowIndigo\bin\GrowIndigo.dll.config
 E:\Myco\Project\Working\GrowIndigo\bin\GrowIndigo.dll
@@ -1833,6 +1831,8 @@ E:\Myco\Project\Working\GrowIndigo\bin\Microsoft.AI.DependencyCollector.xml
 E:\Myco\Project\Working\GrowIndigo\bin\Microsoft.AI.WindowsServer.xml
 E:\Myco\Project\Working\GrowIndigo\bin\Microsoft.AI.Web.xml
 E:\Myco\Project\Working\GrowIndigo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.API.csproj.App.config
+E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.API.csproj.CoreCompileInputs.cache
 E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.API.csproj.CopyComplete
 E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.dll
 E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.pdb

@@ -803,7 +803,7 @@ namespace GrowIndigo.Controllers
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                           CropStatus = i.Mandi_ProductMaster.CropEndDate==null?"Sold": i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
+                                           CropStatus = i.Mandi_ProductMaster.CropEndDate == null ? "Sold" : i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -982,7 +982,7 @@ namespace GrowIndigo.Controllers
                             // var availableProductsOrder = products.Where(x => x.CropStatus=="Available").ToList();
                             //  var soldProductsOrder = products.Where(x => x.CropStatus == "Sold").Take(10).ToList();
                             //  var ProductsOrder = availableProductsOrder.Concat(soldProductsOrder).OrderBy(x => x.CropStatus).ToList();
-                            var ProductsOrder = products.Where(x => x.CropStatus=="Available").ToList();
+                            var ProductsOrder = products.Where(x => x.CropStatus == "Available").ToList();
                             objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(take).ToList();
                         }
 
@@ -1441,7 +1441,7 @@ namespace GrowIndigo.Controllers
             {
                 var ServerPath = ConfigurationManager.AppSettings["ServerPath"];
                 int counter = objProductFilter.counter;
-               int take = 6;
+                int take = 6;
                 int skip = counter;
 
                 var categoryId = objProductFilter.SCategoryId;
@@ -2985,14 +2985,14 @@ namespace GrowIndigo.Controllers
         [HttpPost]
         //[Authorize]
         [Route("api/MandiUser/AddInterestedProduct")]
-        public bool AddInterestedProductForUser(InterestedProductsViewModel objInterestedProductsViewModel)
+        public HttpResponseMessage AddInterestedProductForUser(InterestedProductsViewModel objInterestedProductsViewModel)
         {
             try
             {
                 //get category for cropId
 
                 Mandi_InterestedProductForUser objMandi_InterestedProductForUser = new Mandi_InterestedProductForUser();
-                string mobileNumber = objInterestedProductsViewModel.Fk_MobileNumber;
+                string mobileNumber = objInterestedProductsViewModel.BuyerId;
                 //get mobileNumber from user table
                 var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
                 if (number != null)
@@ -3000,7 +3000,7 @@ namespace GrowIndigo.Controllers
 
 
                     objMandi_InterestedProductForUser.Id = objInterestedProductsViewModel.Id;
-                    objMandi_InterestedProductForUser.Fk_MobileNumber = objInterestedProductsViewModel.Fk_MobileNumber;
+                    objMandi_InterestedProductForUser.Fk_MobileNumber = objInterestedProductsViewModel.BuyerId;
                     objMandi_InterestedProductForUser.BuyerId = objInterestedProductsViewModel.BuyerId;
                     objMandi_InterestedProductForUser.ProductId = objInterestedProductsViewModel.ProductId;
                     objMandi_InterestedProductForUser.CreatedDate = DateTime.Now;
@@ -3040,32 +3040,39 @@ namespace GrowIndigo.Controllers
                                 {
 
                                     SendFCMNotificationToUsers(getSellerMobileNumberByNumber.DeviceToken, Message, Title);
-                                    return true;
+                                    objResponse.Message = "Interested product has been saved in db";
+                                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                                 }
                                 else
                                 {
 
-                                    return false;
+                                    objResponse.Message = "Interested product has been saved in db but notification is not added";
+                                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
 
                                 }
                             }
                             else
                             {
-                                return true;
+                                //return true;
+                                objResponse.Message = "Interested product has been successfully saved in db but Device Token  is null";
+                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                             }
                         }
                         else
                         {
-                            return true;
+
+                            objResponse.Message = "Interested product has been saved";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                         }
 
 
                     }
                     else
                     {
-                        //objResponse.Message = "Failed to save interested product";
-                        //return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                        return false;
+
+
+                        objResponse.Message = "Interested product failed to save in database. Please contact admin";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                     }
 
                 }
@@ -3073,7 +3080,7 @@ namespace GrowIndigo.Controllers
                 {
                     objResponse.Message = "User number does not exists.";
 
-                    return false;
+                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
 
                 }
             }
@@ -3082,7 +3089,8 @@ namespace GrowIndigo.Controllers
                 Log.Info(Convert.ToString(ex.InnerException));
                 Log.Info(ex.Message);
                 objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "AddInterestedProduct");
-                return false;
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+
             }
 
         }
@@ -4028,7 +4036,7 @@ namespace GrowIndigo.Controllers
                     }
                     else
                     {
-                        objResponse.Message = "User Requirement is saved successfully nut failed to shot mail";
+                        objResponse.Message = "User Requirement is saved successfully but failed to shot mail";
 
                         return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                     }
@@ -4594,7 +4602,7 @@ namespace GrowIndigo.Controllers
                 var currentDatetime = DateTime.Now;
 
                 var getNewProduct = (from product in dbContext.Mandi_ProductMaster where product.Tr_Date >= getYestetdayDate && product.Tr_Date < currentDatetime select product.CategoryId).Distinct().ToList();
-                if (getNewProduct != null)
+                if (getNewProduct.Count() > 0)
                 {
                     //to get All user In mandi for notification
                     //where devicetoken is not null 
@@ -4671,9 +4679,9 @@ namespace GrowIndigo.Controllers
                            FilterCropName = cr.CropName,
                            SCategoryId = cr.CategoryId,
                            FilterCategoryName = objSearchViewModel.culture == "En" ? cat.CategoryName : objSearchViewModel.culture == "Hi" ? cat.Hi_CategoryName == null ? cat.CategoryName : cat.Hi_CategoryName : objSearchViewModel.culture == "Mr" ? cat.Mr_CategoryName == null ? cat.CategoryName : cat.Mr_CategoryName : objSearchViewModel.culture == "Te" ? cat.Te_CategoryName == null ? cat.CategoryName : cat.Te_CategoryName : cat.CategoryName,
-                           FCategoryName=cat.CategoryName,
+                           FCategoryName = cat.CategoryName,
                            ProductDescription = objSearchViewModel.culture == "En" ? p.ProductDescription : objSearchViewModel.culture == "Hi" ? p.Hi_ProductDescription == null ? p.ProductDescription : p.Hi_ProductDescription : objSearchViewModel.culture == "Mr" ? p.Mr_ProductDescription == null ? p.ProductDescription : p.ProductDescription : objSearchViewModel.culture == "Te" ? p.Te_ProductDescription == null ? p.ProductDescription : p.Te_ProductDescription : p.ProductDescription,
-                           FilterProductDescription= p.ProductDescription,
+                           FilterProductDescription = p.ProductDescription,
                            CropEndDate = p.CropEndDate,
                            CropStatus = p.CropEndDate >= DateTime.Now ? "Available" : "Sold",
                            VarietyName = v.VarietyName,
@@ -4703,7 +4711,7 @@ namespace GrowIndigo.Controllers
 
             if (!string.IsNullOrEmpty(objSearchViewModel.searchtxt))
             {
-                data = data.Where(x => x.FilterCropName.Contains(objSearchViewModel.searchtxt) || x.FilterProductDescription.Contains(objSearchViewModel.searchtxt) || x.FCategoryName.Contains(objSearchViewModel.searchtxt) || x.VarietyName.Contains(objSearchViewModel.searchtxt)|| x.ProductAddress.Contains(objSearchViewModel.searchtxt)|| x.StateCode.Contains(objSearchViewModel.searchtxt)|| x.DistrictCode.Contains(objSearchViewModel.searchtxt));
+                data = data.Where(x => x.FilterCropName.Contains(objSearchViewModel.searchtxt) || x.FilterProductDescription.Contains(objSearchViewModel.searchtxt) || x.FCategoryName.Contains(objSearchViewModel.searchtxt) || x.VarietyName.Contains(objSearchViewModel.searchtxt) || x.ProductAddress.Contains(objSearchViewModel.searchtxt) || x.StateCode.Contains(objSearchViewModel.searchtxt) || x.DistrictCode.Contains(objSearchViewModel.searchtxt));
             }
             // data = data.Where(c => c.StateId == stateId);
 
@@ -4713,7 +4721,7 @@ namespace GrowIndigo.Controllers
             // var result= data.Where(x=>x.CropStatus=="Available").ToList();
             objListMandiProduct.Products = data.Where(x => x.CropStatus == "Available").ToList();
             return Request.CreateResponse(HttpStatusCode.OK, objListMandiProduct);
-           // return Request.CreateResponse(HttpStatusCode.OK, result);
+            // return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
 

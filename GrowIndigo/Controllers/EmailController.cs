@@ -150,48 +150,18 @@ namespace GrowIndigo.Controllers
                     SmtpServere.EnableSsl = true;
                     SmtpServere.Send(maile);
                     var addIntersProdct = objMandiUserController.AddInterestedProductForUser(objInterestedProductsViewModel);
-                    if (addIntersProdct == true)
+                    if (addIntersProdct !=null)
                     {
                         //for sending notification to seller
                         //get seller detail by productId
-                        if (objEmailModel.Culture == "En")
-                        {
-                            objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as possible ";
-                        }
-                        else if (objEmailModel.Culture == "Hi")
-                        {
-                            objResponse.Message = "इसमें रुचि दिखाने के लिए आपका धन्यवाद" + objEmailModel.CropName + "उत्पाद। हमारी सहायता टीम जैसे ही पूजनीय होगी, आपके संपर्क में रहेगी ";
-                        }
-                        else if (objEmailModel.Culture == "Mr")
-                        {
-                            objResponse.Message = "उत्पादन.आमचा समर्थन कार्यसंघ शक्य तितक्या लवकर आपल्याशी संपर्कात असेल " + objEmailModel.CropName + "उत्पादन.आमचा समर्थन कार्यसंघ शक्य तितक्या लवकर आपल्याशी संपर्कात असेल";
-                        }
-                        else {
-                            objResponse.Message = "దీనిపై ఆసక్తి చూపినందుకు ధన్యవాదాలు" + objEmailModel.CropName + "ఉత్పత్తి. మా మద్దతు బృందం సాధ్యమైనంత త్వరలో మీతో సంప్రదిస్తుంది ";
-                        }
-                      
+
+                        objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
                         return Request.CreateResponse(HttpStatusCode.OK, objResponse);
 
                     }
                     else
                     {
-                        if (objEmailModel.Culture == "En")
-                        {
-                            objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as possible ";
-                        }
-                        else if (objEmailModel.Culture == "Hi")
-                        {
-                            objResponse.Message = "इसमें रुचि दिखाने के लिए आपका धन्यवाद" + objEmailModel.CropName + "उत्पाद। हमारी सहायता टीम जैसे ही पूजनीय होगी, आपके संपर्क में रहेगी ";
-                        }
-                        else if (objEmailModel.Culture == "Mr")
-                        {
-                            objResponse.Message = "उत्पादन.आमचा समर्थन कार्यसंघ शक्य तितक्या लवकर आपल्याशी संपर्कात असेल " + objEmailModel.CropName + "उत्पादन.आमचा समर्थन कार्यसंघ शक्य तितक्या लवकर आपल्याशी संपर्कात असेल";
-                        }
-                        else
-                        {
-                            objResponse.Message = "దీనిపై ఆసక్తి చూపినందుకు ధన్యవాదాలు" + objEmailModel.CropName + "ఉత్పత్తి. మా మద్దతు బృందం సాధ్యమైనంత త్వరలో మీతో సంప్రదిస్తుంది ";
-                        }
-                    //    objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
+                        objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
                         return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                     }
                 }
@@ -289,22 +259,7 @@ namespace GrowIndigo.Controllers
                 }
                 else
                 {
-                    if (objEmailModel.Culture == "En")
-                    {
-                        objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as possible ";
-                    }
-                    else if (objEmailModel.Culture == "Hi")
-                    {
-                        objResponse.Message = "इसमें रुचि दिखाने के लिए आपका धन्यवाद" + objEmailModel.CropName + "उत्पाद। हमारी सहायता टीम जैसे ही पूजनीय होगी, आपके संपर्क में रहेगी ";
-                    }
-                    else if (objEmailModel.Culture == "Mr")
-                    {
-                        objResponse.Message = "उत्पादन.आमचा समर्थन कार्यसंघ शक्य तितक्या लवकर आपल्याशी संपर्कात असेल " + objEmailModel.CropName + "उत्पादन.आमचा समर्थन कार्यसंघ शक्य तितक्या लवकर आपल्याशी संपर्कात असेल";
-                    }
-                    else
-                    {
-                        objResponse.Message = "దీనిపై ఆసక్తి చూపినందుకు ధన్యవాదాలు" + objEmailModel.CropName + "ఉత్పత్తి. మా మద్దతు బృందం సాధ్యమైనంత త్వరలో మీతో సంప్రదిస్తుంది ";
-                    }
+                    objResponse.Message = "Thank you for showing interest in this " + objEmailModel.CropName + " Product. Our support Team will be in touch with you as soon as poosible ";
                     return Request.CreateResponse(HttpStatusCode.OK, objResponse);
 
                 }

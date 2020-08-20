@@ -35,6 +35,12 @@ namespace GrowIndigo.Models
             public string Hi_CropName { get; set; }
             public string Mr_CropName { get; set; }
             public string Te_CropName { get; set; }
+          
+            public Nullable<bool> IsActive { get; set; }
+            public Nullable<bool> IsApproved { get; set; }
+      
+            public Nullable<System.DateTime> CropEndDate { get; set; }
+
             public string EnCategoryName { get; set; }
             public string EnCropName { get; set; }
             public long ? CategoryId { get; set; }

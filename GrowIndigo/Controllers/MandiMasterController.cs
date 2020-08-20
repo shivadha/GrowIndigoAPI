@@ -24,7 +24,7 @@ namespace GrowIndigo.Controllers
         [HttpGet]
 
         [Route("api/MandiMaster/GetCrop")]
-        public HttpResponseMessage GetCrop(int CategoryId = 0, int Counter = 0, string culture="")
+        public HttpResponseMessage GetCrop(int CategoryId = 0, int Counter = 0, string culture = "")
         {
             try
             {
@@ -51,7 +51,7 @@ namespace GrowIndigo.Controllers
                                     CropId = i.CropId,
                                     CropName = i.CropName,
                                     CategoryImage = i.CropImage,
-                                    EnCropName=i.CropName,
+                                    EnCropName = i.CropName,
                                     CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
 
                                 };
@@ -81,7 +81,7 @@ namespace GrowIndigo.Controllers
                                     EnCropName = i.CropName,
                                     CropName = i.Hi_CropName == null ? i.CropName : i.Hi_CropName,
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/"+ i.CropImage
+                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -373,21 +373,22 @@ namespace GrowIndigo.Controllers
 
 
 
-       [HttpPost]
+        [HttpPost]
         [Route("api/MandiMaster/GetCropBasedOnCategories")]
         public HttpResponseMessage GetCropBasedOnCategories(CropMasterViewModel model)
         {
             try
             {
-              
+
 
                 Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
                 List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
-             
+
 
                 if (model.FilterCategory == false)
                 {
-
+                    if (model.CropAvail == false)
+                    {
                         //For getting list of crop  from the table.
                         var getCrop = (from crop in dbContext.Crop_Master select crop).ToList();
                         if (getCrop != null)
@@ -397,10 +398,10 @@ namespace GrowIndigo.Controllers
                                 MandiCrop objMandi_Crop = new MandiCrop()
                                 {
                                     CropId = i.CropId,
-                                    CropName = model.culture=="En"? i.CropName: model.culture == "Hi"? i.Hi_CropName==null?i.CropName:i.Hi_CropName : model.culture == "Mr"?i.Mr_CropName==null?i.CropName:i.Mr_CropName:model.culture=="Te"?i.Te_CropName==null?i.CropName:i.Te_CropName:i.CropName,
+                                    CropName = model.culture == "En" ? i.CropName : model.culture == "Hi" ? i.Hi_CropName == null ? i.CropName : i.Hi_CropName : model.culture == "Mr" ? i.Mr_CropName == null ? i.CropName : i.Mr_CropName : model.culture == "Te" ? i.Te_CropName == null ? i.CropName : i.Te_CropName : i.CropName,
                                     CategoryImage = i.CropImage,
-                                    CategoryId=i.CategoryId,
-                                    CategoryName=i.CategoryName,
+                                    CategoryId = i.CategoryId,
+                                    CategoryName = i.CategoryName,
                                     EnCropName = i.CropName,
                                     CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
 
@@ -417,24 +418,52 @@ namespace GrowIndigo.Controllers
                             return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                         }
                     }
-               else
-                {
-                    var categories = model.csvfile.Table1;
-                    var getCropbyCategoryId = (from crop in dbContext.Crop_Master select crop).ToList();
-                    var getNewProduct = (from product in dbContext.Mandi_ProductMaster where product.CropId !=null select product.CropId).Distinct().ToList();
-                    if (model.CropAvail == true)
+                    else
                     {
-                        var crop = dbContext.Mandi_ProductMaster.Where(x => x.CropId != null &&( x.CropId  == x.Crop_Master.CropId)  && getNewProduct.Contains(x.CropId)).Select(y => new MandiCrop
+                        var getCropbyCategoryId = (from crops in dbContext.Crop_Master select crops).ToList();
+                        var getNewProduct = (from product in dbContext.Mandi_ProductMaster where product.CropId != null select product.CropId).Distinct().ToList();
+                        var crop = dbContext.Mandi_ProductMaster.Where(x => x.CropId != null && (x.CropId == x.Crop_Master.CropId) && getNewProduct.Contains(x.CropId)).Select(y => new MandiCrop
                         {
-                            CropId =(int)y.CropId,
+                            CropId = (int)y.CropId,
                             CropName = y.Crop_Master.CropName,
                             CropImage = y.Crop_Master.CropImage,
                             CategoryId = y.CategoryId,
-                            Hi_CropName =y.Crop_Master.Hi_CropName,
-                            Mr_CropName =y.Crop_Master.Mr_CropName,
-                            Te_CropName =y.Crop_Master.Te_CropName,
-                            CropStatus=y.CropEndDate == null ? "Sold" :y.CropEndDate >= DateTime.Now ? "Available" : "Sold",
-                        }).Distinct().Where(x=>x.CropStatus=="Available").ToList();
+                            Hi_CropName = y.Crop_Master.Hi_CropName,
+                            Mr_CropName = y.Crop_Master.Mr_CropName,
+                            Te_CropName = y.Crop_Master.Te_CropName,
+                            IsActive = y.IsActive,
+                            IsApproved = y.IsApproved,
+                            CropStatus = y.CropEndDate == null ? "Sold" : y.CropEndDate >= DateTime.Now ? "Available" : "Sold",
+                        }).Distinct().Where(x => x.CropStatus == "Available" && x.IsActive == true && x.IsApproved == true).ToList();
+                        //filter for crop by categories
+
+                        var cropCategories = crop.OrderBy(x => x.CropName).ToList();
+                        var cats = cropCategories.ToList();
+                        Mandi_CropMaster.MandiCrops = cats.ToList();
+                        return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
+                    }
+
+                }
+                else
+                {
+                    var categories = model.csvfile.Table1;
+                    var getCropbyCategoryId = (from crop in dbContext.Crop_Master select crop).ToList();
+                    var getNewProduct = (from product in dbContext.Mandi_ProductMaster where product.CropId != null select product.CropId).Distinct().ToList();
+                    if (model.CropAvail == true)
+                    {
+                        var crop = dbContext.Mandi_ProductMaster.Where(x => x.CropId != null && (x.CropId == x.Crop_Master.CropId) && getNewProduct.Contains(x.CropId)).Select(y => new MandiCrop
+                        {
+                            CropId = (int)y.CropId,
+                            CropName = y.Crop_Master.CropName,
+                            CropImage = y.Crop_Master.CropImage,
+                            CategoryId = y.CategoryId,
+                            Hi_CropName = y.Crop_Master.Hi_CropName,
+                            Mr_CropName = y.Crop_Master.Mr_CropName,
+                            Te_CropName = y.Crop_Master.Te_CropName,
+                            IsActive = y.IsActive,
+                            IsApproved = y.IsApproved,
+                            CropStatus = y.CropEndDate == null ? "Sold" : y.CropEndDate >= DateTime.Now ? "Available" : "Sold",
+                        }).Distinct().Where(x => x.CropStatus == "Available" && x.IsActive == true && x.IsApproved == true).ToList();
                         //filter for crop by categories
 
                         var cropCategories = crop.OrderBy(x => x.CropName).ToList();
@@ -462,7 +491,7 @@ namespace GrowIndigo.Controllers
                     {
 
                         //For getting list of crop  from the table.
-                       
+
                         if (getCropbyCategoryId != null)
                         {
                             foreach (var i in getCropbyCategoryId)
@@ -473,7 +502,7 @@ namespace GrowIndigo.Controllers
                                     CropName = model.culture == "En" ? i.CropName : model.culture == "Hi" ? i.Hi_CropName == null ? i.CropName : i.Hi_CropName : model.culture == "Mr" ? i.Mr_CropName == null ? i.CropName : i.Mr_CropName : model.culture == "Te" ? i.Te_CropName == null ? i.CropName : i.Te_CropName : i.CropName,
                                     CategoryId = i.CategoryId,
                                     EnCropName = i.CropName,
-                                    
+
                                     CategoryImage = i.CropImage,
                                     CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
 
@@ -549,7 +578,7 @@ namespace GrowIndigo.Controllers
                         MandiRolesForUser objMandi_Crop = new MandiRolesForUser()
                         {
                             RoleName = i.RoleName
-                           
+
 
 
                         };
@@ -587,12 +616,12 @@ namespace GrowIndigo.Controllers
         [HttpGet]
         //[Authorize]
         [Route("api/MandiMaster/GetAllCategory")]
-        public HttpResponseMessage GetAllCategory(string culture="")
+        public HttpResponseMessage GetAllCategory(string culture = "")
         {
             try
-            { 
+            {
 
-                
+
                 Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
                 List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
                 if (culture == "En")
@@ -608,7 +637,7 @@ namespace GrowIndigo.Controllers
                             {
                                 CategoryName = i.CategoryName,
                                 CategoryId = i.CategoryId,
-                                EnCategoryName=i.CategoryName,
+                                EnCategoryName = i.CategoryName,
                                 CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
 
 
@@ -684,7 +713,7 @@ namespace GrowIndigo.Controllers
                                 CategoryName = i.Te_CategoryName,
                                 EnCategoryName = i.CategoryName,
                                 CategoryId = i.CategoryId,
-                                CategoryImage ="https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+                                CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
 
 
                             };
@@ -706,7 +735,7 @@ namespace GrowIndigo.Controllers
 
 
 
-                
+
 
             }
             catch (Exception ex)
@@ -726,35 +755,35 @@ namespace GrowIndigo.Controllers
         {
             try
             {
-                
+
                 Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
                 List<MandiCrop> objListMandiCrop = new List<MandiCrop>();
-                
-                    var getCategory = (from category in dbContext.Category select category).ToList();
-                    if (getCategory != null)
+
+                var getCategory = (from category in dbContext.Category select category).ToList();
+                if (getCategory != null)
+                {
+
+
+                    foreach (var i in getCategory)
                     {
-
-
-                        foreach (var i in getCategory)
+                        MandiCrop objMandi_Crop = new MandiCrop()
                         {
-                            MandiCrop objMandi_Crop = new MandiCrop()
-                            {
-                                CategoryName = i.CategoryName,
-                                CategoryId = i.CategoryId,
-                                CategoryImage = i.CategoryImage
+                            CategoryName = i.CategoryName,
+                            CategoryId = i.CategoryId,
+                            CategoryImage = i.CategoryImage
 
 
-                            };
-                            objListMandiCrop.Add(objMandi_Crop);
-                        }
+                        };
+                        objListMandiCrop.Add(objMandi_Crop);
                     }
-                    else
-                    {
-                        objResponse.Message = "Failed to get categories";
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                    }
-                
-               
+                }
+                else
+                {
+                    objResponse.Message = "Failed to get categories";
+                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                }
+
+
 
 
                 Mandi_CropMaster.MandiCrops = objListMandiCrop;
@@ -767,7 +796,7 @@ namespace GrowIndigo.Controllers
 
             }
             catch (Exception ex)
-            { 
+            {
                 Log.Info(Convert.ToString(ex.InnerException));
                 Log.Info(ex.Message);
                 objCommonClasses.InsertExceptionDetails(ex, "MandiMasterController", "GetCategory");
@@ -857,6 +886,6 @@ namespace GrowIndigo.Controllers
         }
 
 
-      
+
     }
 }
