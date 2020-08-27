@@ -151,6 +151,32 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="ModifiedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="Mandi_CartInfo">
+    <Key>
+      <PropertyRef Name="CartId" />
+    </Key>
+    <Property Name="CartId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CartType" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fk_EnquiryId" Type="int" />
+    <Property Name="Fk_InterestedProductId" Type="bigint" />
+    <Property Name="Deal_Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="Product_Id" Type="bigint" />
+    <Property Name="Product" Type="nvarchar" MaxLength="500" />
+    <Property Name="Quantity" Type="nvarchar" MaxLength="64" />
+    <Property Name="QuantityUnit" Type="nvarchar" MaxLength="64" />
+    <Property Name="Price" Type="int" />
+    <Property Name="ProductImage" Type="varchar(max)" />
+    <Property Name="ProductAddress" Type="nvarchar(max)" />
+    <Property Name="BuyerName" Type="nvarchar" MaxLength="500" />
+    <Property Name="BuyerNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="BuyerAddress" Type="nvarchar(max)" />
+    <Property Name="SellerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Seller_MobileNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="SellerAddress" Type="nvarchar(max)" />
+    <Property Name="Logistics_Cost" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Other_Charges" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
   <EntityType Name="Mandi_InterestedProductForUser">
     <Key>
       <PropertyRef Name="Id" />
@@ -272,6 +298,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="ExpectedPrice" Type="nvarchar" MaxLength="50" />
     <Property Name="ExpectedDate" Type="datetime" />
     <Property Name="IsPriceNegotiable" Type="bit" />
+    <Property Name="Tr_Date" Type="datetime" />
     <Property Name="Remarks" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Mandi_Roles">
@@ -319,15 +346,6 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="IsProfileUpdated" Type="bit" />
     <Property Name="DeviceToken" Type="varchar(max)" />
     <Property Name="CreatedDate" Type="datetime" />
-  </EntityType>
-  <EntityType Name="Mandi_UserRequirement">
-    <Key>
-      <PropertyRef Name="Tr_Id" />
-    </Key>
-    <Property Name="Tr_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Usercode" Type="nvarchar" MaxLength="256" />
-    <Property Name="Requirement" Type="nvarchar(max)" />
-    <Property Name="Tr_Date" Type="smalldatetime" />
   </EntityType>
   <EntityType Name="Mandi_UserRoles">
     <Key>
@@ -709,6 +727,30 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
+    <End Role="Mandi_InterestedProductForUser" Type="Self.Mandi_InterestedProductForUser" Multiplicity="0..1" />
+    <End Role="Mandi_CartInfo" Type="Self.Mandi_CartInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandi_InterestedProductForUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mandi_CartInfo">
+        <PropertyRef Name="Fk_InterestedProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_CartInfo_Mandi_UserEnquiry">
+    <End Role="Mandi_UserEnquiry" Type="Self.Mandi_UserEnquiry" Multiplicity="0..1" />
+    <End Role="Mandi_CartInfo" Type="Self.Mandi_CartInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandi_UserEnquiry">
+        <PropertyRef Name="Tr_Id" />
+      </Principal>
+      <Dependent Role="Mandi_CartInfo">
+        <PropertyRef Name="Fk_EnquiryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
     <End Role="Mandi_InterestedProductForUser" Type="Self.Mandi_InterestedProductForUser" Multiplicity="1" />
     <End Role="Mandi_InterestedProductForUser1" Type="Self.Mandi_InterestedProductForUser" Multiplicity="0..1" />
@@ -967,6 +1009,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_Banner" EntityType="Self.Mandi_Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_CartInfo" EntityType="Self.Mandi_CartInfo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_InterestedProductForUser" EntityType="Self.Mandi_InterestedProductForUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_Notification" EntityType="Self.Mandi_Notification" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_OrderDetails" EntityType="Self.Mandi_OrderDetails" Schema="dbo" store:Type="Tables" />
@@ -977,7 +1020,6 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <EntitySet Name="Mandi_UserEnquiry" EntityType="Self.Mandi_UserEnquiry" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_UserFeedback" EntityType="Self.Mandi_UserFeedback" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_UserInfo" EntityType="Self.Mandi_UserInfo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Mandi_UserRequirement" EntityType="Self.Mandi_UserRequirement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_UserRoles" EntityType="Self.Mandi_UserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderErrorLogDetails" EntityType="Self.OrderErrorLogDetails" Schema="dbo" store:Type="Tables" />
@@ -1027,6 +1069,14 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="Self.FK_Crop_Master_Crop_Master">
       <End Role="Crop_Master" EntitySet="Crop_Master" />
       <End Role="Crop_Master1" EntitySet="Crop_Master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser" Association="Self.FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
+      <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
+      <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_CartInfo_Mandi_UserEnquiry" Association="Self.FK_Mandi_CartInfo_Mandi_UserEnquiry">
+      <End Role="Mandi_UserEnquiry" EntitySet="Mandi_UserEnquiry" />
+      <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
     </AssociationSet>
     <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" Association="Self.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
       <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />

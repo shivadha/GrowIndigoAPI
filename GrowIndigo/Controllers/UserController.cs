@@ -1297,6 +1297,7 @@ namespace GrowIndigo.Controllers
                     objRequirement.ExpectedDate = objUserRequirementViewModel.ExpectedDate;
                     objRequirement.IsPriceNegotiable = objUserRequirementViewModel.IsPriceNegotiable;
                     objRequirement.Remarks = objUserRequirementViewModel.Remarks;
+                    objRequirement.Tr_Date = DateTime.Now;
 
                     dbContext.Mandi_Requirement.Add(objRequirement);
                     var i = dbContext.SaveChanges();

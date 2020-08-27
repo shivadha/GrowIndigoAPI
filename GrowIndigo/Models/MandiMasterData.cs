@@ -23,7 +23,31 @@ namespace GrowIndigo.Models
                    public string RoleName { get; set; }
         }
 
-
+        public class Cart_InfoForUser
+        {
+            public long CartId { get; set; }
+            public string CartType { get; set; }
+            public Nullable<int> Fk_EnquiryId { get; set; }
+            public Nullable<long> Fk_InterestedProductId { get; set; }
+            public string Deal_Id { get; set; }
+            public string Product { get; set; }
+            public string Quantity { get; set; }
+            public string QuantityUnit { get; set; }
+            public Nullable<int> Price { get; set; }
+            public string ProductAddress { get; set; }
+            public string ProductImage { get; set; }
+          
+            public Nullable<bool> ProductStatus { get; set; }
+            public string BuyerName { get; set; }
+            public string BuyerNumber { get; set; }
+            public string BuyerAddress { get; set; }
+            public string SellerName { get; set; }
+            public string Seller_MobileNumber { get; set; }
+            public string SellerAddress { get; set; }
+            public Nullable<decimal> Logistics_Cost { get; set; }
+            public Nullable<decimal> Other_Charges { get; set; }
+            public Nullable<bool> Status { get; set; }
+        }
 
         public class MandiCrop
         {
@@ -52,6 +76,11 @@ namespace GrowIndigo.Models
         public class Mandi_CropMaster
         {
             public List<MandiCrop> MandiCrops { get; set; }
+        }
+
+        public class Mandi_CartInfoViewModel
+        {
+            public List<Cart_InfoForUser> MandiCart_Info { get; set; }
         }
 
         public class MandiUserRoles

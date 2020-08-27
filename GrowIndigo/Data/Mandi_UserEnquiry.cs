@@ -14,11 +14,20 @@ namespace GrowIndigo.Data
     
     public partial class Mandi_UserEnquiry
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Mandi_UserEnquiry()
+        {
+            this.Mandi_CartInfo = new HashSet<Mandi_CartInfo>();
+        }
+    
         public int Tr_Id { get; set; }
         public Nullable<int> ProductId { get; set; }
         public string Enquiry { get; set; }
         public string EmailId { get; set; }
         public string MobileNumber { get; set; }
         public Nullable<System.DateTime> Tr_Date { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mandi_CartInfo> Mandi_CartInfo { get; set; }
     }
 }

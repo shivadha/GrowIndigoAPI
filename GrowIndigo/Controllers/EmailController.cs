@@ -239,7 +239,7 @@ namespace GrowIndigo.Controllers
                 mail.Subject = subject;
                 mail.Body = body;
                 SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("developer@growindigo.co.in", "lraoezrpruvcsrvy");
+                SmtpServer.Credentials = new System.Net.NetworkCredential("developer@growindigo.co.in", "phoansnuhfutodwq");
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
                 if (type == "Enquiry")

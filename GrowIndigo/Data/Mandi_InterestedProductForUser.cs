@@ -14,6 +14,12 @@ namespace GrowIndigo.Data
     
     public partial class Mandi_InterestedProductForUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Mandi_InterestedProductForUser()
+        {
+            this.Mandi_CartInfo = new HashSet<Mandi_CartInfo>();
+        }
+    
         public long Id { get; set; }
         public string Fk_MobileNumber { get; set; }
         public string BuyerId { get; set; }
@@ -29,6 +35,8 @@ namespace GrowIndigo.Data
         public string Remarks { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mandi_CartInfo> Mandi_CartInfo { get; set; }
         public virtual Mandi_InterestedProductForUser Mandi_InterestedProductForUser1 { get; set; }
         public virtual Mandi_InterestedProductForUser Mandi_InterestedProductForUser2 { get; set; }
         public virtual Mandi_UserInfo Mandi_UserInfo { get; set; }

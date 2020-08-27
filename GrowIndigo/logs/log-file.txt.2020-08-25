@@ -1,0 +1,4 @@
+2020-08-25 17:25:56,652 INFO MonitoringLogger - 
+2020-08-25 17:25:56,664 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.DateTime ToDateTime(System.String)' method, and this method cannot be translated into a store expression.
+2020-08-25 17:29:35,845 INFO MonitoringLogger - 
+2020-08-25 17:29:35,845 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.DateTime ToDateTime(System.String)' method, and this method cannot be translated into a store expression.

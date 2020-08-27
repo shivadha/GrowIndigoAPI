@@ -1,0 +1,5 @@
+2020-08-19 10:51:50,927 INFO MonitoringLogger - 
+2020-08-19 10:51:50,938 INFO MonitoringLogger - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+2020-08-19 10:54:43,200 INFO MonitoringLogger - 
+2020-08-19 10:54:43,201 INFO MonitoringLogger - Value cannot be null.
+Parameter name: request

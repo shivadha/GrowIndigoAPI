@@ -20,6 +20,7 @@ using System.Configuration;
 using System.Web;
 using System.Threading.Tasks;
 using System.Net.Mail;
+using static GrowIndigo.Models.MandiMasterData;
 
 namespace GrowIndigo.Controllers
 {
@@ -2985,111 +2986,130 @@ namespace GrowIndigo.Controllers
         [HttpPost]
         //[Authorize]
         [Route("api/MandiUser/AddInterestedProduct")]
-        public HttpResponseMessage AddInterestedProductForUser(InterestedProductsViewModel objInterestedProductsViewModel)
+        public string AddInterestedProductForUser(InterestedProductsViewModel objInterestedProductsViewModel)
         {
             try
             {
-                //get category for cropId
-
-                Mandi_InterestedProductForUser objMandi_InterestedProductForUser = new Mandi_InterestedProductForUser();
                 string mobileNumber = objInterestedProductsViewModel.BuyerId;
-                //get mobileNumber from user table
-                var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
-                if (number != null)
+                Mandi_InterestedProductForUser objMandi_InterestedProductForUser = new Mandi_InterestedProductForUser();
+
+                //CHECK RECORD EXIXT IN DB 
+                var interestedProduct = (from product in dbContext.Mandi_InterestedProductForUser where product.Fk_MobileNumber == mobileNumber && product.ProductId == objInterestedProductsViewModel.ProductId select product).FirstOrDefault();
+                if (interestedProduct != null)
                 {
-
-
-                    objMandi_InterestedProductForUser.Id = objInterestedProductsViewModel.Id;
-                    objMandi_InterestedProductForUser.Fk_MobileNumber = objInterestedProductsViewModel.BuyerId;
-                    objMandi_InterestedProductForUser.BuyerId = objInterestedProductsViewModel.BuyerId;
-                    objMandi_InterestedProductForUser.ProductId = objInterestedProductsViewModel.ProductId;
-                    objMandi_InterestedProductForUser.CreatedDate = DateTime.Now;
-                    objMandi_InterestedProductForUser.BuyerAddress = objInterestedProductsViewModel.BuyerAddress;
-                    objMandi_InterestedProductForUser.CropName = objInterestedProductsViewModel.CropName;
-                    objMandi_InterestedProductForUser.VarietyName = objInterestedProductsViewModel.VarietyName;
-                    objMandi_InterestedProductForUser.Quantity = objInterestedProductsViewModel.Quantity;
-                    objMandi_InterestedProductForUser.QualitySpecification = objInterestedProductsViewModel.QualitySpecification;
-                    objMandi_InterestedProductForUser.DeliveryLocation = objInterestedProductsViewModel.DeliveryLocation;
-                    objMandi_InterestedProductForUser.ExpectedPrice = objInterestedProductsViewModel.ExpectedPrice;
-                    objMandi_InterestedProductForUser.IsPriceNegotiable = objInterestedProductsViewModel.IsPriceNegotiable;
-                    objMandi_InterestedProductForUser.Remarks = objInterestedProductsViewModel.Remarks;
-                    objMandi_InterestedProductForUser.ProductId = objInterestedProductsViewModel.Tr_Id.ToString();
-
-
-                    var add = dbContext.Mandi_InterestedProductForUser.Add(objMandi_InterestedProductForUser);
-                    var i = dbContext.SaveChanges();
-                    if (i != 0)
+                    string Message = "This Product with productId is " + objInterestedProductsViewModel.ProductId + " already added in Cart";
+                    return Message;
+                }
+                else
+                {
+                    var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                    if (number != null)
                     {
-                        //objResponse.Message = "Interested Product Added successfully";
-                        //return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                        var getSellerMobileNumber = (from user in dbContext.Mandi_ProductMaster where user.Tr_Id == objInterestedProductsViewModel.Tr_Id select user.MobileNumber).FirstOrDefault();
-                        var getSellerMobileNumberByNumber = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == getSellerMobileNumber select seller).FirstOrDefault();
 
 
-                        string Title = "Buyer is interested in your product";
-                        OrderBookingViewModel objOrderBookingViewModel = new OrderBookingViewModel();
+                        objMandi_InterestedProductForUser.Id = objInterestedProductsViewModel.Id;
+                        objMandi_InterestedProductForUser.Fk_MobileNumber = objInterestedProductsViewModel.BuyerId;
+                        objMandi_InterestedProductForUser.BuyerId = objInterestedProductsViewModel.BuyerId;
+                        objMandi_InterestedProductForUser.ProductId = objInterestedProductsViewModel.ProductId;
+                        objMandi_InterestedProductForUser.CreatedDate = DateTime.Now;
+                        objMandi_InterestedProductForUser.BuyerAddress = objInterestedProductsViewModel.BuyerAddress;
+                        objMandi_InterestedProductForUser.CropName = objInterestedProductsViewModel.CropName;
+                        objMandi_InterestedProductForUser.VarietyName = objInterestedProductsViewModel.VarietyName;
+                        objMandi_InterestedProductForUser.Quantity = objInterestedProductsViewModel.Quantity;
+                        objMandi_InterestedProductForUser.QualitySpecification = objInterestedProductsViewModel.QualitySpecification;
+                        objMandi_InterestedProductForUser.DeliveryLocation = objInterestedProductsViewModel.DeliveryLocation;
+                        objMandi_InterestedProductForUser.ExpectedPrice = objInterestedProductsViewModel.ExpectedPrice;
+                        objMandi_InterestedProductForUser.IsPriceNegotiable = objInterestedProductsViewModel.IsPriceNegotiable;
+                        objMandi_InterestedProductForUser.Remarks = objInterestedProductsViewModel.Remarks;
+                        objMandi_InterestedProductForUser.ProductId = objInterestedProductsViewModel.Tr_Id.ToString();
 
-                        if (getSellerMobileNumberByNumber != null)
+
+                        var add = dbContext.Mandi_InterestedProductForUser.Add(objMandi_InterestedProductForUser);
+                        var i = dbContext.SaveChanges();
+
+                        if (i != 0)
                         {
-                            if (getSellerMobileNumberByNumber.DeviceToken != null)
-                            {
-                                objOrderBookingViewModel.Buyer_Mobile = getSellerMobileNumberByNumber.MobileNumber;
-                                string Message = "Dear Customer, " + getSellerMobileNumberByNumber.FullName + " Buyers from " + getSellerMobileNumberByNumber.State + "," + getSellerMobileNumberByNumber.District + " region have shown interest in your product. ";
-                                var addnotification = AddNotification(objOrderBookingViewModel, Message);
-                                if (addnotification == "true")
-                                {
+                            //objResponse.Message = "Interested Product Added successfully";
+                            //return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                            var getSellerMobileNumber = (from user in dbContext.Mandi_ProductMaster where user.Tr_Id == objInterestedProductsViewModel.Tr_Id select user.MobileNumber).FirstOrDefault();
+                            var getSellerMobileNumberByNumber = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == getSellerMobileNumber select seller).FirstOrDefault();
 
-                                    SendFCMNotificationToUsers(getSellerMobileNumberByNumber.DeviceToken, Message, Title);
-                                    objResponse.Message = "Interested product has been saved in db";
-                                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                            string Title = "Buyer is interested in your product";
+                            OrderBookingViewModel objOrderBookingViewModel = new OrderBookingViewModel();
+
+                            if (getSellerMobileNumberByNumber != null)
+                            {
+                                if (getSellerMobileNumberByNumber.DeviceToken != null)
+                                {
+                                    objOrderBookingViewModel.Buyer_Mobile = getSellerMobileNumberByNumber.MobileNumber;
+                                    string Message = "Dear Customer, " + getSellerMobileNumberByNumber.FullName + " Buyers from " + getSellerMobileNumberByNumber.State + "," + getSellerMobileNumberByNumber.District + " region have shown interest in your product. ";
+                                    var addnotification = AddNotification(objOrderBookingViewModel, Message);
+                                    if (addnotification == "true")
+                                    {
+
+                                        SendFCMNotificationToUsers(getSellerMobileNumberByNumber.DeviceToken, Message, Title);
+
+                                        objResponse.Message = add.Id.ToString();
+                                        return Message;
+                                    }
+                                    else
+                                    {
+
+                                        //objResponse.Message = "Interested product has been saved in db but notification is not added";
+                                        objResponse.Message = add.Id.ToString();
+                                        return Message;
+
+                                    }
+
                                 }
                                 else
                                 {
-
-                                    objResponse.Message = "Interested product has been saved in db but notification is not added";
-                                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-
+                                    //return true;
+                                    // string Message = "Interested product has been successfully saved in db but Device Token  is null";
+                                    string Message = add.Id.ToString();
+                                    return Message;
                                 }
                             }
                             else
                             {
-                                //return true;
-                                objResponse.Message = "Interested product has been successfully saved in db but Device Token  is null";
-                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                                //string Message = "Interested product has been saved";
+                                string Message = add.Id.ToString();
+                                return Message;
                             }
+
+
                         }
                         else
                         {
 
-                            objResponse.Message = "Interested product has been saved";
-                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                        }
 
+                            // string Message = "Interested product failed to save in database. Please contact admin";
+                            string Message = add.Id.ToString();
+                            return Message;
+                        }
 
                     }
                     else
                     {
+                        string Message = "User number does not exists.";
 
+                        return Message;
 
-                        objResponse.Message = "Interested product failed to save in database. Please contact admin";
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                     }
-
                 }
-                else
-                {
-                    objResponse.Message = "User number does not exists.";
 
-                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                //get mobileNumber from user table
 
-                }
             }
             catch (Exception ex)
             {
                 Log.Info(Convert.ToString(ex.InnerException));
                 Log.Info(ex.Message);
                 objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "AddInterestedProduct");
-                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+                return "Error has been occured";
+                //return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
 
             }
 
@@ -3565,7 +3585,7 @@ namespace GrowIndigo.Controllers
         /// <param name="objUserVerification"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+       
         [Route("api/MandiUser/GetMandiUserInfo")]
         public HttpResponseMessage GetMandiUserInfo(MandiUserVerification objMandiUserVerification)
         {
@@ -3902,53 +3922,53 @@ namespace GrowIndigo.Controllers
         /// </summary>
         /// <param name="objUserRequirementViewModel"></param>
         /// <returns></returns>
-        [HttpPost]
-        // [Authorize]
-        [Route("api/MandiUser/UserRequirements")]
-        public HttpResponseMessage UserRequirements(UserRequirementViewModel objUserRequirementViewModel)
-        {
-            try
-            {
-                Mandi_UserRequirement objMandi_UserRequirement = new Mandi_UserRequirement();
-                string mobileNumber = objUserRequirementViewModel.Usercode;
-                //get mobileNumber from user table
-                var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
-                if (number != null)
-                {
-                    objMandi_UserRequirement.Usercode = objUserRequirementViewModel.Usercode;
-                    objMandi_UserRequirement.Requirement = objUserRequirementViewModel.Requirement;
-                    objMandi_UserRequirement.Tr_Date = DateTime.Now;
+        //[HttpPost]
+        //// [Authorize]
+        //[Route("api/MandiUser/UserRequirements")]
+        //public HttpResponseMessage UserRequirements(UserRequirementViewModel objUserRequirementViewModel)
+        //{
+        //    try
+        //    {
+        //        Mandi_UserRequirement objMandi_UserRequirement = new Mandi_UserRequirement();
+        //        string mobileNumber = objUserRequirementViewModel.Usercode;
+        //        //get mobileNumber from user table
+        //        var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+        //        if (number != null)
+        //        {
+        //            objMandi_UserRequirement.Usercode = objUserRequirementViewModel.Usercode;
+        //            objMandi_UserRequirement.Requirement = objUserRequirementViewModel.Requirement;
+        //            objMandi_UserRequirement.Tr_Date = DateTime.Now;
 
 
-                    dbContext.Mandi_UserRequirement.Add(objMandi_UserRequirement);
-                    var i = dbContext.SaveChanges();
-                    if (i != 0)
-                    {
-                        objResponse.Message = "Submitted successfully";
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                    }
-                    else
-                    {
-                        objResponse.Message = "Failed";
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                    }
-                }
-                else
-                {
-                    objResponse.Message = "Mobile number not exists.";
-                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+        //            dbContext.Mandi_UserRequirement.Add(objMandi_UserRequirement);
+        //            var i = dbContext.SaveChanges();
+        //            if (i != 0)
+        //            {
+        //                objResponse.Message = "Submitted successfully";
+        //                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+        //            }
+        //            else
+        //            {
+        //                objResponse.Message = "Failed";
+        //                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            objResponse.Message = "Mobile number not exists.";
+        //            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
 
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Info(Convert.ToString(ex.InnerException));
-                Log.Info(ex.Message);
-                objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "UserRequirements");
-                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
-            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Info(Convert.ToString(ex.InnerException));
+        //        Log.Info(ex.Message);
+        //        objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "UserRequirements");
+        //        return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+        //    }
 
-        }
+        //}
 
 
 
@@ -4212,115 +4232,130 @@ namespace GrowIndigo.Controllers
         [HttpPost]
         //[Authorize]
         [Route("api/MandiUser/UserEnquiry")]
-        public HttpResponseMessage UserEnquiry(UserEnquiryViewModel objUserEnquiryViewModel)
+        public string UserEnquiry(UserEnquiryViewModel objUserEnquiryViewModel)
         {
             try
             {
                 Mandi_UserEnquiry objMandi_UserEnquiry = new Mandi_UserEnquiry();
                 string mobileNumber = objUserEnquiryViewModel.MobileNumber;
-                //get mobileNumber from user table
-                var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
-                if (number != null)
+
+                var checkEnquiry = (from enquiry in dbContext.Mandi_UserEnquiry where enquiry.MobileNumber == mobileNumber && enquiry.ProductId == objUserEnquiryViewModel.ProductId select enquiry).FirstOrDefault();
+                if (checkEnquiry != null)
                 {
-                    objMandi_UserEnquiry.ProductId = objUserEnquiryViewModel.ProductId;
-                    objMandi_UserEnquiry.Enquiry = objUserEnquiryViewModel.Enquiry;
-                    objMandi_UserEnquiry.EmailId = objUserEnquiryViewModel.EmailId;
-                    objMandi_UserEnquiry.MobileNumber = objUserEnquiryViewModel.MobileNumber;
-                    objMandi_UserEnquiry.Tr_Date = DateTime.Now;
-
-                    dbContext.Mandi_UserEnquiry.Add(objMandi_UserEnquiry);
-                    var i = dbContext.SaveChanges();
-                    if (i != 0)
-                    {
-
-                        #region Email and notification
-                        string message = "Your Enquiry has been received Successfully";
-                        objCommonClasses.SendSMS(mobileNumber, message);
-
-                        EmailController objEmailController = new EmailController();
-                        EmailModel objEmailModel = new EmailModel();
-                        objEmailModel.BuyerId = objUserEnquiryViewModel.BuyerId.ToString();
-                        objEmailModel.BuyerName = objUserEnquiryViewModel.BuyerName;
-                        objEmailModel.BuyerContact = objUserEnquiryViewModel.MobileNumber;
-                        objEmailModel.BuyerAddress = objUserEnquiryViewModel.BuyerAddress;
-                        objEmailModel.ProductId = objUserEnquiryViewModel.ProductId.ToString();
-                        objEmailModel.CropName = objUserEnquiryViewModel.CropName;
-                        objEmailModel.Qty = objUserEnquiryViewModel.Qty;
-                        objEmailModel.Rate = objUserEnquiryViewModel.Rate;
-                        objEmailController.sendEmailViaWebApi(objEmailModel, "Enquiry");
-                        message = "Your Enquiry has been received Successfully";
-                        objResponse.Message = "Enquiry Submitted successfully";
-
-
-                        //Add and Send notification
-
-                        var getSellerMobileNumber = (from user in dbContext.Mandi_ProductMaster where user.Tr_Id == objUserEnquiryViewModel.ProductId select user.MobileNumber).FirstOrDefault();
-                        var getSellerMobileNumberByNumber = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == getSellerMobileNumber select seller).FirstOrDefault();
-
-
-                        string Title = "Buyer is enquiry regarding  your product";
-                        OrderBookingViewModel objOrderBookingViewModel = new OrderBookingViewModel();
-
-                        if (getSellerMobileNumberByNumber != null)
-                        {
-                            if (getSellerMobileNumberByNumber.DeviceToken != null)
-                            {
-                                objOrderBookingViewModel.Buyer_Mobile = getSellerMobileNumberByNumber.MobileNumber;
-                                string Message = "Dear Customer, buyers are enquiring about your product.We will soon be contacting you";
-                                var addnotification = AddNotification(objOrderBookingViewModel, Message);
-                                if (addnotification == "true")
-                                {
-
-                                    SendFCMNotificationToUsers(getSellerMobileNumberByNumber.DeviceToken, Message, Title);
-                                    objResponse.Message = "Enquiry has been saved successfully";
-                                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                                }
-                                else
-                                {
-                                    objResponse.Message = "Enquiry has been saved successfully";
-                                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                                }
-
-
-                            }
-
-                            else
-                            {
-                                objResponse.Message = "Enquiry has been saved successfully";
-                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                            }
-
-                        }
-                        else
-                        {
-                            objResponse.Message = "Enquiry has been saved successfully";
-                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                        }
-                    }
-
-                    else
-                    {
-                        objResponse.Message = "Failed";
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                    }
-                    #endregion
-
-
-
+                    string msg = "This Product with ProductId " + objUserEnquiryViewModel.ProductId + "is already added in cart";
+                    return msg;
                 }
                 else
                 {
-                    objResponse.Message = "Mobile number not exists.";
-                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                    if (number != null)
+                    {
+                        objMandi_UserEnquiry.ProductId = objUserEnquiryViewModel.ProductId;
+                        objMandi_UserEnquiry.Enquiry = objUserEnquiryViewModel.Enquiry;
+                        objMandi_UserEnquiry.EmailId = objUserEnquiryViewModel.EmailId;
+                        objMandi_UserEnquiry.MobileNumber = objUserEnquiryViewModel.MobileNumber;
+                        objMandi_UserEnquiry.Tr_Date = DateTime.Now;
 
+                        var add = dbContext.Mandi_UserEnquiry.Add(objMandi_UserEnquiry);
+                        var i = dbContext.SaveChanges();
+                        if (i != 0)
+                        {
+
+                            #region Email and notification
+                            string message = "Your Enquiry has been received Successfully";
+                            objCommonClasses.SendSMS(mobileNumber, message);
+
+                            EmailController objEmailController = new EmailController();
+                            EmailModel objEmailModel = new EmailModel();
+                            objEmailModel.BuyerId = objUserEnquiryViewModel.BuyerId.ToString();
+                            objEmailModel.BuyerName = objUserEnquiryViewModel.BuyerName;
+                            objEmailModel.BuyerContact = objUserEnquiryViewModel.MobileNumber;
+                            objEmailModel.BuyerAddress = objUserEnquiryViewModel.BuyerAddress;
+                            objEmailModel.ProductId = objUserEnquiryViewModel.ProductId.ToString();
+                            objEmailModel.CropName = objUserEnquiryViewModel.CropName;
+                            objEmailModel.Qty = objUserEnquiryViewModel.Qty;
+                            objEmailModel.Rate = objUserEnquiryViewModel.Rate;
+                            objEmailController.sendEmailViaWebApi(objEmailModel, "Enquiry");
+                            message = "Your Enquiry has been received Successfully";
+                            objResponse.Message = "Enquiry Submitted successfully";
+
+
+                            //Add and Send notification
+
+                            var getSellerMobileNumber = (from user in dbContext.Mandi_ProductMaster where user.Tr_Id == objUserEnquiryViewModel.ProductId select user.MobileNumber).FirstOrDefault();
+                            var getSellerMobileNumberByNumber = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == getSellerMobileNumber select seller).FirstOrDefault();
+
+
+                            string Title = "Buyer is enquiry regarding  your product";
+                            OrderBookingViewModel objOrderBookingViewModel = new OrderBookingViewModel();
+
+                            if (getSellerMobileNumberByNumber != null)
+                            {
+                                if (getSellerMobileNumberByNumber.DeviceToken != null)
+                                {
+                                    objOrderBookingViewModel.Buyer_Mobile = getSellerMobileNumberByNumber.MobileNumber;
+                                    string Message = "Dear Customer, buyers are enquiring about your product.We will soon be contacting you";
+                                    var addnotification = AddNotification(objOrderBookingViewModel, Message);
+                                    if (addnotification == "true")
+                                    {
+
+                                        SendFCMNotificationToUsers(getSellerMobileNumberByNumber.DeviceToken, Message, Title);
+                                        // string msg = "Enquiry has been saved successfully";
+                                        string msg = add.Tr_Id.ToString();
+                                        return msg;
+                                    }
+                                    else
+                                    {
+                                        //  objResponse.Message = "Enquiry has been saved successfully";
+                                        string msg = add.Tr_Id.ToString();
+                                        return msg;
+                                    }
+
+
+                                }
+
+                                else
+                                {
+                                    //  objResponse.Message = "Enquiry has been saved successfully";
+                                    string msg = add.Tr_Id.ToString();
+                                    return msg;
+                                }
+
+                            }
+                            else
+                            {
+                                //  objResponse.Message = "Enquiry has been saved successfully";
+                                string msg = add.Tr_Id.ToString();
+                                return msg;
+                            }
+                        }
+
+                        else
+                        {
+                            string Message = "Failed";
+                            return Message;
+                        }
+                        #endregion
+
+
+
+                    }
+                    else
+                    {
+                        string Message = "Mobile number not exists.";
+                        return Message;
+
+                    }
                 }
+                //get mobileNumber from user table
+
             }
             catch (Exception ex)
             {
                 Log.Info(Convert.ToString(ex.InnerException));
                 Log.Info(ex.Message);
                 objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "UserEnquiry");
-                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+                return "Error";
             }
 
         }
@@ -4599,6 +4634,7 @@ namespace GrowIndigo.Controllers
 
                 //get new Product from database.
                 var getYestetdayDate = DateTime.Now.AddDays(-1);
+               // string getYestetdayDate = Convert.ToDateTime("09/25/2011").ToString("dd/MM/yyyy");
                 var currentDatetime = DateTime.Now;
 
                 var getNewProduct = (from product in dbContext.Mandi_ProductMaster where product.Tr_Date >= getYestetdayDate && product.Tr_Date < currentDatetime select product.CategoryId).Distinct().ToList();
@@ -4609,12 +4645,12 @@ namespace GrowIndigo.Controllers
                     //categoryId is not null
                     //and where categoryId matched for category mapping and product mapping 
 
-                    var getUsersForNotification = dbContext.UserCategoryMapping.Where(x => x.CategoryId != null && x.Mandi_UserInfo.DeviceToken != null && getNewProduct.Contains(x.CategoryId)).Select(y => new { y.Fk_MobileNumber, y.Mandi_UserInfo.DeviceToken }).ToList();
+                    var getUsersForNotification = dbContext.UserCategoryMapping.Where(x => x.CategoryId != null && x.Mandi_UserInfo.DeviceToken != null && getNewProduct.Contains(x.CategoryId)).Select(y => new { y.Fk_MobileNumber, y.Mandi_UserInfo.DeviceToken, y.Mandi_UserInfo.FullName }).ToList();
                     OrderBookingViewModel objOrderBookingViewModel = new OrderBookingViewModel();
                     foreach (var users in getUsersForNotification)
                     {
                         objOrderBookingViewModel.Buyer_Mobile = users.Fk_MobileNumber;
-                        string Message = "Dear Customer," + users.Fk_MobileNumber + "new products have been listed. Keep on checking in Grow Mandi and let us know your requirments";
+                        string Message = "Dear " + users.FullName + ", new products have been listed. Keep on checking in Grow Mandi and let us know your requirments";
                         var addnotification = AddNotification(objOrderBookingViewModel, Message);
                         if (addnotification == "true")
                         {
@@ -4728,6 +4764,591 @@ namespace GrowIndigo.Controllers
 
 
 
+
+
+
+
+
+        #endregion
+
+
+        #region Cart Info
+
+        /// <summary>
+        /// for adding enquiry or interested product in cart
+        /// </summary>
+        /// <param name="objMandiCartViewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/MandiUser/AddProductInCart")]
+        public HttpResponseMessage AddProductInCart(MandiCartViewModel objMandiCartViewModel)
+        {
+
+
+            try
+            {
+                string mobileNumber = objMandiCartViewModel.BuyerContact;
+                // to check if existing in cart
+                if (objMandiCartViewModel.Fk_EnquiryId != null)
+                {
+                    if (objMandiCartViewModel.Fk_EnquiryId != 0)
+                    {
+                        var checkEnquiryInCart = (from enquiry in dbContext.Mandi_CartInfo where enquiry.Fk_EnquiryId == objMandiCartViewModel.Fk_EnquiryId && enquiry.BuyerNumber == mobileNumber && enquiry.Product_Id == objMandiCartViewModel.Tr_Id select enquiry).FirstOrDefault();
+                        if (checkEnquiryInCart != null)
+                        {
+                            objResponse.Message = "This Product is already added in cart";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+                        else
+                        {
+                            objMandiCartViewModel.Fk_InterestedProductId = 0;
+                            var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                            if (number != null)
+                            {
+                                Mandi_CartInfo objMandi_CartInfo = new Mandi_CartInfo();
+
+                                objMandi_CartInfo.CartType = objMandiCartViewModel.CartType;
+                                if (objMandiCartViewModel.Fk_EnquiryId != 0)
+                                {
+                                    objMandi_CartInfo.Fk_EnquiryId = objMandiCartViewModel.Fk_EnquiryId;
+                                }
+                                else
+                                {
+                                    objMandi_CartInfo.Fk_InterestedProductId = objMandiCartViewModel.Fk_InterestedProductId;
+                                }
+
+                                //get Product detail
+
+
+
+                                #region Product detail
+                                var productId = objMandiCartViewModel.Tr_Id;
+                                var getProductDetail = (from product in dbContext.Mandi_ProductMaster.Where(product => product.Tr_Id == productId)
+                                                        join crop in dbContext.Crop_Master on product.CropId equals crop.CropId
+                                                        join variety in dbContext.Variety_Master on product.VarietyId equals variety.VarietyId
+
+
+                                                        select new
+                                                        {
+
+                                                            crop.CropName,
+                                                            //variety.VarietyName,
+                                                            product.Tr_Id,
+                                                            //product.CropId,
+                                                            product.VarietyId,
+                                                            product.ProductAddress,
+                                                            product.GeoAddress,
+                                                            product.MobileNumber,
+                                                            product.Quantity,
+                                                            product.QuantityUnit,
+                                                            product.Price,
+                                                            //product.ServiceTax,
+                                                            //product.CategoryId,
+                                                            //crop.CategoryName,
+
+                                                            //product.AvailabilityDate,
+                                                            //product.IsQualityTestNeeded,
+                                                            //product.ProductImageUrl,
+                                                            //product.Tr_Date,
+                                                            //product.State,
+                                                            //product.District,
+                                                            //product.Taluka,
+                                                            //product.PaymentMethod,
+                                                            //product.IsLogisticNeeded,
+                                                            //product.IsActive,
+                                                            //product.SecondaryProductImage,
+                                                            //product.ProductDescription
+
+                                                        }).FirstOrDefault();
+
+
+                                objMandi_CartInfo.Product = getProductDetail.CropName;
+                                objMandi_CartInfo.Product_Id = objMandiCartViewModel.Tr_Id;
+                                objMandi_CartInfo.Quantity = getProductDetail.Quantity;
+                                objMandi_CartInfo.QuantityUnit = getProductDetail.QuantityUnit;
+                                objMandi_CartInfo.Price = getProductDetail.Price;
+                                objMandi_CartInfo.ProductAddress = getProductDetail.ProductAddress;
+                                objMandi_CartInfo.ProductImage = objMandiCartViewModel.ProductImage;
+
+                                #endregion
+
+
+
+
+                                //get buyer details
+                                objMandi_CartInfo.BuyerName = objMandiCartViewModel.BuyerName;
+                                objMandi_CartInfo.BuyerNumber = objMandiCartViewModel.BuyerContact;
+                                objMandi_CartInfo.BuyerAddress = number.State + "," + number.District + "," + number.Taluka + "," + number.Pincode;
+
+                                //to get seller details
+
+                                objMandi_CartInfo.Seller_MobileNumber = getProductDetail.MobileNumber;
+                                var sellerMobileNumber = getProductDetail.MobileNumber;
+                                var sellerDetail = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == sellerMobileNumber select seller).FirstOrDefault();
+                                objMandi_CartInfo.SellerAddress = sellerDetail.State + "," + sellerDetail.District + "," + sellerDetail.Taluka + "," + sellerDetail.Pincode;
+                                objMandi_CartInfo.SellerName = sellerDetail.FullName;
+
+                                objMandi_CartInfo.Status = false;
+
+
+
+
+
+
+                                dbContext.Mandi_CartInfo.Add(objMandi_CartInfo);
+                                var i = dbContext.SaveChanges();
+                                if (i != 0)
+                                {
+                                    objResponse.Message = "Product has been successfully saved in cart";
+                                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                                }
+                                else
+                                {
+                                    objResponse.Message = "Failed to save product in cart";
+                                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                                }
+
+
+                            }
+                            else
+                            {
+                                objResponse.Message = "Mobile number not exists.";
+                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        objMandiCartViewModel.Fk_InterestedProductId = 0;
+                        var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                        if (number != null)
+                        {
+                            Mandi_CartInfo objMandi_CartInfo = new Mandi_CartInfo();
+
+                            objMandi_CartInfo.CartType = objMandiCartViewModel.CartType;
+                            if (objMandiCartViewModel.Fk_EnquiryId != 0)
+                            {
+                                objMandi_CartInfo.Fk_EnquiryId = objMandiCartViewModel.Fk_EnquiryId;
+                            }
+                            else
+                            {
+                                objMandi_CartInfo.Fk_InterestedProductId = objMandiCartViewModel.Fk_InterestedProductId;
+                            }
+
+                            //get Product detail
+
+
+
+                            #region Product detail
+                            var productId = objMandiCartViewModel.Tr_Id;
+                            var getProductDetail = (from product in dbContext.Mandi_ProductMaster.Where(product => product.Tr_Id == productId)
+                                                    join crop in dbContext.Crop_Master on product.CropId equals crop.CropId
+                                                    join variety in dbContext.Variety_Master on product.VarietyId equals variety.VarietyId
+
+
+                                                    select new
+                                                    {
+
+                                                        crop.CropName,
+                                                        //variety.VarietyName,
+                                                        product.Tr_Id,
+                                                        //product.CropId,
+                                                        product.VarietyId,
+                                                        product.ProductAddress,
+                                                        product.GeoAddress,
+                                                        product.MobileNumber,
+                                                        product.Quantity,
+                                                        product.QuantityUnit,
+                                                        product.Price,
+                                                        //product.ServiceTax,
+                                                        //product.CategoryId,
+                                                        //crop.CategoryName,
+
+                                                        //product.AvailabilityDate,
+                                                        //product.IsQualityTestNeeded,
+                                                        //product.ProductImageUrl,
+                                                        //product.Tr_Date,
+                                                        //product.State,
+                                                        //product.District,
+                                                        //product.Taluka,
+                                                        //product.PaymentMethod,
+                                                        //product.IsLogisticNeeded,
+                                                        //product.IsActive,
+                                                        //product.SecondaryProductImage,
+                                                        //product.ProductDescription
+
+                                                    }).FirstOrDefault();
+
+
+                            objMandi_CartInfo.Product = getProductDetail.CropName;
+                            objMandi_CartInfo.Quantity = getProductDetail.Quantity;
+                            objMandi_CartInfo.QuantityUnit = getProductDetail.QuantityUnit;
+                            objMandi_CartInfo.Price = getProductDetail.Price;
+                            objMandi_CartInfo.ProductAddress = getProductDetail.ProductAddress;
+                            objMandi_CartInfo.ProductImage = objMandiCartViewModel.ProductImage;
+
+                            #endregion
+
+
+
+
+                            //get buyer details
+                            objMandi_CartInfo.BuyerName = objMandiCartViewModel.BuyerName;
+                            objMandi_CartInfo.BuyerNumber = objMandiCartViewModel.BuyerContact;
+                            objMandi_CartInfo.BuyerAddress = number.State + "," + number.District + "," + number.Taluka + "," + number.Pincode;
+                            objMandi_CartInfo.Product_Id = objMandiCartViewModel.Tr_Id;
+                            //to get seller details
+
+                            objMandi_CartInfo.Seller_MobileNumber = getProductDetail.MobileNumber;
+                            var sellerMobileNumber = getProductDetail.MobileNumber;
+                            var sellerDetail = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == sellerMobileNumber select seller).FirstOrDefault();
+                            objMandi_CartInfo.SellerAddress = sellerDetail.State + "," + sellerDetail.District + "," + sellerDetail.Taluka + "," + sellerDetail.Pincode;
+                            objMandi_CartInfo.SellerName = sellerDetail.FullName;
+
+                            objMandi_CartInfo.Status = false;
+
+
+
+
+
+
+                            dbContext.Mandi_CartInfo.Add(objMandi_CartInfo);
+                            var i = dbContext.SaveChanges();
+                            if (i != 0)
+                            {
+                                objResponse.Message = "Product has been successfully saved in cart";
+                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                            }
+                            else
+                            {
+                                objResponse.Message = "Failed to save product in cart";
+                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                            }
+
+
+                        }
+                        else
+                        {
+                            objResponse.Message = "Mobile number not exists.";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    var checkInterestedProductInCart = (from interestProduct in dbContext.Mandi_CartInfo where interestProduct.Fk_InterestedProductId == objMandiCartViewModel.Fk_InterestedProductId && interestProduct.BuyerNumber == mobileNumber && interestProduct.Product_Id == objMandiCartViewModel.Tr_Id  select interestProduct).FirstOrDefault();
+
+                    if (checkInterestedProductInCart != null)
+                    {
+                        objResponse.Message = "This Product is already been  added in cart";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                    else
+                    {
+                        objMandiCartViewModel.Fk_EnquiryId = 0;
+                        var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
+                        if (number != null)
+                        {
+                            Mandi_CartInfo objMandi_CartInfo = new Mandi_CartInfo();
+
+                            objMandi_CartInfo.CartType = objMandiCartViewModel.CartType;
+                            if (objMandiCartViewModel.Fk_EnquiryId != 0)
+                            {
+                                objMandi_CartInfo.Fk_EnquiryId = objMandiCartViewModel.Fk_EnquiryId;
+                            }
+                            else
+                            {
+                                objMandi_CartInfo.Fk_InterestedProductId = objMandiCartViewModel.Fk_InterestedProductId;
+                            }
+
+                            //get Product detail
+
+
+
+                            #region Product detail
+                            var productId = objMandiCartViewModel.Tr_Id;
+                            var getProductDetail = (from product in dbContext.Mandi_ProductMaster.Where(product => product.Tr_Id == productId)
+                                                    join crop in dbContext.Crop_Master on product.CropId equals crop.CropId
+                                                    join variety in dbContext.Variety_Master on product.VarietyId equals variety.VarietyId
+
+
+                                                    select new
+                                                    {
+
+                                                        crop.CropName,
+                                                        //variety.VarietyName,
+                                                        product.Tr_Id,
+                                                        //product.CropId,
+                                                        product.VarietyId,
+                                                        product.ProductAddress,
+                                                        product.GeoAddress,
+                                                        product.MobileNumber,
+                                                        product.Quantity,
+                                                        product.QuantityUnit,
+                                                        product.Price,
+                                                        //product.ServiceTax,
+                                                        //product.CategoryId,
+                                                        //crop.CategoryName,
+
+                                                        //product.AvailabilityDate,
+                                                        //product.IsQualityTestNeeded,
+                                                        //product.ProductImageUrl,
+                                                        //product.Tr_Date,
+                                                        //product.State,
+                                                        //product.District,
+                                                        //product.Taluka,
+                                                        //product.PaymentMethod,
+                                                        //product.IsLogisticNeeded,
+                                                        //product.IsActive,
+                                                        //product.SecondaryProductImage,
+                                                        //product.ProductDescription
+
+                                                    }).FirstOrDefault();
+
+
+                            objMandi_CartInfo.Product = getProductDetail.CropName;
+                            objMandi_CartInfo.Product_Id = objMandiCartViewModel.Tr_Id;
+                            objMandi_CartInfo.Quantity = getProductDetail.Quantity;
+                            objMandi_CartInfo.QuantityUnit = getProductDetail.QuantityUnit;
+
+                            objMandi_CartInfo.Price = getProductDetail.Price;
+                            objMandi_CartInfo.ProductAddress = getProductDetail.ProductAddress;
+                            objMandi_CartInfo.ProductImage = objMandiCartViewModel.ProductImage;
+
+
+                            #endregion
+
+
+
+
+                            //get buyer details
+                            objMandi_CartInfo.BuyerName = objMandiCartViewModel.BuyerName;
+                            objMandi_CartInfo.BuyerNumber = objMandiCartViewModel.BuyerContact;
+                            objMandi_CartInfo.BuyerAddress = number.State + "," + number.District + "," + number.Taluka + "," + number.Pincode;
+
+                            //to get seller details
+
+                            objMandi_CartInfo.Seller_MobileNumber = getProductDetail.MobileNumber;
+                            var sellerMobileNumber = getProductDetail.MobileNumber;
+                            var sellerDetail = (from seller in dbContext.Mandi_UserInfo where seller.MobileNumber == sellerMobileNumber select seller).FirstOrDefault();
+                            objMandi_CartInfo.SellerAddress = sellerDetail.State + "," + sellerDetail.District + "," + sellerDetail.Taluka + "," + sellerDetail.Pincode;
+                            objMandi_CartInfo.SellerName = sellerDetail.FullName;
+
+                            objMandi_CartInfo.Status = false;
+
+
+
+
+
+
+                            var add = dbContext.Mandi_CartInfo.Add(objMandi_CartInfo);
+                            var i = dbContext.SaveChanges();
+                            if (i != 0)
+                            {
+                                objResponse.Message = "Product has been successfully saved in cart";
+                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                            }
+                            else
+                            {
+                                objResponse.Message = "Failed to save product in cart";
+                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                            }
+
+
+                        }
+                        else
+                        {
+                            objResponse.Message = "Mobile number not exists.";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+                    }
+                }
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                throw ex;
+
+            }
+        }
+
+
+
+        /// <summary>
+        /// to get list of cart item for resp user
+        /// </summary>
+        /// <param name="objMandiCartViewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("api/MandiUser/GetCartDetailForUser")]
+        public HttpResponseMessage GetCartDetailForUser(MandiCartViewModel objMandiCartViewModel)
+        {
+            try
+            {
+
+
+                Mandi_CartInfoViewModel Mandi_CartInfoViewModel = new Mandi_CartInfoViewModel();
+                List<Cart_InfoForUser> objListCart_InfoForUser = new List<Cart_InfoForUser>();
+
+                var getCartDetails = (from cart in dbContext.Mandi_CartInfo where cart.BuyerNumber == objMandiCartViewModel.BuyerContact select cart).ToList();
+                if (objMandiCartViewModel.CartType == "Enquiry")
+                {
+                    if (getCartDetails != null)
+                    {
+                        foreach (var i in getCartDetails)
+                        {
+                            Cart_InfoForUser objCart_InfoForUser = new Cart_InfoForUser()
+                            {
+                                CartId = i.CartId,
+                                CartType = i.CartType,
+                                Fk_EnquiryId = i.Fk_EnquiryId,
+                                Fk_InterestedProductId = i.Fk_InterestedProductId,
+                                Product = i.Product,
+                                Quantity = i.Quantity,
+                                QuantityUnit = i.QuantityUnit,
+                                Price = i.Price,
+                                ProductAddress = i.ProductAddress,
+                                ProductImage =  i.ProductImage,
+                              ProductStatus=i.Status
+
+                            };
+                            objListCart_InfoForUser.Add(objCart_InfoForUser);
+                        }
+                        Mandi_CartInfoViewModel.MandiCart_Info = objListCart_InfoForUser.Where(x => x.CartType == "Enquiry" && x.Fk_EnquiryId != null).ToList();
+
+                        return Request.CreateResponse(HttpStatusCode.OK, Mandi_CartInfoViewModel);
+                    }
+                    else
+                    {
+                        objResponse.Message = "Failed";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+                else
+                {
+
+                    {
+                        if (getCartDetails != null)
+                        {
+                            foreach (var i in getCartDetails)
+                            {
+                                Cart_InfoForUser objCart_InfoForUser = new Cart_InfoForUser()
+                                {
+                                    CartId = i.CartId,
+                                    CartType = i.CartType,
+                                    Fk_EnquiryId = i.Fk_EnquiryId,
+                                    Fk_InterestedProductId = i.Fk_InterestedProductId,
+                                    Product = i.Product,
+                                    Quantity = i.Quantity,
+                                    QuantityUnit = i.QuantityUnit,
+                                    Price = i.Price,
+                                    ProductAddress = i.ProductAddress,
+                                    ProductImage =i.ProductImage,
+                                    ProductStatus = i.Status
+
+
+                                };
+                                objListCart_InfoForUser.Add(objCart_InfoForUser);
+                            }
+                            Mandi_CartInfoViewModel.MandiCart_Info = objListCart_InfoForUser.Where(x => x.CartType == "InterestedProduct" && x.Fk_InterestedProductId != null).ToList();
+
+                            return Request.CreateResponse(HttpStatusCode.OK, Mandi_CartInfoViewModel);
+                        }
+                        else
+                        {
+                            objResponse.Message = "Failed";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "GetCartInfo");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+        }
+
+
+        [HttpPost]
+        [Authorize]
+        [Route("api/MandiUser/DeleteCartProduct")]
+        public HttpResponseMessage DeleteCartProduct(MandiCartViewModel objMandiCartViewModel)
+        {
+            try
+            {
+                long cartId = objMandiCartViewModel.CartId;
+
+
+                Mandi_CartInfo objMandi_CartInfo = new Mandi_CartInfo();
+
+               
+                //get product from database.
+                var sellerProduct = (from cart in dbContext.Mandi_CartInfo where cart.CartId == cartId select cart).FirstOrDefault();
+                if (sellerProduct != null)
+                {
+                    //sellerProduct.IsActive = false;
+                    //dbContext.Entry(sellerProduct).State = EntityState.Modified;
+
+                    dbContext.Mandi_CartInfo.Remove(sellerProduct);
+                    var i = dbContext.SaveChanges();
+                    if (i != 0)
+                    {
+                        objResponse.Message = "Product deleted from cart successfully";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                    else
+                    {
+                        objResponse.Message = "Product deletion Failed";
+                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                    }
+                }
+                else
+                {
+                    objResponse.Message = "No product Found";
+
+                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "DeletecartInProduct");
+                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
+            }
+
+        }
 
 
 

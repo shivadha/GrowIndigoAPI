@@ -1836,4 +1836,3 @@ E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.API.csproj.CoreCompileIn
 E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.API.csproj.CopyComplete
 E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.dll
 E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.pdb
-E:\Myco\Project\Working\GrowIndigo\obj\Debug\GrowIndigo.API.csprojAssemblyReference.cache

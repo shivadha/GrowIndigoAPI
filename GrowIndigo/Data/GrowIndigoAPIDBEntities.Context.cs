@@ -30,6 +30,7 @@ namespace GrowIndigo.Data
         public virtual DbSet<District_Master> District_Master { get; set; }
         public virtual DbSet<ErrorLogs> ErrorLogs { get; set; }
         public virtual DbSet<Mandi_Banner> Mandi_Banner { get; set; }
+        public virtual DbSet<Mandi_CartInfo> Mandi_CartInfo { get; set; }
         public virtual DbSet<Mandi_InterestedProductForUser> Mandi_InterestedProductForUser { get; set; }
         public virtual DbSet<Mandi_Notification> Mandi_Notification { get; set; }
         public virtual DbSet<Mandi_OrderDetails> Mandi_OrderDetails { get; set; }
@@ -40,7 +41,6 @@ namespace GrowIndigo.Data
         public virtual DbSet<Mandi_UserEnquiry> Mandi_UserEnquiry { get; set; }
         public virtual DbSet<Mandi_UserFeedback> Mandi_UserFeedback { get; set; }
         public virtual DbSet<Mandi_UserInfo> Mandi_UserInfo { get; set; }
-        public virtual DbSet<Mandi_UserRequirement> Mandi_UserRequirement { get; set; }
         public virtual DbSet<Mandi_UserRoles> Mandi_UserRoles { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
         public virtual DbSet<OrderErrorLogDetails> OrderErrorLogDetails { get; set; }
