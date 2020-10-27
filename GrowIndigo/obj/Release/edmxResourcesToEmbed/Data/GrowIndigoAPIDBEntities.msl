@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GrowIndigoV1ModelStoreContainer" CdmEntityContainer="GrowIndigoAPIDBEntities">
+  <EntityContainerMapping StorageEntityContainer="GrowIndigoV2ModelStoreContainer" CdmEntityContainer="GrowIndigoAPIDBEntities">
     <EntitySetMapping Name="Category">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Category">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Category">
         <MappingFragment StoreEntitySet="Category">
           <ScalarProperty Name="Hi_CategoryName" ColumnName="Hi_CategoryName" />
           <ScalarProperty Name="Mr_CategoryName" ColumnName="Mr_CategoryName" />
@@ -16,7 +16,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Crop_Master">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Crop_Master">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Crop_Master">
         <MappingFragment StoreEntitySet="Crop_Master">
           <ScalarProperty Name="Te_CropName" ColumnName="Te_CropName" />
           <ScalarProperty Name="Mr_CropName" ColumnName="Mr_CropName" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="District_Master">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.District_Master">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.District_Master">
         <MappingFragment StoreEntitySet="District_Master">
           <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
           <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
@@ -40,7 +40,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ErrorLogs">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.ErrorLogs">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.ErrorLogs">
         <MappingFragment StoreEntitySet="ErrorLogs">
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="InnerException" ColumnName="InnerException" />
@@ -51,7 +51,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Banner">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_Banner">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Banner">
         <MappingFragment StoreEntitySet="Mandi_Banner">
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -66,7 +66,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_CartInfo">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_CartInfo">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartInfo">
         <MappingFragment StoreEntitySet="Mandi_CartInfo">
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
@@ -97,7 +97,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_CartProductStatus">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_CartProductStatus">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartProductStatus">
         <MappingFragment StoreEntitySet="Mandi_CartProductStatus">
           <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -105,7 +105,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_InterestedProductForUser">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_InterestedProductForUser">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_InterestedProductForUser">
         <MappingFragment StoreEntitySet="Mandi_InterestedProductForUser">
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -125,7 +125,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Notification">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_Notification">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Notification">
         <MappingFragment StoreEntitySet="Mandi_Notification">
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
           <ScalarProperty Name="Message" ColumnName="Message" />
@@ -135,7 +135,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_OrderDetails">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_OrderDetails">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_OrderDetails">
         <MappingFragment StoreEntitySet="Mandi_OrderDetails">
           <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
           <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
@@ -161,7 +161,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_OrderProductDetails">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_OrderProductDetails">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_OrderProductDetails">
         <MappingFragment StoreEntitySet="Mandi_OrderProductDetails">
           <ScalarProperty Name="SelectedProductPrice" ColumnName="SelectedProductPrice" />
           <ScalarProperty Name="SelectedQuantity" ColumnName="SelectedQuantity" />
@@ -175,7 +175,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_ProductMaster">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_ProductMaster">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_ProductMaster">
         <MappingFragment StoreEntitySet="Mandi_ProductMaster">
           <ScalarProperty Name="Te_ProductDescription" ColumnName="Te_ProductDescription" />
           <ScalarProperty Name="Mr_ProductDescription" ColumnName="Mr_ProductDescription" />
@@ -217,7 +217,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Requirement">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_Requirement">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Requirement">
         <MappingFragment StoreEntitySet="Mandi_Requirement">
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -238,7 +238,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_Roles">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_Roles">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Roles">
         <MappingFragment StoreEntitySet="Mandi_Roles">
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -246,7 +246,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserEnquiry">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserEnquiry">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserEnquiry">
         <MappingFragment StoreEntitySet="Mandi_UserEnquiry">
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
           <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
@@ -258,7 +258,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserFeedback">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserFeedback">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserFeedback">
         <MappingFragment StoreEntitySet="Mandi_UserFeedback">
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
           <ScalarProperty Name="Feedback" ColumnName="Feedback" />
@@ -269,7 +269,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserInfo">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserInfo">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserInfo">
         <MappingFragment StoreEntitySet="Mandi_UserInfo">
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
@@ -288,7 +288,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserRoles">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserRoles">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserRoles">
         <MappingFragment StoreEntitySet="Mandi_UserRoles">
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
@@ -297,7 +297,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderDetails">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.OrderDetails">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderDetails">
         <MappingFragment StoreEntitySet="OrderDetails">
           <ScalarProperty Name="Rzp_Payment_Status" ColumnName="Rzp_Payment_Status" />
           <ScalarProperty Name="Rzp_Signature" ColumnName="Rzp_Signature" />
@@ -317,7 +317,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderErrorLogDetails">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.OrderErrorLogDetails">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderErrorLogDetails">
         <MappingFragment StoreEntitySet="OrderErrorLogDetails">
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
           <ScalarProperty Name="Error_Msg" ColumnName="Error_Msg" />
@@ -332,7 +332,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderProductDetails">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.OrderProductDetails">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderProductDetails">
         <MappingFragment StoreEntitySet="OrderProductDetails">
           <ScalarProperty Name="SAP_order_ID" ColumnName="SAP_order_ID" />
           <ScalarProperty Name="tr_date" ColumnName="tr_date" />
@@ -345,7 +345,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Product_Master">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Product_Master">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Product_Master">
         <MappingFragment StoreEntitySet="Product_Master">
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="PrdState" ColumnName="PrdState" />
@@ -366,7 +366,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Roles">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Roles">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Roles">
         <MappingFragment StoreEntitySet="Roles">
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -374,7 +374,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="State_Master">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.State_Master">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.State_Master">
         <MappingFragment StoreEntitySet="State_Master">
           <ScalarProperty Name="StateCode" ColumnName="StateCode" />
           <ScalarProperty Name="StateName" ColumnName="StateName" />
@@ -383,7 +383,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Taluka_Master">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Taluka_Master">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Taluka_Master">
         <MappingFragment StoreEntitySet="Taluka_Master">
           <ScalarProperty Name="TalukaCode" ColumnName="TalukaCode" />
           <ScalarProperty Name="TalukaName" ColumnName="TalukaName" />
@@ -392,7 +392,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserCategoryMapping">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.UserCategoryMapping">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.UserCategoryMapping">
         <MappingFragment StoreEntitySet="UserCategoryMapping">
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -404,7 +404,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserFeedback">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.UserFeedback">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.UserFeedback">
         <MappingFragment StoreEntitySet="UserFeedback">
           <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
           <ScalarProperty Name="Feedback" ColumnName="Feedback" />
@@ -415,7 +415,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserInfo">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.UserInfo">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.UserInfo">
         <MappingFragment StoreEntitySet="UserInfo">
           <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
           <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
@@ -458,7 +458,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserOTPInfo">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.UserOTPInfo">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.UserOTPInfo">
         <MappingFragment StoreEntitySet="UserOTPInfo">
           <ScalarProperty Name="GenratedDate" ColumnName="GenratedDate" />
           <ScalarProperty Name="OTP" ColumnName="OTP" />
@@ -468,7 +468,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersAddress">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.UsersAddress">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.UsersAddress">
         <MappingFragment StoreEntitySet="UsersAddress">
           <ScalarProperty Name="MobileNumberForMandi" ColumnName="MobileNumberForMandi" />
           <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -489,7 +489,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UsersBankAccountDetails">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.UsersBankAccountDetails">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.UsersBankAccountDetails">
         <MappingFragment StoreEntitySet="UsersBankAccountDetails">
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -507,7 +507,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserWallet">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.UserWallet">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.UserWallet">
         <MappingFragment StoreEntitySet="UserWallet">
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -519,7 +519,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Variety_Master">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Variety_Master">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Variety_Master">
         <MappingFragment StoreEntitySet="Variety_Master">
           <ScalarProperty Name="CropId" ColumnName="CropId" />
           <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
@@ -528,7 +528,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserInfo_bkp">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserInfo_bkp">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserInfo_bkp">
         <MappingFragment StoreEntitySet="Mandi_UserInfo_bkp">
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
@@ -547,7 +547,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Mandi_UserInfo_bkp_2">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserInfo_bkp_2">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserInfo_bkp_2">
         <MappingFragment StoreEntitySet="Mandi_UserInfo_bkp_2">
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
           <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
@@ -566,7 +566,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SubCategory">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.SubCategory">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.SubCategory">
         <MappingFragment StoreEntitySet="SubCategory">
           <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
           <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
@@ -576,7 +576,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Web_Mandi_usermaster">
-      <EntityTypeMapping TypeName="GrowIndigoV1Model.Web_Mandi_usermaster">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Web_Mandi_usermaster">
         <MappingFragment StoreEntitySet="Web_Mandi_usermaster">
           <ScalarProperty Name="userStatus" ColumnName="userStatus" />
           <ScalarProperty Name="change_pass" ColumnName="change_pass" />

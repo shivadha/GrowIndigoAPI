@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="GrowIndigoV1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="GrowIndigoV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.BS_call_centre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.BS_call_centre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="BS_call_centre">
           <Property Name="MobileNumber" Type="float" />
           <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
@@ -12,7 +12,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.BS_call_centre' does not have a
           <Property Name="ROLE" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Buyer_1">
           <Property Name="Sr" Type="float" />
           <Property Name="Date_of_call" Type="datetime" />
@@ -56,7 +56,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_1' does not have a primar
           <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_GM' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Buyer_GM">
           <Property Name="Sr" Type="float" />
           <Property Name="Date of call" Type="datetime" />
@@ -100,7 +100,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_GM' does not have a prima
           <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Buyer_GM_CallCentre">
           <Property Name="Sr" Type="float" />
           <Property Name="Date_of_call" Type="datetime" />
@@ -413,7 +413,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_GM_CallCentre' does not h
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Mandi_UserInfo_bkp">
     <Key>
       <PropertyRef Name="MobileNumber" />
@@ -433,7 +433,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp' does not ha
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Mandi_UserInfo_bkp_2">
     <Key>
       <PropertyRef Name="MobileNumber" />
@@ -533,7 +533,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp_2' does not 
     <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.seller_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.seller_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="seller_1">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date" Type="datetime" />
@@ -563,7 +563,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.seller_1' does not have a prima
           <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_GM_CallCentre">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date_of_call " Type="datetime" />
@@ -593,7 +593,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_GM_CallCentre' does not 
           <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_GM_new_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_GM_new_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_GM_new_2">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date" Type="datetime" />
@@ -623,7 +623,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_GM_new_2' does not have 
           <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_new' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_new' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_new">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date" Type="datetime" />
@@ -661,7 +661,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_new' does not have a pri
     <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowMandi_Test.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SubCategory">
     <Key>
       <PropertyRef Name="SubCategoryId" />
@@ -681,7 +681,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.SubCategory' does not have a pr
     <Property Name="TalukaCode" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.testbulk' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.testbulk' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="testbulk">
           <Property Name="ProductId" Type="varchar" MaxLength="20" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
@@ -818,7 +818,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.testbulk' does not have a prima
     <Property Name="CropId" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Web_Mandi_usermaster">
     <Key>
       <PropertyRef Name="tr_id" />
@@ -1149,7 +1149,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="GrowIndigoV1ModelStoreContainer">
+  <EntityContainer Name="GrowIndigoV2ModelStoreContainer">
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Crop_Master" EntityType="Self.Crop_Master" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />

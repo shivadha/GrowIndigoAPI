@@ -4,9 +4,9 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GrowIndigoV1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GrowIndigoV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.BS_call_centre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.BS_call_centre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="BS_call_centre">
           <Property Name="MobileNumber" Type="float" />
           <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
@@ -17,7 +17,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.BS_call_centre' does not have a
           <Property Name="ROLE" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Buyer_1">
           <Property Name="Sr" Type="float" />
           <Property Name="Date_of_call" Type="datetime" />
@@ -61,7 +61,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_1' does not have a primar
           <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_GM' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Buyer_GM">
           <Property Name="Sr" Type="float" />
           <Property Name="Date of call" Type="datetime" />
@@ -105,7 +105,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_GM' does not have a prima
           <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Buyer_GM_CallCentre">
           <Property Name="Sr" Type="float" />
           <Property Name="Date_of_call" Type="datetime" />
@@ -418,7 +418,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Buyer_GM_CallCentre' does not h
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Mandi_UserInfo_bkp">
           <Key>
             <PropertyRef Name="MobileNumber" />
@@ -438,7 +438,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp' does not ha
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Mandi_UserInfo_bkp_2">
           <Key>
             <PropertyRef Name="MobileNumber" />
@@ -538,7 +538,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp_2' does not 
           <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.seller_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.seller_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="seller_1">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date" Type="datetime" />
@@ -568,7 +568,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.seller_1' does not have a prima
           <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_GM_CallCentre">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date_of_call " Type="datetime" />
@@ -598,7 +598,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_GM_CallCentre' does not 
           <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_GM_new_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_GM_new_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_GM_new_2">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date" Type="datetime" />
@@ -628,7 +628,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_GM_new_2' does not have 
           <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_new' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_new' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_new">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date" Type="datetime" />
@@ -666,7 +666,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.Seller_new' does not have a pri
           <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowMandi_Test.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SubCategory">
           <Key>
             <PropertyRef Name="SubCategoryId" />
@@ -686,7 +686,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.SubCategory' does not have a pr
           <Property Name="TalukaCode" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowMandi_Test.dbo.testbulk' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.testbulk' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="testbulk">
           <Property Name="ProductId" Type="varchar" MaxLength="20" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
@@ -823,7 +823,7 @@ warning 6013: The table/view 'GrowMandi_Test.dbo.testbulk' does not have a prima
           <Property Name="CropId" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Web_Mandi_usermaster">
           <Key>
             <PropertyRef Name="tr_id" />
@@ -1154,7 +1154,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="GrowIndigoV1ModelStoreContainer">
+        <EntityContainer Name="GrowIndigoV2ModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Crop_Master" EntityType="Self.Crop_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="District_Master" EntityType="Self.District_Master" Schema="dbo" store:Type="Tables" />
@@ -1355,146 +1355,146 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="GrowIndigoV1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="GrowIndigoV2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GrowIndigoAPIDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Category" EntityType="GrowIndigoV1Model.Category" />
-          <EntitySet Name="Crop_Master" EntityType="GrowIndigoV1Model.Crop_Master" />
-          <EntitySet Name="District_Master" EntityType="GrowIndigoV1Model.District_Master" />
-          <EntitySet Name="ErrorLogs" EntityType="GrowIndigoV1Model.ErrorLogs" />
-          <EntitySet Name="Mandi_Banner" EntityType="GrowIndigoV1Model.Mandi_Banner" />
-          <EntitySet Name="Mandi_CartInfo" EntityType="GrowIndigoV1Model.Mandi_CartInfo" />
-          <EntitySet Name="Mandi_CartProductStatus" EntityType="GrowIndigoV1Model.Mandi_CartProductStatus" />
-          <EntitySet Name="Mandi_InterestedProductForUser" EntityType="GrowIndigoV1Model.Mandi_InterestedProductForUser" />
-          <EntitySet Name="Mandi_Notification" EntityType="GrowIndigoV1Model.Mandi_Notification" />
-          <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoV1Model.Mandi_OrderDetails" />
-          <EntitySet Name="Mandi_OrderProductDetails" EntityType="GrowIndigoV1Model.Mandi_OrderProductDetails" />
-          <EntitySet Name="Mandi_ProductMaster" EntityType="GrowIndigoV1Model.Mandi_ProductMaster" />
-          <EntitySet Name="Mandi_Requirement" EntityType="GrowIndigoV1Model.Mandi_Requirement" />
-          <EntitySet Name="Mandi_Roles" EntityType="GrowIndigoV1Model.Mandi_Roles" />
-          <EntitySet Name="Mandi_UserEnquiry" EntityType="GrowIndigoV1Model.Mandi_UserEnquiry" />
-          <EntitySet Name="Mandi_UserFeedback" EntityType="GrowIndigoV1Model.Mandi_UserFeedback" />
-          <EntitySet Name="Mandi_UserInfo" EntityType="GrowIndigoV1Model.Mandi_UserInfo" />
-          <EntitySet Name="Mandi_UserRoles" EntityType="GrowIndigoV1Model.Mandi_UserRoles" />
-          <EntitySet Name="OrderDetails" EntityType="GrowIndigoV1Model.OrderDetails" />
-          <EntitySet Name="OrderErrorLogDetails" EntityType="GrowIndigoV1Model.OrderErrorLogDetails" />
-          <EntitySet Name="OrderProductDetails" EntityType="GrowIndigoV1Model.OrderProductDetails" />
-          <EntitySet Name="Product_Master" EntityType="GrowIndigoV1Model.Product_Master" />
-          <EntitySet Name="Roles" EntityType="GrowIndigoV1Model.Roles" />
-          <EntitySet Name="State_Master" EntityType="GrowIndigoV1Model.State_Master" />
-          <EntitySet Name="Taluka_Master" EntityType="GrowIndigoV1Model.Taluka_Master" />
-          <EntitySet Name="UserCategoryMapping" EntityType="GrowIndigoV1Model.UserCategoryMapping" />
-          <EntitySet Name="UserFeedback" EntityType="GrowIndigoV1Model.UserFeedback" />
-          <EntitySet Name="UserInfo" EntityType="GrowIndigoV1Model.UserInfo" />
-          <EntitySet Name="UserOTPInfo" EntityType="GrowIndigoV1Model.UserOTPInfo" />
-          <EntitySet Name="UsersAddress" EntityType="GrowIndigoV1Model.UsersAddress" />
-          <EntitySet Name="UsersBankAccountDetails" EntityType="GrowIndigoV1Model.UsersBankAccountDetails" />
-          <EntitySet Name="UserWallet" EntityType="GrowIndigoV1Model.UserWallet" />
-          <EntitySet Name="Variety_Master" EntityType="GrowIndigoV1Model.Variety_Master" />
-          <EntitySet Name="Mandi_UserInfo_bkp" EntityType="GrowIndigoV1Model.Mandi_UserInfo_bkp" />
-          <EntitySet Name="Mandi_UserInfo_bkp_2" EntityType="GrowIndigoV1Model.Mandi_UserInfo_bkp_2" />
-          <EntitySet Name="SubCategory" EntityType="GrowIndigoV1Model.SubCategory" />
-          <EntitySet Name="Web_Mandi_usermaster" EntityType="GrowIndigoV1Model.Web_Mandi_usermaster" />
-          <AssociationSet Name="FK_Crop_Master_Category" Association="GrowIndigoV1Model.FK_Crop_Master_Category">
+          <EntitySet Name="Category" EntityType="GrowIndigoV2Model.Category" />
+          <EntitySet Name="Crop_Master" EntityType="GrowIndigoV2Model.Crop_Master" />
+          <EntitySet Name="District_Master" EntityType="GrowIndigoV2Model.District_Master" />
+          <EntitySet Name="ErrorLogs" EntityType="GrowIndigoV2Model.ErrorLogs" />
+          <EntitySet Name="Mandi_Banner" EntityType="GrowIndigoV2Model.Mandi_Banner" />
+          <EntitySet Name="Mandi_CartInfo" EntityType="GrowIndigoV2Model.Mandi_CartInfo" />
+          <EntitySet Name="Mandi_CartProductStatus" EntityType="GrowIndigoV2Model.Mandi_CartProductStatus" />
+          <EntitySet Name="Mandi_InterestedProductForUser" EntityType="GrowIndigoV2Model.Mandi_InterestedProductForUser" />
+          <EntitySet Name="Mandi_Notification" EntityType="GrowIndigoV2Model.Mandi_Notification" />
+          <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoV2Model.Mandi_OrderDetails" />
+          <EntitySet Name="Mandi_OrderProductDetails" EntityType="GrowIndigoV2Model.Mandi_OrderProductDetails" />
+          <EntitySet Name="Mandi_ProductMaster" EntityType="GrowIndigoV2Model.Mandi_ProductMaster" />
+          <EntitySet Name="Mandi_Requirement" EntityType="GrowIndigoV2Model.Mandi_Requirement" />
+          <EntitySet Name="Mandi_Roles" EntityType="GrowIndigoV2Model.Mandi_Roles" />
+          <EntitySet Name="Mandi_UserEnquiry" EntityType="GrowIndigoV2Model.Mandi_UserEnquiry" />
+          <EntitySet Name="Mandi_UserFeedback" EntityType="GrowIndigoV2Model.Mandi_UserFeedback" />
+          <EntitySet Name="Mandi_UserInfo" EntityType="GrowIndigoV2Model.Mandi_UserInfo" />
+          <EntitySet Name="Mandi_UserRoles" EntityType="GrowIndigoV2Model.Mandi_UserRoles" />
+          <EntitySet Name="OrderDetails" EntityType="GrowIndigoV2Model.OrderDetails" />
+          <EntitySet Name="OrderErrorLogDetails" EntityType="GrowIndigoV2Model.OrderErrorLogDetails" />
+          <EntitySet Name="OrderProductDetails" EntityType="GrowIndigoV2Model.OrderProductDetails" />
+          <EntitySet Name="Product_Master" EntityType="GrowIndigoV2Model.Product_Master" />
+          <EntitySet Name="Roles" EntityType="GrowIndigoV2Model.Roles" />
+          <EntitySet Name="State_Master" EntityType="GrowIndigoV2Model.State_Master" />
+          <EntitySet Name="Taluka_Master" EntityType="GrowIndigoV2Model.Taluka_Master" />
+          <EntitySet Name="UserCategoryMapping" EntityType="GrowIndigoV2Model.UserCategoryMapping" />
+          <EntitySet Name="UserFeedback" EntityType="GrowIndigoV2Model.UserFeedback" />
+          <EntitySet Name="UserInfo" EntityType="GrowIndigoV2Model.UserInfo" />
+          <EntitySet Name="UserOTPInfo" EntityType="GrowIndigoV2Model.UserOTPInfo" />
+          <EntitySet Name="UsersAddress" EntityType="GrowIndigoV2Model.UsersAddress" />
+          <EntitySet Name="UsersBankAccountDetails" EntityType="GrowIndigoV2Model.UsersBankAccountDetails" />
+          <EntitySet Name="UserWallet" EntityType="GrowIndigoV2Model.UserWallet" />
+          <EntitySet Name="Variety_Master" EntityType="GrowIndigoV2Model.Variety_Master" />
+          <EntitySet Name="Mandi_UserInfo_bkp" EntityType="GrowIndigoV2Model.Mandi_UserInfo_bkp" />
+          <EntitySet Name="Mandi_UserInfo_bkp_2" EntityType="GrowIndigoV2Model.Mandi_UserInfo_bkp_2" />
+          <EntitySet Name="SubCategory" EntityType="GrowIndigoV2Model.SubCategory" />
+          <EntitySet Name="Web_Mandi_usermaster" EntityType="GrowIndigoV2Model.Web_Mandi_usermaster" />
+          <AssociationSet Name="FK_Crop_Master_Category" Association="GrowIndigoV2Model.FK_Crop_Master_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Crop_Master" EntitySet="Crop_Master" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Crop_Master" Association="GrowIndigoV1Model.FK_Mandi_ProductMaster_Crop_Master">
+          <AssociationSet Name="FK_Mandi_ProductMaster_Crop_Master" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master">
             <End Role="Category" EntitySet="Category" />
             <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubCategory_Category" Association="GrowIndigoV1Model.FK_SubCategory_Category">
+          <AssociationSet Name="FK_SubCategory_Category" Association="GrowIndigoV2Model.FK_SubCategory_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="SubCategory" EntitySet="SubCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserCategoryMapping_Category" Association="GrowIndigoV1Model.FK_UserCategoryMapping_Category">
+          <AssociationSet Name="FK_UserCategoryMapping_Category" Association="GrowIndigoV2Model.FK_UserCategoryMapping_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="GrowIndigoV1Model.FK_Crop_Master_Crop_Master">
+          <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="GrowIndigoV2Model.FK_Crop_Master_Crop_Master">
             <End Role="Crop_Master" EntitySet="Crop_Master" />
             <End Role="Crop_Master1" EntitySet="Crop_Master" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_UserInfo" Association="GrowIndigoV1Model.FK_Mandi_ProductMaster_Mandi_UserInfo">
+          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo">
             <End Role="Crop_Master" EntitySet="Crop_Master" />
             <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK_Variety_Master_Crop_Master" Association="GrowIndigoV1Model.FK_Variety_Master_Crop_Master">
+          <AssociationSet Name="FK_Variety_Master_Crop_Master" Association="GrowIndigoV2Model.FK_Variety_Master_Crop_Master">
             <End Role="Crop_Master" EntitySet="Crop_Master" />
             <End Role="Variety_Master" EntitySet="Variety_Master" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_CartInfo_Mandi_CartProductStatus" Association="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_CartProductStatus">
+          <AssociationSet Name="FK_Mandi_CartInfo_Mandi_CartProductStatus" Association="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus">
             <End Role="Mandi_CartProductStatus" EntitySet="Mandi_CartProductStatus" />
             <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser" Association="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
+          <AssociationSet Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser" Association="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
             <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
             <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_CartInfo_Mandi_UserEnquiry" Association="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_UserEnquiry">
+          <AssociationSet Name="FK_Mandi_CartInfo_Mandi_UserEnquiry" Association="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_UserEnquiry">
             <End Role="Mandi_UserEnquiry" EntitySet="Mandi_UserEnquiry" />
             <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" Association="GrowIndigoV1Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
+          <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" Association="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
             <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
             <End Role="Mandi_InterestedProductForUser1" EntitySet="Mandi_InterestedProductForUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo" Association="GrowIndigoV1Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
+          <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
             <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
             <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_ProductMaster" Association="GrowIndigoV1Model.FK_Mandi_ProductMaster_Mandi_ProductMaster">
+          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_ProductMaster" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster">
             <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
             <End Role="Mandi_ProductMaster1" EntitySet="Mandi_ProductMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Variety_Master" Association="GrowIndigoV1Model.FK_Mandi_ProductMaster_Variety_Master">
+          <AssociationSet Name="FK_Mandi_ProductMaster_Variety_Master" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master">
             <End Role="Variety_Master" EntitySet="Variety_Master" />
             <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_UserRoles_Mandi_Roles" Association="GrowIndigoV1Model.FK_Mandi_UserRoles_Mandi_Roles">
+          <AssociationSet Name="FK_Mandi_UserRoles_Mandi_Roles" Association="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_Roles">
             <End Role="Mandi_Roles" EntitySet="Mandi_Roles" />
             <End Role="Mandi_UserRoles" EntitySet="Mandi_UserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_UserRoles_Mandi_UserInfo" Association="GrowIndigoV1Model.FK_Mandi_UserRoles_Mandi_UserInfo">
+          <AssociationSet Name="FK_Mandi_UserRoles_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_UserInfo">
             <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
             <End Role="Mandi_UserRoles" EntitySet="Mandi_UserRoles" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserCategoryMapping_Mandi_UserInfo" Association="GrowIndigoV1Model.FK_UserCategoryMapping_Mandi_UserInfo">
+          <AssociationSet Name="FK_UserCategoryMapping_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_UserCategoryMapping_Mandi_UserInfo">
             <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
             <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersAddress_Mandi_UserInfo" Association="GrowIndigoV1Model.FK_UsersAddress_Mandi_UserInfo">
+          <AssociationSet Name="FK_UsersAddress_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_UsersAddress_Mandi_UserInfo">
             <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
             <End Role="UsersAddress" EntitySet="UsersAddress" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersBankAccountDetails_Mandi_UserInfo" Association="GrowIndigoV1Model.FK_UsersBankAccountDetails_Mandi_UserInfo">
+          <AssociationSet Name="FK_UsersBankAccountDetails_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_UsersBankAccountDetails_Mandi_UserInfo">
             <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
             <End Role="UsersBankAccountDetails" EntitySet="UsersBankAccountDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderDetails_UserInfo" Association="GrowIndigoV1Model.FK_OrderDetails_UserInfo">
+          <AssociationSet Name="FK_OrderDetails_UserInfo" Association="GrowIndigoV2Model.FK_OrderDetails_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderProductDetails_OrderDetails" Association="GrowIndigoV1Model.FK_OrderProductDetails_OrderDetails">
+          <AssociationSet Name="FK_OrderProductDetails_OrderDetails" Association="GrowIndigoV2Model.FK_OrderProductDetails_OrderDetails">
             <End Role="OrderDetails" EntitySet="OrderDetails" />
             <End Role="OrderProductDetails" EntitySet="OrderProductDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderErrorLogDetails_UserInfo" Association="GrowIndigoV1Model.FK_OrderErrorLogDetails_UserInfo">
+          <AssociationSet Name="FK_OrderErrorLogDetails_UserInfo" Association="GrowIndigoV2Model.FK_OrderErrorLogDetails_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="OrderErrorLogDetails" EntitySet="OrderErrorLogDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserCategoryMapping_UserCategoryMapping" Association="GrowIndigoV1Model.FK_UserCategoryMapping_UserCategoryMapping">
+          <AssociationSet Name="FK_UserCategoryMapping_UserCategoryMapping" Association="GrowIndigoV2Model.FK_UserCategoryMapping_UserCategoryMapping">
             <End Role="UserCategoryMapping" EntitySet="UserCategoryMapping" />
             <End Role="UserCategoryMapping1" EntitySet="UserCategoryMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserFeedback_UserInfo" Association="GrowIndigoV1Model.FK_UserFeedback_UserInfo">
+          <AssociationSet Name="FK_UserFeedback_UserInfo" Association="GrowIndigoV2Model.FK_UserFeedback_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="UserFeedback" EntitySet="UserFeedback" />
           </AssociationSet>
-          <AssociationSet Name="FK_UsersAddress_UserInfo" Association="GrowIndigoV1Model.FK_UsersAddress_UserInfo">
+          <AssociationSet Name="FK_UsersAddress_UserInfo" Association="GrowIndigoV2Model.FK_UsersAddress_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="UsersAddress" EntitySet="UsersAddress" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserWallet_UserInfo" Association="GrowIndigoV1Model.FK_UserWallet_UserInfo">
+          <AssociationSet Name="FK_UserWallet_UserInfo" Association="GrowIndigoV2Model.FK_UserWallet_UserInfo">
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="UserWallet" EntitySet="UserWallet" />
           </AssociationSet>
@@ -1511,10 +1511,10 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="Te_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV1Model.FK_Crop_Master_Category" FromRole="Category" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV1Model.FK_Mandi_ProductMaster_Crop_Master" FromRole="Category" ToRole="Mandi_ProductMaster" />
-          <NavigationProperty Name="SubCategory" Relationship="GrowIndigoV1Model.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
-          <NavigationProperty Name="UserCategoryMapping" Relationship="GrowIndigoV1Model.FK_UserCategoryMapping_Category" FromRole="Category" ToRole="UserCategoryMapping" />
+          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Crop_Master_Category" FromRole="Category" ToRole="Crop_Master" />
+          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master" FromRole="Category" ToRole="Mandi_ProductMaster" />
+          <NavigationProperty Name="SubCategory" Relationship="GrowIndigoV2Model.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
+          <NavigationProperty Name="UserCategoryMapping" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Category" FromRole="Category" ToRole="UserCategoryMapping" />
         </EntityType>
         <EntityType Name="Crop_Master">
           <Key>
@@ -1529,11 +1529,11 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="Hi_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Mr_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Te_CropName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="GrowIndigoV1Model.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
-          <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoV1Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master" ToRole="Crop_Master1" />
-          <NavigationProperty Name="Crop_Master2" Relationship="GrowIndigoV1Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master1" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV1Model.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Crop_Master" ToRole="Mandi_ProductMaster" />
-          <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoV1Model.FK_Variety_Master_Crop_Master" FromRole="Crop_Master" ToRole="Variety_Master" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
+          <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoV2Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master" ToRole="Crop_Master1" />
+          <NavigationProperty Name="Crop_Master2" Relationship="GrowIndigoV2Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master1" ToRole="Crop_Master" />
+          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Crop_Master" ToRole="Mandi_ProductMaster" />
+          <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoV2Model.FK_Variety_Master_Crop_Master" FromRole="Crop_Master" ToRole="Variety_Master" />
         </EntityType>
         <EntityType Name="District_Master">
           <Key>
@@ -1596,9 +1596,9 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ServiceTax" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Mandi_CartProductStatus" Relationship="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartInfo" ToRole="Mandi_CartProductStatus" />
-          <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser" FromRole="Mandi_CartInfo" ToRole="Mandi_InterestedProductForUser" />
-          <NavigationProperty Name="Mandi_UserEnquiry" Relationship="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_UserEnquiry" FromRole="Mandi_CartInfo" ToRole="Mandi_UserEnquiry" />
+          <NavigationProperty Name="Mandi_CartProductStatus" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartInfo" ToRole="Mandi_CartProductStatus" />
+          <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser" FromRole="Mandi_CartInfo" ToRole="Mandi_InterestedProductForUser" />
+          <NavigationProperty Name="Mandi_UserEnquiry" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_UserEnquiry" FromRole="Mandi_CartInfo" ToRole="Mandi_UserEnquiry" />
         </EntityType>
         <EntityType Name="Mandi_CartProductStatus">
           <Key>
@@ -1606,7 +1606,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Mandi_CartInfo" Relationship="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartProductStatus" ToRole="Mandi_CartInfo" />
+          <NavigationProperty Name="Mandi_CartInfo" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartProductStatus" ToRole="Mandi_CartInfo" />
         </EntityType>
         <EntityType Name="Mandi_InterestedProductForUser">
           <Key>
@@ -1626,10 +1626,10 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="IsPriceNegotiable" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Mandi_CartInfo" Relationship="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_CartInfo" />
-          <NavigationProperty Name="Mandi_InterestedProductForUser1" Relationship="GrowIndigoV1Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_InterestedProductForUser1" />
-          <NavigationProperty Name="Mandi_InterestedProductForUser2" Relationship="GrowIndigoV1Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser1" ToRole="Mandi_InterestedProductForUser" />
-          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV1Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="Mandi_CartInfo" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_CartInfo" />
+          <NavigationProperty Name="Mandi_InterestedProductForUser1" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_InterestedProductForUser1" />
+          <NavigationProperty Name="Mandi_InterestedProductForUser2" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser" FromRole="Mandi_InterestedProductForUser1" ToRole="Mandi_InterestedProductForUser" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" FromRole="Mandi_InterestedProductForUser" ToRole="Mandi_UserInfo" />
         </EntityType>
         <EntityType Name="Mandi_Notification">
           <Key>
@@ -1718,11 +1718,11 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="Hi_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Mr_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Te_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="GrowIndigoV1Model.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Category" />
-          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV1Model.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster1" Relationship="GrowIndigoV1Model.FK_Mandi_ProductMaster_Mandi_ProductMaster" FromRole="Mandi_ProductMaster" ToRole="Mandi_ProductMaster1" />
-          <NavigationProperty Name="Mandi_ProductMaster2" Relationship="GrowIndigoV1Model.FK_Mandi_ProductMaster_Mandi_ProductMaster" FromRole="Mandi_ProductMaster1" ToRole="Mandi_ProductMaster" />
-          <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoV1Model.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Category" />
+          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
+          <NavigationProperty Name="Mandi_ProductMaster1" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster" FromRole="Mandi_ProductMaster" ToRole="Mandi_ProductMaster1" />
+          <NavigationProperty Name="Mandi_ProductMaster2" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster" FromRole="Mandi_ProductMaster1" ToRole="Mandi_ProductMaster" />
+          <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
         </EntityType>
         <EntityType Name="Mandi_Requirement">
           <Key>
@@ -1750,7 +1750,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Mandi_UserRoles" Relationship="GrowIndigoV1Model.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_Roles" ToRole="Mandi_UserRoles" />
+          <NavigationProperty Name="Mandi_UserRoles" Relationship="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_Roles" ToRole="Mandi_UserRoles" />
         </EntityType>
         <EntityType Name="Mandi_UserEnquiry">
           <Key>
@@ -1762,7 +1762,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Tr_Date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Mandi_CartInfo" Relationship="GrowIndigoV1Model.FK_Mandi_CartInfo_Mandi_UserEnquiry" FromRole="Mandi_UserEnquiry" ToRole="Mandi_CartInfo" />
+          <NavigationProperty Name="Mandi_CartInfo" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_UserEnquiry" FromRole="Mandi_UserEnquiry" ToRole="Mandi_CartInfo" />
         </EntityType>
         <EntityType Name="Mandi_UserFeedback">
           <Key>
@@ -1791,11 +1791,11 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="IsProfileUpdated" Type="Boolean" />
           <Property Name="DeviceToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV1Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="Mandi_InterestedProductForUser" />
-          <NavigationProperty Name="Mandi_UserRoles" Relationship="GrowIndigoV1Model.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="Mandi_UserRoles" />
-          <NavigationProperty Name="UserCategoryMapping" Relationship="GrowIndigoV1Model.FK_UserCategoryMapping_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UserCategoryMapping" />
-          <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoV1Model.FK_UsersAddress_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersAddress" />
-          <NavigationProperty Name="UsersBankAccountDetails" Relationship="GrowIndigoV1Model.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersBankAccountDetails" />
+          <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="Mandi_InterestedProductForUser" />
+          <NavigationProperty Name="Mandi_UserRoles" Relationship="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="Mandi_UserRoles" />
+          <NavigationProperty Name="UserCategoryMapping" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UserCategoryMapping" />
+          <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoV2Model.FK_UsersAddress_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersAddress" />
+          <NavigationProperty Name="UsersBankAccountDetails" Relationship="GrowIndigoV2Model.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersBankAccountDetails" />
         </EntityType>
         <EntityType Name="Mandi_UserRoles">
           <Key>
@@ -1804,8 +1804,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="SerialNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Mandi_Roles" Relationship="GrowIndigoV1Model.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_UserRoles" ToRole="Mandi_Roles" />
-          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV1Model.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserRoles" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="Mandi_Roles" Relationship="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_Roles" FromRole="Mandi_UserRoles" ToRole="Mandi_Roles" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_UserInfo" FromRole="Mandi_UserRoles" ToRole="Mandi_UserInfo" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -1825,8 +1825,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="Rzp_Payment_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Rzp_Signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Rzp_Payment_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV1Model.FK_OrderDetails_UserInfo" FromRole="OrderDetails" ToRole="UserInfo" />
-          <NavigationProperty Name="OrderProductDetails" Relationship="GrowIndigoV1Model.FK_OrderProductDetails_OrderDetails" FromRole="OrderDetails" ToRole="OrderProductDetails" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_OrderDetails_UserInfo" FromRole="OrderDetails" ToRole="UserInfo" />
+          <NavigationProperty Name="OrderProductDetails" Relationship="GrowIndigoV2Model.FK_OrderProductDetails_OrderDetails" FromRole="OrderDetails" ToRole="OrderProductDetails" />
         </EntityType>
         <EntityType Name="OrderErrorLogDetails">
           <Key>
@@ -1841,7 +1841,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="Csv_File" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Error_Msg" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Tr_Date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV1Model.FK_OrderErrorLogDetails_UserInfo" FromRole="OrderErrorLogDetails" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_OrderErrorLogDetails_UserInfo" FromRole="OrderErrorLogDetails" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="OrderProductDetails">
           <Key>
@@ -1854,7 +1854,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="price" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tr_date" Type="DateTime" Precision="0" />
           <Property Name="SAP_order_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoV1Model.FK_OrderProductDetails_OrderDetails" FromRole="OrderProductDetails" ToRole="OrderDetails" />
+          <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoV2Model.FK_OrderProductDetails_OrderDetails" FromRole="OrderProductDetails" ToRole="OrderDetails" />
         </EntityType>
         <EntityType Name="Product_Master">
           <Key>
@@ -1909,10 +1909,10 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Category" Relationship="GrowIndigoV1Model.FK_UserCategoryMapping_Category" FromRole="UserCategoryMapping" ToRole="Category" />
-          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV1Model.FK_UserCategoryMapping_Mandi_UserInfo" FromRole="UserCategoryMapping" ToRole="Mandi_UserInfo" />
-          <NavigationProperty Name="UserCategoryMapping1" Relationship="GrowIndigoV1Model.FK_UserCategoryMapping_UserCategoryMapping" FromRole="UserCategoryMapping" ToRole="UserCategoryMapping1" />
-          <NavigationProperty Name="UserCategoryMapping2" Relationship="GrowIndigoV1Model.FK_UserCategoryMapping_UserCategoryMapping" FromRole="UserCategoryMapping1" ToRole="UserCategoryMapping" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Category" FromRole="UserCategoryMapping" ToRole="Category" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Mandi_UserInfo" FromRole="UserCategoryMapping" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="UserCategoryMapping1" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_UserCategoryMapping" FromRole="UserCategoryMapping" ToRole="UserCategoryMapping1" />
+          <NavigationProperty Name="UserCategoryMapping2" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_UserCategoryMapping" FromRole="UserCategoryMapping1" ToRole="UserCategoryMapping" />
         </EntityType>
         <EntityType Name="UserFeedback">
           <Key>
@@ -1923,7 +1923,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="Product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Tr_Date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV1Model.FK_UserFeedback_UserInfo" FromRole="UserFeedback" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_UserFeedback_UserInfo" FromRole="UserFeedback" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UserInfo">
           <Key>
@@ -1966,11 +1966,11 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="Firm_Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsProfileUpdated" Type="Boolean" />
           <Property Name="RetailerId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoV1Model.FK_OrderDetails_UserInfo" FromRole="UserInfo" ToRole="OrderDetails" />
-          <NavigationProperty Name="OrderErrorLogDetails" Relationship="GrowIndigoV1Model.FK_OrderErrorLogDetails_UserInfo" FromRole="UserInfo" ToRole="OrderErrorLogDetails" />
-          <NavigationProperty Name="UserFeedback" Relationship="GrowIndigoV1Model.FK_UserFeedback_UserInfo" FromRole="UserInfo" ToRole="UserFeedback" />
-          <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoV1Model.FK_UsersAddress_UserInfo" FromRole="UserInfo" ToRole="UsersAddress" />
-          <NavigationProperty Name="UserWallet" Relationship="GrowIndigoV1Model.FK_UserWallet_UserInfo" FromRole="UserInfo" ToRole="UserWallet" />
+          <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoV2Model.FK_OrderDetails_UserInfo" FromRole="UserInfo" ToRole="OrderDetails" />
+          <NavigationProperty Name="OrderErrorLogDetails" Relationship="GrowIndigoV2Model.FK_OrderErrorLogDetails_UserInfo" FromRole="UserInfo" ToRole="OrderErrorLogDetails" />
+          <NavigationProperty Name="UserFeedback" Relationship="GrowIndigoV2Model.FK_UserFeedback_UserInfo" FromRole="UserInfo" ToRole="UserFeedback" />
+          <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoV2Model.FK_UsersAddress_UserInfo" FromRole="UserInfo" ToRole="UsersAddress" />
+          <NavigationProperty Name="UserWallet" Relationship="GrowIndigoV2Model.FK_UserWallet_UserInfo" FromRole="UserInfo" ToRole="UserWallet" />
         </EntityType>
         <EntityType Name="UserOTPInfo">
           <Key>
@@ -2000,8 +2000,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="IsMandiUser" Type="Boolean" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="MobileNumberForMandi" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV1Model.FK_UsersAddress_Mandi_UserInfo" FromRole="UsersAddress" ToRole="Mandi_UserInfo" />
-          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV1Model.FK_UsersAddress_UserInfo" FromRole="UsersAddress" ToRole="UserInfo" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_UsersAddress_Mandi_UserInfo" FromRole="UsersAddress" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_UsersAddress_UserInfo" FromRole="UsersAddress" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="UsersBankAccountDetails">
           <Key>
@@ -2019,7 +2019,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV1Model.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="UsersBankAccountDetails" ToRole="Mandi_UserInfo" />
+          <NavigationProperty Name="Mandi_UserInfo" Relationship="GrowIndigoV2Model.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="UsersBankAccountDetails" ToRole="Mandi_UserInfo" />
         </EntityType>
         <EntityType Name="UserWallet">
           <Key>
@@ -2031,7 +2031,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV1Model.FK_UserWallet_UserInfo" FromRole="UserWallet" ToRole="UserInfo" />
+          <NavigationProperty Name="UserInfo" Relationship="GrowIndigoV2Model.FK_UserWallet_UserInfo" FromRole="UserWallet" ToRole="UserInfo" />
         </EntityType>
         <EntityType Name="Variety_Master">
           <Key>
@@ -2040,8 +2040,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="VarietyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="VarietyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CropId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV1Model.FK_Variety_Master_Crop_Master" FromRole="Variety_Master" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV1Model.FK_Mandi_ProductMaster_Variety_Master" FromRole="Variety_Master" ToRole="Mandi_ProductMaster" />
+          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Variety_Master_Crop_Master" FromRole="Variety_Master" ToRole="Crop_Master" />
+          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master" FromRole="Variety_Master" ToRole="Mandi_ProductMaster" />
         </EntityType>
         <EntityType Name="Mandi_UserInfo_bkp">
           <Key>
@@ -2088,7 +2088,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="SubCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ImageUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="CategoryId" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="GrowIndigoV1Model.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
         </EntityType>
         <EntityType Name="Web_Mandi_usermaster">
           <Key>
@@ -2109,8 +2109,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           <Property Name="userStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Crop_Master_Category">
-          <End Type="GrowIndigoV1Model.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.Crop_Master" Role="Crop_Master" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -2121,8 +2121,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_ProductMaster_Crop_Master">
-          <End Type="GrowIndigoV1Model.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -2133,8 +2133,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SubCategory_Category">
-          <End Type="GrowIndigoV1Model.Category" Role="Category" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.SubCategory" Role="SubCategory" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.SubCategory" Role="SubCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -2145,8 +2145,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserCategoryMapping_Category">
-          <End Type="GrowIndigoV1Model.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -2157,8 +2157,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Crop_Master_Crop_Master">
-          <End Type="GrowIndigoV1Model.Crop_Master" Role="Crop_Master" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.Crop_Master" Role="Crop_Master1" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master1" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Crop_Master">
               <PropertyRef Name="CropId" />
@@ -2169,8 +2169,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_ProductMaster_Mandi_UserInfo">
-          <End Type="GrowIndigoV1Model.Crop_Master" Role="Crop_Master" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Crop_Master">
               <PropertyRef Name="CropId" />
@@ -2181,8 +2181,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Variety_Master_Crop_Master">
-          <End Type="GrowIndigoV1Model.Crop_Master" Role="Crop_Master" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.Variety_Master" Role="Variety_Master" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Variety_Master" Role="Variety_Master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Crop_Master">
               <PropertyRef Name="CropId" />
@@ -2193,8 +2193,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_CartInfo_Mandi_CartProductStatus">
-          <End Type="GrowIndigoV1Model.Mandi_CartProductStatus" Role="Mandi_CartProductStatus" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_CartProductStatus" Role="Mandi_CartProductStatus" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_CartProductStatus">
               <PropertyRef Name="Id" />
@@ -2205,8 +2205,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
-          <End Type="GrowIndigoV1Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_InterestedProductForUser">
               <PropertyRef Name="Id" />
@@ -2217,8 +2217,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_CartInfo_Mandi_UserEnquiry">
-          <End Type="GrowIndigoV1Model.Mandi_UserEnquiry" Role="Mandi_UserEnquiry" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserEnquiry" Role="Mandi_UserEnquiry" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserEnquiry">
               <PropertyRef Name="Tr_Id" />
@@ -2229,8 +2229,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_InterestedProductForUser_Mandi_InterestedProductForUser">
-          <End Type="GrowIndigoV1Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser1" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser1" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Mandi_InterestedProductForUser">
               <PropertyRef Name="Id" />
@@ -2241,8 +2241,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
-          <End Type="GrowIndigoV1Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2253,8 +2253,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_ProductMaster_Mandi_ProductMaster">
-          <End Type="GrowIndigoV1Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.Mandi_ProductMaster" Role="Mandi_ProductMaster1" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster1" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Mandi_ProductMaster">
               <PropertyRef Name="Tr_Id" />
@@ -2265,8 +2265,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_ProductMaster_Variety_Master">
-          <End Type="GrowIndigoV1Model.Variety_Master" Role="Variety_Master" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Variety_Master" Role="Variety_Master" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Variety_Master">
               <PropertyRef Name="VarietyId" />
@@ -2277,8 +2277,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_UserRoles_Mandi_Roles">
-          <End Type="GrowIndigoV1Model.Mandi_Roles" Role="Mandi_Roles" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.Mandi_UserRoles" Role="Mandi_UserRoles" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_Roles" Role="Mandi_Roles" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Mandi_UserRoles" Role="Mandi_UserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_Roles">
               <PropertyRef Name="RoleId" />
@@ -2289,8 +2289,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Mandi_UserRoles_Mandi_UserInfo">
-          <End Type="GrowIndigoV1Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.Mandi_UserRoles" Role="Mandi_UserRoles" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Mandi_UserRoles" Role="Mandi_UserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2301,8 +2301,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserCategoryMapping_Mandi_UserInfo">
-          <End Type="GrowIndigoV1Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2313,8 +2313,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsersAddress_Mandi_UserInfo">
-          <End Type="GrowIndigoV1Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.UsersAddress" Role="UsersAddress" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UsersAddress" Role="UsersAddress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2325,8 +2325,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsersBankAccountDetails_Mandi_UserInfo">
-          <End Type="GrowIndigoV1Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.UsersBankAccountDetails" Role="UsersBankAccountDetails" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.Mandi_UserInfo" Role="Mandi_UserInfo" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.UsersBankAccountDetails" Role="UsersBankAccountDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Mandi_UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2337,8 +2337,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderDetails_UserInfo">
-          <End Type="GrowIndigoV1Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.OrderDetails" Role="OrderDetails" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.OrderDetails" Role="OrderDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2349,8 +2349,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderProductDetails_OrderDetails">
-          <End Type="GrowIndigoV1Model.OrderDetails" Role="OrderDetails" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.OrderProductDetails" Role="OrderProductDetails" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.OrderDetails" Role="OrderDetails" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.OrderProductDetails" Role="OrderProductDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderDetails">
               <PropertyRef Name="Order_Id" />
@@ -2361,8 +2361,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderErrorLogDetails_UserInfo">
-          <End Type="GrowIndigoV1Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.OrderErrorLogDetails" Role="OrderErrorLogDetails" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.OrderErrorLogDetails" Role="OrderErrorLogDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2373,8 +2373,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserCategoryMapping_UserCategoryMapping">
-          <End Type="GrowIndigoV1Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="1" />
-          <End Type="GrowIndigoV1Model.UserCategoryMapping" Role="UserCategoryMapping1" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserCategoryMapping" Role="UserCategoryMapping" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.UserCategoryMapping" Role="UserCategoryMapping1" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="UserCategoryMapping">
               <PropertyRef Name="Id" />
@@ -2385,8 +2385,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserFeedback_UserInfo">
-          <End Type="GrowIndigoV1Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.UserFeedback" Role="UserFeedback" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserFeedback" Role="UserFeedback" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2397,8 +2397,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UsersAddress_UserInfo">
-          <End Type="GrowIndigoV1Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.UsersAddress" Role="UsersAddress" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UsersAddress" Role="UsersAddress" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2409,8 +2409,8 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserWallet_UserInfo">
-          <End Type="GrowIndigoV1Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
-          <End Type="GrowIndigoV1Model.UserWallet" Role="UserWallet" Multiplicity="*" />
+          <End Type="GrowIndigoV2Model.UserInfo" Role="UserInfo" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.UserWallet" Role="UserWallet" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserInfo">
               <PropertyRef Name="MobileNumber" />
@@ -2425,9 +2425,9 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="GrowIndigoV1ModelStoreContainer" CdmEntityContainer="GrowIndigoAPIDBEntities">
+        <EntityContainerMapping StorageEntityContainer="GrowIndigoV2ModelStoreContainer" CdmEntityContainer="GrowIndigoAPIDBEntities">
           <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Category">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Hi_CategoryName" ColumnName="Hi_CategoryName" />
                 <ScalarProperty Name="Mr_CategoryName" ColumnName="Mr_CategoryName" />
@@ -2441,7 +2441,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Crop_Master">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Crop_Master">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Crop_Master">
               <MappingFragment StoreEntitySet="Crop_Master">
                 <ScalarProperty Name="Te_CropName" ColumnName="Te_CropName" />
                 <ScalarProperty Name="Mr_CropName" ColumnName="Mr_CropName" />
@@ -2456,7 +2456,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="District_Master">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.District_Master">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.District_Master">
               <MappingFragment StoreEntitySet="District_Master">
                 <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
                 <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
@@ -2465,7 +2465,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ErrorLogs">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.ErrorLogs">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.ErrorLogs">
               <MappingFragment StoreEntitySet="ErrorLogs">
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="InnerException" ColumnName="InnerException" />
@@ -2476,7 +2476,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_Banner">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_Banner">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Banner">
               <MappingFragment StoreEntitySet="Mandi_Banner">
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -2491,7 +2491,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_CartInfo">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_CartInfo">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartInfo">
               <MappingFragment StoreEntitySet="Mandi_CartInfo">
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
@@ -2522,7 +2522,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_CartProductStatus">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_CartProductStatus">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartProductStatus">
               <MappingFragment StoreEntitySet="Mandi_CartProductStatus">
                 <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -2530,7 +2530,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_InterestedProductForUser">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_InterestedProductForUser">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_InterestedProductForUser">
               <MappingFragment StoreEntitySet="Mandi_InterestedProductForUser">
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -2550,7 +2550,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_Notification">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_Notification">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Notification">
               <MappingFragment StoreEntitySet="Mandi_Notification">
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
@@ -2560,7 +2560,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_OrderDetails">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_OrderDetails">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_OrderDetails">
               <MappingFragment StoreEntitySet="Mandi_OrderDetails">
                 <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
                 <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
@@ -2586,7 +2586,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_OrderProductDetails">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_OrderProductDetails">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_OrderProductDetails">
               <MappingFragment StoreEntitySet="Mandi_OrderProductDetails">
                 <ScalarProperty Name="SelectedProductPrice" ColumnName="SelectedProductPrice" />
                 <ScalarProperty Name="SelectedQuantity" ColumnName="SelectedQuantity" />
@@ -2600,7 +2600,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_ProductMaster">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_ProductMaster">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_ProductMaster">
               <MappingFragment StoreEntitySet="Mandi_ProductMaster">
                 <ScalarProperty Name="Te_ProductDescription" ColumnName="Te_ProductDescription" />
                 <ScalarProperty Name="Mr_ProductDescription" ColumnName="Mr_ProductDescription" />
@@ -2642,7 +2642,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_Requirement">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_Requirement">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Requirement">
               <MappingFragment StoreEntitySet="Mandi_Requirement">
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -2663,7 +2663,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_Roles">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_Roles">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Roles">
               <MappingFragment StoreEntitySet="Mandi_Roles">
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -2671,7 +2671,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserEnquiry">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserEnquiry">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserEnquiry">
               <MappingFragment StoreEntitySet="Mandi_UserEnquiry">
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
                 <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
@@ -2683,7 +2683,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserFeedback">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserFeedback">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserFeedback">
               <MappingFragment StoreEntitySet="Mandi_UserFeedback">
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
                 <ScalarProperty Name="Feedback" ColumnName="Feedback" />
@@ -2694,7 +2694,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserInfo">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserInfo">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserInfo">
               <MappingFragment StoreEntitySet="Mandi_UserInfo">
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
@@ -2713,7 +2713,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserRoles">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserRoles">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserRoles">
               <MappingFragment StoreEntitySet="Mandi_UserRoles">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
@@ -2722,7 +2722,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.OrderDetails">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderDetails">
               <MappingFragment StoreEntitySet="OrderDetails">
                 <ScalarProperty Name="Rzp_Payment_Status" ColumnName="Rzp_Payment_Status" />
                 <ScalarProperty Name="Rzp_Signature" ColumnName="Rzp_Signature" />
@@ -2742,7 +2742,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderErrorLogDetails">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.OrderErrorLogDetails">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderErrorLogDetails">
               <MappingFragment StoreEntitySet="OrderErrorLogDetails">
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
                 <ScalarProperty Name="Error_Msg" ColumnName="Error_Msg" />
@@ -2757,7 +2757,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderProductDetails">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.OrderProductDetails">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.OrderProductDetails">
               <MappingFragment StoreEntitySet="OrderProductDetails">
                 <ScalarProperty Name="SAP_order_ID" ColumnName="SAP_order_ID" />
                 <ScalarProperty Name="tr_date" ColumnName="tr_date" />
@@ -2770,7 +2770,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Product_Master">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Product_Master">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Product_Master">
               <MappingFragment StoreEntitySet="Product_Master">
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="PrdState" ColumnName="PrdState" />
@@ -2791,7 +2791,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Roles">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Roles">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -2799,7 +2799,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="State_Master">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.State_Master">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.State_Master">
               <MappingFragment StoreEntitySet="State_Master">
                 <ScalarProperty Name="StateCode" ColumnName="StateCode" />
                 <ScalarProperty Name="StateName" ColumnName="StateName" />
@@ -2808,7 +2808,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Taluka_Master">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Taluka_Master">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Taluka_Master">
               <MappingFragment StoreEntitySet="Taluka_Master">
                 <ScalarProperty Name="TalukaCode" ColumnName="TalukaCode" />
                 <ScalarProperty Name="TalukaName" ColumnName="TalukaName" />
@@ -2817,7 +2817,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserCategoryMapping">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.UserCategoryMapping">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.UserCategoryMapping">
               <MappingFragment StoreEntitySet="UserCategoryMapping">
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -2829,7 +2829,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserFeedback">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.UserFeedback">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.UserFeedback">
               <MappingFragment StoreEntitySet="UserFeedback">
                 <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
                 <ScalarProperty Name="Feedback" ColumnName="Feedback" />
@@ -2840,7 +2840,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserInfo">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.UserInfo">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.UserInfo">
               <MappingFragment StoreEntitySet="UserInfo">
                 <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
                 <ScalarProperty Name="IsProfileUpdated" ColumnName="IsProfileUpdated" />
@@ -2883,7 +2883,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserOTPInfo">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.UserOTPInfo">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.UserOTPInfo">
               <MappingFragment StoreEntitySet="UserOTPInfo">
                 <ScalarProperty Name="GenratedDate" ColumnName="GenratedDate" />
                 <ScalarProperty Name="OTP" ColumnName="OTP" />
@@ -2893,7 +2893,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsersAddress">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.UsersAddress">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.UsersAddress">
               <MappingFragment StoreEntitySet="UsersAddress">
                 <ScalarProperty Name="MobileNumberForMandi" ColumnName="MobileNumberForMandi" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -2914,7 +2914,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsersBankAccountDetails">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.UsersBankAccountDetails">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.UsersBankAccountDetails">
               <MappingFragment StoreEntitySet="UsersBankAccountDetails">
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -2932,7 +2932,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserWallet">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.UserWallet">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.UserWallet">
               <MappingFragment StoreEntitySet="UserWallet">
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -2944,7 +2944,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Variety_Master">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Variety_Master">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Variety_Master">
               <MappingFragment StoreEntitySet="Variety_Master">
                 <ScalarProperty Name="CropId" ColumnName="CropId" />
                 <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
@@ -2953,7 +2953,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserInfo_bkp">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserInfo_bkp">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserInfo_bkp">
               <MappingFragment StoreEntitySet="Mandi_UserInfo_bkp">
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
@@ -2972,7 +2972,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mandi_UserInfo_bkp_2">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Mandi_UserInfo_bkp_2">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserInfo_bkp_2">
               <MappingFragment StoreEntitySet="Mandi_UserInfo_bkp_2">
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="DeviceToken" ColumnName="DeviceToken" />
@@ -2991,7 +2991,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubCategory">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.SubCategory">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
@@ -3001,7 +3001,7 @@ warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Web_Mandi_usermaster">
-            <EntityTypeMapping TypeName="GrowIndigoV1Model.Web_Mandi_usermaster">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Web_Mandi_usermaster">
               <MappingFragment StoreEntitySet="Web_Mandi_usermaster">
                 <ScalarProperty Name="userStatus" ColumnName="userStatus" />
                 <ScalarProperty Name="change_pass" ColumnName="change_pass" />
