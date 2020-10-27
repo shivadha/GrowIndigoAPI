@@ -16,6 +16,8 @@ namespace GrowIndigo.Models
             public string Prices { get; set; }
   
             public string PaymentStatus { get; set; }
+
+            public string Type { get; set; }
             public string Payment_Mode { get; set; }
             public string ShippingAddress { get; set; }
             public string OrderDate { get; set; }

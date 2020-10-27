@@ -13,9 +13,18 @@ namespace GrowIndigo.Models
             public string StateName { get; set; }
         }
 
+        public class Respose
+        {
+            public string Status { get; set; }
+            public string MobileNumber { get; set; }
+        }
         public class StateMaster
         {
             public List<State> States { get; set; }
+        }
+        public class ResponceMaster
+        {
+            public List<Respose> Resposes { get; set; }
         }
 
         public class District
@@ -73,7 +82,7 @@ namespace GrowIndigo.Models
             public int RoleId { get; set; }
             public List<SubCategoryViewModel> SubCategories { get; set; }
         }
-        
+
         public class SubCategoryViewModel
         {
             public int SubCategoryId { get; set; }

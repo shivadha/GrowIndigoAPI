@@ -16,7 +16,7 @@
     <AssemblyName>GrowIndigo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -462,6 +462,9 @@
     <Compile Include="Data\Mandi_CartInfo.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Mandi_CartProductStatus.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Mandi_InterestedProductForUser.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
@@ -492,6 +495,12 @@
     <Compile Include="Data\Mandi_UserInfo.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Mandi_UserInfo_bkp.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Mandi_UserInfo_bkp_2.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Mandi_UserRoles.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
@@ -502,9 +511,6 @@
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\OrderProductDetails.cs">
-      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\ProdcutsSold.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Product_Master.cs">
@@ -553,6 +559,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoriesViewModel.cs" />
+    <Compile Include="Models\CheckOutNotificationViewModel.cs" />
+    <Compile Include="Models\CountViewModel.cs" />
     <Compile Include="Models\CropMasterViewModel.cs" />
     <Compile Include="Models\DeviceTokenViewModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
@@ -861,7 +869,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53370</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/GrowIndigo.API</IISUrl>
+          <IISUrl>http://localhost:53370/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

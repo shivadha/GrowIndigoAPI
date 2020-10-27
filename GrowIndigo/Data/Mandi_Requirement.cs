@@ -27,7 +27,7 @@ namespace GrowIndigo.Data
         public string ExpectedPrice { get; set; }
         public Nullable<System.DateTime> ExpectedDate { get; set; }
         public Nullable<bool> IsPriceNegotiable { get; set; }
-        public Nullable<System.DateTime> Tr_Date { get; set; }
         public string Remarks { get; set; }
+        public Nullable<System.DateTime> Tr_Date { get; set; }
     }
 }

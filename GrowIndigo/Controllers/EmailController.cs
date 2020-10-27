@@ -146,7 +146,7 @@ namespace GrowIndigo.Controllers
                     maile.Subject = subject;
                     maile.Body = body;
                     SmtpServere.Port = 587;
-                    SmtpServere.Credentials = new System.Net.NetworkCredential("developer@growindigo.co.in", "lraoezrpruvcsrvy");
+                    SmtpServere.Credentials = new System.Net.NetworkCredential("developer@growindigo.co.in", "phoansnuhfutodwq");
                     SmtpServere.EnableSsl = true;
                     SmtpServere.Send(maile);
                     var addIntersProdct = objMandiUserController.AddInterestedProductForUser(objInterestedProductsViewModel);

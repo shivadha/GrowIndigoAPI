@@ -56,6 +56,7 @@ namespace GrowIndigo.Models
         public string culture { get; set; }
         public string SCategoryId { get; set; }
         public string MobileNumber { get; set; }
+        public bool ProductPagination { get; set; }
         public int? VarietyId { get; set;}
         public string State { get; set; }
         public string District { get; set; }
@@ -142,9 +143,11 @@ namespace GrowIndigo.Models
         public string Buyer_Mobile { get; set; }
         public string TotalPrice { get; set; }
         public string Payment_Mode { get; set; }
+        public string QuantityUnit { get; set; }
         public string OrderDate { get; set; }
         public string Shipping_Address_Id { get; set; }
         public string Order_Status { get; set; }
+        public string TermsAndCondition { get; set; }
         public string SelectedTotalQty { get; set; }
         public string Buyer_Name { get; set; }
         public string GeoCoordinates { get; set; }
@@ -154,9 +157,15 @@ namespace GrowIndigo.Models
         public string reciver_name { get; set; }
         public string ship_address { get; set; }
         public string city { get; set; }
+        public string ProductImageUrl { get; set; }
         public string pincode { get; set; }
         public string ship_mobile { get; set; }
-    
+        public string SellerName { get; set; }
+        public string SellerState { get; set; }
+        public string SellerDistrict { get; set; }
+        public string SelletTaluka { get; set; }
+        public string SellerVillage { get; set; }
+        public string SellerPinCode { get; set; }
 
         //from OrderProductDetails
         public int Product_Id { get; set; }
@@ -166,6 +175,10 @@ namespace GrowIndigo.Models
         public string SelectedProductPrice { get; set; }
         public string CropName { get; set; }
         public string VarietyName { get; set; }
+        public Nullable<decimal> Logistics_Cost { get; set; }
+        public Nullable<decimal> Other_Charges { get; set; }
+        public Nullable<decimal> Taxes { get; set; }
+        
 
     }
 
