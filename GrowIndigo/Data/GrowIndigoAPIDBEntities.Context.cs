@@ -7,56 +7,60 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-
-public partial class GrowIndigoAPIDBEntities : DbContext
+namespace GrowIndigo.Data
 {
-    public GrowIndigoAPIDBEntities()
-        : base("name=GrowIndigoAPIDBEntities")
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    
+    public partial class GrowIndigoAPIDBEntities : DbContext
     {
+        public GrowIndigoAPIDBEntities()
+            : base("name=GrowIndigoAPIDBEntities")
+        {
+        }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Crop_Master> Crop_Master { get; set; }
+        public virtual DbSet<District_Master> District_Master { get; set; }
+        public virtual DbSet<ErrorLogs> ErrorLogs { get; set; }
+        public virtual DbSet<Mandi_Banner> Mandi_Banner { get; set; }
+        public virtual DbSet<Mandi_CartInfo> Mandi_CartInfo { get; set; }
+        public virtual DbSet<Mandi_CartProductStatus> Mandi_CartProductStatus { get; set; }
+        public virtual DbSet<Mandi_InterestedProductForUser> Mandi_InterestedProductForUser { get; set; }
+        public virtual DbSet<Mandi_Notification> Mandi_Notification { get; set; }
+        public virtual DbSet<Mandi_OrderDetails> Mandi_OrderDetails { get; set; }
+        public virtual DbSet<Mandi_OrderProductDetails> Mandi_OrderProductDetails { get; set; }
+        public virtual DbSet<Mandi_ProductMaster> Mandi_ProductMaster { get; set; }
+        public virtual DbSet<Mandi_Requirement> Mandi_Requirement { get; set; }
+        public virtual DbSet<Mandi_Roles> Mandi_Roles { get; set; }
+        public virtual DbSet<Mandi_UserEnquiry> Mandi_UserEnquiry { get; set; }
+        public virtual DbSet<Mandi_UserFeedback> Mandi_UserFeedback { get; set; }
+        public virtual DbSet<Mandi_UserInfo> Mandi_UserInfo { get; set; }
+        public virtual DbSet<Mandi_UserRoles> Mandi_UserRoles { get; set; }
+        public virtual DbSet<OrderDetails> OrderDetails { get; set; }
+        public virtual DbSet<OrderErrorLogDetails> OrderErrorLogDetails { get; set; }
+        public virtual DbSet<OrderProductDetails> OrderProductDetails { get; set; }
+        public virtual DbSet<Product_Master> Product_Master { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<State_Master> State_Master { get; set; }
+        public virtual DbSet<Taluka_Master> Taluka_Master { get; set; }
+        public virtual DbSet<UserCategoryMapping> UserCategoryMapping { get; set; }
+        public virtual DbSet<UserFeedback> UserFeedback { get; set; }
+        public virtual DbSet<UserInfo> UserInfo { get; set; }
+        public virtual DbSet<UserOTPInfo> UserOTPInfo { get; set; }
+        public virtual DbSet<UsersAddress> UsersAddress { get; set; }
+        public virtual DbSet<UsersBankAccountDetails> UsersBankAccountDetails { get; set; }
+        public virtual DbSet<UserWallet> UserWallet { get; set; }
+        public virtual DbSet<Variety_Master> Variety_Master { get; set; }
+        public virtual DbSet<Mandi_UserInfo_bkp> Mandi_UserInfo_bkp { get; set; }
+        public virtual DbSet<Mandi_UserInfo_bkp_2> Mandi_UserInfo_bkp_2 { get; set; }
+        public virtual DbSet<SubCategory> SubCategory { get; set; }
+        public virtual DbSet<Web_Mandi_usermaster> Web_Mandi_usermaster { get; set; }
     }
-
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    {
-        throw new UnintentionalCodeFirstException();
-    }
-
-    public virtual DbSet<Category> Category { get; set; }
-    public virtual DbSet<Crop_Master> Crop_Master { get; set; }
-    public virtual DbSet<District_Master> District_Master { get; set; }
-    public virtual DbSet<ErrorLogs> ErrorLogs { get; set; }
-    public virtual DbSet<Mandi_Banner> Mandi_Banner { get; set; }
-    public virtual DbSet<Mandi_CartInfo> Mandi_CartInfo { get; set; }
-    public virtual DbSet<Mandi_CartProductStatus> Mandi_CartProductStatus { get; set; }
-    public virtual DbSet<Mandi_InterestedProductForUser> Mandi_InterestedProductForUser { get; set; }
-    public virtual DbSet<Mandi_Notification> Mandi_Notification { get; set; }
-    public virtual DbSet<Mandi_OrderDetails> Mandi_OrderDetails { get; set; }
-    public virtual DbSet<Mandi_OrderProductDetails> Mandi_OrderProductDetails { get; set; }
-    public virtual DbSet<Mandi_ProductMaster> Mandi_ProductMaster { get; set; }
-    public virtual DbSet<Mandi_Requirement> Mandi_Requirement { get; set; }
-    public virtual DbSet<Mandi_Roles> Mandi_Roles { get; set; }
-    public virtual DbSet<Mandi_UserEnquiry> Mandi_UserEnquiry { get; set; }
-    public virtual DbSet<Mandi_UserFeedback> Mandi_UserFeedback { get; set; }
-    public virtual DbSet<Mandi_UserInfo> Mandi_UserInfo { get; set; }
-    public virtual DbSet<Mandi_UserRoles> Mandi_UserRoles { get; set; }
-    public virtual DbSet<OrderDetails> OrderDetails { get; set; }
-    public virtual DbSet<OrderErrorLogDetails> OrderErrorLogDetails { get; set; }
-    public virtual DbSet<OrderProductDetails> OrderProductDetails { get; set; }
-    public virtual DbSet<ProdcutsSold> ProdcutsSold { get; set; }
-    public virtual DbSet<Product_Master> Product_Master { get; set; }
-    public virtual DbSet<Roles> Roles { get; set; }
-    public virtual DbSet<State_Master> State_Master { get; set; }
-    public virtual DbSet<Taluka_Master> Taluka_Master { get; set; }
-    public virtual DbSet<UserCategoryMapping> UserCategoryMapping { get; set; }
-    public virtual DbSet<UserFeedback> UserFeedback { get; set; }
-    public virtual DbSet<UserInfo> UserInfo { get; set; }
-    public virtual DbSet<UserOTPInfo> UserOTPInfo { get; set; }
-    public virtual DbSet<UsersAddress> UsersAddress { get; set; }
-    public virtual DbSet<UsersBankAccountDetails> UsersBankAccountDetails { get; set; }
-    public virtual DbSet<UserWallet> UserWallet { get; set; }
-    public virtual DbSet<Variety_Master> Variety_Master { get; set; }
-    public virtual DbSet<SubCategory> SubCategory { get; set; }
-    public virtual DbSet<Web_Mandi_usermaster> Web_Mandi_usermaster { get; set; }
 }

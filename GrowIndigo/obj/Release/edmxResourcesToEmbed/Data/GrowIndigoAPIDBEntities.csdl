@@ -22,7 +22,6 @@
     <EntitySet Name="OrderDetails" EntityType="GrowIndigoV2Model.OrderDetails" />
     <EntitySet Name="OrderErrorLogDetails" EntityType="GrowIndigoV2Model.OrderErrorLogDetails" />
     <EntitySet Name="OrderProductDetails" EntityType="GrowIndigoV2Model.OrderProductDetails" />
-    <EntitySet Name="ProdcutsSold" EntityType="GrowIndigoV2Model.ProdcutsSold" />
     <EntitySet Name="Product_Master" EntityType="GrowIndigoV2Model.Product_Master" />
     <EntitySet Name="Roles" EntityType="GrowIndigoV2Model.Roles" />
     <EntitySet Name="State_Master" EntityType="GrowIndigoV2Model.State_Master" />
@@ -35,6 +34,8 @@
     <EntitySet Name="UsersBankAccountDetails" EntityType="GrowIndigoV2Model.UsersBankAccountDetails" />
     <EntitySet Name="UserWallet" EntityType="GrowIndigoV2Model.UserWallet" />
     <EntitySet Name="Variety_Master" EntityType="GrowIndigoV2Model.Variety_Master" />
+    <EntitySet Name="Mandi_UserInfo_bkp" EntityType="GrowIndigoV2Model.Mandi_UserInfo_bkp" />
+    <EntitySet Name="Mandi_UserInfo_bkp_2" EntityType="GrowIndigoV2Model.Mandi_UserInfo_bkp_2" />
     <EntitySet Name="SubCategory" EntityType="GrowIndigoV2Model.SubCategory" />
     <EntitySet Name="Web_Mandi_usermaster" EntityType="GrowIndigoV2Model.Web_Mandi_usermaster" />
     <AssociationSet Name="FK_Crop_Master_Category" Association="GrowIndigoV2Model.FK_Crop_Master_Category">
@@ -236,6 +237,9 @@
     <Property Name="Other_Charges" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Taxes" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Fk_ProductStatus" Type="Int64" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceTax" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Mandi_CartProductStatus" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartInfo" ToRole="Mandi_CartProductStatus" />
     <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser" FromRole="Mandi_CartInfo" ToRole="Mandi_InterestedProductForUser" />
     <NavigationProperty Name="Mandi_UserEnquiry" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_UserEnquiry" FromRole="Mandi_CartInfo" ToRole="Mandi_UserEnquiry" />
@@ -295,8 +299,8 @@
     <Property Name="ShippingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Order_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="rzp_order_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="rzp_payment_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="rzp_payment_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="rzp_payment_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="rzp_payment_signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="SelectedTotalQty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Buyer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -327,6 +331,7 @@
     <Property Name="CategoryId" Type="Int64" />
     <Property Name="VarietyId" Type="Int32" />
     <Property Name="CropEndDate" Type="DateTime" Precision="3" />
+    <Property Name="Product_Status" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="ProductAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="GeoAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -353,6 +358,7 @@
     <Property Name="IsApproved" Type="Boolean" />
     <Property Name="MaximumPrice" Type="Int32" />
     <Property Name="MinimumPrice" Type="Int32" />
+    <Property Name="TermsAndCondition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Hi_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Mr_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Te_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -379,8 +385,8 @@
     <Property Name="ExpectedPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
     <Property Name="IsPriceNegotiable" Type="Boolean" />
-    <Property Name="Tr_Date" Type="DateTime" Precision="3" />
     <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Tr_Date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Mandi_Roles">
     <Key>
@@ -493,16 +499,6 @@
     <Property Name="tr_date" Type="DateTime" Precision="0" />
     <Property Name="SAP_order_ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="OrderDetails" Relationship="GrowIndigoV2Model.FK_OrderProductDetails_OrderDetails" FromRole="OrderProductDetails" ToRole="OrderDetails" />
-  </EntityType>
-  <EntityType Name="ProdcutsSold">
-    <Key>
-      <PropertyRef Name="ProductId" />
-    </Key>
-    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Warrenty" Type="Int32" />
-    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="Product_Master">
     <Key>
@@ -690,6 +686,42 @@
     <Property Name="CropId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Variety_Master_Crop_Master" FromRole="Variety_Master" ToRole="Crop_Master" />
     <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master" FromRole="Variety_Master" ToRole="Mandi_ProductMaster" />
+  </EntityType>
+  <EntityType Name="Mandi_UserInfo_bkp">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="FullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Village" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Taluka" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="AdharId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ProfilePictureUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsProfileUpdated" Type="Boolean" />
+    <Property Name="DeviceToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Mandi_UserInfo_bkp_2">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="FullName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Village" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Taluka" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="UserType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="AdharId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ProfilePictureUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsProfileUpdated" Type="Boolean" />
+    <Property Name="DeviceToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="SubCategory">
     <Key>

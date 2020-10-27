@@ -1,7 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GrowIndigoV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.BS_call_centre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BS_call_centre">
+          <Property Name="MobileNumber" Type="float" />
+          <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Village" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
+          <Property Name="District" Type="nvarchar" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="ROLE" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Buyer_1">
+          <Property Name="Sr" Type="float" />
+          <Property Name="Date_of_call" Type="datetime" />
+          <Property Name="Mobile_no#" Type="float" />
+          <Property Name="Vendor_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
+          <Property Name="District" Type="nvarchar" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="Call_Status" Type="nvarchar" MaxLength="255" />
+          <Property Name="Trading_crops" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop_Details" Type="nvarchar" MaxLength="255" />
+          <Property Name="Android_Phone" Type="nvarchar" MaxLength="255" />
+          <Property Name="WhatsApp_no#" Type="nvarchar" MaxLength="255" />
+          <Property Name="willingness_to_use_an_App" Type="nvarchar" MaxLength="255" />
+          <Property Name="Challenges" Type="nvarchar" MaxLength="255" />
+          <Property Name="other_queries" Type="nvarchar" MaxLength="255" />
+          <Property Name="Called _by" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quality1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quality2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quality3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop_1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quality_1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity_1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price_1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop_2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quality_2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity_2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price_2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop_3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quality_3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity_3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Buyer_GM">
           <Property Name="Sr" Type="float" />
           <Property Name="Date of call" Type="datetime" />
@@ -45,7 +100,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM' does not have a primary
           <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Buyer_GM_CallCentre">
           <Property Name="Sr" Type="float" />
           <Property Name="Date_of_call" Type="datetime" />
@@ -87,10 +142,6 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
           <Property Name="Quality_3" Type="nvarchar" MaxLength="255" />
           <Property Name="Quantity_3" Type="nvarchar" MaxLength="255" />
           <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="F41" Type="nvarchar" MaxLength="255" />
-          <Property Name="F42" Type="nvarchar" MaxLength="255" />
-          <Property Name="F43" Type="nvarchar" MaxLength="255" />
-          <Property Name="F44" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <EntityType Name="Category">
     <Key>
@@ -177,6 +228,9 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="Other_Charges" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Taxes" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Fk_ProductStatus" Type="bigint" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="ServiceTax" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UpdatedDate" Type="datetime" />
   </EntityType>
   <EntityType Name="Mandi_CartProductStatus">
     <Key>
@@ -228,8 +282,8 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="ShippingAddress" Type="nvarchar(max)" />
     <Property Name="Order_Status" Type="varchar(max)" />
     <Property Name="rzp_order_id" Type="varchar(max)" />
-    <Property Name="rzp_payment_status" Type="varchar(max)" />
     <Property Name="rzp_payment_Id" Type="varchar(max)" />
+    <Property Name="rzp_payment_status" Type="varchar(max)" />
     <Property Name="rzp_payment_signature" Type="varchar(max)" />
     <Property Name="SelectedTotalQty" Type="varchar" MaxLength="50" />
     <Property Name="Buyer_Name" Type="varchar" MaxLength="50" />
@@ -260,6 +314,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="CategoryId" Type="bigint" />
     <Property Name="VarietyId" Type="int" />
     <Property Name="CropEndDate" Type="datetime" />
+    <Property Name="Product_Status" Type="nvarchar" MaxLength="500" />
     <Property Name="ProductAddress" Type="nvarchar" MaxLength="256" />
     <Property Name="GeoAddress" Type="nvarchar" MaxLength="256" />
     <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" />
@@ -286,6 +341,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="IsApproved" Type="bit" />
     <Property Name="MaximumPrice" Type="int" />
     <Property Name="MinimumPrice" Type="int" />
+    <Property Name="TermsAndCondition" Type="nvarchar(max)" />
     <Property Name="Hi_ProductDescription" Type="nvarchar" MaxLength="500" />
     <Property Name="Mr_ProductDescription" Type="nvarchar" MaxLength="500" />
     <Property Name="Te_ProductDescription" Type="nvarchar" MaxLength="500" />
@@ -307,8 +363,8 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="ExpectedPrice" Type="nvarchar" MaxLength="50" />
     <Property Name="ExpectedDate" Type="datetime" />
     <Property Name="IsPriceNegotiable" Type="bit" />
-    <Property Name="Tr_Date" Type="datetime" />
     <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="Tr_Date" Type="datetime" />
   </EntityType>
   <EntityType Name="Mandi_Roles">
     <Key>
@@ -339,6 +395,46 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="Tr_Date" Type="smalldatetime" />
   </EntityType>
   <EntityType Name="Mandi_UserInfo">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="FullName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Village" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="64" />
+    <Property Name="District" Type="nvarchar" MaxLength="256" />
+    <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="256" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="256" />
+    <Property Name="AdharId" Type="nvarchar" MaxLength="256" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ProfilePictureUrl" Type="varchar(max)" />
+    <Property Name="IsProfileUpdated" Type="bit" />
+    <Property Name="DeviceToken" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Mandi_UserInfo_bkp">
+    <Key>
+      <PropertyRef Name="MobileNumber" />
+    </Key>
+    <Property Name="FullName" Type="nvarchar" MaxLength="256" />
+    <Property Name="Village" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="64" />
+    <Property Name="District" Type="nvarchar" MaxLength="256" />
+    <Property Name="Taluka" Type="nvarchar" MaxLength="256" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="256" />
+    <Property Name="UserType" Type="nvarchar" MaxLength="256" />
+    <Property Name="AdharId" Type="nvarchar" MaxLength="256" />
+    <Property Name="MobileNumber" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ProfilePictureUrl" Type="varchar(max)" />
+    <Property Name="IsProfileUpdated" Type="bit" />
+    <Property Name="DeviceToken" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Mandi_UserInfo_bkp_2">
     <Key>
       <PropertyRef Name="MobileNumber" />
     </Key>
@@ -409,16 +505,6 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="tr_date" Type="smalldatetime" />
     <Property Name="SAP_order_ID" Type="varchar" MaxLength="20" />
   </EntityType>
-  <EntityType Name="ProdcutsSold">
-    <Key>
-      <PropertyRef Name="ProductId" />
-    </Key>
-    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProductName" Type="varchar" MaxLength="50" />
-    <Property Name="BrandName" Type="varchar" MaxLength="50" />
-    <Property Name="Warrenty" Type="int" />
-    <Property Name="Price" Type="numeric" Precision="18" Scale="2" />
-  </EntityType>
   <EntityType Name="Product_Master">
     <Key>
       <PropertyRef Name="SkuId" />
@@ -447,7 +533,37 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV2.dbo.Seller_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.seller_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="seller_1">
+          <Property Name="Sr#" Type="float" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Mob_No" Type="float" />
+          <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Village" Type="nvarchar" MaxLength="255" />
+          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
+          <Property Name="District" Type="nvarchar" MaxLength="255" />
+          <Property Name="State" Type="nvarchar" MaxLength="255" />
+          <Property Name="Call_Status" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity3" Type="nvarchar" MaxLength="255" />
+          <Property Name="Crop4" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity4" Type="nvarchar" MaxLength="255" />
+          <Property Name="Harvest_time" Type="nvarchar" MaxLength="255" />
+          <Property Name="Where_they_sell?" Type="nvarchar" MaxLength="255" />
+          <Property Name="Payment_in_10-15_day_okay?" Type="nvarchar" MaxLength="255" />
+          <Property Name="Interested_for_app?" Type="nvarchar" MaxLength="255" />
+          <Property Name="Andriod_Phone" Type="nvarchar" MaxLength="255" />
+          <Property Name="whatsapp_number?" Type="nvarchar" MaxLength="255" />
+          <Property Name="Other_Queries" Type="nvarchar" MaxLength="255" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_GM_CallCentre">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date_of_call " Type="datetime" />
@@ -477,7 +593,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Seller_GM_CallCentre' does not ha
           <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV2.dbo.Seller_GM_new_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_GM_new_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_GM_new_2">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date" Type="datetime" />
@@ -507,7 +623,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Seller_GM_new_2' does not have a 
           <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
         </EntityType>-->
   <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV2.dbo.Seller_new' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_new' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Seller_new">
           <Property Name="Sr#" Type="float" />
           <Property Name="Date" Type="datetime" />
@@ -545,7 +661,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Seller_new' does not have a prima
     <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="SubCategory">
     <Key>
       <PropertyRef Name="SubCategoryId" />
@@ -564,6 +680,15 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a prim
     <Property Name="TalukaName" Type="nvarchar" MaxLength="256" />
     <Property Name="TalukaCode" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'GrowIndigoV1.dbo.testbulk' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="testbulk">
+          <Property Name="ProductId" Type="varchar" MaxLength="20" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="BrandName" Type="varchar" MaxLength="50" />
+          <Property Name="Warrenty" Type="varchar" MaxLength="10" />
+          <Property Name="Price" Type="varchar" MaxLength="100" />
+        </EntityType>-->
   <EntityType Name="UserCategoryMapping">
     <Key>
       <PropertyRef Name="Id" />
@@ -693,7 +818,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.SubCategory' does not have a prim
     <Property Name="CropId" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="Web_Mandi_usermaster">
     <Key>
       <PropertyRef Name="tr_id" />
@@ -1046,7 +1171,6 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderErrorLogDetails" EntityType="Self.OrderErrorLogDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderProductDetails" EntityType="Self.OrderProductDetails" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProdcutsSold" EntityType="Self.ProdcutsSold" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product_Master" EntityType="Self.Product_Master" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="State_Master" EntityType="Self.State_Master" Schema="dbo" store:Type="Tables" />
@@ -1059,6 +1183,40 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <EntitySet Name="UsersBankAccountDetails" EntityType="Self.UsersBankAccountDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserWallet" EntityType="Self.UserWallet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Variety_Master" EntityType="Self.Variety_Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_UserInfo_bkp" EntityType="Self.Mandi_UserInfo_bkp" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Mandi_UserInfo_bkp].[FullName] AS [FullName], 
+    [Mandi_UserInfo_bkp].[Village] AS [Village], 
+    [Mandi_UserInfo_bkp].[State] AS [State], 
+    [Mandi_UserInfo_bkp].[District] AS [District], 
+    [Mandi_UserInfo_bkp].[Taluka] AS [Taluka], 
+    [Mandi_UserInfo_bkp].[Pincode] AS [Pincode], 
+    [Mandi_UserInfo_bkp].[UserType] AS [UserType], 
+    [Mandi_UserInfo_bkp].[AdharId] AS [AdharId], 
+    [Mandi_UserInfo_bkp].[MobileNumber] AS [MobileNumber], 
+    [Mandi_UserInfo_bkp].[ProfilePictureUrl] AS [ProfilePictureUrl], 
+    [Mandi_UserInfo_bkp].[IsProfileUpdated] AS [IsProfileUpdated], 
+    [Mandi_UserInfo_bkp].[DeviceToken] AS [DeviceToken], 
+    [Mandi_UserInfo_bkp].[CreatedDate] AS [CreatedDate]
+    FROM [dbo].[Mandi_UserInfo_bkp] AS [Mandi_UserInfo_bkp]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Mandi_UserInfo_bkp_2" EntityType="Self.Mandi_UserInfo_bkp_2" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Mandi_UserInfo_bkp_2].[FullName] AS [FullName], 
+    [Mandi_UserInfo_bkp_2].[Village] AS [Village], 
+    [Mandi_UserInfo_bkp_2].[State] AS [State], 
+    [Mandi_UserInfo_bkp_2].[District] AS [District], 
+    [Mandi_UserInfo_bkp_2].[Taluka] AS [Taluka], 
+    [Mandi_UserInfo_bkp_2].[Pincode] AS [Pincode], 
+    [Mandi_UserInfo_bkp_2].[UserType] AS [UserType], 
+    [Mandi_UserInfo_bkp_2].[AdharId] AS [AdharId], 
+    [Mandi_UserInfo_bkp_2].[MobileNumber] AS [MobileNumber], 
+    [Mandi_UserInfo_bkp_2].[ProfilePictureUrl] AS [ProfilePictureUrl], 
+    [Mandi_UserInfo_bkp_2].[IsProfileUpdated] AS [IsProfileUpdated], 
+    [Mandi_UserInfo_bkp_2].[DeviceToken] AS [DeviceToken], 
+    [Mandi_UserInfo_bkp_2].[CreatedDate] AS [CreatedDate]
+    FROM [dbo].[Mandi_UserInfo_bkp_2] AS [Mandi_UserInfo_bkp_2]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="SubCategory" EntityType="Self.SubCategory" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [SubCategory].[SubCategoryId] AS [SubCategoryId], 

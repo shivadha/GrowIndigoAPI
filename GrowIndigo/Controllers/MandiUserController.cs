@@ -6475,6 +6475,91 @@ namespace GrowIndigo.Controllers
             }
             return "";
         }
+        public string SendFCMNotificationWithDataToUsers(string DeviceToken = "", string Message = "", string Title = "", string MobileNumber="", string Type="cart")
+        {
+            string notificationjson = string.Empty;
+            var mobileNumber = "";
+            
+            if (!string.IsNullOrEmpty(DeviceToken))
+            {
+                notificationjson = "{ \"to\": \"" + DeviceToken + "\" ,\"data\":{\"MobileNumber\":\"" + MobileNumber + "\",\"Type\":\"" + Type + "\"},\"notification\":{\"type\":\"" + Title + "\",\"body\":\"" + Message + "\"}}";
+            }
+
+            string postData = notificationjson;
+            try
+            {
+                //var applicationID = Config.FCMApplicationIDPremium;
+                //var senderId = Config.FCMsenderIdPremium;
+
+                //var applicationID = "AAAAVZqtFXE:APA91bETQj3U5yQVGBGdcu15njSk5y3cGDPww1Xg1GY-d_AjnH20haGP3QdUzm1-GZEbPemiXoTjogwDRWB5LE6Hh-f7N9Ks8JoAdBeZQqwZXcLFhsmC9uQhBJNjUklHFfmpA3Jc-r2v";
+                //var senderId = "367667254641";
+
+                //New com.mahyco.retail.growmandi 
+                var applicationID = "AAAAHR1Rh10:APA91bFA0t70thUmOM3HwrX5oWd-dUI55yk_psJjbRCR0pAvSmjZKAPef1kIcKxaV6RKaL4NCd81sIS2OLcPPGfA7K6D53wz_cg7jnEGbsxKfRpWL8P2XxcQCY9Mzd6FC2pav4o2ZsSa";
+                var senderId = "125045933917";
+
+
+
+                WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+                tRequest.Method = "post";
+                tRequest.ContentType = "application/json";
+                tRequest.UseDefaultCredentials = true;
+                tRequest.PreAuthenticate = true;
+                tRequest.Credentials = CredentialCache.DefaultCredentials;
+                //  tRequest.ContentType = "application/x-www-urlencoded";
+
+                // var serializer = new JavaScriptSerializer();
+                //var json = serializer.Serialize(data);
+                // Byte[] byteArray = Encoding.UTF8.GetBytes(json);
+
+                Byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                tRequest.Headers.Add(string.Format("Authorization: key={0}", applicationID));
+                tRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
+                tRequest.ContentLength = byteArray.Length;
+
+                using (Stream dataStream = tRequest.GetRequestStream())
+                {
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+
+                    using (WebResponse tResponse = tRequest.GetResponse())
+                    {
+                        using (Stream dataStreamResponse = tResponse.GetResponseStream())
+                        {
+                            using (StreamReader tReader = new StreamReader(dataStreamResponse))
+                            {
+                                String sResponseFromServer = tReader.ReadToEnd();
+                                return sResponseFromServer;
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            catch (WebException e)
+            {
+                //Log.Error(e.Message);
+                using (WebResponse response = e.Response)
+                {
+                    HttpWebResponse httpResponse = (HttpWebResponse)response;
+                    Console.WriteLine("Error code: {0}", httpResponse.StatusCode);
+                    using (Stream data = response.GetResponseStream())
+                    using (var reader = new StreamReader(data))
+                    {
+                        string text = reader.ReadToEnd();
+                        Console.WriteLine(text);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Info(Convert.ToString(ex.InnerException));
+                Log.Info(ex.Message);
+                //Log.Error(ex.Message);
+                Console.Write(ex.Message);
+            }
+            return "";
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -7136,7 +7221,7 @@ namespace GrowIndigo.Controllers
                     if (addnotification == "true")
                     {
                         string Title = "Grow Mandi, Deal is approved";
-                        SendFCMNotificationToUsers(getDeviceToken.DeviceToken, Message, Title);
+                        SendFCMNotificationWithDataToUsers(getDeviceToken.DeviceToken, Message, Title, objOrderBookingViewModel.Buyer_Mobile);
 
                         objResponse.Message = "Success";
                         objResponse.MobileNumber = objOrderBookingViewModel.Buyer_Mobile;
@@ -7159,7 +7244,7 @@ namespace GrowIndigo.Controllers
                     if (addnotification == "true")
                     {
                         string Title = "Grow Mandi, Enquiry is resolved";
-                        SendFCMNotificationToUsers(getDeviceToken.DeviceToken, Message, Title);
+                        SendFCMNotificationWithDataToUsers(getDeviceToken.DeviceToken, Message, Title, objOrderBookingViewModel.Buyer_Mobile);
 
                         objResponse.MobileNumber = objOrderBookingViewModel.Buyer_Mobile;
                         return objResponse.MobileNumber;
