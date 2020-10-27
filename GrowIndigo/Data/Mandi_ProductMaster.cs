@@ -19,6 +19,7 @@ namespace GrowIndigo.Data
         public Nullable<long> CategoryId { get; set; }
         public Nullable<int> VarietyId { get; set; }
         public Nullable<System.DateTime> CropEndDate { get; set; }
+        public string Product_Status { get; set; }
         public string ProductAddress { get; set; }
         public string GeoAddress { get; set; }
         public string MobileNumber { get; set; }
@@ -45,6 +46,7 @@ namespace GrowIndigo.Data
         public Nullable<bool> IsApproved { get; set; }
         public Nullable<int> MaximumPrice { get; set; }
         public Nullable<int> MinimumPrice { get; set; }
+        public string TermsAndCondition { get; set; }
         public string Hi_ProductDescription { get; set; }
         public string Mr_ProductDescription { get; set; }
         public string Te_ProductDescription { get; set; }

@@ -52,7 +52,7 @@ namespace GrowIndigo.Controllers
                                     CropName = i.CropName,
                                     CategoryImage = i.CropImage,
                                     EnCropName = i.CropName,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -81,7 +81,7 @@ namespace GrowIndigo.Controllers
                                     EnCropName = i.CropName,
                                     CropName = i.Hi_CropName == null ? i.CropName : i.Hi_CropName,
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -110,7 +110,7 @@ namespace GrowIndigo.Controllers
                                     EnCropName = i.CropName,
                                     CropName = i.Mr_CropName == null ? i.CropName : i.Mr_CropName,
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -168,7 +168,7 @@ namespace GrowIndigo.Controllers
                                     CropName = i.CropName,
                                     EnCropName = i.CropName,
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -209,7 +209,7 @@ namespace GrowIndigo.Controllers
                                     CropName = i.CropName,
                                     EnCropName = i.CropName,
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -241,7 +241,7 @@ namespace GrowIndigo.Controllers
                                     EnCropName = i.CropName,
                                     CropName = i.Hi_CropName == null ? i.CropName : i.Hi_CropName,
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -273,7 +273,7 @@ namespace GrowIndigo.Controllers
                                     EnCropName = i.CropName,
                                     CropName = i.Mr_CropName == null ? i.CropName : i.Mr_CropName,
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -336,7 +336,7 @@ namespace GrowIndigo.Controllers
                                     EnCropName = i.CropName,
                                     CropName = i.CropName,
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -403,7 +403,7 @@ namespace GrowIndigo.Controllers
                                     CategoryId = i.CategoryId,
                                     CategoryName = i.CategoryName,
                                     EnCropName = i.CropName,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -504,7 +504,7 @@ namespace GrowIndigo.Controllers
                                     EnCropName = i.CropName,
 
                                     CategoryImage = i.CropImage,
-                                    CropImage = "https://mahycoapp.siplsolutions.com/Images/SubCategories/" + i.CropImage
+                                    CropImage = "http://growmandi.growindigo.co.in/api/Images/SubCategories/" + i.CropImage
 
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
@@ -638,7 +638,7 @@ namespace GrowIndigo.Controllers
                                 CategoryName = i.CategoryName,
                                 CategoryId = i.CategoryId,
                                 EnCategoryName = i.CategoryName,
-                                CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+                                CategoryImage = "http://growmandi.growindigo.co.in/api/Images/Categories/" + i.CategoryImage
 
 
                             };
@@ -663,7 +663,7 @@ namespace GrowIndigo.Controllers
                                 CategoryName = i.Hi_CategoryName,
                                 EnCategoryName = i.CategoryName,
                                 CategoryId = i.CategoryId,
-                                CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+                                CategoryImage = "http://growmandi.growindigo.co.in/api/Images/Categories/" + i.CategoryImage
 
 
                             };
@@ -688,7 +688,7 @@ namespace GrowIndigo.Controllers
                                 CategoryName = i.Mr_CategoryName,
                                 EnCategoryName = i.CategoryName,
                                 CategoryId = i.CategoryId,
-                                CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+                                CategoryImage = "http://growmandi.growindigo.co.in/api/Images/Categories/" + i.CategoryImage
 
 
                             };
@@ -713,7 +713,7 @@ namespace GrowIndigo.Controllers
                                 CategoryName = i.Te_CategoryName,
                                 EnCategoryName = i.CategoryName,
                                 CategoryId = i.CategoryId,
-                                CategoryImage = "https://mahycoapp.siplsolutions.com/Images/Categories/" + i.CategoryImage
+                                CategoryImage = "http://growmandi.growindigo.co.in/api/Images/Categories/" + i.CategoryImage
 
 
                             };
@@ -805,7 +805,7 @@ namespace GrowIndigo.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         [Route("api/MandiMaster/GetVariety")]
         public HttpResponseMessage GetVariety(int CropId)
         {
@@ -827,7 +827,7 @@ namespace GrowIndigo.Controllers
                         objListMandiVariety.Add(objMandiVariety);
                     }
 
-                    objListMandi_VarietyMaster.MandiVarieties = objListMandiVariety;
+                    objListMandi_VarietyMaster.MandiVarieties = objListMandiVariety.OrderBy(x=>x.VarietyName).ToList();
 
                     return Request.CreateResponse(HttpStatusCode.OK, objListMandi_VarietyMaster);
                 }
@@ -846,6 +846,9 @@ namespace GrowIndigo.Controllers
             }
         }
 
+       [HttpPost]
+        //[Authorize]
+        [Route("api/MandiMaster/AddNewVariety")]
         public string AddNewVariety(ProductMasterViewModel objProductMasterViewModel)
         {
 

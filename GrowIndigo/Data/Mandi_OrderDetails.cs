@@ -25,6 +25,7 @@ namespace GrowIndigo.Data
         public string ShippingAddress { get; set; }
         public string Order_Status { get; set; }
         public string rzp_order_id { get; set; }
+        public string rzp_payment_Id { get; set; }
         public string rzp_payment_status { get; set; }
         public string rzp_payment_Id { get; set; }
         public string rzp_payment_signature { get; set; }

@@ -1,4 +1,4 @@
-2020-09-14 11:09:31,748 INFO MonitoringLogger - System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The network path was not found
+2020-10-06 15:40:14,904 INFO MonitoringLogger - System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The network path was not found
    at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
    at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
    at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
@@ -22,8 +22,4 @@
    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
 ClientConnectionId:00000000-0000-0000-0000-000000000000
 Error Number:53,State:0,Class:20
-2020-09-14 11:09:31,757 INFO MonitoringLogger - The underlying provider failed on Open.
-2020-09-14 18:00:30,005 INFO MonitoringLogger - 
-2020-09-14 18:00:30,035 INFO MonitoringLogger - Object reference not set to an instance of an object.
-2020-09-14 18:01:45,873 INFO MonitoringLogger - 
-2020-09-14 18:01:45,873 INFO MonitoringLogger - Object reference not set to an instance of an object.
+2020-10-06 15:40:14,912 INFO MonitoringLogger - The underlying provider failed on Open.
