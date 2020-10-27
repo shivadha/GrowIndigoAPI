@@ -861,14 +861,14 @@ namespace GrowIndigo.Controllers
                 OrderDetails objOrderDetails = new OrderDetails();
                 int orderId = Convert.ToInt32(objOrderDetailsViewModel.Order_Id);
                 //get Order from OrderDetails table
-                var orderDetails = (from order in dbContext.OrderDetails where order.Order_Id == orderId select order).FirstOrDefault();
+                var orderDetails = (from order in dbContext.Mandi_OrderDetails where order.Order_Id == orderId select order).FirstOrDefault();
                 if (orderDetails != null && orderDetails.Payment_Mode == "Pay Online" && objOrderDetailsViewModel.Rzp_Payment_Status == "Paid")
                 {
 
-                    orderDetails.Rzp_Order_Id = objOrderDetailsViewModel.Rzp_Order_Id;
-                    orderDetails.Rzp_Payment_Id = objOrderDetailsViewModel.Rzp_Payment_Id;
-                    orderDetails.Rzp_Signature = objOrderDetailsViewModel.Rzp_Signature;
-                    orderDetails.Rzp_Payment_Status = objOrderDetailsViewModel.Rzp_Payment_Status;
+                    orderDetails.rzp_order_id = objOrderDetailsViewModel.Rzp_Order_Id;
+                    orderDetails.rzp_payment_Id = objOrderDetailsViewModel.Rzp_Payment_Id;
+                    orderDetails.rzp_payment_signature = objOrderDetailsViewModel.Rzp_Signature;
+                    orderDetails.rzp_payment_status = objOrderDetailsViewModel.Rzp_Payment_Status;
 
 
                     var i = dbContext.SaveChanges();
@@ -896,7 +896,7 @@ namespace GrowIndigo.Controllers
 
                 else if (objOrderDetailsViewModel.Rzp_Payment_Status == "Fail")
                 {
-                    orderDetails.Rzp_Payment_Status = objOrderDetailsViewModel.Rzp_Payment_Status;
+                    orderDetails.rzp_payment_status = objOrderDetailsViewModel.Rzp_Payment_Status;
                     var i = dbContext.SaveChanges();
                     if (i != 0)
                     {

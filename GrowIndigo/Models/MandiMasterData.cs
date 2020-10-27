@@ -34,10 +34,12 @@ namespace GrowIndigo.Models
             public string Quantity { get; set; }
             public string QuantityUnit { get; set; }
             public Nullable<int> Price { get; set; }
+            public Nullable<decimal> Taxes { get; set; }
             public string ProductAddress { get; set; }
             public string ProductImage { get; set; }
-          
-            public Nullable<bool> ProductStatus { get; set; }
+            public Nullable<long> Product_Id { get; set; }
+            public long ProducStatusId { get; set; }
+            public string ProductStatus { get; set; }
             public string BuyerName { get; set; }
             public string BuyerNumber { get; set; }
             public string BuyerAddress { get; set; }
@@ -48,8 +50,13 @@ namespace GrowIndigo.Models
             public Nullable<decimal> Other_Charges { get; set; }
             public Nullable<bool> Status { get; set; }
         }
-
-        public class MandiCrop
+        public class CartInfoViewModel
+        {
+            public int CropId { get; set; }
+            public string CropName { get; set; }
+        }
+        
+            public class MandiCrop
         {
             public int CropId { get; set; }
             public string CropName { get; set; }

@@ -16,6 +16,8 @@ namespace GrowIndigo.Models
         public string ProductId { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string BuyerAddress { get; set; }
+        public string BuyerName { get; set; }
+        public string BuyerContact { get; set; }
         public string CropName { get; set; }
         public string VarietyName { get; set; }
         public string Quantity { get; set; }

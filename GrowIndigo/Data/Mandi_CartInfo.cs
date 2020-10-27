@@ -34,8 +34,10 @@ namespace GrowIndigo.Data
         public string SellerAddress { get; set; }
         public Nullable<decimal> Logistics_Cost { get; set; }
         public Nullable<decimal> Other_Charges { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public Nullable<decimal> Taxes { get; set; }
+        public Nullable<long> Fk_ProductStatus { get; set; }
     
+        public virtual Mandi_CartProductStatus Mandi_CartProductStatus { get; set; }
         public virtual Mandi_InterestedProductForUser Mandi_InterestedProductForUser { get; set; }
         public virtual Mandi_UserEnquiry Mandi_UserEnquiry { get; set; }
     }

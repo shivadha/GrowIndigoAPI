@@ -180,7 +180,15 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
           <Property Name="SellerAddress" Type="nvarchar(max)" />
           <Property Name="Logistics_Cost" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Other_Charges" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Status" Type="bit" />
+          <Property Name="Taxes" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Fk_ProductStatus" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Mandi_CartProductStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductStatus" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Mandi_InterestedProductForUser">
           <Key>
@@ -226,6 +234,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
           <Property Name="Order_Status" Type="varchar(max)" />
           <Property Name="rzp_order_id" Type="varchar(max)" />
           <Property Name="rzp_payment_status" Type="varchar(max)" />
+          <Property Name="rzp_payment_Id" Type="varchar(max)" />
           <Property Name="rzp_payment_signature" Type="varchar(max)" />
           <Property Name="SelectedTotalQty" Type="varchar" MaxLength="50" />
           <Property Name="Buyer_Name" Type="varchar" MaxLength="50" />
@@ -732,6 +741,18 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Mandi_CartInfo_Mandi_CartProductStatus">
+          <End Role="Mandi_CartProductStatus" Type="Self.Mandi_CartProductStatus" Multiplicity="0..1" />
+          <End Role="Mandi_CartInfo" Type="Self.Mandi_CartInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandi_CartProductStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mandi_CartInfo">
+              <PropertyRef Name="Fk_ProductStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
           <End Role="Mandi_InterestedProductForUser" Type="Self.Mandi_InterestedProductForUser" Multiplicity="0..1" />
           <End Role="Mandi_CartInfo" Type="Self.Mandi_CartInfo" Multiplicity="*" />
@@ -1015,6 +1036,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_Banner" EntityType="Self.Mandi_Banner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_CartInfo" EntityType="Self.Mandi_CartInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mandi_CartProductStatus" EntityType="Self.Mandi_CartProductStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_InterestedProductForUser" EntityType="Self.Mandi_InterestedProductForUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_Notification" EntityType="Self.Mandi_Notification" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mandi_OrderDetails" EntityType="Self.Mandi_OrderDetails" Schema="dbo" store:Type="Tables" />
@@ -1074,6 +1096,10 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="Self.FK_Crop_Master_Crop_Master">
             <End Role="Crop_Master" EntitySet="Crop_Master" />
             <End Role="Crop_Master1" EntitySet="Crop_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_CartInfo_Mandi_CartProductStatus" Association="Self.FK_Mandi_CartInfo_Mandi_CartProductStatus">
+            <End Role="Mandi_CartProductStatus" EntitySet="Mandi_CartProductStatus" />
+            <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
           </AssociationSet>
           <AssociationSet Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser" Association="Self.FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
             <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
@@ -1179,6 +1205,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <EntitySet Name="ErrorLogs" EntityType="GrowIndigoV2Model.ErrorLogs" />
           <EntitySet Name="Mandi_Banner" EntityType="GrowIndigoV2Model.Mandi_Banner" />
           <EntitySet Name="Mandi_CartInfo" EntityType="GrowIndigoV2Model.Mandi_CartInfo" />
+          <EntitySet Name="Mandi_CartProductStatus" EntityType="GrowIndigoV2Model.Mandi_CartProductStatus" />
           <EntitySet Name="Mandi_InterestedProductForUser" EntityType="GrowIndigoV2Model.Mandi_InterestedProductForUser" />
           <EntitySet Name="Mandi_Notification" EntityType="GrowIndigoV2Model.Mandi_Notification" />
           <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoV2Model.Mandi_OrderDetails" />
@@ -1235,6 +1262,10 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <AssociationSet Name="FK_Variety_Master_Crop_Master" Association="GrowIndigoV2Model.FK_Variety_Master_Crop_Master">
             <End Role="Crop_Master" EntitySet="Crop_Master" />
             <End Role="Variety_Master" EntitySet="Variety_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_CartInfo_Mandi_CartProductStatus" Association="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus">
+            <End Role="Mandi_CartProductStatus" EntitySet="Mandi_CartProductStatus" />
+            <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
           </AssociationSet>
           <AssociationSet Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser" Association="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
             <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
@@ -1401,9 +1432,19 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="SellerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Logistics_Cost" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Other_Charges" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Status" Type="Boolean" />
+          <Property Name="Taxes" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Fk_ProductStatus" Type="Int64" />
+          <NavigationProperty Name="Mandi_CartProductStatus" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartInfo" ToRole="Mandi_CartProductStatus" />
           <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser" FromRole="Mandi_CartInfo" ToRole="Mandi_InterestedProductForUser" />
           <NavigationProperty Name="Mandi_UserEnquiry" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_UserEnquiry" FromRole="Mandi_CartInfo" ToRole="Mandi_UserEnquiry" />
+        </EntityType>
+        <EntityType Name="Mandi_CartProductStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mandi_CartInfo" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartProductStatus" ToRole="Mandi_CartInfo" />
         </EntityType>
         <EntityType Name="Mandi_InterestedProductForUser">
           <Key>
@@ -1453,6 +1494,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Order_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="rzp_order_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="rzp_payment_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rzp_payment_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="rzp_payment_signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SelectedTotalQty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Buyer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1960,6 +2002,18 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Mandi_CartInfo_Mandi_CartProductStatus">
+          <End Type="GrowIndigoV2Model.Mandi_CartProductStatus" Role="Mandi_CartProductStatus" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mandi_CartProductStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mandi_CartInfo">
+              <PropertyRef Name="Fk_ProductStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
           <End Type="GrowIndigoV2Model.Mandi_InterestedProductForUser" Role="Mandi_InterestedProductForUser" Multiplicity="0..1" />
           <End Type="GrowIndigoV2Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
@@ -2249,7 +2303,8 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
           <EntitySetMapping Name="Mandi_CartInfo">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartInfo">
               <MappingFragment StoreEntitySet="Mandi_CartInfo">
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Fk_ProductStatus" ColumnName="Fk_ProductStatus" />
+                <ScalarProperty Name="Taxes" ColumnName="Taxes" />
                 <ScalarProperty Name="Other_Charges" ColumnName="Other_Charges" />
                 <ScalarProperty Name="Logistics_Cost" ColumnName="Logistics_Cost" />
                 <ScalarProperty Name="SellerAddress" ColumnName="SellerAddress" />
@@ -2270,6 +2325,14 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
                 <ScalarProperty Name="Fk_EnquiryId" ColumnName="Fk_EnquiryId" />
                 <ScalarProperty Name="CartType" ColumnName="CartType" />
                 <ScalarProperty Name="CartId" ColumnName="CartId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mandi_CartProductStatus">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartProductStatus">
+              <MappingFragment StoreEntitySet="Mandi_CartProductStatus">
+                <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2313,6 +2376,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
                 <ScalarProperty Name="Buyer_Name" ColumnName="Buyer_Name" />
                 <ScalarProperty Name="SelectedTotalQty" ColumnName="SelectedTotalQty" />
                 <ScalarProperty Name="rzp_payment_signature" ColumnName="rzp_payment_signature" />
+                <ScalarProperty Name="rzp_payment_Id" ColumnName="rzp_payment_Id" />
                 <ScalarProperty Name="rzp_payment_status" ColumnName="rzp_payment_status" />
                 <ScalarProperty Name="rzp_order_id" ColumnName="rzp_order_id" />
                 <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />

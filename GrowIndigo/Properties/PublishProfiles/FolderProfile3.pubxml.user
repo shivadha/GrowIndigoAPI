@@ -91,10 +91,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2018 11:03:48</publishTime>
     </File>
     <File Include="bin/GrowIndigo.dll">
-      <publishTime>08/27/2020 10:09:51</publishTime>
+      <publishTime>09/11/2020 16:11:17</publishTime>
     </File>
     <File Include="bin/GrowIndigo.pdb">
-      <publishTime>08/27/2020 10:09:51</publishTime>
+      <publishTime>09/11/2020 16:11:17</publishTime>
     </File>
     <File Include="bin/jose-jwt.dll">
       <publishTime>04/20/2017 18:01:22</publishTime>
@@ -793,7 +793,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/09/2019 13:01:10</publishTime>
     </File>
     <File Include="Data/GrowIndigoAPIDBEntities.edmx.diagram">
-      <publishTime>08/25/2020 11:42:35</publishTime>
+      <publishTime>09/09/2020 11:29:47</publishTime>
     </File>
     <File Include="Data/GrowIndigoDBEntities.edmx.diagram">
       <publishTime>12/26/2019 18:21:07</publishTime>

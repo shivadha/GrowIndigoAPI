@@ -7,6 +7,7 @@
     <EntitySet Name="ErrorLogs" EntityType="GrowIndigoV2Model.ErrorLogs" />
     <EntitySet Name="Mandi_Banner" EntityType="GrowIndigoV2Model.Mandi_Banner" />
     <EntitySet Name="Mandi_CartInfo" EntityType="GrowIndigoV2Model.Mandi_CartInfo" />
+    <EntitySet Name="Mandi_CartProductStatus" EntityType="GrowIndigoV2Model.Mandi_CartProductStatus" />
     <EntitySet Name="Mandi_InterestedProductForUser" EntityType="GrowIndigoV2Model.Mandi_InterestedProductForUser" />
     <EntitySet Name="Mandi_Notification" EntityType="GrowIndigoV2Model.Mandi_Notification" />
     <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoV2Model.Mandi_OrderDetails" />
@@ -17,7 +18,6 @@
     <EntitySet Name="Mandi_UserEnquiry" EntityType="GrowIndigoV2Model.Mandi_UserEnquiry" />
     <EntitySet Name="Mandi_UserFeedback" EntityType="GrowIndigoV2Model.Mandi_UserFeedback" />
     <EntitySet Name="Mandi_UserInfo" EntityType="GrowIndigoV2Model.Mandi_UserInfo" />
-    <EntitySet Name="Mandi_UserRequirement" EntityType="GrowIndigoV2Model.Mandi_UserRequirement" />
     <EntitySet Name="Mandi_UserRoles" EntityType="GrowIndigoV2Model.Mandi_UserRoles" />
     <EntitySet Name="OrderDetails" EntityType="GrowIndigoV2Model.OrderDetails" />
     <EntitySet Name="OrderErrorLogDetails" EntityType="GrowIndigoV2Model.OrderErrorLogDetails" />
@@ -64,6 +64,10 @@
     <AssociationSet Name="FK_Variety_Master_Crop_Master" Association="GrowIndigoV2Model.FK_Variety_Master_Crop_Master">
       <End Role="Crop_Master" EntitySet="Crop_Master" />
       <End Role="Variety_Master" EntitySet="Variety_Master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_CartInfo_Mandi_CartProductStatus" Association="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus">
+      <End Role="Mandi_CartProductStatus" EntitySet="Mandi_CartProductStatus" />
+      <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
     </AssociationSet>
     <AssociationSet Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser" Association="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
       <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
@@ -230,9 +234,19 @@
     <Property Name="SellerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Logistics_Cost" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Other_Charges" Type="Decimal" Precision="18" Scale="2" />
-    <Property Name="Status" Type="Boolean" />
+    <Property Name="Taxes" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Fk_ProductStatus" Type="Int64" />
+    <NavigationProperty Name="Mandi_CartProductStatus" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartInfo" ToRole="Mandi_CartProductStatus" />
     <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser" FromRole="Mandi_CartInfo" ToRole="Mandi_InterestedProductForUser" />
     <NavigationProperty Name="Mandi_UserEnquiry" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_UserEnquiry" FromRole="Mandi_CartInfo" ToRole="Mandi_UserEnquiry" />
+  </EntityType>
+  <EntityType Name="Mandi_CartProductStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mandi_CartInfo" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartProductStatus" ToRole="Mandi_CartInfo" />
   </EntityType>
   <EntityType Name="Mandi_InterestedProductForUser">
     <Key>
@@ -282,6 +296,7 @@
     <Property Name="Order_Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="rzp_order_id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="rzp_payment_status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="rzp_payment_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="rzp_payment_signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="SelectedTotalQty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Buyer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -364,6 +379,7 @@
     <Property Name="ExpectedPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
     <Property Name="IsPriceNegotiable" Type="Boolean" />
+    <Property Name="Tr_Date" Type="DateTime" Precision="3" />
     <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Mandi_Roles">
@@ -418,15 +434,6 @@
     <NavigationProperty Name="UserCategoryMapping" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UserCategoryMapping" />
     <NavigationProperty Name="UsersAddress" Relationship="GrowIndigoV2Model.FK_UsersAddress_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersAddress" />
     <NavigationProperty Name="UsersBankAccountDetails" Relationship="GrowIndigoV2Model.FK_UsersBankAccountDetails_Mandi_UserInfo" FromRole="Mandi_UserInfo" ToRole="UsersBankAccountDetails" />
-  </EntityType>
-  <EntityType Name="Mandi_UserRequirement">
-    <Key>
-      <PropertyRef Name="Tr_Id" />
-    </Key>
-    <Property Name="Tr_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Usercode" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-    <Property Name="Requirement" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Tr_Date" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="Mandi_UserRoles">
     <Key>
@@ -794,6 +801,18 @@
       </Principal>
       <Dependent Role="Variety_Master">
         <PropertyRef Name="CropId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Mandi_CartInfo_Mandi_CartProductStatus">
+    <End Type="GrowIndigoV2Model.Mandi_CartProductStatus" Role="Mandi_CartProductStatus" Multiplicity="0..1" />
+    <End Type="GrowIndigoV2Model.Mandi_CartInfo" Role="Mandi_CartInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandi_CartProductStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mandi_CartInfo">
+        <PropertyRef Name="Fk_ProductStatus" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

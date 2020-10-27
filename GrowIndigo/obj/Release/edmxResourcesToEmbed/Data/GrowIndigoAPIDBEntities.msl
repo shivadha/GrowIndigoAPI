@@ -68,7 +68,8 @@
     <EntitySetMapping Name="Mandi_CartInfo">
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartInfo">
         <MappingFragment StoreEntitySet="Mandi_CartInfo">
-          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Fk_ProductStatus" ColumnName="Fk_ProductStatus" />
+          <ScalarProperty Name="Taxes" ColumnName="Taxes" />
           <ScalarProperty Name="Other_Charges" ColumnName="Other_Charges" />
           <ScalarProperty Name="Logistics_Cost" ColumnName="Logistics_Cost" />
           <ScalarProperty Name="SellerAddress" ColumnName="SellerAddress" />
@@ -89,6 +90,14 @@
           <ScalarProperty Name="Fk_EnquiryId" ColumnName="Fk_EnquiryId" />
           <ScalarProperty Name="CartType" ColumnName="CartType" />
           <ScalarProperty Name="CartId" ColumnName="CartId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mandi_CartProductStatus">
+      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartProductStatus">
+        <MappingFragment StoreEntitySet="Mandi_CartProductStatus">
+          <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -132,6 +141,7 @@
           <ScalarProperty Name="Buyer_Name" ColumnName="Buyer_Name" />
           <ScalarProperty Name="SelectedTotalQty" ColumnName="SelectedTotalQty" />
           <ScalarProperty Name="rzp_payment_signature" ColumnName="rzp_payment_signature" />
+          <ScalarProperty Name="rzp_payment_Id" ColumnName="rzp_payment_Id" />
           <ScalarProperty Name="rzp_payment_status" ColumnName="rzp_payment_status" />
           <ScalarProperty Name="rzp_order_id" ColumnName="rzp_order_id" />
           <ScalarProperty Name="Order_Status" ColumnName="Order_Status" />
@@ -205,6 +215,7 @@
       <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_Requirement">
         <MappingFragment StoreEntitySet="Mandi_Requirement">
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
           <ScalarProperty Name="IsPriceNegotiable" ColumnName="IsPriceNegotiable" />
           <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
           <ScalarProperty Name="ExpectedPrice" ColumnName="ExpectedPrice" />
@@ -268,16 +279,6 @@
           <ScalarProperty Name="State" ColumnName="State" />
           <ScalarProperty Name="Village" ColumnName="Village" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Mandi_UserRequirement">
-      <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_UserRequirement">
-        <MappingFragment StoreEntitySet="Mandi_UserRequirement">
-          <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
-          <ScalarProperty Name="Requirement" ColumnName="Requirement" />
-          <ScalarProperty Name="Usercode" ColumnName="Usercode" />
-          <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

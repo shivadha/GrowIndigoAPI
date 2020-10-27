@@ -462,6 +462,9 @@
     <Compile Include="Data\Mandi_CartInfo.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\Mandi_CartProductStatus.cs">
+      <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\Mandi_InterestedProductForUser.cs">
       <DependentUpon>GrowIndigoAPIDBEntities.tt</DependentUpon>
     </Compile>
@@ -553,6 +556,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoriesViewModel.cs" />
+    <Compile Include="Models\CountViewModel.cs" />
     <Compile Include="Models\CropMasterViewModel.cs" />
     <Compile Include="Models\DeviceTokenViewModel.cs" />
     <Compile Include="Models\EmailModel.cs" />

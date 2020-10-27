@@ -90,7 +90,7 @@ namespace GrowIndigo.Controllers
                 string mobileNumber = objOrderBookingViewModel.Buyer_Mobile;
                 //get mobileNumber from user table
                 var number = (from user in dbContext.Mandi_UserInfo where user.MobileNumber == mobileNumber select user).FirstOrDefault();
-                if (number != null && objOrderBookingViewModel.Payment_Mode == "Delivery Against Payment(DAP)")
+                if (number != null && objOrderBookingViewModel.Payment_Mode == "Pay on delivery")
                 {
                     objMandi_OrderDetails.Buyer_Mobile = objOrderBookingViewModel.Buyer_Mobile;
                     objMandi_OrderDetails.TotalPrice = objOrderBookingViewModel.Totalprice;
@@ -327,23 +327,23 @@ namespace GrowIndigo.Controllers
 
                     foreach (var j in getcsvfile)
                     {
-                    objMandi_OrderProductDetails.Order_Id = objOrderBookingViewModel.Order_Id;
-                    objMandi_OrderProductDetails.Product_Id = objOrderBookingViewModel.Product_Id;
-                    objMandi_OrderProductDetails.TotalQuantity = objOrderBookingViewModel.SelectedTotalQty;
-                    objMandi_OrderProductDetails.Price = Convert.ToInt32(objOrderBookingViewModel.Totalprice);
-                    objMandi_OrderProductDetails.Tr_Date = DateTime.Now;
-                    objMandi_OrderProductDetails.SelectedQuantity = objOrderBookingViewModel.SelectedTotalQty;
-                    objMandi_OrderProductDetails.SelectedProductPrice = objOrderBookingViewModel.Totalprice;
+                        objMandi_OrderProductDetails.Order_Id = objOrderBookingViewModel.Order_Id;
+                        objMandi_OrderProductDetails.Product_Id = objOrderBookingViewModel.Product_Id;
+                        objMandi_OrderProductDetails.TotalQuantity = objOrderBookingViewModel.SelectedTotalQty;
+                        objMandi_OrderProductDetails.Price = Convert.ToInt32(objOrderBookingViewModel.Totalprice);
+                        objMandi_OrderProductDetails.Tr_Date = DateTime.Now;
+                        objMandi_OrderProductDetails.SelectedQuantity = objOrderBookingViewModel.SelectedTotalQty;
+                        objMandi_OrderProductDetails.SelectedProductPrice = objOrderBookingViewModel.Totalprice;
 
-                    dbContext.Mandi_OrderProductDetails.Add(objMandi_OrderProductDetails);
-                    i = dbContext.SaveChanges();
+                        dbContext.Mandi_OrderProductDetails.Add(objMandi_OrderProductDetails);
+                        i = dbContext.SaveChanges();
 
 
                     }
 
                     if (i != 0)
                     {
-                        if (objOrderBookingViewModel.Payment_Mode == "Delivery Against Payment(DAP)")
+                        if (objOrderBookingViewModel.Payment_Mode == "Pay on delivery")
                         {
                             objOrderResponse.DAP = objOrderBookingViewModel.TotalAmount;
 
@@ -433,146 +433,156 @@ namespace GrowIndigo.Controllers
 
                 //get Order from OrderDetails table
                 var orderDetails = (from order in dbContext.Mandi_OrderDetails where order.Order_Id == orderId select order).FirstOrDefault();
-                if (orderDetails != null && orderDetails.Payment_Mode == "UPI" && objOrderBookingViewModel.TransactionStatus == "SUCCESS")
+
+
+                if (orderDetails != null)
                 {
-
-                    orderDetails.TransactionId = objOrderBookingViewModel.TransactionId;
-                    orderDetails.ResponseCode = objOrderBookingViewModel.ResponseCode;
-                    orderDetails.TransactionStatus = objOrderBookingViewModel.TransactionStatus;
-
-
-                    var i = dbContext.SaveChanges();
-                    if (i != 0)
+                    if (orderDetails.Payment_Mode == "UPI" && objOrderBookingViewModel.TransactionStatus == "SUCCESS")
                     {
-                        MandiUserController objMandiUserController = new MandiUserController();
-                        objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been placed successfully against Order Id " + objOrderBookingViewModel.Order_Id, "Test");
-                        AddNotification(objOrderBookingViewModel, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been received successfully against Order Id " + objOrderBookingViewModel.Order_Id);
+
+                        orderDetails.TransactionId = objOrderBookingViewModel.TransactionId;
+                        orderDetails.ResponseCode = objOrderBookingViewModel.ResponseCode;
+                        orderDetails.TransactionStatus = objOrderBookingViewModel.TransactionStatus;
 
 
-                        #region new notification functionality
-
-
-                        objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Dear Customer, Your deal of " + objOrderBookingViewModel.CropName + "with" + objOrderBookingViewModel.Order_Id + " has been booked. Product ID is" + objOrderBookingViewModel.ProductId + " and you have to pick up the produce soon from the pickup address" + objOrderBookingViewModel.PickupAddress + ". In case of help, please call on 9607911377.", "Test");
-                        AddNotification(objOrderBookingViewModel, "Dear Customer, Your deal of " + objOrderBookingViewModel.CropName + "with" + objOrderBookingViewModel.Order_Id + " has been booked.Product ID is " + objOrderBookingViewModel.ProductId + " and you have to pick up the produce soon from the pickup address" + objOrderBookingViewModel.PickupAddress + ".In case of help, please call on 9607911377.");
-                        var getSellerMobileNumber = (from product in dbContext.Mandi_ProductMaster where product.Tr_Id == objOrderBookingViewModel.Product_Id select product.MobileNumber).FirstOrDefault();
-                        if (getSellerMobileNumber != null)
+                        var i = dbContext.SaveChanges();
+                        if (i != 0)
                         {
-                            var getSellerTokenNumbner = (from mobile in dbContext.Mandi_UserInfo where mobile.MobileNumber == getSellerMobileNumber select mobile.DeviceToken).FirstOrDefault();
-                            //send notification to seller now 
-                            objMandiUserController.SendFCMNotificationToUsers(getSellerTokenNumbner, "Dear Customer, Your Produce" + objOrderBookingViewModel.CropName + " with" + objOrderBookingViewModel.ProductId + " has been purchased. Order ID is" + objOrderBookingViewModel.Order_Id + " and it will soon be picked up. Please keep the products ready. In case of help, please call on 9607911377>.", "Test");
-                            AddNotification(objOrderBookingViewModel, "Dear Customer, Your Produce" + objOrderBookingViewModel.CropName + " with" + objOrderBookingViewModel.ProductId + " has been purchased. Order ID is" + objOrderBookingViewModel.Order_Id + " and it will soon be picked up. Please keep the products ready. In case of help, please call on 9607911377>.");
-                            #region Email to admin
+                            MandiUserController objMandiUserController = new MandiUserController();
+                            objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been placed successfully against Order Id " + objOrderBookingViewModel.Order_Id, "Test");
+                            AddNotification(objOrderBookingViewModel, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been received successfully against Order Id " + objOrderBookingViewModel.Order_Id);
 
 
-                            // EmailController objEmailController = new EmailController();
-                            //EmailModel objEmailModel = new EmailModel();
-                            //objEmailModel.orderId = objOrderBookingViewModel.Order_Id;
-                            //objEmailModel.ProductId = objOrderBookingViewModel.ProductId;
+                            #region new notification functionality
 
-                            //  objEmailController.sendEmailViaWebApi();
+
+                            objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Dear Customer, Your deal of " + objOrderBookingViewModel.CropName + "with" + objOrderBookingViewModel.Order_Id + " has been booked. Product ID is" + objOrderBookingViewModel.ProductId + " and you have to pick up the produce soon from the pickup address" + objOrderBookingViewModel.PickupAddress + ". In case of help, please call on 9607911377.", "Test");
+                            AddNotification(objOrderBookingViewModel, "Dear Customer, Your deal of " + objOrderBookingViewModel.CropName + "with" + objOrderBookingViewModel.Order_Id + " has been booked.Product ID is " + objOrderBookingViewModel.ProductId + " and you have to pick up the produce soon from the pickup address" + objOrderBookingViewModel.PickupAddress + ".In case of help, please call on 9607911377.");
+                            var getSellerMobileNumber = (from product in dbContext.Mandi_ProductMaster where product.Tr_Id == objOrderBookingViewModel.Product_Id select product.MobileNumber).FirstOrDefault();
+                            if (getSellerMobileNumber != null)
+                            {
+                                var getSellerTokenNumbner = (from mobile in dbContext.Mandi_UserInfo where mobile.MobileNumber == getSellerMobileNumber select mobile.DeviceToken).FirstOrDefault();
+                                //send notification to seller now 
+                                objMandiUserController.SendFCMNotificationToUsers(getSellerTokenNumbner, "Dear Customer, Your Produce" + objOrderBookingViewModel.CropName + " with" + objOrderBookingViewModel.ProductId + " has been purchased. Order ID is" + objOrderBookingViewModel.Order_Id + " and it will soon be picked up. Please keep the products ready. In case of help, please call on 9607911377>.", "Test");
+                                AddNotification(objOrderBookingViewModel, "Dear Customer, Your Produce" + objOrderBookingViewModel.CropName + " with" + objOrderBookingViewModel.ProductId + " has been purchased. Order ID is" + objOrderBookingViewModel.Order_Id + " and it will soon be picked up. Please keep the products ready. In case of help, please call on 9607911377>.");
+                                objResponse.Message = "Paid Successfully";
+                                return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                                #region Email to admin
+
+
+                                // EmailController objEmailController = new EmailController();
+                                //EmailModel objEmailModel = new EmailModel();
+                                //objEmailModel.orderId = objOrderBookingViewModel.Order_Id;
+                                //objEmailModel.ProductId = objOrderBookingViewModel.ProductId;
+
+                                //  objEmailController.sendEmailViaWebApi();
+
+                                #endregion
+
+                            }
 
                             #endregion
 
+
+                            objResponse.Message = "Paid Successfully";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+                        else
+                        {
+                            objResponse.Message = "Transaction Failed.";
+
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                         }
 
-                        #endregion
-
-
-                        objResponse.Message = "Paid Successfully";
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                     }
-                    else
+                    else if (orderDetails.Payment_Mode == "RazorPay" && objOrderBookingViewModel.Order_Status == "success")
                     {
-                        objResponse.Message = "Transaction Failed.";
 
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                    }
-
-                }
-                else if (orderDetails != null && orderDetails.Payment_Mode == "RazorPay" && objOrderBookingViewModel.Order_Status == "success")
-                {
-
-                    orderDetails.TransactionId = objOrderBookingViewModel.TransactionId;
-                    orderDetails.ResponseCode = objOrderBookingViewModel.ResponseCode;
-                    orderDetails.Order_Status = objOrderBookingViewModel.Order_Status;
-                    orderDetails.rzp_order_id = objOrderBookingViewModel.rzp_order_id;
-                    orderDetails.rzp_payment_signature = objOrderBookingViewModel.rzp_payment_signature;
-                    orderDetails.rzp_payment_status = objOrderBookingViewModel.rzp_payment_status;
+                        orderDetails.TransactionId = objOrderBookingViewModel.TransactionId;
+                        orderDetails.ResponseCode = objOrderBookingViewModel.ResponseCode;
+                        orderDetails.Order_Status = objOrderBookingViewModel.Order_Status;
+                        orderDetails.rzp_order_id = objOrderBookingViewModel.rzp_order_id;
+                        orderDetails.rzp_payment_signature = objOrderBookingViewModel.rzp_payment_signature;
+                        orderDetails.rzp_payment_status = objOrderBookingViewModel.rzp_payment_status;
 
 
-                    var i = dbContext.SaveChanges();
-                    if (i != 0)
-                    {
-                        MandiUserController objMandiUserController = new MandiUserController();
-                        objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been placed successfully against Order Id " + objOrderBookingViewModel.Order_Id, "Test");
-                        AddNotification(objOrderBookingViewModel, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been received successfully against Order Id " + objOrderBookingViewModel.Order_Id);
-
-
-                        #region new notification functionality
-
-
-                        objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Dear Customer, Your deal of " + objOrderBookingViewModel.CropName + "with" + objOrderBookingViewModel.Order_Id + " has been booked. Product ID is" + objOrderBookingViewModel.ProductId + " and you have to pick up the produce soon from the pickup address" + objOrderBookingViewModel.PickupAddress + ". In case of help, please call on 9607911377.", "Test");
-                        AddNotification(objOrderBookingViewModel, "Dear Customer, Your deal of " + objOrderBookingViewModel.CropName + "with" + objOrderBookingViewModel.Order_Id + " has been booked.Product ID is " + objOrderBookingViewModel.ProductId + " and you have to pick up the produce soon from the pickup address" + objOrderBookingViewModel.PickupAddress + ".In case of help, please call on 9607911377.");
-                        var getSellerMobileNumber = (from product in dbContext.Mandi_ProductMaster where product.Tr_Id == objOrderBookingViewModel.Product_Id select product.MobileNumber).FirstOrDefault();
-                        if (getSellerMobileNumber != null)
+                        var i = dbContext.SaveChanges();
+                        if (i != 0)
                         {
-                            var getSellerTokenNumbner = (from mobile in dbContext.Mandi_UserInfo where mobile.MobileNumber == getSellerMobileNumber select mobile.DeviceToken).FirstOrDefault();
-                            //send notification to seller now 
-                            objMandiUserController.SendFCMNotificationToUsers(getSellerTokenNumbner, "Dear Customer, Your Produce" + objOrderBookingViewModel.CropName + " with" + objOrderBookingViewModel.ProductId + " has been purchased. Order ID is" + objOrderBookingViewModel.Order_Id + " and it will soon be picked up. Please keep the products ready. In case of help, please call on 9607911377>.", "Test");
-                            AddNotification(objOrderBookingViewModel, "Dear Customer, Your Produce" + objOrderBookingViewModel.CropName + " with" + objOrderBookingViewModel.ProductId + " has been purchased. Order ID is" + objOrderBookingViewModel.Order_Id + " and it will soon be picked up. Please keep the products ready. In case of help, please call on 9607911377>.");
-                            #region Email to admin
+                            MandiUserController objMandiUserController = new MandiUserController();
+                            objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been placed successfully against Order Id " + objOrderBookingViewModel.Order_Id, "Test");
+                            AddNotification(objOrderBookingViewModel, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been received successfully against Order Id " + objOrderBookingViewModel.Order_Id);
 
 
-                            // EmailController objEmailController = new EmailController();
-                            //EmailModel objEmailModel = new EmailModel();
-                            //objEmailModel.orderId = objOrderBookingViewModel.Order_Id;
-                            //objEmailModel.ProductId = objOrderBookingViewModel.ProductId;
+                            #region new notification functionality
 
-                            //  objEmailController.sendEmailViaWebApi();
+
+                            objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Dear Customer, Your deal of " + objOrderBookingViewModel.CropName + "with" + objOrderBookingViewModel.Order_Id + " has been booked. Product ID is" + objOrderBookingViewModel.ProductId + " and you have to pick up the produce soon from the pickup address" + objOrderBookingViewModel.PickupAddress + ". In case of help, please call on 9607911377.", "Test");
+                            AddNotification(objOrderBookingViewModel, "Dear Customer, Your deal of " + objOrderBookingViewModel.CropName + "with" + objOrderBookingViewModel.Order_Id + " has been booked.Product ID is " + objOrderBookingViewModel.ProductId + " and you have to pick up the produce soon from the pickup address" + objOrderBookingViewModel.PickupAddress + ".In case of help, please call on 9607911377.");
+                            var getSellerMobileNumber = (from product in dbContext.Mandi_ProductMaster where product.Tr_Id == objOrderBookingViewModel.Product_Id select product.MobileNumber).FirstOrDefault();
+                            if (getSellerMobileNumber != null)
+                            {
+                                var getSellerTokenNumbner = (from mobile in dbContext.Mandi_UserInfo where mobile.MobileNumber == getSellerMobileNumber select mobile.DeviceToken).FirstOrDefault();
+                                //send notification to seller now 
+                                objMandiUserController.SendFCMNotificationToUsers(getSellerTokenNumbner, "Dear Customer, Your Produce" + objOrderBookingViewModel.CropName + " with" + objOrderBookingViewModel.ProductId + " has been purchased. Order ID is" + objOrderBookingViewModel.Order_Id + " and it will soon be picked up. Please keep the products ready. In case of help, please call on 9607911377>.", "Test");
+                                AddNotification(objOrderBookingViewModel, "Dear Customer, Your Produce" + objOrderBookingViewModel.CropName + " with" + objOrderBookingViewModel.ProductId + " has been purchased. Order ID is" + objOrderBookingViewModel.Order_Id + " and it will soon be picked up. Please keep the products ready. In case of help, please call on 9607911377>.");
+                                #region Email to admin
+
+
+                                // EmailController objEmailController = new EmailController();
+                                //EmailModel objEmailModel = new EmailModel();
+                                //objEmailModel.orderId = objOrderBookingViewModel.Order_Id;
+                                //objEmailModel.ProductId = objOrderBookingViewModel.ProductId;
+
+                                //  objEmailController.sendEmailViaWebApi();
+
+                                #endregion
+
+                            }
 
                             #endregion
 
+
+                            objResponse.Message = "Paid Successfully";
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+                        else
+                        {
+                            objResponse.Message = "Transaction Failed.";
+
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                         }
 
-                        #endregion
+                    }
+                    else if (objOrderBookingViewModel.TransactionStatus == "FAILURE")
+                    {
+                        orderDetails.TransactionStatus = objOrderBookingViewModel.TransactionStatus;
+                        orderDetails.ResponseCode = objOrderBookingViewModel.ResponseCode;
 
+                        var i = dbContext.SaveChanges();
+                        if (i != 0)
+                        {
+                            objResponse.Message = "Transaction Failed";
+                            MandiUserController objMandiUserController = new MandiUserController();
+                            objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Transaction Declined for amount ₹" + objOrderBookingViewModel.Totalprice + " against Order Id " + objOrderBookingViewModel.Order_Id, "Test");
+                            AddNotification(objOrderBookingViewModel, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been received successfully against Order Id " + objOrderBookingViewModel.Order_Id);
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+                        else
+                        {
+                            objResponse.Message = "Error occured While Saving Transaction Status.";
 
-                        objResponse.Message = "Paid Successfully";
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                            return Request.CreateResponse(HttpStatusCode.OK, objResponse);
+                        }
+
                     }
                     else
                     {
-                        objResponse.Message = "Transaction Failed.";
+                        objResponse.Message = "No Order Details Found.";
 
                         return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                     }
-
                 }
-
-
-                else if (objOrderBookingViewModel.TransactionStatus == "FAILURE")
-                {
-                    orderDetails.TransactionStatus = objOrderBookingViewModel.TransactionStatus;
-                    orderDetails.ResponseCode = objOrderBookingViewModel.ResponseCode;
-
-                    var i = dbContext.SaveChanges();
-                    if (i != 0)
-                    {
-                        objResponse.Message = "Transaction Failed";
-                        MandiUserController objMandiUserController = new MandiUserController();
-                        objMandiUserController.SendFCMNotificationToUsers(deviceToken, "Transaction Declined for amount ₹" + objOrderBookingViewModel.Totalprice + " against Order Id " + objOrderBookingViewModel.Order_Id, "Test");
-                        AddNotification(objOrderBookingViewModel, "Congratulations…! Your order for amount ₹" + objOrderBookingViewModel.Totalprice + " has been received successfully against Order Id " + objOrderBookingViewModel.Order_Id);
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                    }
-                    else
-                    {
-                        objResponse.Message = "Error occured While Saving Transaction Status.";
-
-                        return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                    }
-
-                }
-
                 else
                 {
                     objResponse.Message = "No Order Details Found.";
@@ -602,7 +612,7 @@ namespace GrowIndigo.Controllers
         /// <param name="objOrderHistoryViewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize]
+     
         [Route("api/Mandi_Order/GetOrderHistory")]
         public HttpResponseMessage GetOrderHistory(MandiOrderHistoryViewModel objOrderHistoryViewModel)
         {
@@ -620,7 +630,7 @@ namespace GrowIndigo.Controllers
 
                 var getOrderList = (from orderList in dbContext.Mandi_OrderDetails
 
-                                    join product in dbContext.Mandi_OrderProductDetails on orderList.Order_Id equals product.Order_Id
+                                    join  product in dbContext.Mandi_OrderProductDetails on orderList.Order_Id equals product.Order_Id
                                     join address in dbContext.UsersAddress on orderList.Shipping_Address_Id equals address.tr_id
                                     join productmaster in dbContext.Mandi_ProductMaster on product.Product_Id equals productmaster.Tr_Id
                                     join crop in dbContext.Crop_Master on productmaster.CropId equals crop.CropId
@@ -628,6 +638,7 @@ namespace GrowIndigo.Controllers
 
 
                                     orderby orderList.Order_Id descending
+                                    
                                     select new
                                     {
                                         orderList.Order_Id,
@@ -656,11 +667,12 @@ namespace GrowIndigo.Controllers
                                         variety.VarietyName
                                         //productmaster.VarietyId
 
-                                    }).Where(x => x.Buyer_Mobile == mobileNumber).ToList();
+                                    }).Where(z => z.Buyer_Mobile == mobileNumber).ToList();
 
+                var test = getOrderList;
+                var test1 = getOrderList;
 
-
-                if (getOrderList != null)
+                if (getOrderList.Count>=0)
                 {
 
                     foreach (var i in getOrderList)

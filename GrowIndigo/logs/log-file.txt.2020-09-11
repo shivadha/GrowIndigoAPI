@@ -1,0 +1,4 @@
+2020-09-11 16:01:15,533 INFO MonitoringLogger - 
+2020-09-11 16:01:15,546 INFO MonitoringLogger - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+2020-09-11 16:01:49,696 INFO MonitoringLogger - 
+2020-09-11 16:01:49,696 INFO MonitoringLogger - The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at

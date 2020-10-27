@@ -175,7 +175,15 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="SellerAddress" Type="nvarchar(max)" />
     <Property Name="Logistics_Cost" Type="decimal" Precision="18" Scale="2" />
     <Property Name="Other_Charges" Type="decimal" Precision="18" Scale="2" />
-    <Property Name="Status" Type="bit" />
+    <Property Name="Taxes" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Fk_ProductStatus" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Mandi_CartProductStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductStatus" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Mandi_InterestedProductForUser">
     <Key>
@@ -221,6 +229,7 @@ warning 6013: The table/view 'GrowIndigoV2.dbo.Buyer_GM_CallCentre' does not hav
     <Property Name="Order_Status" Type="varchar(max)" />
     <Property Name="rzp_order_id" Type="varchar(max)" />
     <Property Name="rzp_payment_status" Type="varchar(max)" />
+    <Property Name="rzp_payment_Id" Type="varchar(max)" />
     <Property Name="rzp_payment_signature" Type="varchar(max)" />
     <Property Name="SelectedTotalQty" Type="varchar" MaxLength="50" />
     <Property Name="Buyer_Name" Type="varchar" MaxLength="50" />
@@ -727,6 +736,18 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Mandi_CartInfo_Mandi_CartProductStatus">
+    <End Role="Mandi_CartProductStatus" Type="Self.Mandi_CartProductStatus" Multiplicity="0..1" />
+    <End Role="Mandi_CartInfo" Type="Self.Mandi_CartInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mandi_CartProductStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mandi_CartInfo">
+        <PropertyRef Name="Fk_ProductStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
     <End Role="Mandi_InterestedProductForUser" Type="Self.Mandi_InterestedProductForUser" Multiplicity="0..1" />
     <End Role="Mandi_CartInfo" Type="Self.Mandi_CartInfo" Multiplicity="*" />
@@ -1010,6 +1031,7 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <EntitySet Name="ErrorLogs" EntityType="Self.ErrorLogs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_Banner" EntityType="Self.Mandi_Banner" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_CartInfo" EntityType="Self.Mandi_CartInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mandi_CartProductStatus" EntityType="Self.Mandi_CartProductStatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_InterestedProductForUser" EntityType="Self.Mandi_InterestedProductForUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_Notification" EntityType="Self.Mandi_Notification" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Mandi_OrderDetails" EntityType="Self.Mandi_OrderDetails" Schema="dbo" store:Type="Tables" />
@@ -1069,6 +1091,10 @@ warning 6002: The table/view 'GrowIndigoV2.dbo.Web_Mandi_usermaster' does not ha
     <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="Self.FK_Crop_Master_Crop_Master">
       <End Role="Crop_Master" EntitySet="Crop_Master" />
       <End Role="Crop_Master1" EntitySet="Crop_Master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Mandi_CartInfo_Mandi_CartProductStatus" Association="Self.FK_Mandi_CartInfo_Mandi_CartProductStatus">
+      <End Role="Mandi_CartProductStatus" EntitySet="Mandi_CartProductStatus" />
+      <End Role="Mandi_CartInfo" EntitySet="Mandi_CartInfo" />
     </AssociationSet>
     <AssociationSet Name="FK_Mandi_CartInfo_Mandi_InterestedProductForUser" Association="Self.FK_Mandi_CartInfo_Mandi_InterestedProductForUser">
       <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />

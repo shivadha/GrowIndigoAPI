@@ -56,6 +56,7 @@ namespace GrowIndigo.Models
         public string culture { get; set; }
         public string SCategoryId { get; set; }
         public string MobileNumber { get; set; }
+        public bool ProductPagination { get; set; }
         public int? VarietyId { get; set;}
         public string State { get; set; }
         public string District { get; set; }
