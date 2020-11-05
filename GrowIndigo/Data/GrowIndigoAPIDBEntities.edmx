@@ -5,149 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GrowIndigoV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.BS_call_centre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="BS_call_centre">
-          <Property Name="MobileNumber" Type="float" />
-          <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Village" Type="nvarchar" MaxLength="255" />
-          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
-          <Property Name="District" Type="nvarchar" MaxLength="255" />
-          <Property Name="State" Type="nvarchar" MaxLength="255" />
-          <Property Name="ROLE" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Buyer_1">
-          <Property Name="Sr" Type="float" />
-          <Property Name="Date_of_call" Type="datetime" />
-          <Property Name="Mobile_no#" Type="float" />
-          <Property Name="Vendor_name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
-          <Property Name="District" Type="nvarchar" MaxLength="255" />
-          <Property Name="State" Type="nvarchar" MaxLength="255" />
-          <Property Name="Call_Status" Type="nvarchar" MaxLength="255" />
-          <Property Name="Trading_crops" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_Details" Type="nvarchar" MaxLength="255" />
-          <Property Name="Android_Phone" Type="nvarchar" MaxLength="255" />
-          <Property Name="WhatsApp_no#" Type="nvarchar" MaxLength="255" />
-          <Property Name="willingness_to_use_an_App" Type="nvarchar" MaxLength="255" />
-          <Property Name="Challenges" Type="nvarchar" MaxLength="255" />
-          <Property Name="other_queries" Type="nvarchar" MaxLength="255" />
-          <Property Name="Called _by" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Buyer_GM">
-          <Property Name="Sr" Type="float" />
-          <Property Name="Date of call" Type="datetime" />
-          <Property Name="Mobile no#" Type="float" />
-          <Property Name="Vendor name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
-          <Property Name="Dist#" Type="nvarchar" MaxLength="255" />
-          <Property Name="State" Type="nvarchar" MaxLength="255" />
-          <Property Name="Call Status" Type="nvarchar" MaxLength="255" />
-          <Property Name="Trading crops" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop Details" Type="nvarchar" MaxLength="255" />
-          <Property Name="Android Phone" Type="nvarchar" MaxLength="255" />
-          <Property Name="WhatsApp no#" Type="float" />
-          <Property Name="willingness to use an App" Type="nvarchar" MaxLength="255" />
-          <Property Name="Challenges" Type="nvarchar" MaxLength="255" />
-          <Property Name="other queries" Type="nvarchar" MaxLength="255" />
-          <Property Name="Called  by" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Buyer_GM_CallCentre">
-          <Property Name="Sr" Type="float" />
-          <Property Name="Date_of_call" Type="datetime" />
-          <Property Name="Mobile_no#" Type="float" />
-          <Property Name="Vendor_name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
-          <Property Name="District" Type="nvarchar" MaxLength="255" />
-          <Property Name="State" Type="nvarchar" MaxLength="255" />
-          <Property Name="Call_Status" Type="nvarchar" MaxLength="255" />
-          <Property Name="Trading_crops" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_Details" Type="nvarchar" MaxLength="255" />
-          <Property Name="Android_Phone" Type="nvarchar" MaxLength="255" />
-          <Property Name="WhatsApp_no#" Type="float" />
-          <Property Name="willingness_to_use_an_App" Type="nvarchar" MaxLength="255" />
-          <Property Name="Challenges" Type="nvarchar" MaxLength="255" />
-          <Property Name="other_queries" Type="nvarchar" MaxLength="255" />
-          <Property Name="Called _by" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quality_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity_3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Price_3" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -236,6 +93,7 @@ warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM_CallCentre' does not hav
           <Property Name="Remarks" Type="nvarchar(max)" />
           <Property Name="ServiceTax" Type="decimal" Precision="18" Scale="2" />
           <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Mandi_CartProductStatus">
           <Key>
@@ -418,7 +276,7 @@ warning 6013: The table/view 'GrowIndigoV1.dbo.Buyer_GM_CallCentre' does not hav
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Mandi_UserInfo_bkp">
           <Key>
             <PropertyRef Name="MobileNumber" />
@@ -438,7 +296,7 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp' does not have
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowMandi_Test.dbo.Mandi_UserInfo_bkp_2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Mandi_UserInfo_bkp_2">
           <Key>
             <PropertyRef Name="MobileNumber" />
@@ -537,126 +395,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Mandi_UserInfo_bkp_2' does not ha
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.seller_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="seller_1">
-          <Property Name="Sr#" Type="float" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Mob_No" Type="float" />
-          <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Village" Type="nvarchar" MaxLength="255" />
-          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
-          <Property Name="District" Type="nvarchar" MaxLength="255" />
-          <Property Name="State" Type="nvarchar" MaxLength="255" />
-          <Property Name="Call_Status" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Harvest_time" Type="nvarchar" MaxLength="255" />
-          <Property Name="Where_they_sell?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Payment_in_10-15_day_okay?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Interested_for_app?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Andriod_Phone" Type="nvarchar" MaxLength="255" />
-          <Property Name="whatsapp_number?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Other_Queries" Type="nvarchar" MaxLength="255" />
-          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
-          <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_GM_CallCentre' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Seller_GM_CallCentre">
-          <Property Name="Sr#" Type="float" />
-          <Property Name="Date_of_call " Type="datetime" />
-          <Property Name="Mob#_No" Type="float" />
-          <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Village" Type="nvarchar" MaxLength="255" />
-          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
-          <Property Name="District" Type="nvarchar" MaxLength="255" />
-          <Property Name="State" Type="nvarchar" MaxLength="255" />
-          <Property Name="Call_Status" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity1" Type="float" />
-          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity2" Type="float" />
-          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity3" Type="float" />
-          <Property Name="Crop4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Harvest_time(Major_Crop)" Type="nvarchar" MaxLength="255" />
-          <Property Name="Where_they_sell?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Payment_in_10-15_day_okay?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Interested_for_app?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Andriod_Phone" Type="nvarchar" MaxLength="255" />
-          <Property Name="whatsapp_number?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Other_Queries" Type="nvarchar" MaxLength="255" />
-          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
-          <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_GM_new_2' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Seller_GM_new_2">
-          <Property Name="Sr#" Type="float" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Mob_No" Type="float" />
-          <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Village" Type="nvarchar" MaxLength="255" />
-          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
-          <Property Name="District" Type="nvarchar" MaxLength="255" />
-          <Property Name="State" Type="nvarchar" MaxLength="255" />
-          <Property Name="Call_Status" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity1" Type="float" />
-          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity2" Type="float" />
-          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity3" Type="float" />
-          <Property Name="Crop4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Harvest_time" Type="nvarchar" MaxLength="255" />
-          <Property Name="Where_they_sell?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Payment_in_10-15_day_okay?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Interested_for_app?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Andriod_Phone" Type="nvarchar" MaxLength="255" />
-          <Property Name="whatsapp_number?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Other_Queries" Type="nvarchar" MaxLength="255" />
-          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
-          <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_new' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Seller_new">
-          <Property Name="Sr#" Type="float" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Mob_No" Type="float" />
-          <Property Name="Farmer_Name" Type="nvarchar" MaxLength="255" />
-          <Property Name="Village" Type="nvarchar" MaxLength="255" />
-          <Property Name="Taluka" Type="nvarchar" MaxLength="255" />
-          <Property Name="District" Type="nvarchar" MaxLength="255" />
-          <Property Name="State" Type="nvarchar" MaxLength="255" />
-          <Property Name="Call_Status" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity1" Type="float" />
-          <Property Name="Crop2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity2" Type="float" />
-          <Property Name="Crop3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Crop4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Quantity4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Harvest_time" Type="nvarchar" MaxLength="255" />
-          <Property Name="Where_they_sell?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Payment_in_10-15_day_okay?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Interested_for_app?" Type="nvarchar" MaxLength="255" />
-          <Property Name="Andriod_Phone" Type="nvarchar" MaxLength="255" />
-          <Property Name="whatsapp_number?" Type="float" />
-          <Property Name="Other_Queries" Type="nvarchar" MaxLength="255" />
-          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
-          <Property Name="Called_By" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
         <EntityType Name="State_Master">
           <Key>
             <PropertyRef Name="StateCode" />
@@ -666,7 +404,7 @@ warning 6013: The table/view 'GrowIndigoV1.dbo.Seller_new' does not have a prima
           <Property Name="StateCode" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowMandi_Test.dbo.SubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SubCategory">
           <Key>
             <PropertyRef Name="SubCategoryId" />
@@ -685,15 +423,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.SubCategory' does not have a prim
           <Property Name="TalukaName" Type="nvarchar" MaxLength="256" />
           <Property Name="TalukaCode" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'GrowIndigoV1.dbo.testbulk' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="testbulk">
-          <Property Name="ProductId" Type="varchar" MaxLength="20" />
-          <Property Name="ProductName" Type="varchar" MaxLength="50" />
-          <Property Name="BrandName" Type="varchar" MaxLength="50" />
-          <Property Name="Warrenty" Type="varchar" MaxLength="10" />
-          <Property Name="Price" Type="varchar" MaxLength="100" />
-        </EntityType>-->
         <EntityType Name="UserCategoryMapping">
           <Key>
             <PropertyRef Name="Id" />
@@ -821,9 +550,11 @@ warning 6013: The table/view 'GrowIndigoV1.dbo.testbulk' does not have a primary
           <Property Name="VarietyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="VarietyName" Type="nvarchar" MaxLength="50" />
           <Property Name="CropId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="VarietyOrigin" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'GrowMandi_Test.dbo.Web_Mandi_usermaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Web_Mandi_usermaster">
           <Key>
             <PropertyRef Name="tr_id" />
@@ -1368,7 +1099,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <EntitySet Name="Mandi_Notification" EntityType="GrowIndigoV2Model.Mandi_Notification" />
           <EntitySet Name="Mandi_OrderDetails" EntityType="GrowIndigoV2Model.Mandi_OrderDetails" />
           <EntitySet Name="Mandi_OrderProductDetails" EntityType="GrowIndigoV2Model.Mandi_OrderProductDetails" />
-          <EntitySet Name="Mandi_ProductMaster" EntityType="GrowIndigoV2Model.Mandi_ProductMaster" />
           <EntitySet Name="Mandi_Requirement" EntityType="GrowIndigoV2Model.Mandi_Requirement" />
           <EntitySet Name="Mandi_Roles" EntityType="GrowIndigoV2Model.Mandi_Roles" />
           <EntitySet Name="Mandi_UserEnquiry" EntityType="GrowIndigoV2Model.Mandi_UserEnquiry" />
@@ -1398,10 +1128,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
             <End Role="Category" EntitySet="Category" />
             <End Role="Crop_Master" EntitySet="Crop_Master" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Crop_Master" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
-          </AssociationSet>
           <AssociationSet Name="FK_SubCategory_Category" Association="GrowIndigoV2Model.FK_SubCategory_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="SubCategory" EntitySet="SubCategory" />
@@ -1413,10 +1139,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <AssociationSet Name="FK_Crop_Master_Crop_Master" Association="GrowIndigoV2Model.FK_Crop_Master_Crop_Master">
             <End Role="Crop_Master" EntitySet="Crop_Master" />
             <End Role="Crop_Master1" EntitySet="Crop_Master" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo">
-            <End Role="Crop_Master" EntitySet="Crop_Master" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
           </AssociationSet>
           <AssociationSet Name="FK_Variety_Master_Crop_Master" Association="GrowIndigoV2Model.FK_Variety_Master_Crop_Master">
             <End Role="Crop_Master" EntitySet="Crop_Master" />
@@ -1441,14 +1163,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <AssociationSet Name="FK_Mandi_InterestedProductForUser_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_Mandi_InterestedProductForUser_Mandi_UserInfo">
             <End Role="Mandi_UserInfo" EntitySet="Mandi_UserInfo" />
             <End Role="Mandi_InterestedProductForUser" EntitySet="Mandi_InterestedProductForUser" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_ProductMaster" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster">
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
-            <End Role="Mandi_ProductMaster1" EntitySet="Mandi_ProductMaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Mandi_ProductMaster_Variety_Master" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master">
-            <End Role="Variety_Master" EntitySet="Variety_Master" />
-            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
           </AssociationSet>
           <AssociationSet Name="FK_Mandi_UserRoles_Mandi_Roles" Association="GrowIndigoV2Model.FK_Mandi_UserRoles_Mandi_Roles">
             <End Role="Mandi_Roles" EntitySet="Mandi_Roles" />
@@ -1498,6 +1212,23 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
             <End Role="UserInfo" EntitySet="UserInfo" />
             <End Role="UserWallet" EntitySet="UserWallet" />
           </AssociationSet>
+          <EntitySet Name="Mandi_ProductMaster" EntityType="GrowIndigoV2Model.Mandi_ProductMaster" />
+          <AssociationSet Name="FK_Mandi_ProductMaster_Crop_Master" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_UserInfo" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo">
+            <End Role="Crop_Master" EntitySet="Crop_Master" />
+            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_ProductMaster_Mandi_ProductMaster" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster">
+            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+            <End Role="Mandi_ProductMaster1" EntitySet="Mandi_ProductMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mandi_ProductMaster_Variety_Master" Association="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master">
+            <End Role="Variety_Master" EntitySet="Variety_Master" />
+            <End Role="Mandi_ProductMaster" EntitySet="Mandi_ProductMaster" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -1512,9 +1243,9 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Mr_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Hi_CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Crop_Master_Category" FromRole="Category" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master" FromRole="Category" ToRole="Mandi_ProductMaster" />
           <NavigationProperty Name="SubCategory" Relationship="GrowIndigoV2Model.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
           <NavigationProperty Name="UserCategoryMapping" Relationship="GrowIndigoV2Model.FK_UserCategoryMapping_Category" FromRole="Category" ToRole="UserCategoryMapping" />
+          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master" FromRole="Category" ToRole="Mandi_ProductMaster" />
         </EntityType>
         <EntityType Name="Crop_Master">
           <Key>
@@ -1532,8 +1263,8 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Crop_Master_Category" FromRole="Crop_Master" ToRole="Category" />
           <NavigationProperty Name="Crop_Master1" Relationship="GrowIndigoV2Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master" ToRole="Crop_Master1" />
           <NavigationProperty Name="Crop_Master2" Relationship="GrowIndigoV2Model.FK_Crop_Master_Crop_Master" FromRole="Crop_Master1" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Crop_Master" ToRole="Mandi_ProductMaster" />
           <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoV2Model.FK_Variety_Master_Crop_Master" FromRole="Crop_Master" ToRole="Variety_Master" />
+          <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Crop_Master" ToRole="Mandi_ProductMaster" />
         </EntityType>
         <EntityType Name="District_Master">
           <Key>
@@ -1599,6 +1330,7 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <NavigationProperty Name="Mandi_CartProductStatus" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_CartProductStatus" FromRole="Mandi_CartInfo" ToRole="Mandi_CartProductStatus" />
           <NavigationProperty Name="Mandi_InterestedProductForUser" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_InterestedProductForUser" FromRole="Mandi_CartInfo" ToRole="Mandi_InterestedProductForUser" />
           <NavigationProperty Name="Mandi_UserEnquiry" Relationship="GrowIndigoV2Model.FK_Mandi_CartInfo_Mandi_UserEnquiry" FromRole="Mandi_CartInfo" ToRole="Mandi_UserEnquiry" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Mandi_CartProductStatus">
           <Key>
@@ -1677,52 +1409,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="Tr_Date" Type="DateTime" Precision="0" />
           <Property Name="SelectedQuantity" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="SelectedProductPrice" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Mandi_ProductMaster">
-          <Key>
-            <PropertyRef Name="Tr_Id" />
-          </Key>
-          <Property Name="Tr_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CropId" Type="Int32" />
-          <Property Name="CategoryId" Type="Int64" />
-          <Property Name="VarietyId" Type="Int32" />
-          <Property Name="CropEndDate" Type="DateTime" Precision="3" />
-          <Property Name="Product_Status" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ProductAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="GeoAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="NetBankingId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="QuantityUnit" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Int32" />
-          <Property Name="ServiceTax" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="TotalAmount" Type="Int32" />
-          <Property Name="AvailabilityDate" Type="DateTime" Precision="0" />
-          <Property Name="PaymentMethod" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="IsQualityTestNeeded" Type="Boolean" />
-          <Property Name="IsLogisticNeeded" Type="Boolean" />
-          <Property Name="ProductImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Tr_Date" Type="DateTime" Precision="0" />
-          <Property Name="State" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="District" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Taluka" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="Village" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="ProductPriority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="SecondaryProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ProductDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="IsApproved" Type="Boolean" />
-          <Property Name="MaximumPrice" Type="Int32" />
-          <Property Name="MinimumPrice" Type="Int32" />
-          <Property Name="TermsAndCondition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Hi_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Mr_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Te_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Category" />
-          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
-          <NavigationProperty Name="Mandi_ProductMaster1" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster" FromRole="Mandi_ProductMaster" ToRole="Mandi_ProductMaster1" />
-          <NavigationProperty Name="Mandi_ProductMaster2" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster" FromRole="Mandi_ProductMaster1" ToRole="Mandi_ProductMaster" />
-          <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
         </EntityType>
         <EntityType Name="Mandi_Requirement">
           <Key>
@@ -2042,6 +1728,8 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <Property Name="CropId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Variety_Master_Crop_Master" FromRole="Variety_Master" ToRole="Crop_Master" />
           <NavigationProperty Name="Mandi_ProductMaster" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master" FromRole="Variety_Master" ToRole="Mandi_ProductMaster" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="VarietyOrigin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Mandi_UserInfo_bkp">
           <Key>
@@ -2120,18 +1808,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mandi_ProductMaster_Crop_Master">
-          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryId" />
-            </Principal>
-            <Dependent Role="Mandi_ProductMaster">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SubCategory_Category">
           <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="1" />
           <End Type="GrowIndigoV2Model.SubCategory" Role="SubCategory" Multiplicity="*" />
@@ -2164,18 +1840,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
               <PropertyRef Name="CropId" />
             </Principal>
             <Dependent Role="Crop_Master1">
-              <PropertyRef Name="CropId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mandi_ProductMaster_Mandi_UserInfo">
-          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="0..1" />
-          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Crop_Master">
-              <PropertyRef Name="CropId" />
-            </Principal>
-            <Dependent Role="Mandi_ProductMaster">
               <PropertyRef Name="CropId" />
             </Dependent>
           </ReferentialConstraint>
@@ -2249,30 +1913,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
             </Principal>
             <Dependent Role="Mandi_InterestedProductForUser">
               <PropertyRef Name="Fk_MobileNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mandi_ProductMaster_Mandi_ProductMaster">
-          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="1" />
-          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Mandi_ProductMaster">
-              <PropertyRef Name="Tr_Id" />
-            </Principal>
-            <Dependent Role="Mandi_ProductMaster1">
-              <PropertyRef Name="Tr_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Mandi_ProductMaster_Variety_Master">
-          <End Type="GrowIndigoV2Model.Variety_Master" Role="Variety_Master" Multiplicity="0..1" />
-          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Variety_Master">
-              <PropertyRef Name="VarietyId" />
-            </Principal>
-            <Dependent Role="Mandi_ProductMaster">
-              <PropertyRef Name="VarietyId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2420,6 +2060,100 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Mandi_ProductMaster">
+          <Key>
+            <PropertyRef Name="Tr_Id" />
+          </Key>
+          <Property Name="Tr_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CropId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int64" />
+          <Property Name="VarietyId" Type="Int32" />
+          <Property Name="CropEndDate" Type="DateTime" Precision="3" />
+          <Property Name="Product_Status" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ProductAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="GeoAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NetBankingId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="QuantityUnit" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="ServiceTax" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalAmount" Type="Int32" />
+          <Property Name="AvailabilityDate" Type="DateTime" Precision="0" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="IsQualityTestNeeded" Type="Boolean" />
+          <Property Name="IsLogisticNeeded" Type="Boolean" />
+          <Property Name="ProductImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Tr_Date" Type="DateTime" Precision="0" />
+          <Property Name="State" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Taluka" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Village" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ProductPriority" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SecondaryProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="MaximumPrice" Type="Int32" />
+          <Property Name="MinimumPrice" Type="Int32" />
+          <Property Name="TermsAndCondition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Hi_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Mr_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Te_ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Crop_Master" FromRole="Mandi_ProductMaster" ToRole="Category" />
+          <NavigationProperty Name="Crop_Master" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_UserInfo" FromRole="Mandi_ProductMaster" ToRole="Crop_Master" />
+          <NavigationProperty Name="Mandi_ProductMaster1" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster" FromRole="Mandi_ProductMaster" ToRole="Mandi_ProductMaster1" />
+          <NavigationProperty Name="Mandi_ProductMaster2" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Mandi_ProductMaster" FromRole="Mandi_ProductMaster1" ToRole="Mandi_ProductMaster" />
+          <NavigationProperty Name="Variety_Master" Relationship="GrowIndigoV2Model.FK_Mandi_ProductMaster_Variety_Master" FromRole="Mandi_ProductMaster" ToRole="Variety_Master" />
+        </EntityType>
+        <Association Name="FK_Mandi_ProductMaster_Crop_Master">
+          <End Type="GrowIndigoV2Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Mandi_ProductMaster">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mandi_ProductMaster_Mandi_UserInfo">
+          <End Type="GrowIndigoV2Model.Crop_Master" Role="Crop_Master" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Crop_Master">
+              <PropertyRef Name="CropId" />
+            </Principal>
+            <Dependent Role="Mandi_ProductMaster">
+              <PropertyRef Name="CropId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mandi_ProductMaster_Mandi_ProductMaster">
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Mandi_ProductMaster">
+              <PropertyRef Name="Tr_Id" />
+            </Principal>
+            <Dependent Role="Mandi_ProductMaster1">
+              <PropertyRef Name="Tr_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mandi_ProductMaster_Variety_Master">
+          <End Type="GrowIndigoV2Model.Variety_Master" Role="Variety_Master" Multiplicity="0..1" />
+          <End Type="GrowIndigoV2Model.Mandi_ProductMaster" Role="Mandi_ProductMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variety_Master">
+              <PropertyRef Name="VarietyId" />
+            </Principal>
+            <Dependent Role="Mandi_ProductMaster">
+              <PropertyRef Name="VarietyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2493,6 +2227,7 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <EntitySetMapping Name="Mandi_CartInfo">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_CartInfo">
               <MappingFragment StoreEntitySet="Mandi_CartInfo">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
@@ -2595,48 +2330,6 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
                 <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
                 <ScalarProperty Name="Product_Id" ColumnName="Product_Id" />
                 <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
-                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Mandi_ProductMaster">
-            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_ProductMaster">
-              <MappingFragment StoreEntitySet="Mandi_ProductMaster">
-                <ScalarProperty Name="Te_ProductDescription" ColumnName="Te_ProductDescription" />
-                <ScalarProperty Name="Mr_ProductDescription" ColumnName="Mr_ProductDescription" />
-                <ScalarProperty Name="Hi_ProductDescription" ColumnName="Hi_ProductDescription" />
-                <ScalarProperty Name="TermsAndCondition" ColumnName="TermsAndCondition" />
-                <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
-                <ScalarProperty Name="MaximumPrice" ColumnName="MaximumPrice" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="SecondaryProductImage" ColumnName="SecondaryProductImage" />
-                <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Village" ColumnName="Village" />
-                <ScalarProperty Name="Taluka" ColumnName="Taluka" />
-                <ScalarProperty Name="District" ColumnName="District" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
-                <ScalarProperty Name="ProductImageUrl" ColumnName="ProductImageUrl" />
-                <ScalarProperty Name="IsLogisticNeeded" ColumnName="IsLogisticNeeded" />
-                <ScalarProperty Name="IsQualityTestNeeded" ColumnName="IsQualityTestNeeded" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-                <ScalarProperty Name="AvailabilityDate" ColumnName="AvailabilityDate" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="NetBankingId" ColumnName="NetBankingId" />
-                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
-                <ScalarProperty Name="ProductAddress" ColumnName="ProductAddress" />
-                <ScalarProperty Name="Product_Status" ColumnName="Product_Status" />
-                <ScalarProperty Name="CropEndDate" ColumnName="CropEndDate" />
-                <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="CropId" ColumnName="CropId" />
                 <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2946,6 +2639,8 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
           <EntitySetMapping Name="Variety_Master">
             <EntityTypeMapping TypeName="GrowIndigoV2Model.Variety_Master">
               <MappingFragment StoreEntitySet="Variety_Master">
+                <ScalarProperty Name="VarietyOrigin" ColumnName="VarietyOrigin" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CropId" ColumnName="CropId" />
                 <ScalarProperty Name="VarietyName" ColumnName="VarietyName" />
                 <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
@@ -3016,6 +2711,48 @@ warning 6002: The table/view 'GrowIndigoV1.dbo.Web_Mandi_usermaster' does not ha
                 <ScalarProperty Name="user_mobile" ColumnName="user_mobile" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
                 <ScalarProperty Name="tr_id" ColumnName="tr_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mandi_ProductMaster">
+            <EntityTypeMapping TypeName="GrowIndigoV2Model.Mandi_ProductMaster">
+              <MappingFragment StoreEntitySet="Mandi_ProductMaster">
+                <ScalarProperty Name="Te_ProductDescription" ColumnName="Te_ProductDescription" />
+                <ScalarProperty Name="Mr_ProductDescription" ColumnName="Mr_ProductDescription" />
+                <ScalarProperty Name="Hi_ProductDescription" ColumnName="Hi_ProductDescription" />
+                <ScalarProperty Name="TermsAndCondition" ColumnName="TermsAndCondition" />
+                <ScalarProperty Name="MinimumPrice" ColumnName="MinimumPrice" />
+                <ScalarProperty Name="MaximumPrice" ColumnName="MaximumPrice" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="SecondaryProductImage" ColumnName="SecondaryProductImage" />
+                <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Village" ColumnName="Village" />
+                <ScalarProperty Name="Taluka" ColumnName="Taluka" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Tr_Date" ColumnName="Tr_Date" />
+                <ScalarProperty Name="ProductImageUrl" ColumnName="ProductImageUrl" />
+                <ScalarProperty Name="IsLogisticNeeded" ColumnName="IsLogisticNeeded" />
+                <ScalarProperty Name="IsQualityTestNeeded" ColumnName="IsQualityTestNeeded" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="AvailabilityDate" ColumnName="AvailabilityDate" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="ServiceTax" ColumnName="ServiceTax" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="NetBankingId" ColumnName="NetBankingId" />
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="GeoAddress" ColumnName="GeoAddress" />
+                <ScalarProperty Name="ProductAddress" ColumnName="ProductAddress" />
+                <ScalarProperty Name="Product_Status" ColumnName="Product_Status" />
+                <ScalarProperty Name="CropEndDate" ColumnName="CropEndDate" />
+                <ScalarProperty Name="VarietyId" ColumnName="VarietyId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CropId" ColumnName="CropId" />
+                <ScalarProperty Name="Tr_Id" ColumnName="Tr_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

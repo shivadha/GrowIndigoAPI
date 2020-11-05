@@ -861,7 +861,8 @@ namespace GrowIndigo.Controllers
 
                 objVariety_Master.VarietyName = objProductMasterViewModel.NewVariety;
                 objVariety_Master.CropId = Convert.ToInt32(objProductMasterViewModel.CropId);
-
+                objVariety_Master.Status = false;
+                objVariety_Master.VarietyOrigin = "App";
                 dbContext.Variety_Master.Add(objVariety_Master);
                 var j = dbContext.SaveChanges();
                 int VarietyId = objVariety_Master.VarietyId; // Get OrderId After Save Changes

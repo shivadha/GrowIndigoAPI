@@ -39,6 +39,7 @@ namespace GrowIndigo.Data
         public string Remarks { get; set; }
         public Nullable<decimal> ServiceTax { get; set; }
         public Nullable<System.DateTime> UpdatedDate { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
     
         public virtual Mandi_CartProductStatus Mandi_CartProductStatus { get; set; }
         public virtual Mandi_InterestedProductForUser Mandi_InterestedProductForUser { get; set; }

@@ -19,7 +19,8 @@ namespace GrowIndigo.Models
 
         public string VarietyName { get; set; }
         public string NewVariety { get; set; }
-        public string ProductAddress { get; set; } 
+        public string ProductAddress { get; set; }
+        public string TermsandCondition { get; set; }
         public string GeoAddress { get; set; }
         public Nullable<System.DateTime> CropEndDate { get; set; }
         public Nullable<System.DateTime> CurrentDate { get; set; }
@@ -39,6 +40,7 @@ namespace GrowIndigo.Models
         public Nullable<bool> IsLogisticNeeded { get; set; }
         public string ProductImageUrl { get; set; }
         public string SecondaryProductImage { get; set; }
+    
 
         public Nullable<System.DateTime> Tr_Date { get; set; }
         public string StateCode { get; set; }

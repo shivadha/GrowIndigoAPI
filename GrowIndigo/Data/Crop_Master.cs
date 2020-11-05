@@ -17,8 +17,8 @@ namespace GrowIndigo.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Crop_Master()
         {
-            this.Mandi_ProductMaster = new HashSet<Mandi_ProductMaster>();
             this.Variety_Master = new HashSet<Variety_Master>();
+            this.Mandi_ProductMaster = new HashSet<Mandi_ProductMaster>();
         }
     
         public int CropId { get; set; }
@@ -35,8 +35,8 @@ namespace GrowIndigo.Data
         public virtual Crop_Master Crop_Master1 { get; set; }
         public virtual Crop_Master Crop_Master2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mandi_ProductMaster> Mandi_ProductMaster { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Variety_Master> Variety_Master { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mandi_ProductMaster> Mandi_ProductMaster { get; set; }
     }
 }

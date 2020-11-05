@@ -23,6 +23,8 @@ namespace GrowIndigo.Data
         public int VarietyId { get; set; }
         public string VarietyName { get; set; }
         public int CropId { get; set; }
+        public Nullable<bool> Status { get; set; }
+        public string VarietyOrigin { get; set; }
     
         public virtual Crop_Master Crop_Master { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

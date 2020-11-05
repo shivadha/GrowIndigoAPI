@@ -14,7 +14,8 @@ namespace GrowIndigo.Models
         public int Tr_Id { get; set; }
         public Nullable<long> Fk_InterestedProductId { get; set; }
         public string Deal_Id { get; set; }
-     
+        public string StatusType { get; set; }
+
         public string Product { get; set; }
         public Nullable<long> Product_Id { get; set; }
         public string Quantity_Unit { get; set; }

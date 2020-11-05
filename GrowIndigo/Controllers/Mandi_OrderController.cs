@@ -351,7 +351,7 @@ namespace GrowIndigo.Controllers
                         objMandi_OrderProductDetails.Order_Id = objOrderBookingViewModel.Order_Id;
                         objMandi_OrderProductDetails.Product_Id = objOrderBookingViewModel.Product_Id;
                         objMandi_OrderProductDetails.TotalQuantity = objOrderBookingViewModel.SelectedTotalQty;
-                        objMandi_OrderProductDetails.Price = Convert.ToInt32(objOrderBookingViewModel.Totalprice);
+                        objMandi_OrderProductDetails.Price = Convert.ToInt32(j.Price);
                         objMandi_OrderProductDetails.Tr_Date = DateTime.Now;
                         objMandi_OrderProductDetails.SelectedQuantity = objOrderBookingViewModel.SelectedTotalQty;
                         objMandi_OrderProductDetails.SelectedProductPrice = objOrderBookingViewModel.Totalprice;
@@ -649,12 +649,13 @@ namespace GrowIndigo.Controllers
                 var getOrder = (from order in dbContext.Mandi_OrderDetails where order.Buyer_Mobile == mobileNumber select order).ToList();
 
                 var getOrderList = (from orderList in dbContext.Mandi_OrderDetails
-
+                                    join cart in dbContext.Mandi_CartInfo on orderList.Buyer_Mobile equals cart.BuyerNumber
                                     join product in dbContext.Mandi_OrderProductDetails on orderList.Order_Id equals product.Order_Id
                                     join address in dbContext.UsersAddress on orderList.Shipping_Address_Id equals address.tr_id
                                     join productmaster in dbContext.Mandi_ProductMaster on product.Product_Id equals productmaster.Tr_Id
                                     join crop in dbContext.Crop_Master on productmaster.CropId equals crop.CropId
 
+                                   
                                     join variety in dbContext.Variety_Master on productmaster.VarietyId equals variety.VarietyId
 
 
@@ -677,13 +678,15 @@ namespace GrowIndigo.Controllers
                                         address.reciver_name,
                                         address.ship_address,
                                         address.city,
-
+                                        cart.Logistics_Cost,
+                                        cart.Other_Charges,
+                                        cart.Taxes,
                                         address.pincode,
                                         productmaster.ProductImageUrl,
                                         address.ship_mobile,
                                         product.Product_Id,
                                         product.TotalQuantity,
-                                        productmaster.Price,
+                                        cart.Price,
                                         productmaster.TermsAndCondition,
                                         productmaster.QuantityUnit,
                                         product.SelectedQuantity,
@@ -708,7 +711,7 @@ namespace GrowIndigo.Controllers
                         if (getSellerMobileNumber != null)
                         {
                             var getSellerAddress = (from mobile in dbContext.Mandi_UserInfo where mobile.MobileNumber == getSellerMobileNumber.MobileNumber select mobile).FirstOrDefault();
-                            var getCartInfo = (from order in dbContext.Mandi_CartInfo where order.Deal_Id == i.Order_Id.ToString() select order).FirstOrDefault();
+                            //var getCartInfo = (from cart in dbContext.Mandi_CartInfo where cart.Product_Id == i.Product_Id select cart).FirstOrDefault();
 
                             MandiOrderHistoryViewModel objMandiOrderHistoryList = new MandiOrderHistoryViewModel()
                             {
@@ -729,7 +732,9 @@ namespace GrowIndigo.Controllers
                                 ship_address = i.ship_address,
                                 city = i.city,
                                 TermsAndCondition = i.TermsAndCondition,
-
+                                Logistics_Cost = i.Logistics_Cost,
+                                Other_Charges = i.Other_Charges,
+                                Taxes = i.Taxes,
                                 SellerName = getSellerAddress.FullName,
                                 SellerState = getSellerAddress.State == null ? "N/A" : getSellerAddress.State,
                                 SellerDistrict = getSellerAddress.District == null ? "N/A" : getSellerAddress.District,
@@ -745,13 +750,13 @@ namespace GrowIndigo.Controllers
                                 TotalQuantity = i.TotalQuantity,
                                 Price = Convert.ToInt32(i.Price),
                                 SelectedQuantity = i.SelectedQuantity,
-                                SelectedProductPrice = i.SelectedProductPrice,
+                                SelectedProductPrice = i.Price * Convert.ToInt32(i.SelectedQuantity),
                                 CropName = i.CropName,
                                 VarietyName = i.VarietyName,
-                              
-                                Logistics_Cost = getCartInfo==null ? 0: getCartInfo.Logistics_Cost,
-                                Other_Charges = getCartInfo == null ? 0 : getCartInfo.Other_Charges,
-                                Taxes = getCartInfo == null ? 0 : getCartInfo.Taxes
+
+                                //Logistics_Cost = getCartInfo == null ? 0 : getCartInfo.Logistics_Cost,
+                                //Other_Charges = getCartInfo == null ? 0 : getCartInfo.Other_Charges,
+                                //Taxes = getCartInfo == null ? 0 : getCartInfo.Taxes
 
 
 

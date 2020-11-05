@@ -14,7 +14,8 @@ namespace GrowIndigo.Models
             public string Buyer_Mobile { get; set; }
             public string Totalprice { get; set; }
             public string Prices { get; set; }
-  
+            public string Price { get; set; }
+
             public string PaymentStatus { get; set; }
 
             public string Type { get; set; }

@@ -151,6 +151,9 @@ namespace GrowIndigo.Models
         public string SelectedTotalQty { get; set; }
         public string Buyer_Name { get; set; }
         public string GeoCoordinates { get; set; }
+        public Nullable<decimal> Logistics_Cost { get; set; }
+        public Nullable<decimal> Other_Charges { get; set; }
+        public Nullable<decimal> Taxes { get; set; }
 
 
         //from UsersAddress
@@ -172,12 +175,11 @@ namespace GrowIndigo.Models
         public string TotalQuantity { get; set; }
         public int Price { get; set; }
         public string SelectedQuantity { get; set; }
-        public string SelectedProductPrice { get; set; }
+        public int ? SelectedProductPrice { get; set; }
+
         public string CropName { get; set; }
         public string VarietyName { get; set; }
-        public Nullable<decimal> Logistics_Cost { get; set; }
-        public Nullable<decimal> Other_Charges { get; set; }
-        public Nullable<decimal> Taxes { get; set; }
+        
         
 
     }
