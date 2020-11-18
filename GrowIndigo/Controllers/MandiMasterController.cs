@@ -29,7 +29,7 @@ namespace GrowIndigo.Controllers
             try
             {
                 int counter = Counter;
-                int take = 6;
+                int take = 10;
                 int skip = counter;
 
                 Mandi_CropMaster Mandi_CropMaster = new Mandi_CropMaster();
@@ -214,7 +214,7 @@ namespace GrowIndigo.Controllers
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
                             }
-                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList(); ;
+                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                         }
@@ -246,7 +246,7 @@ namespace GrowIndigo.Controllers
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
                             }
-                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList(); ;
+                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                         }
@@ -278,7 +278,7 @@ namespace GrowIndigo.Controllers
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
                             }
-                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList(); ;
+                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                         }
@@ -309,7 +309,7 @@ namespace GrowIndigo.Controllers
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
                             }
-                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList(); ;
+                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                         }
@@ -341,7 +341,7 @@ namespace GrowIndigo.Controllers
                                 };
                                 objListMandiCrop.Add(objMandi_Crop);
                             }
-                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList(); ;
+                            Mandi_CropMaster.MandiCrops = objListMandiCrop.OrderBy(x => x.CropName).Skip(skip).Take(take).ToList();
 
                             return Request.CreateResponse(HttpStatusCode.OK, Mandi_CropMaster);
                         }

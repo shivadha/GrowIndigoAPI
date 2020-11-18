@@ -21,6 +21,7 @@ using System.Web;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using static GrowIndigo.Models.MandiMasterData;
+using System.CodeDom;
 
 namespace GrowIndigo.Controllers
 {
@@ -157,7 +158,68 @@ namespace GrowIndigo.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/MandiUser/GetProductStatus")]
+        public string GetProductStatus(string AvailabilityDate = "", string CropEndDate = "")
+        {
+            try
+            {
+                string productStatus = "";
+               
+                DateTime availabeDate = Convert.ToDateTime(AvailabilityDate);
+                DateTime SoleDate = Convert.ToDateTime(CropEndDate);
+                //DateTime SoleDate = Convert.ToDateTime(availabeDate).AddDays(30);
+                DateTime CurrentDate = DateTime.Now;
+                DateTime ComingSoonDate;
 
+                if (availabeDate == null)
+                {
+                    productStatus = "Sold";
+                }
+                else
+                {
+                    if (availabeDate != null)
+                    {
+                        ComingSoonDate = Convert.ToDateTime(availabeDate).AddDays(-15);
+
+                        if (DateTime.Now <= ComingSoonDate)
+                        {
+                            productStatus = "Coming Soon";
+                        }
+                        else if (DateTime.Now > SoleDate)
+                        {
+                            productStatus = "Sold";
+                        }
+
+                        else if (DateTime.Now > ComingSoonDate && DateTime.Now < SoleDate)
+                        {
+                            productStatus = "Available";
+                        }
+                        else
+                        {
+                            productStatus = "In Review";
+                        }
+                    }
+                    else
+                    {
+                        productStatus = "In Review";
+                    }
+                }
+
+                return productStatus;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+
+
+
+
+        }
 
         /// <summary>
         /// for getting all products 
@@ -214,15 +276,15 @@ namespace GrowIndigo.Controllers
                                                VarietyId = i.Mandi_ProductMaster.VarietyId,
                                                CropName = i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                VarietyName = i.Variety_Master.VarietyName,
                                                ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                                GeoAddress = i.Mandi_ProductMaster.GeoAddress,
-                                         
+
                                                MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                                NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                                Quantity = i.Mandi_ProductMaster.Quantity,
@@ -250,7 +312,7 @@ namespace GrowIndigo.Controllers
                                          .OrderBy(x => x.ProductPriority == "0").OrderByDescending(x => x.Tr_Date).Skip(skip).Take(take).AsQueryable();
                             #endregion
 
-                            #region filters
+                        #region filters
                             if (objProductFilter.CropId != null)
                             {
                                 //For getting list of Crop from the table.
@@ -337,11 +399,11 @@ namespace GrowIndigo.Controllers
                                                VarietyId = i.Mandi_ProductMaster.VarietyId,
                                                CropName = i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                VarietyName = i.Variety_Master.VarietyName,
                                                ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                                GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -474,8 +536,8 @@ namespace GrowIndigo.Controllers
                                                VarietyId = i.Mandi_ProductMaster.VarietyId,
                                                CropName = i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                                VarietyName = i.Variety_Master.VarietyName,
@@ -487,7 +549,7 @@ namespace GrowIndigo.Controllers
                                                QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
                                                Price = i.Mandi_ProductMaster.Price,
                                                ServiceTax = i.Mandi_ProductMaster.ServiceTax,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                                PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                                IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
@@ -599,8 +661,8 @@ namespace GrowIndigo.Controllers
                                                VarietyId = i.Mandi_ProductMaster.VarietyId,
                                                CropName = i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                                VarietyName = i.Variety_Master.VarietyName,
@@ -612,7 +674,7 @@ namespace GrowIndigo.Controllers
                                                QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
                                                Price = i.Mandi_ProductMaster.Price,
                                                ServiceTax = i.Mandi_ProductMaster.ServiceTax,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                                PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                                IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
@@ -740,12 +802,12 @@ namespace GrowIndigo.Controllers
 
                                                CropName = objProductFilter.culture == "En" ? i.Crop_Master.CropName : objProductFilter.culture == "Hi" ? i.Crop_Master.Hi_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Hi_CropName : objProductFilter.culture == "Mr" ? i.Crop_Master.Mr_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Mr_CropName : objProductFilter.culture == "Te" ? i.Crop_Master.Te_CropName == null ? i.Crop_Master.Te_CropName : i.Crop_Master.Te_CropName : i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                                CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                VarietyName = i.Variety_Master.VarietyName,
                                                ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                                GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -759,8 +821,8 @@ namespace GrowIndigo.Controllers
                                                PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                                IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                                IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                               // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
-                                               Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                       // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                       Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                                StateCode = i.Mandi_ProductMaster.State,
                                                DistrictCode = i.Mandi_ProductMaster.District,
                                                TalukaCode = i.Mandi_ProductMaster.Taluka,
@@ -1062,8 +1124,8 @@ namespace GrowIndigo.Controllers
                                                CropName = i.Crop_Master.CropName,
 
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               // FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       // FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                                VarietyName = i.Variety_Master.VarietyName,
@@ -1071,18 +1133,18 @@ namespace GrowIndigo.Controllers
                                                GeoAddress = i.Mandi_ProductMaster.GeoAddress,
                                                MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                                CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                               
+
                                                NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                                Quantity = i.Mandi_ProductMaster.Quantity,
                                                QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                Price = i.Mandi_ProductMaster.Price,
                                                AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                                PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                                IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                                IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                               //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
-                                               Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                       //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                       Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                                StateCode = i.Mandi_ProductMaster.State,
                                                DistrictCode = i.Mandi_ProductMaster.District,
                                                TalukaCode = i.Mandi_ProductMaster.Taluka,
@@ -1090,8 +1152,8 @@ namespace GrowIndigo.Controllers
                                                ProductPriority = i.Mandi_ProductMaster.ProductPriority,
                                                ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
                                                SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
-                                               // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
-                                               NewVariety = ""
+                                       // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                       NewVariety = ""
 
                                            }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                           .OrderBy(x => x.ProductPriority == "2")
@@ -1398,11 +1460,11 @@ namespace GrowIndigo.Controllers
                                                CropName = i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
 
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                VarietyName = i.Variety_Master.VarietyName,
                                                ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                                GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -1521,11 +1583,11 @@ namespace GrowIndigo.Controllers
                                                VarietyId = i.Mandi_ProductMaster.VarietyId,
                                                CropName = i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                VarietyName = i.Variety_Master.VarietyName,
                                                ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                                GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -1658,15 +1720,15 @@ namespace GrowIndigo.Controllers
                                                VarietyId = i.Mandi_ProductMaster.VarietyId,
                                                CropName = i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                                VarietyName = i.Variety_Master.VarietyName,
                                                ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                                GeoAddress = i.Mandi_ProductMaster.GeoAddress,
                                                CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                                NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                                Quantity = i.Mandi_ProductMaster.Quantity,
@@ -1785,10 +1847,10 @@ namespace GrowIndigo.Controllers
                                                VarietyId = i.Mandi_ProductMaster.VarietyId,
                                                CropName = i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                               CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                               CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                                FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                                VarietyName = i.Variety_Master.VarietyName,
@@ -1929,8 +1991,8 @@ namespace GrowIndigo.Controllers
                                                CropName = objProductFilter.culture == "En" ? i.Crop_Master.CropName : objProductFilter.culture == "Hi" ? i.Crop_Master.Hi_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Hi_CropName : objProductFilter.culture == "Mr" ? i.Crop_Master.Mr_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Mr_CropName : objProductFilter.culture == "Te" ? i.Crop_Master.Te_CropName == null ? i.Crop_Master.Te_CropName : i.Crop_Master.Te_CropName : i.Crop_Master.CropName,
                                                SCategoryId = i.Crop_Master.CategoryId,
                                                TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
-                                               //FilterCategoryName = i.Category_Master.CategoryName,
-                                               FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
+                                       //FilterCategoryName = i.Category_Master.CategoryName,
+                                       FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                                CropEndDate = i.Mandi_ProductMaster.CropEndDate,
                                                CropStatus = i.Mandi_ProductMaster.CropEndDate == null ? "Sold" : i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
@@ -1947,8 +2009,8 @@ namespace GrowIndigo.Controllers
                                                PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                                IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                                IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                               // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
-                                               Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                       // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                       Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                                StateCode = i.Mandi_ProductMaster.State,
                                                DistrictCode = i.Mandi_ProductMaster.District,
                                                TalukaCode = i.Mandi_ProductMaster.Taluka,
@@ -2250,8 +2312,8 @@ namespace GrowIndigo.Controllers
                                                CropName = i.Crop_Master.CropName,
                                                TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                                SCategoryId = i.Crop_Master.CategoryId,
-                                               // FilterCategoryName = i.Category_Master.CategoryName,
-                                               FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
+                                       // FilterCategoryName = i.Category_Master.CategoryName,
+                                       FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                                ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                                VarietyName = i.Variety_Master.VarietyName,
                                                ProductAddress = i.Mandi_ProductMaster.ProductAddress,
@@ -2268,8 +2330,8 @@ namespace GrowIndigo.Controllers
                                                PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                                IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                                IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                               //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
-                                               Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                       //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                       Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                                StateCode = i.Mandi_ProductMaster.State,
                                                DistrictCode = i.Mandi_ProductMaster.District,
                                                TalukaCode = i.Mandi_ProductMaster.Taluka,
@@ -2277,8 +2339,8 @@ namespace GrowIndigo.Controllers
                                                ProductPriority = i.Mandi_ProductMaster.ProductPriority,
                                                ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
                                                SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
-                                               // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
-                                               NewVariety = ""
+                                       // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                       NewVariety = ""
 
                                            }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                           .OrderBy(x => x.ProductPriority == "2")
@@ -2628,11 +2690,11 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -2751,8 +2813,8 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
 
@@ -2768,7 +2830,7 @@ namespace GrowIndigo.Controllers
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                            IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                            StateCode = i.Mandi_ProductMaster.State,
                                            DistrictCode = i.Mandi_ProductMaster.District,
@@ -2888,8 +2950,8 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            VarietyName = i.Variety_Master.VarietyName,
@@ -2901,7 +2963,7 @@ namespace GrowIndigo.Controllers
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
                                            Price = i.Mandi_ProductMaster.Price,
                                            ServiceTax = i.Mandi_ProductMaster.ServiceTax,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
@@ -3013,8 +3075,8 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            VarietyName = i.Variety_Master.VarietyName,
@@ -3026,7 +3088,7 @@ namespace GrowIndigo.Controllers
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
                                            Price = i.Mandi_ProductMaster.Price,
                                            ServiceTax = i.Mandi_ProductMaster.ServiceTax,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            AvailabilityDate = i.Mandi_ProductMaster.AvailabilityDate,
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
@@ -3154,12 +3216,12 @@ namespace GrowIndigo.Controllers
 
                                            CropName = objProductFilter.culture == "En" ? i.Crop_Master.CropName : objProductFilter.culture == "Hi" ? i.Crop_Master.Hi_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Hi_CropName : objProductFilter.culture == "Mr" ? i.Crop_Master.Mr_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Mr_CropName : objProductFilter.culture == "Te" ? i.Crop_Master.Te_CropName == null ? i.Crop_Master.Te_CropName : i.Crop_Master.Te_CropName : i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -3173,8 +3235,8 @@ namespace GrowIndigo.Controllers
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                            IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                           // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
-                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                   // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                   Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                            StateCode = i.Mandi_ProductMaster.State,
                                            DistrictCode = i.Mandi_ProductMaster.District,
                                            TalukaCode = i.Mandi_ProductMaster.Taluka,
@@ -3473,8 +3535,8 @@ namespace GrowIndigo.Controllers
                                            CropName = i.Crop_Master.CropName,
 
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           // FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   // FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            VarietyName = i.Variety_Master.VarietyName,
@@ -3483,7 +3545,7 @@ namespace GrowIndigo.Controllers
                                            MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                            CropEndDate = i.Mandi_ProductMaster.CropEndDate,
                                            //CropStatus = i.Mandi_ProductMaster.CropEndDate == null ? "Sold" : i.Mandi_ProductMaster.CropEndDate >= DateTime.Now ? "Available" : "Sold",
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                            Quantity = i.Mandi_ProductMaster.Quantity,
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
@@ -3493,8 +3555,8 @@ namespace GrowIndigo.Controllers
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                            IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                           //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
-                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                   //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                   Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                            StateCode = i.Mandi_ProductMaster.State,
                                            DistrictCode = i.Mandi_ProductMaster.District,
                                            TalukaCode = i.Mandi_ProductMaster.Taluka,
@@ -3502,8 +3564,8 @@ namespace GrowIndigo.Controllers
                                            ProductPriority = i.Mandi_ProductMaster.ProductPriority,
                                            ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
                                            SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
-                                           // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
-                                           NewVariety = ""
+                                   // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                   NewVariety = ""
 
                                        }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
@@ -3836,15 +3898,15 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
 
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                            NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                            Quantity = i.Mandi_ProductMaster.Quantity,
@@ -3959,11 +4021,11 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -4096,8 +4158,8 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            VarietyName = i.Variety_Master.VarietyName,
@@ -4221,8 +4283,8 @@ namespace GrowIndigo.Controllers
                                            VarietyId = i.Mandi_ProductMaster.VarietyId,
                                            CropName = i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            VarietyName = i.Variety_Master.VarietyName,
@@ -4362,12 +4424,12 @@ namespace GrowIndigo.Controllers
 
                                            CropName = objProductFilter.culture == "En" ? i.Crop_Master.CropName : objProductFilter.culture == "Hi" ? i.Crop_Master.Hi_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Hi_CropName : objProductFilter.culture == "Mr" ? i.Crop_Master.Mr_CropName == null ? i.Crop_Master.CropName : i.Crop_Master.Mr_CropName : objProductFilter.culture == "Te" ? i.Crop_Master.Te_CropName == null ? i.Crop_Master.Te_CropName : i.Crop_Master.Te_CropName : i.Crop_Master.CropName,
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           //FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   //FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            VarietyName = i.Variety_Master.VarietyName,
                                            ProductAddress = i.Mandi_ProductMaster.ProductAddress,
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
@@ -4381,8 +4443,8 @@ namespace GrowIndigo.Controllers
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                            IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                           // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
-                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                   // ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                   Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                            StateCode = i.Mandi_ProductMaster.State,
                                            DistrictCode = i.Mandi_ProductMaster.District,
                                            TalukaCode = i.Mandi_ProductMaster.Taluka,
@@ -4552,7 +4614,7 @@ namespace GrowIndigo.Controllers
 
                         #endregion
 
-                        
+
                     }
                     else
                     {
@@ -4590,8 +4652,8 @@ namespace GrowIndigo.Controllers
                                            CropName = i.Crop_Master.CropName,
 
                                            SCategoryId = i.Crop_Master.CategoryId,
-                                           // FilterCategoryName = i.Category_Master.CategoryName,
-                                           TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
+                                   // FilterCategoryName = i.Category_Master.CategoryName,
+                                   TermsandCondition = i.Mandi_ProductMaster.TermsAndCondition,
                                            FilterCategoryName = objProductFilter.culture == "En" ? i.Category_Master.CategoryName : objProductFilter.culture == "Hi" ? i.Category_Master.Hi_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Hi_CategoryName : objProductFilter.culture == "Mr" ? i.Category_Master.Mr_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Mr_CategoryName : objProductFilter.culture == "Te" ? i.Category_Master.Te_CategoryName == null ? i.Category_Master.CategoryName : i.Category_Master.Te_CategoryName : i.Category_Master.CategoryName,
                                            ProductDescription = objProductFilter.culture == "En" ? i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Hi" ? i.Mandi_ProductMaster.Hi_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Hi_ProductDescription : objProductFilter.culture == "Mr" ? i.Mandi_ProductMaster.Mr_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.ProductDescription : objProductFilter.culture == "Te" ? i.Mandi_ProductMaster.Te_ProductDescription == null ? i.Mandi_ProductMaster.ProductDescription : i.Mandi_ProductMaster.Te_ProductDescription : i.Mandi_ProductMaster.ProductDescription,
                                            VarietyName = i.Variety_Master.VarietyName,
@@ -4599,7 +4661,7 @@ namespace GrowIndigo.Controllers
                                            GeoAddress = i.Mandi_ProductMaster.GeoAddress,
                                            MobileNumber = i.Mandi_ProductMaster.MobileNumber,
                                            CropEndDate = i.Mandi_ProductMaster.CropEndDate,
-                                           CropStatus = i.Mandi_ProductMaster.Product_Status == null ? "Sold" : i.Mandi_ProductMaster.Product_Status,
+                                           CropStatus = GetProductStatus((i.Mandi_ProductMaster.AvailabilityDate).ToString(), (i.Mandi_ProductMaster.CropEndDate).ToString()),
                                            NetBankingId = i.Mandi_ProductMaster.NetBankingId,
                                            Quantity = i.Mandi_ProductMaster.Quantity,
                                            QuantityUnit = i.Mandi_ProductMaster.QuantityUnit,
@@ -4609,8 +4671,8 @@ namespace GrowIndigo.Controllers
                                            PaymentMethod = i.Mandi_ProductMaster.PaymentMethod,
                                            IsQualityTestNeeded = i.Mandi_ProductMaster.IsQualityTestNeeded,
                                            IsLogisticNeeded = i.Mandi_ProductMaster.IsLogisticNeeded,
-                                           //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
-                                           Tr_Date = i.Mandi_ProductMaster.Tr_Date,
+                                   //  ProductImageUrl = i.Mandi_ProductMaster.ProductImageUrl,
+                                   Tr_Date = i.Mandi_ProductMaster.Tr_Date,
                                            StateCode = i.Mandi_ProductMaster.State,
                                            DistrictCode = i.Mandi_ProductMaster.District,
                                            TalukaCode = i.Mandi_ProductMaster.Taluka,
@@ -4618,8 +4680,8 @@ namespace GrowIndigo.Controllers
                                            ProductPriority = i.Mandi_ProductMaster.ProductPriority,
                                            ProductImageUrl = ServerPath + i.Mandi_ProductMaster.ProductImageUrl,
                                            SecondaryProductImage = !string.IsNullOrEmpty(ServerPath + i.Mandi_ProductMaster.SecondaryProductImage) ? ServerPath + i.Mandi_ProductMaster.SecondaryProductImage : "",
-                                           // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
-                                           NewVariety = ""
+                                   // SecondaryProductImage = !string.IsNullOrEmpty(i.Mandi_ProductMaster.SecondaryProductImage) ? i.Mandi_ProductMaster.SecondaryProductImage : "",
+                                   NewVariety = ""
 
                                        }).Where(x => x.MobileNumber != getUserMobileNumber && x.IsActive == true).OrderBy(x => x.ProductPriority == "1")
                                       .OrderBy(x => x.ProductPriority == "2")
@@ -4780,7 +4842,7 @@ namespace GrowIndigo.Controllers
                                 //For getting list of address from the table.
                                 products = products.Where(x => x.IsQualityTestNeeded == Quality);
                             }
-                           
+
                             var ProductsOrder = products.Where(x => x.CropStatus == "Coming Soon").ToList();
                             objFilterMandiProduct.Products = ProductsOrder.Skip(skip).Take(10).ToList();
 
@@ -4788,7 +4850,7 @@ namespace GrowIndigo.Controllers
 
                         #endregion
 
-                        
+
                     }
 
 
@@ -6498,11 +6560,11 @@ namespace GrowIndigo.Controllers
             }
             return "";
         }
-        public string SendFCMNotificationWithDataToUsers(string DeviceToken = "", string Message = "", string Title = "", string MobileNumber="", string Type="cart")
+        public string SendFCMNotificationWithDataToUsers(string DeviceToken = "", string Message = "", string Title = "", string MobileNumber = "", string Type = "cart")
         {
             string notificationjson = string.Empty;
             var mobileNumber = "";
-            
+
             if (!string.IsNullOrEmpty(DeviceToken))
             {
                 notificationjson = "{ \"to\": \"" + DeviceToken + "\" ,\"data\":{\"MobileNumber\":\"" + MobileNumber + "\",\"Type\":\"" + Type + "\"},\"notification\":{\"type\":\"" + Title + "\",\"body\":\"" + Message + "\"}}";
@@ -7143,91 +7205,7 @@ namespace GrowIndigo.Controllers
         }
 
 
-        [HttpPost]
-        [Route("api/MandiUser/UpdateProductStatus")]
-        public HttpResponseMessage UpdateProductStatus()
-        {
 
-
-            try
-            {
-                string productStatus = "";
-                var getALLProducts = (from product in dbContext.Mandi_ProductMaster select product).Distinct().ToList();
-                if (getALLProducts.Count() > 0)
-                {
-
-                    foreach (var pro in getALLProducts)
-                    {
-                        
-                        DateTime AvailabilityDate = Convert.ToDateTime(pro.AvailabilityDate);
-                        DateTime SoleDate = Convert.ToDateTime(pro.AvailabilityDate).AddDays(30);
-                        DateTime CurrentDate = DateTime.Now;
-                        DateTime ComingSoonDate;
-                        if (pro.AvailabilityDate == null)
-                        {
-                            productStatus = "Sold";
-                        }
-                        else
-                        {
-                            if (AvailabilityDate != null)
-                            {
-                                ComingSoonDate = Convert.ToDateTime(AvailabilityDate).AddDays(-15);
-
-                                if (DateTime.Now <= ComingSoonDate)
-                                {
-                                    productStatus = "Coming Soon";
-                                }
-                                else if (DateTime.Now > SoleDate)
-                                {
-                                    productStatus = "Sold";
-                                }
-
-                                else if (DateTime.Now > ComingSoonDate)
-                                {
-                                    productStatus = "Available";
-                                }
-                                else
-                                {
-                                    productStatus = "In Review";
-                                }
-                            }
-                            else
-                            {
-                                productStatus = "In Review";
-                            }
-                        }
-
-                        Mandi_ProductMaster objMandi_ProductMaster = new Mandi_ProductMaster();
-                        objMandi_ProductMaster.Product_Status = productStatus;
-                        var id = pro.Tr_Id;
-                        var getProductDetails = dbContext.Mandi_ProductMaster.Where(x => x.Tr_Id == pro.Tr_Id).FirstOrDefault();
-                        getProductDetails.Product_Status = productStatus;
-                        dbContext.SaveChanges();
-                    }
-                    objResponse.Message = "Product status for all products has been updated.";
-                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-                }
-
-
-
-                else
-                {
-                    objResponse.Message = "No new Product added on ";
-                    return Request.CreateResponse(HttpStatusCode.OK, objResponse);
-
-                }
-            }
-            catch (Exception ex)
-            {
-
-                Log.Info(Convert.ToString(ex.InnerException));
-                Log.Info(ex.Message);
-                objCommonClasses.InsertExceptionDetails(ex, "MandiUser", "UpdateProductStatus");
-                return Request.CreateErrorResponse(HttpStatusCode.ExpectationFailed, ex.Message);
-            }
-
-
-        }
 
 
         [HttpPost]
@@ -7261,7 +7239,7 @@ namespace GrowIndigo.Controllers
                 }
                 else
                 {
-                   
+
                     string Message = "Dear Customer, your enquiry of " + objOrderBookingViewModel.CropName + " is resolved. Please proceed to checkout.";
                     var addnotification = AddNotification(objOrderBookingViewModel, Message);
                     if (addnotification == "true")
@@ -7282,21 +7260,61 @@ namespace GrowIndigo.Controllers
                     }
                 }
             }
-            else 
+            else
             {
                 objResponse.Message = "No DeviceToken Found for this buyer";
                 return objResponse.Message;
             }
-           
-              
-           
+
+
+
+        }
+
+        [HttpPost]
+        [Route(" ")]
+        public string SendNotificaionToSeller(OrderBookingViewModel objOrderBookingViewModel)
+        {
+            var getDeviceToken = (from buyer in dbContext.Mandi_UserInfo where buyer.MobileNumber == objOrderBookingViewModel.Buyer_Mobile select buyer).FirstOrDefault();
+            if (getDeviceToken != null)
+            {
+               
+                    string Message = "Your product has been verified and listed on Grow Mandi. We will notify you when we get any suitable buyer.";
+                    var addnotification = AddNotification(objOrderBookingViewModel, Message);
+                    if (addnotification == "true")
+                    {
+                        string Title = "Grow Mandi, Product is approved";
+                        SendFCMNotificationWithDataToUsers(getDeviceToken.DeviceToken, Message, Title, objOrderBookingViewModel.Buyer_Mobile);
+
+                        objResponse.Message = "Success";
+                        objResponse.MobileNumber = objOrderBookingViewModel.Buyer_Mobile;
+                        return objResponse.MobileNumber;
+                    }
+                    else
+                    {
+
+                        //objResponse.Message = "Interested product has been saved in db but notification is not added";
+                        objResponse.Message = "Failed";
+                        return objResponse.Message;
+
+                    }
+                
+                
+            }
+            else
+            {
+                objResponse.Message = "No DeviceToken Found for this buyer";
+                return objResponse.Message;
+            }
+
+
+
         }
 
         [HttpPost]
         [Route("api/MandiUser/UpdateDealIdInCart")]
-        public HttpResponseMessage UpdateDealIdInCart( CartInfoViewModel objCartInfoViewModel)
+        public HttpResponseMessage UpdateDealIdInCart(CartInfoViewModel objCartInfoViewModel)
         {
-            var checkCartId = (from cart in dbContext.Mandi_CartInfo where cart.CartId == objCartInfoViewModel.CartId  select cart).FirstOrDefault();
+            var checkCartId = (from cart in dbContext.Mandi_CartInfo where cart.CartId == objCartInfoViewModel.CartId select cart).FirstOrDefault();
             if (checkCartId != null)
             {
                 checkCartId.Deal_Id = objCartInfoViewModel.Deal_Id;
@@ -7304,7 +7322,8 @@ namespace GrowIndigo.Controllers
                 objResponse.Message = "OrderId saved";
                 return Request.CreateResponse(HttpStatusCode.OK, objResponse);
             }
-            else {
+            else
+            {
                 objResponse.Message = "No cartId found";
                 return Request.CreateResponse(HttpStatusCode.OK, objResponse);
             }
@@ -7341,7 +7360,7 @@ namespace GrowIndigo.Controllers
                            FCategoryName = cat.CategoryName,
                            ProductDescription = objSearchViewModel.culture == "En" ? p.ProductDescription : objSearchViewModel.culture == "Hi" ? p.Hi_ProductDescription == null ? p.ProductDescription : p.Hi_ProductDescription : objSearchViewModel.culture == "Mr" ? p.Mr_ProductDescription == null ? p.ProductDescription : p.ProductDescription : objSearchViewModel.culture == "Te" ? p.Te_ProductDescription == null ? p.ProductDescription : p.Te_ProductDescription : p.ProductDescription,
                            FilterProductDescription = p.ProductDescription,
-                           TermsandCondition=p.TermsAndCondition,
+                           TermsandCondition = p.TermsAndCondition,
                            CropEndDate = p.CropEndDate,
                            CropStatus = p.CropEndDate >= DateTime.Now ? "Available" : "Sold",
                            VarietyName = v.VarietyName,
@@ -7495,7 +7514,7 @@ namespace GrowIndigo.Controllers
                                 objMandi_CartInfo.ServiceTax = getProductDetail.ServiceTax;
                                 objMandi_CartInfo.ProductAddress = getProductDetail.ProductAddress;
                                 objMandi_CartInfo.ProductImage = objMandiCartViewModel.ProductImage;
-                                
+
 
                                 #endregion
 
@@ -7724,7 +7743,7 @@ namespace GrowIndigo.Controllers
                                                         product.Quantity,
                                                         product.QuantityUnit,
                                                         product.Price,
-                                                      
+
                                                         product.ServiceTax,
                                                         //product.CategoryId,
                                                         //crop.CategoryName,
@@ -7839,7 +7858,7 @@ namespace GrowIndigo.Controllers
                 List<Cart_InfoForUser> objListCart_InfoForUser = new List<Cart_InfoForUser>();
 
                 var getCartDetails = (from cart in dbContext.Mandi_CartInfo where cart.BuyerNumber == objMandiCartViewModel.BuyerContact select cart).ToList();
-              
+
                 if (objMandiCartViewModel.CartType == "Enquiry")
                 {
                     if (getCartDetails != null)
@@ -7860,7 +7879,7 @@ namespace GrowIndigo.Controllers
                                 Taxes = i.Taxes,
                                 ServiceTax = i.ServiceTax,
                                 SellerName = i.SellerName,
-                                TermsAndCondition= getProductTerm,
+                                TermsAndCondition = getProductTerm,
                                 Seller_MobileNumber = i.SellerName,
                                 Logistics_Cost = i.Logistics_Cost,
                                 Other_Charges = i.Other_Charges,
@@ -7900,7 +7919,7 @@ namespace GrowIndigo.Controllers
                                     Fk_EnquiryId = i.Fk_EnquiryId,
                                     Fk_InterestedProductId = i.Fk_InterestedProductId,
                                     Product = i.Product,
-                                    TermsAndCondition= getProductTerm,
+                                    TermsAndCondition = getProductTerm,
                                     Quantity = i.Quantity,
                                     QuantityUnit = i.QuantityUnit,
                                     Price = i.Price,
@@ -7971,7 +7990,8 @@ namespace GrowIndigo.Controllers
                 var sellerProduct = (from cart in dbContext.Mandi_CartInfo where cart.CartId == cartId select cart).FirstOrDefault();
                 if (sellerProduct != null)
                 {
-                    if (objMandiCartViewModel.StatusType == "Order") {
+                    if (objMandiCartViewModel.StatusType == "Order")
+                    {
 
                         sellerProduct.Fk_ProductStatus = 5;
                         dbContext.Entry(sellerProduct).State = EntityState.Modified;
@@ -7990,7 +8010,8 @@ namespace GrowIndigo.Controllers
                             return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                         }
                     }
-                    else {
+                    else
+                    {
                         sellerProduct.Fk_ProductStatus = 6;
                         dbContext.Entry(sellerProduct).State = EntityState.Modified;
 
@@ -8008,7 +8029,7 @@ namespace GrowIndigo.Controllers
                             return Request.CreateResponse(HttpStatusCode.OK, objResponse);
                         }
                     }
-                    
+
                 }
                 else
                 {
