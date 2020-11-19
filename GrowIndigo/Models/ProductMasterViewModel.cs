@@ -23,6 +23,7 @@ namespace GrowIndigo.Models
         public string TermsandCondition { get; set; }
         public string GeoAddress { get; set; }
         public Nullable<System.DateTime> CropEndDate { get; set; }
+        public Nullable<System.DateTime> ComingSoonDate { get; set; }
         public Nullable<System.DateTime> CurrentDate { get; set; }
         public string MobileNumber { get; set; }
         public string FilterCategoryName { get; set; }

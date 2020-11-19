@@ -1,0 +1,4 @@
+2020-11-18 12:08:06,100 INFO MonitoringLogger - 
+2020-11-18 12:08:06,106 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetProductStatus(System.String, System.String)' method, and this method cannot be translated into a store expression.
+2020-11-18 12:17:33,718 INFO MonitoringLogger - 
+2020-11-18 12:17:33,724 INFO MonitoringLogger - LINQ to Entities does not recognize the method 'System.String GetProductStatus(System.String, System.String)' method, and this method cannot be translated into a store expression.
